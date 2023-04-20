@@ -1,5 +1,5 @@
 
-import styles from './CampoTexto.module.css';
+import styles from './TextField.module.css';
 
 type Props = {
     placeholder: string;
@@ -7,7 +7,7 @@ type Props = {
     src: string;
 }
 
-export function CampoTexto({placeholder, type, src}: Props) {
+export function TextField({placeholder, type, src}: Props) {
     return (
         <div className={styles.campoTexto}>
             <input placeholder={placeholder} type={type} name="" />

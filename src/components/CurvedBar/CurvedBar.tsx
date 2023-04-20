@@ -1,7 +1,7 @@
 
-import styles from './BarraCurvada.module.css';
+import styles from './CurvedBar.module.css';
 
-export function BarraCurvada() {
+export function CurvedBar() {
     return (
         <div className={styles.container}>
             <div className={styles.divBlue}>

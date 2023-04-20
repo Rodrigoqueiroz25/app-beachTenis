@@ -4,17 +4,17 @@ import img from '../../assets/Subtract.svg';
 import imgBeachTenis from '../../assets/player-beachTenis.svg';
 import imgMail from '../../assets/Mail.svg';
 import imgEye from '../../assets/eye.svg';
-import { BarraCurvada } from '../../components/BarraCurvada/BarraCurvada';
+import { CurvedBar } from '../../components/CurvedBar/CurvedBar';
 import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
-import { CampoTexto } from '../../components/CampoTexto/CampoTexto';
+import { TextField } from '../../components/TextField/TextField';
 
 
 export function Login() {
     return (
         <div className={styles.login}>
             <header className={styles.cabecalho}>
-                <BarraCurvada />
+                <CurvedBar />
                 <div className={styles.msgWelcome}>
                     <p>Welcome</p>
                     <p className={styles.back}>Back <img src={imgBeachTenis} alt="" /></p> 
@@ -22,8 +22,8 @@ export function Login() {
             </header>
             <main>
                 <form className={styles.form} action="post">
-                    <CampoTexto placeholder='E-mail' type='email' src={imgMail}/>
-                    <CampoTexto placeholder='Password' type='password' src={imgEye}/>
+                    <TextField placeholder='E-mail' type='email' src={imgMail}/>
+                    <TextField placeholder='Password' type='password' src={imgEye}/>
                     
                     <div className={styles.forgotPasswd}>
                         <p>Forgot Password?</p>
