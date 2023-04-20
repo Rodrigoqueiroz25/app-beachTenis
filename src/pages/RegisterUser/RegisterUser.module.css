@@ -5,15 +5,14 @@
 
 .header{
     position: relative;
-    margin-bottom: 0;
+    
 }
 
 .msgWelcome{
     position: absolute;
     top: -2rem;
     left: 4rem;
-    grid-column: 2;
-    grid-row: 2;
+    
     font-size: 3.1rem;
     color: #2F1160;
     
@@ -33,7 +32,7 @@
 }
 
 .form Button{
-    margin-top: 5.8rem;
+    margin-top: 4.0rem;
 }
 
 .inputPhoneNumber{

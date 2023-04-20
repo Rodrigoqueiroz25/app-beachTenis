@@ -13,8 +13,8 @@ import { TextField } from '../../components/TextField/TextField';
 export function Login() {
     return (
         <div className={styles.login}>
+            <CurvedBar />
             <header className={styles.header}>
-                <CurvedBar />
                 <div className={styles.msgWelcome}>
                     <p>Welcome</p>
                     <p className={styles.back}>Back <img src={imgBeachTenis} alt="" /></p> 
@@ -31,7 +31,7 @@ export function Login() {
                     <Button text='Log in'/>
                 </form>
             </main>
-            <FooterLogin text='Não tem cadastro?' link='Cadastre-se'/>
+            <FooterLogin text="Don't have a register?" link='Sign up'/>
             
         </div>
 

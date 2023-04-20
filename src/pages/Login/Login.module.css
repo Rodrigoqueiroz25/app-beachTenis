@@ -5,18 +5,13 @@
 }
 
 .header{
-    display: grid;
-    grid-template-columns: 0.5fr 1fr 3fr;
-    grid-template-rows: 0.5fr 0.5fr;
     position: relative;    
 }
 
 .msgWelcome{
     position: absolute;
     top: -2rem;
-    left: -1rem;
-    grid-column: 2;
-    grid-row: 2;
+    left: 4rem;
     
     font-size: 3.1rem;
     
@@ -26,8 +21,7 @@
     flex-direction: column;
     
     justify-content: center;
-    margin-bottom: 0;
-    margin-top: 0;
+    
 }
 
 .back{
@@ -40,24 +34,25 @@
 .form{
     display: flex;
     flex-direction: column;
-    gap: 17px;
+    gap: 1.8rem;
     
-    margin: 14rem 3.3rem 3.4rem;
+    margin: 19.583rem 3.3rem 0rem;
     
 }
 
+.form Button{
+    margin-top: 1.5rem;
+}
 
 .forgotPasswd{
+    margin-top: -1.1rem;
     display: flex;
     justify-content: right;
-    
 }
 
 .forgotPasswd p{
     color: #3f3d56;
     font-weight: 400;
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    
+    font-size: 1.2rem;   
 }
 
