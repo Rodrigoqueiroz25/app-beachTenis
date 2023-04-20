@@ -6,19 +6,19 @@ import imgRectangle from '../../assets/Rectangle.svg';
 
 
 type Props = {
-    texto: string;
+    text: string;
     link: string;
 }
 
-export function FooterLogin({texto, link}: Props) {
+export function FooterLogin({text, link}: Props) {
     return (
         <footer className={styles.footer}>
-            <p>Or</p>
-            <div className={styles.imgsRedes}>
+            <p className={styles.textOr}>Or</p>
+            <div className={styles.imgsSocialMedia}>
                 <img src={imgGoogle} alt="" />
                 <img src={imgFacebook} alt="" />
             </div>
-            <p className={styles.link}>{texto}<span>{link}</span></p>
+            <p className={styles.link}>{text}<span>{link}</span></p>
 
             <img src={imgRectangle} alt="" />
         </footer>

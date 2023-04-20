@@ -1,40 +1,37 @@
 
-import styles from './Login.module.css';
-import img from '../../assets/Subtract.svg';
+import { CurvedBar } from '../../components/CurvedBar/CurvedBar';
+import styles from './RegisterUser.module.css';
 import imgBeachTenis from '../../assets/player-beachTenis.svg';
 import imgMail from '../../assets/Mail.svg';
 import imgEye from '../../assets/eye.svg';
-import { CurvedBar } from '../../components/CurvedBar/CurvedBar';
+import { TextField } from '../../components/TextField/TextField';
 import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
-import { TextField } from '../../components/TextField/TextField';
 
-
-export function Login() {
+export function RegisterUser(){
     return (
-        <div className={styles.login}>
+        <div className={styles.RegisterUser}>
+            <CurvedBar/>
             <header className={styles.header}>
-                <CurvedBar />
                 <div className={styles.msgWelcome}>
-                    <p>Welcome</p>
-                    <p className={styles.back}>Back <img src={imgBeachTenis} alt="" /></p> 
+                    <p>Hey <br /> Welcome</p>
+                    <img src={imgBeachTenis} alt="" />
                 </div>
             </header>
             <main>
                 <form className={styles.form} action="post">
+                    <div className={styles.inputPhoneNumber}>
+                        <p>+55</p>
+                        <TextField placeholder='Phone Number' type='tel'/>
+                    </div>
+                    
                     <TextField placeholder='E-mail' type='email' src={imgMail}/>
                     <TextField placeholder='Password' type='password' src={imgEye}/>
-                    
-                    <div className={styles.forgotPasswd}>
-                        <p>Forgot Password?</p>
-                    </div>
-                    <Button text='Log in'/>
+                    <Button text='Sign Up'/>
                 </form>
             </main>
-            <FooterLogin text='Não tem cadastro?' link='Cadastre-se'/>
-            
+            <FooterLogin text='Already a Member?' link='Log in'/>
+        
         </div>
-
-
     );
 }

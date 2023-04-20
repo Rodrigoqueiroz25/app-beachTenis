@@ -3,30 +3,33 @@
     flex-direction: column;
     align-items: center;
     
-    gap: 2rem;
-    
+    margin-top: 2.2rem;
     
 }
 
-.imgsRedes{
+.textOr{
+    size: 1.8rem;
+    color: #262626;
+    
+}
+
+.imgsSocialMedia{
+    margin-top: 2.2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10rem;
+    gap: 8.8rem;
 }
 
 .link{
-    /* margin-top: 0.8rem; */
+    margin-top: 1.2rem;
     color: #8a8a8a;
     font-size: 1.2rem;
     font-weight: 400;
     display: flex;
     gap: 0.4rem;
+    margin-bottom: 2.5rem;
 }
 
 .link span{
     color: #2f1160;
-}
-
-.footer img{
-    margin: 0.8rem 0;
 }

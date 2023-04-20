@@ -1,5 +1,5 @@
 
-.botao {
+.button {
     background-color: #221fd1;
     color: white;
     font-weight: 500;
@@ -12,10 +12,10 @@
     transition: background-color 0.25s;
   }
   
-  .botao:hover {
+  .button:hover {
     background-color: #221fc1;
   }
-  .botao:focus,
-  .botao:focus-visible {
+  .button:focus,
+  .button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }

@@ -1,10 +1,10 @@
 
 
-.campoTexto{
+.textField{
     position: relative;
 }
 
-.campoTexto img{
+.textField img{
     position: absolute;
     z-index: 10;
     right: 2rem;

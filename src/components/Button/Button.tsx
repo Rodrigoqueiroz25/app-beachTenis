@@ -2,11 +2,11 @@
 import styles from './Button.module.css';
 
 type Props = {
-    texto: string;
+    text: string;
 }
 
-export function Button({texto}:Props){
+export function Button({text}:Props){
     return (
-        <button className={styles.botao}>{texto}</button>
+        <button className={styles.button}>{text}</button>
     );
 }
