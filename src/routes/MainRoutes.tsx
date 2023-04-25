@@ -8,7 +8,7 @@ import { CreatePasswd } from "../pages/CreatePasswd/CreatePasswd";
 export function MainRoutes(){
     return useRoutes([
         { path: '/login', element: <Login/>},
-        { path: '/registerUser', element: <RegisterUser/> },
+        { path: '/register-user', element: <RegisterUser/> },
         { path: '/forgot-password', element: <ForgotPasswd/>},
         { path: '/create-password', element: <CreatePasswd/> }
     ]);
