@@ -1,0 +1,65 @@
+.forgotPasswd{
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.questForgotPasswd{
+    font-size: 2.4rem;
+    color: #2f1160;
+    line-height: 3.6rem;
+    font-weight: 500;
+
+}
+
+.containerTitle{
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+.containerMain{
+    margin: 2.2rem 3.3rem 0rem;
+    text-align: center;
+}
+
+.imgForgotPasswd{
+    margin-bottom: 3.3rem;
+}
+
+.textForgotPasswd{
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    color: #3f3d56;
+    
+    margin-bottom: 2.7rem;
+    
+}
+
+.linkToLoginScreen{
+    margin-top: 0.6rem;
+    font-size: 1.2rem;
+    color: #8a8a8a;
+    
+    margin-bottom: 9rem;
+    
+}
+
+.linkToLoginScreen span{
+    color: #2F1160;
+}
+
+.form Button{
+    width: 100%;
+    margin-bottom: 11rem;    
+}
+
+.imgRetangle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
