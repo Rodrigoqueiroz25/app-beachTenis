@@ -6,7 +6,7 @@ import { RegisterUser } from "../pages/RegisterUser/RegisterUser";
 export function MainRoutes(){
     return useRoutes([
         { path: '/login', element: <Login/>},
-        { path: '/registerUser', element: <RegisterUser/> }
+        { path: '/registerUser', element: <RegisterUser/> },
     ]);
 
 }
