@@ -40,7 +40,7 @@
     
 }
 
-.linkToLoginScreen{
+.txtRememberPasswd{
     margin-top: 0.6rem;
     font-size: 1.2rem;
     color: #8a8a8a;
@@ -49,8 +49,10 @@
     
 }
 
-.linkToLoginScreen span{
+.linkToLoginScreen{
     color: #2F1160;
+    text-decoration: none;
+    margin-left: 0.5rem;
 }
 
 .form Button{

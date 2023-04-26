@@ -6,6 +6,7 @@ import imgForgotPasswd from '../../assets/forgot_password.svg';
 import { TextField } from '../../components/TextField/TextField';
 import { Button } from '../../components/Button/Button';
 import imgRectangle from '../../assets/Rectangle.svg';
+import { Link } from 'react-router-dom';
 
 export function ForgotPasswd(){
     return (
@@ -22,7 +23,10 @@ export function ForgotPasswd(){
                 <form className={styles.form} action="">
                     <TextField placeholder='E-mail / Phone Number' type='text'/>
                     <div>
-                        <p className={styles.linkToLoginScreen}>Remember Password? <span>Log in</span></p>
+                        <p className={styles.txtRememberPasswd}>
+                            Remember Password?
+                            <Link className={styles.linkToLoginScreen} to='/login'>Log in</Link>
+                        </p>
                     </div>
                     <Button text='Submit'/>
                 </form>                
