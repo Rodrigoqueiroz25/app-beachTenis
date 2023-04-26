@@ -31,7 +31,7 @@ export function RegisterUser(){
                     <Button text='Sign Up'/>
                 </form>
             </main>
-            <FooterLogin text='Already a Member?' textLink='Log in' endPoint=''/>
+            <FooterLogin text='Already a Member?' textLink='Log in' endPoint='/login'/>
         
         </div>
     );
