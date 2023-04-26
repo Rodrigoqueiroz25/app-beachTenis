@@ -47,17 +47,22 @@
 
 .form Button{
     margin-top: 1.5rem;
+    cursor: pointer;
 }
 
 .forgotPasswd{
     margin-top: -1.1rem;
     display: flex;
     justify-content: right;
+    
 }
 
-.forgotPasswd p{
+.forgotPasswd .link{
     color: #3f3d56;
     font-weight: 400;
-    font-size: 1.2rem;   
+    font-size: 1.2rem;
+       
+    text-decoration: none;
+    cursor: pointer;
 }
 

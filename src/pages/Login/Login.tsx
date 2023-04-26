@@ -1,6 +1,5 @@
 
 import styles from './Login.module.css';
-import img from '../../assets/Subtract.svg';
 import imgBeachTenis from '../../assets/player-beachTenis.svg';
 import imgMail from '../../assets/Mail.svg';
 import imgEye from '../../assets/eye.svg';
@@ -8,6 +7,7 @@ import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
 import { TextField } from '../../components/TextField/TextField';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
+import { Link } from 'react-router-dom';
 
 
 export function Login() {
@@ -28,12 +28,12 @@ export function Login() {
                     <TextField placeholder='Password' type='password' src={imgEye}/>
                     
                     <div className={styles.forgotPasswd}>
-                        <p>Forgot Password?</p>
+                        <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
                     </div>
                     <Button text='Log in'/>
                 </form>
             </main>
-            <FooterLogin text="Don't have a register?" link='Sign up'/>
+            <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint=''/>
             
         </div>
 
