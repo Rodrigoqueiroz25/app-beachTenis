@@ -33,7 +33,7 @@ export function Login() {
                     <Button text='Log in'/>
                 </form>
             </main>
-            <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint=''/>
+            <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/register-user'/>
             
         </div>
 
