@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
+import { isAuthenticated } from "./services/Authentication";
 
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
 
 export function PrivateRoute({ children }: Props){
     
-    const isAuth = true;
+    const isAuth = isAuthenticated();
     
     if (isAuth) {
         return children;
