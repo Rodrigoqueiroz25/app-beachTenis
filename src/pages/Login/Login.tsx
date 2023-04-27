@@ -8,9 +8,14 @@ import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
 import { TextField } from '../../components/TextField/TextField';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
 import { Link } from 'react-router-dom';
+import { ChangeEvent, useState } from 'react';
 
 
 export function Login() {
+
+    const [email, setEmail] =  useState('');
+    const [passwd, setPasswd] =  useState('');
+
     return (
         <div className={styles.login}>
             <HeaderLogin>
@@ -24,8 +29,22 @@ export function Login() {
             
             <main>
                 <form className={styles.form}>
-                    <TextField placeholder='E-mail' type='email' src={imgMail}/>
-                    <TextField placeholder='Password' type='password' src={imgEye}/>
+                    <TextField 
+                        placeholder='E-mail' 
+                        type='email' 
+                        name='email'
+                        value={email}
+                        func={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                        src={imgMail}
+                    />
+                    <TextField 
+                        placeholder='Password' 
+                        type='password' 
+                        name='passwd'
+                        value={passwd}
+                        func={(e: ChangeEvent<HTMLInputElement>) => setPasswd(e.target.value)}
+                        src={imgEye}
+                    />
                     
                     <div className={styles.forgotPasswd}>
                         <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
@@ -36,7 +55,6 @@ export function Login() {
             <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/register-user'/>
             
         </div>
-
 
     );
 }
