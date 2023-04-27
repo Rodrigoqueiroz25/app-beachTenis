@@ -23,7 +23,7 @@ export function Login() {
             </HeaderLogin>
             
             <main>
-                <form className={styles.form} action="post">
+                <form className={styles.form}>
                     <TextField placeholder='E-mail' type='email' src={imgMail}/>
                     <TextField placeholder='Password' type='password' src={imgEye}/>
                     
