@@ -19,13 +19,21 @@ export function Login() {
     const [email, setEmail] =  useState('');
     const [passwd, setPasswd] =  useState('');
     
+    const [msgError, setMsgError] = useState('');
+    
     
     async function handleSubmitForm(e: SyntheticEvent){
+        let msg = '';
         e.preventDefault();
-        const msg = await authenticate(email, passwd);
+        msg = await authenticate(email, passwd);    
         if(msg === 'Autenticado'){
+            setMsgError('');
             navigate('/home');
         }
+        else{
+            setMsgError(msg);
+        }
+        
     }
 
     return (
@@ -61,6 +69,11 @@ export function Login() {
                     <div className={styles.forgotPasswd}>
                         <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
                     </div>
+                    {msgError &&
+                        <div className={styles.msgErroLogin}>
+                            <p>Usuário/senha inválidos</p>
+                        </div>
+                    }
                     <Button text='Log in'/>
                 </form>
             </main>
