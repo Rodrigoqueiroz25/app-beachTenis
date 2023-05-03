@@ -7,14 +7,26 @@ import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
 import { TextField } from '../../components/TextField/TextField';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
-import { Link } from 'react-router-dom';
-import { ChangeEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ChangeEvent, SyntheticEvent, useState } from 'react';
+import { authenticate } from '../../services/Authentication';
 
 
 export function Login() {
 
+    const navigate = useNavigate();
+
     const [email, setEmail] =  useState('');
     const [passwd, setPasswd] =  useState('');
+    
+    
+    async function handleSubmitForm(e: SyntheticEvent){
+        e.preventDefault();
+        const msg = await authenticate(email, passwd);
+        if(msg === 'Autenticado'){
+            navigate('/home');
+        }
+    }
 
     return (
         <div className={styles.login}>
@@ -28,10 +40,10 @@ export function Login() {
             </HeaderLogin>
             
             <main>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={handleSubmitForm}>
                     <TextField 
                         placeholder='E-mail' 
-                        type='email' 
+                        type='text' 
                         name='email'
                         value={email}
                         func={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}

@@ -23,21 +23,29 @@ export async function authenticate(email: string, passwd: string){
             'Connection': 'keep-alive'
         },
         body: JSON.stringify({
-            user: email,
-            password: passwd
-        }),   
+            user: email.toLowerCase(),
+            password: passwd.toLowerCase()
+        }),
+        mode: 'cors'
     }
     
     try {
-        let response = await fetch('https://playgo-api.cyclic.app/api/login', options);
+        // let response = await fetch('https://playgo-api.cyclic.app/api/login', options);
+        let response = await fetch('http://localhost:3003/api/login', options); //using server in localhost
         if(response.status === 200){
             let json = await response.json() as TLogado;
             localStorage.setItem('token', json.accessToken);
-            console.log(json);
+            return "Autenticado";
         }
+        if(response.status === 401){
+            return "usuario/senha invalido";
+        }
+        else{
+            return "Erro, tente novamente mais tarde";
+        }
+        
     } catch (error) {
-        console.error(error);
-        alert("Erro! tente novamente mais tarde");    
+        return "Erro, tente novamente mais tarde";
     }
     
 }
