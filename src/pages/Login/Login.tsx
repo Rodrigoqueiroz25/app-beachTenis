@@ -41,7 +41,6 @@ export function Login() {
             });
             setMsgError('');
             navigate('/home');
-            console.log(document.cookie);
         }
         else{
             setMsgError(res.msg);

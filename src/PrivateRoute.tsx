@@ -11,8 +11,7 @@ export function PrivateRoute({ children }: Props){
     
     const [cookies, setCookies] = useCookies();
     
-    //the token needed validate
-    if (cookies.user_session) {
+    if (cookies.user_session && cookies.user_name) {
         return children;
     }
     else{

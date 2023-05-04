@@ -26,7 +26,6 @@ export async function authenticate(email: string, passwd: string){
         let response = await fetch('http://localhost:3003/api/login', options); //using server in localhost
         if(response.status === 200){
             let json = await response.json() as TLogado;
-            //localStorage.setItem('token', json.accessToken);
             return {
                 msg: "Autenticado",
                 name_user: json.name,
