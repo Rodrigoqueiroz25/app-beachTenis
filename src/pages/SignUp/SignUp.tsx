@@ -1,5 +1,5 @@
 
-import styles from './RegisterUser.module.css';
+import styles from './SignUp.module.css';
 import imgBeachTenis from '../../assets/player-beachTenis.svg';
 import imgMail from '../../assets/Mail.svg';
 import imgEye from '../../assets/eye.svg';
@@ -8,9 +8,9 @@ import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
 
-export function RegisterUser(){
+export function SignUp(){
     return (
-        <div className={styles.RegisterUser}>
+        <div className={styles.signup}>
             <HeaderLogin>
                 <div className={styles.containerTitle}>        
                     <div className={styles.msgWelcome}>

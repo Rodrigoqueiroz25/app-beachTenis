@@ -89,7 +89,7 @@ export function Login() {
                     <Button text='Log in'/>
                 </form>
             </main>
-            <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/register-user'/>
+            <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/signup'/>
             
         </div>
 
