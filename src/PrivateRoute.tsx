@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { isAuthenticated } from "./services/Authentication";
+import { useCookies } from "react-cookie";
 
 
 type Props = {
@@ -9,9 +9,10 @@ type Props = {
 
 export function PrivateRoute({ children }: Props){
     
-    const isAuth = isAuthenticated();
+    const [cookies, setCookies] = useCookies();
     
-    if (isAuth) {
+    //the token needed validate
+    if (cookies.user_session) {
         return children;
     }
     else{

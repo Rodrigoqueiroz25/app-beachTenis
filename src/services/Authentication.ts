@@ -1,18 +1,10 @@
-
-type TLogado = {
-    accessToken: string;
-    name: string;
-}
-
+import { TLogado, dataLogin } from "../types/login";
 
 export function isAuthenticated(): boolean{
-    if(localStorage.getItem('token')){
-        return true;
-    }
-    else{
-        return false;
-    }
+    //autenticate token from server
+    return false;
 }
+
 
 export async function authenticate(email: string, passwd: string){
     const options: RequestInit = {
@@ -34,18 +26,28 @@ export async function authenticate(email: string, passwd: string){
         let response = await fetch('http://localhost:3003/api/login', options); //using server in localhost
         if(response.status === 200){
             let json = await response.json() as TLogado;
-            localStorage.setItem('token', json.accessToken);
-            return "Autenticado";
+            //localStorage.setItem('token', json.accessToken);
+            return {
+                msg: "Autenticado",
+                name_user: json.name,
+                token: json.accessToken
+            } as dataLogin;
         }
         if(response.status === 401){
-            return "usuario/senha invalido";
+            return {
+                msg: "usuario/senha invalido"
+            } as dataLogin;
         }
         else{
-            return "Erro, tente novamente mais tarde";
+            return {
+                msg: "Erro, tente novamente mais tarde"
+            } as dataLogin;
         }
         
     } catch (error) {
-        return "Erro, tente novamente mais tarde";
+        return {
+            msg: "Erro, tente novamente mais tarde"
+        } as dataLogin;
     }
     
 }

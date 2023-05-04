@@ -10,6 +10,7 @@ import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { authenticate } from '../../services/Authentication';
+import { useCookies } from 'react-cookie';
 
 
 export function Login() {
@@ -19,19 +20,27 @@ export function Login() {
     const [email, setEmail] =  useState('');
     const [passwd, setPasswd] =  useState('');
     
-    const [msgError, setMsgError] = useState('');
+    
+    
+    const [cookies, setCookies] = useCookies();
     
     
     async function handleSubmitForm(e: SyntheticEvent){
-        let msg = '';
         e.preventDefault();
-        msg = await authenticate(email, passwd);    
-        if(msg === 'Autenticado'){
-            setMsgError('');
+        const res = await authenticate(email, passwd);    
+        if(res.msg === 'Autenticado'){
+            setCookies('user_session', res.token, {
+                path: '/',
+                sameSite: 'strict',
+                maxAge: 20000
+            });
+            setCookies('user_name', res.name_user?.trim(), {
+                path: '/',
+                sameSite: 'strict',
+                maxAge: 20000
+            });
             navigate('/home');
-        }
-        else{
-            setMsgError(msg);
+            console.log(document.cookie);
         }
         
     }
@@ -69,11 +78,7 @@ export function Login() {
                     <div className={styles.forgotPasswd}>
                         <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
                     </div>
-                    {msgError &&
-                        <div className={styles.msgErroLogin}>
-                            <p>Usuário/senha inválidos</p>
-                        </div>
-                    }
+                  
                     <Button text='Log in'/>
                 </form>
             </main>
