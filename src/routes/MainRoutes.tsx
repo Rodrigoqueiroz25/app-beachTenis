@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import { Login } from "../pages/Login/Login";
 import { RegisterUser } from "../pages/RegisterUser/RegisterUser";
 import { ForgotPasswd } from "../pages/ForgotPasswd/ForgotPasswd";
@@ -9,7 +9,9 @@ import { PrivateRoute } from "../PrivateRoute";
 
 
 export function MainRoutes(){
+    
     return useRoutes([
+        { path: '/', element: <Navigate to="/login"/> },
         { path: '/login', element: <Login/>},
         { path: '/register-user', element: <RegisterUser/> },
         { path: '/forgot-password', element: <ForgotPasswd/>},
