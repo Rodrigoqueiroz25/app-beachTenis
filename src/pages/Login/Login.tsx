@@ -7,23 +7,31 @@ import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
 import { TextField } from '../../components/TextField/TextField';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
-import { Link, Navigate } from 'react-router-dom';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import useVerifyAuth from '../../hooks/useVerifyAuth';
 
 
 export function Login() {
 
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [passwd, setPasswd] = useState('');
 
     const { authenticate, isAuth, isLoading, error, msgFailedAuth } = useAuth(email, passwd);
-
-
+    const itsAuth = useVerifyAuth();
+    
     function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         authenticate(email, passwd);
     }
+    
+    useEffect(() => {
+        if(itsAuth()){
+            navigate('/home');
+        }
+    })
 
     return (
         <div className={styles.login}>
