@@ -7,9 +7,31 @@ import { TextField } from '../../components/TextField/TextField';
 import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
-import { IMaskInput } from 'react-imask';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 export function SignUp(){
+
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [passwd, setPasswd] = useState('');
+    
+    function changePhone(e: ChangeEvent<HTMLInputElement>){
+        setPhone(e.target.value);
+    }
+    
+    function changeEmail(e: ChangeEvent<HTMLInputElement>){
+        setEmail(e.target.value);
+    }
+    
+    function changePasswd(e: ChangeEvent<HTMLInputElement>){
+        setPasswd(e.target.value);
+    }
+    
+    function handleSubmitForm(e: FormEvent<HTMLFormElement>){
+        e.preventDefault();
+        
+    }
+
     return (
         <div className={styles.signup}>
             <HeaderLogin>
@@ -21,18 +43,32 @@ export function SignUp(){
                 </div>
             </HeaderLogin>
             <main>
-                <form className={styles.form} action="post">
+                <form className={styles.form} onSubmit={handleSubmitForm}>
                     <div className={styles.inputPhoneNumber}>
                         <p>+55</p>
                         <TextField 
                             placeholder="Phone Number"
                             mask="(00) 00000-0000"
                             type='tel'
+                            value={phone}
+                            func={changePhone}
                         />
                     </div>
                     
-                    <TextField placeholder='E-mail' type='email' src={imgMail}/>
-                    <TextField placeholder='Password' type='password' src={imgEye}/>
+                    <TextField 
+                        placeholder='E-mail' 
+                        type='email' 
+                        src={imgMail}
+                        value={email}
+                        func={changeEmail}    
+                    />
+                    <TextField 
+                        placeholder='Password' 
+                        type='password' 
+                        src={imgEye}
+                        value={passwd}
+                        func={changePasswd}
+                    />
                     <Button text='Sign Up'/>
                 </form>
             </main>
