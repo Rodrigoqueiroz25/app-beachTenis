@@ -7,90 +7,78 @@ import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
 import { TextField } from '../../components/TextField/TextField';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
-import { Link, useNavigate } from 'react-router-dom';
-import { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { authenticate } from '../../services/Authentication';
-import { useCookies } from 'react-cookie';
+import { Link, Navigate } from 'react-router-dom';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 
 export function Login() {
 
-    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [passwd, setPasswd] = useState('');
 
-    const [email, setEmail] =  useState('');
-    const [passwd, setPasswd] =  useState('');
-    
-    const [msgError, setMsgError] = useState('');
-    
-    const [cookies, setCookies] = useCookies();
-    
-    
-    async function handleSubmitForm(e: SyntheticEvent){
+    const { authenticate, isAuth, isLoading, error, msgFailedAuth } = useAuth(email, passwd);
+
+
+    function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const res = await authenticate(email, passwd);    
-        if(res.msg === 'Autenticado'){
-            setCookies('user_session', res.token, {
-                path: '/',
-                sameSite: 'strict',
-                maxAge: 20000
-            });
-            setCookies('user_name', res.name_user?.trim(), {
-                path: '/',
-                sameSite: 'strict',
-                maxAge: 20000
-            });
-            setMsgError('');
-            navigate('/home');
-        }
-        else{
-            setMsgError(res.msg);
-        }
-        
+        authenticate(email, passwd);
     }
 
     return (
         <div className={styles.login}>
-            <HeaderLogin>
-                <div className={styles.containerTitle}>        
-                    <div className={styles.msgWelcome}>
-                        <p>Welcome</p>
-                        <p className={styles.back}>Back <img src={imgBeachTenis} alt="" /></p> 
-                    </div>
-                </div>
-            </HeaderLogin>
+            { isLoading && 
+                <p>isLoading</p>
+            }
             
-            <main>
-                <form className={styles.form} onSubmit={handleSubmitForm}>
-                    <TextField 
-                        placeholder='E-mail' 
-                        type='text' 
-                        name='email'
-                        value={email}
-                        func={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                        src={imgMail}
-                    />
-                    <TextField 
-                        placeholder='Password' 
-                        type='password' 
-                        name='passwd'
-                        value={passwd}
-                        func={(e: ChangeEvent<HTMLInputElement>) => setPasswd(e.target.value)}
-                        src={imgEye}
-                    />
-                    
-                    <div className={styles.forgotPasswd}>
-                        <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
-                    </div>
-                    {msgError &&
-                        <div className={styles.msgErroLogin}>
-                            <p>Usuário/senha inválidos</p>
+            { !isAuth ?
+                <>
+                    <HeaderLogin>
+                    <div className={styles.containerTitle}>
+                        <div className={styles.msgWelcome}>
+                            <p>Welcome</p>
+                            <p className={styles.back}>Back <img src={imgBeachTenis} alt="" /></p>
                         </div>
-                    }
-                    <Button text='Log in'/>
-                </form>
-            </main>
-            <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/signup'/>
-            
+                    </div>
+                     </HeaderLogin>
+    
+                    <main>
+                    <form className={styles.form} onSubmit={handleSubmitForm}>
+                        <TextField
+                            placeholder='E-mail'
+                            type='text'
+                            name='email'
+                            value={email}
+                            func={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                            src={imgMail}
+                        />
+                        <TextField
+                            placeholder='Password'
+                            type='password'
+                            name='passwd'
+                            value={passwd}
+                            func={(e: ChangeEvent<HTMLInputElement>) => setPasswd(e.target.value)}
+                            src={imgEye}
+                        />
+    
+                        <div className={styles.forgotPasswd}>
+                            <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
+                        </div>
+                        {!isAuth &&
+                            <div className={styles.msgErroLogin}>
+                                <p>{msgFailedAuth}</p>
+                            </div>
+                        }
+                        <Button text='Log in' />
+                    </form>
+                    </main>
+                    <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/signup' />
+                </>   
+            : 
+                <Navigate to='/home'/>
+            }
+
+
         </div>
 
     );
