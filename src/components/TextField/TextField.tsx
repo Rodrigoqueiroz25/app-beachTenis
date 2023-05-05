@@ -1,4 +1,5 @@
 
+import { IMaskInput } from 'react-imask';
 import styles from './TextField.module.css';
 
 type Props = {
@@ -7,14 +8,16 @@ type Props = {
     name?: string;
     value?: string;
     func?: any;
+    mask?: string;
     src?: string;
 }
 
-export function TextField({placeholder, type, name, value, func, src}: Props) {
+export function TextField({placeholder, type, name, value, func, src, mask}: Props) {
     return (
         <div className={styles.textField}>
-            <input 
+            <IMaskInput 
                 placeholder={placeholder} 
+                mask={mask}
                 type={type} 
                 name={name} 
                 value={value}

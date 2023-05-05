@@ -7,6 +7,7 @@ import { TextField } from '../../components/TextField/TextField';
 import { Button } from '../../components/Button/Button';
 import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
+import { IMaskInput } from 'react-imask';
 
 export function SignUp(){
     return (
@@ -23,7 +24,11 @@ export function SignUp(){
                 <form className={styles.form} action="post">
                     <div className={styles.inputPhoneNumber}>
                         <p>+55</p>
-                        <TextField placeholder='Phone Number' type='tel'/>
+                        <TextField 
+                            placeholder="Phone Number"
+                            mask="(00) 00000-0000"
+                            type='tel'
+                        />
                     </div>
                     
                     <TextField placeholder='E-mail' type='email' src={imgMail}/>
