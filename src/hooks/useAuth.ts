@@ -22,7 +22,7 @@ export default function useAuth(email: string, senha: string){
                 'Connection': 'keep-alive'
             },
             body: JSON.stringify({
-                user: email.toLowerCase(),
+                email: email.toLowerCase(),
                 password: passwd.toLowerCase()
             }),
             mode: 'cors'
@@ -30,8 +30,7 @@ export default function useAuth(email: string, senha: string){
         
         try {
             setIsLoading(true);
-            // let response = await fetch('https://playgo-api.cyclic.app/api/login', options);
-            let response = await fetch('http://localhost:3003/api/login', options); //using server in localhost
+            let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/login`, options);
             
             if(response.status === 200){
                 let json = await response.json() as TLogado;
