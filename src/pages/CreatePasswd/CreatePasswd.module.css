@@ -1,6 +1,11 @@
 .createPasswd{
     font-weight: 400;
     font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
 }
 
 

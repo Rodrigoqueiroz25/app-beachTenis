@@ -2,6 +2,13 @@
 .login{
     font-weight: 500;
     font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+
+
 }
 
 
@@ -10,6 +17,7 @@
     height: 100%;
     
     position: relative;
+
     
 }
 
@@ -41,7 +49,7 @@
     flex-direction: column;
     gap: 1.8rem;
     
-    margin: 19.583rem 3.3rem 0rem;
+    margin: 0rem 3.3rem 0rem;
     
 }
 
@@ -76,4 +84,9 @@
     /* left: 50%; */
     /* transform: translate(-50%); */
        
+}
+
+.footer{
+    
+
 }

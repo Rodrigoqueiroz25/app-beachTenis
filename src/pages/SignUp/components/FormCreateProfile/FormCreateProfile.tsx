@@ -44,7 +44,7 @@ export function FormCreateProfile({ submit }: Props) {
     }
 
     return (
-        <div className={styles.createProfile}>
+        <div className={styles.formCreateProfile}>
 
             <HeaderLogin>
                 <div className={styles.containerTitle}>

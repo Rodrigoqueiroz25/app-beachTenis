@@ -39,7 +39,7 @@ export function FormPhoneEmailPasswd({ func }: Props){
     }
 
     return (
-        <div className={styles.signup}>
+        <div className={styles.formPhoneEmailPasswd}>
             <HeaderLogin>
                 <div className={styles.containerTitle}>        
                     <div className={styles.msgWelcome}>

@@ -42,45 +42,51 @@ export function Login() {
             { !isAuth ?
                 <>
                     <HeaderLogin>
-                    <div className={styles.containerTitle}>
-                        <div className={styles.msgWelcome}>
-                            <p>Welcome</p>
-                            <p className={styles.back}>Back <img src={imgBeachTenis} alt="" /></p>
+                        <div className={styles.containerTitle}>
+                            <div className={styles.msgWelcome}>
+                                <p>Welcome</p>
+                                <p className={styles.back}>Back <img src={imgBeachTenis} alt="" /></p>
+                            </div>
                         </div>
-                    </div>
                      </HeaderLogin>
     
                     <main>
-                    <form className={styles.form} onSubmit={handleSubmitForm}>
-                        <TextField
-                            placeholder='E-mail'
-                            type='text'
-                            name='email'
-                            value={email}
-                            func={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                            src={imgMail}
-                        />
-                        <TextField
-                            placeholder='Password'
-                            type='password'
-                            name='passwd'
-                            value={passwd}
-                            func={(e: ChangeEvent<HTMLInputElement>) => setPasswd(e.target.value)}
-                            src={imgEye}
-                        />
-    
-                        <div className={styles.forgotPasswd}>
-                            <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
-                        </div>
-                        {!isAuth &&
-                            <div className={styles.msgErroLogin}>
-                                <p>{msgFailedAuth}</p>
+                        <form className={styles.form} onSubmit={handleSubmitForm}>
+                            <TextField
+                                placeholder='E-mail'
+                                type='text'
+                                name='email'
+                                value={email}
+                                func={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                                src={imgMail}
+                            />
+                            <TextField
+                                placeholder='Password'
+                                type='password'
+                                name='passwd'
+                                value={passwd}
+                                func={(e: ChangeEvent<HTMLInputElement>) => setPasswd(e.target.value)}
+                                src={imgEye}
+                            />
+                            
+                           
+                            
+        
+                            <div className={styles.forgotPasswd}>
+                                <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
                             </div>
-                        }
-                        <Button text='Log in' />
-                    </form>
+                            {!isAuth &&
+                                <div className={styles.msgErroLogin}>
+                                    <p>{msgFailedAuth}</p>
+                                </div>
+                            }
+                            <Button text='Log in' />
+                        </form>
                     </main>
-                    <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/signup' />
+                    
+                    <footer className={styles.footer}>
+                        <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/signup' />
+                    </footer>
                 </>   
             : 
                 <Navigate to='/home'/>

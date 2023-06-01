@@ -15,11 +15,11 @@ type Props = {
 export function FooterLogin({text, textLink, endPoint}: Props) {
     return (
         <footer className={styles.footer}>
-            <p className={styles.textOr}>Or</p>
+            {/* <p className={styles.textOr}>Or</p>
             <div className={styles.imgsSocialMedia}>
                 <img src={imgGoogle} alt="" />
                 <img src={imgFacebook} alt="" />
-            </div>
+            </div> */}
             <p className={styles.dontHaveRegister}>{text}<Link className={styles.link} to={endPoint}>{textLink}</Link></p>
 
             <img src={imgRectangle} alt="" />
