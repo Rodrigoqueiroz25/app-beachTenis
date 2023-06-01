@@ -2,10 +2,11 @@ import { Navigate, useRoutes } from "react-router-dom";
 import { Login } from "../pages/Login/Login";
 import { ForgotPasswd } from "../pages/ForgotPasswd/ForgotPasswd";
 import { CreatePasswd } from "../pages/CreatePasswd/CreatePasswd";
-import { CreateProfile } from "../pages/CreateProfile/CreateProfile";
+// import { CreateProfile } from "../pages/SignUp/components/FormCreateProfile/FormCreateProfile";
 import { Home } from "../pages/Home/Home";
 import { PrivateRoute } from "../PrivateRoute";
 import { SignUp } from "../pages/SignUp/SignUp";
+import { ContextSignupProvider } from "../contexts/ContextSignup";
 
 
 export function MainRoutes(){
@@ -13,10 +14,10 @@ export function MainRoutes(){
     return useRoutes([
         { path: '/', element: <Navigate to="/login"/> },
         { path: '/login', element: <Login/>},
-        { path: '/signup', element: <SignUp/> },
+        { path: '/signup', element: <ContextSignupProvider><SignUp/></ContextSignupProvider> },
         { path: '/forgot-password', element: <ForgotPasswd/>},
         { path: '/create-password', element: <CreatePasswd/> },
-        { path: '/create-profile', element: <CreateProfile/> },
+        // { path: '/create-profile', element: <CreateProfile/> },
         { path: '/home', element: <PrivateRoute><Home/></PrivateRoute> },
         { path: '*', element: <h1>sds</h1> },
     ]);

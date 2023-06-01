@@ -116,5 +116,5 @@ p{
 /* not run in firefox */
 input[type="date"]::-webkit-calendar-picker-indicator{
     cursor: pointer;
-    background: url(../../assets/Icon_calendar.svg);    
+    background: url(../../../../assets/Icon_calendar.svg);    
 }
