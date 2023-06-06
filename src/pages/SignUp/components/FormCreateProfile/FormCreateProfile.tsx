@@ -40,6 +40,7 @@ export function FormCreateProfile({ submit }: Props) {
     function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         console.log(state);
+        submit();
 
     }
 

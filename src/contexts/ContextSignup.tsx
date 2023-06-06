@@ -6,7 +6,7 @@ type StateType = {
     password: string
     gender: string
     email: string
-    cityId: number
+    cityId: string
     phoneNumber: string
     photo?: string
     birthDate: string
@@ -23,7 +23,7 @@ const initialState: StateType = {
     gender: "",
     password: "",
     email: "",
-    cityId: 0,
+    cityId: "4709",
     phoneNumber: "",
     birthDate: "",
     photo: ""
