@@ -57,3 +57,15 @@
     font-weight: 400;
     
 }
+
+.msgPasswdDiff p{
+    font-weight: 600;
+    /* position: absolute; */
+    text-align: center;
+    color: red;
+    font-size: 1.5rem;
+    
+    /* left: 50%; */
+    /* transform: translate(-50%); */
+       
+}

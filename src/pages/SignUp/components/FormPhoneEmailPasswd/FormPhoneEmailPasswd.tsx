@@ -5,7 +5,7 @@ import imgBeachTenis from '../../../../assets/player-beachTenis.svg';
 import imgMail from '../../../../assets/Mail.svg';
 import imgEye from '../../../../assets/eye.svg';
 import { TextField } from '../../../../components/TextField/TextField';
-import { ChangeEvent, FormEvent, useContext } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import { ContextSignup } from '../../../../contexts/ContextSignup';
 import { Button } from '../../../../components/Button/Button';
 import { FooterLogin } from '../../../../components/FooterLogin/FooterLogin';
@@ -18,6 +18,11 @@ export function FormPhoneEmailPasswd({ func }: Props){
 
     const {state, setState} = useContext(ContextSignup);
 
+    const [passwd, setPasswd] = useState("");
+    const [rePasswd, setRePasswd] = useState("");
+
+    const [msgPasswdDiff, setMsgPasswdDiff] = useState("");
+
     
     function changePhone(e: ChangeEvent<HTMLInputElement>){
         setState({...state, phoneNumber: e.target.value})
@@ -28,14 +33,28 @@ export function FormPhoneEmailPasswd({ func }: Props){
     }
     
     function changePasswd(e: ChangeEvent<HTMLInputElement>){
-        setState({...state, password: e.target.value});
+        // setState({...state, password: e.target.value});
+        setPasswd(e.target.value);
+        console.log(passwd);
     }
     
+    function changeRePasswd(e: ChangeEvent<HTMLInputElement>){
+        // setState({...state, password: e.target.value});
+        setRePasswd(e.target.value);
+        console.log(rePasswd);
+    }
+
     function handleSubmitForm(e: FormEvent<HTMLFormElement>){
         e.preventDefault();
         console.log(state);
-        func();
-        
+
+        if(passwd === rePasswd){
+            setState({...state, password: passwd});
+            func();
+        }
+        else{
+            setMsgPasswdDiff("campo senha e repetir senha diferentes");
+        } 
     }
 
     return (
@@ -72,16 +91,20 @@ export function FormPhoneEmailPasswd({ func }: Props){
                         placeholder='Password' 
                         type='password' 
                         src={imgEye}
-                        value={state.password}
+                        value={passwd}
                         func={changePasswd}
                     />
                     <TextField 
                         placeholder='Repeat Password' 
                         type='password' 
                         src={imgEye}
-                        value={state.password}
-                        func={changePasswd}
+                        value={rePasswd}
+                        func={changeRePasswd}
                     />
+
+                    <div className={styles.msgPasswdDiff}>
+                        <p>{msgPasswdDiff}</p>
+                    </div>
                     <Button text='Sign Up'/>
                 </form>
             </main>
