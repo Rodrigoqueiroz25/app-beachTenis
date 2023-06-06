@@ -4,12 +4,9 @@ import imgSearch from '../../assets/search.svg';
 import imgBell from '../../assets/bell.svg';
 import photoHome from '../../assets/photo_home.svg';
 import imgLocation from '../../assets/location.svg'
-import imgHome from '../../assets/home.svg'
-import imgHistory from '../../assets/history.svg'
-import imgProfile from '../../assets/profile.svg'
-import imgWallet from '../../assets/wallet.svg'
 import photoRanking from '../../assets/photo_ranking.svg';
 import imgEvent from '../../assets/Event-2.svg';
+import { FooterHome } from '../../components/FooterHome/FooterHome';
 
 export function Home(){
     return (
@@ -66,27 +63,7 @@ export function Home(){
                 
             </main>
             
-            <footer className={styles.footer}>
-                <div className={styles.menuBottom}>
-                    <div className={styles.option}>
-                        <img src={imgHome} alt="" />
-                        <p>Home</p>
-                    </div>
-                    <div className={styles.option}>
-                        <img src={imgHistory} alt="" />
-                        <p>Histórico</p>
-                    </div>
-                    <div className={styles.option}>
-                        <img src={imgWallet} alt="" />
-                        <p>Pagamentos</p>
-                    </div>
-                    <div className={styles.option}>
-                        <img src={imgProfile} alt="" />
-                        <p>Perfil</p>
-                    </div>
-                </div>
-                
-            </footer>
+            <FooterHome/>
             
         </div>
         
