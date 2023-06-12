@@ -1,0 +1,122 @@
+
+.container {
+
+    font-weight: 500;
+    font-style: normal;
+    
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7.3rem;
+
+}
+
+.title p{
+    font-size: 2.4rem;
+    color: black;
+    font-weight: 600;
+
+}
+
+.iconWrapper{
+    background: rgba(242, 242, 242, 0.6);
+    height: 17.2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 1.2rem;
+}
+
+.iconContainer{
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+
+}
+
+.addBanner p{
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+.icon{
+    width: 3.4rem;
+    height: 3.4rem;
+}
+
+/* .addBanner::after{
+    content: "";
+    width: 2.9rem;
+    height: 3rem;
+    background: url(../../assets/photo.svg);
+    position: absolute;
+    
+    top: -1.6rem;
+    left: 6rem;
+} */
+
+.iconPhoto{
+    width: 2.8rem;
+    height: 2.8rem;
+
+    position: absolute;
+    top: 1.6rem;
+    left: 1.8rem;
+
+}
+
+.form{
+    margin: 1.1rem 2.1rem;
+    margin-bottom: 9.6rem;
+}
+
+
+.paragraph{
+    margin-bottom: 2rem;
+}
+
+.paragraph p{
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+    /* color: #9b9b9b; */
+
+}
+
+.inputDates{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.input {
+    width: 45%;
+
+}
+
+.info{
+    padding: 1rem;
+    margin: 0.5rem 0;
+    height: 10.7rem;
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 2.6rem;
+
+}
+
+.info:placeholder-shown {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 150%;
+    color: #3F3D56;
+  }

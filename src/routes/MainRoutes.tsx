@@ -7,6 +7,7 @@ import { Home } from "../pages/Home/Home";
 import { PrivateRoute } from "../PrivateRoute";
 import { SignUp } from "../pages/SignUp/SignUp";
 import { ContextSignupProvider } from "../contexts/ContextSignup";
+import { AddTournament } from "../pages/AddTournament/AddTournament";
 
 
 export function MainRoutes(){
@@ -17,7 +18,7 @@ export function MainRoutes(){
         { path: '/signup', element: <ContextSignupProvider><SignUp/></ContextSignupProvider> },
         { path: '/forgot-password', element: <ForgotPasswd/>},
         { path: '/create-password', element: <CreatePasswd/> },
-        // { path: '/create-profile', element: <CreateProfile/> },
+        { path: '/add-tournament', element: <AddTournament/> },
         { path: '/home', element: <PrivateRoute><Home/></PrivateRoute> },
         { path: '*', element: <h1>sds</h1> },
     ]);
