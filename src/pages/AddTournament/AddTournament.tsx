@@ -5,6 +5,7 @@ import photo from '../../assets/photo.svg';
 import image from '../../assets/image.svg';
 import { Button } from '../../components/Button/Button';
 import { TextFieldSmall } from '../../components/TextFieldSmall/TextFieldSmall';
+import { Combobox } from '../../components/Combobox/Combobox';
 
 export function AddTournament() {
 
@@ -40,23 +41,16 @@ export function AddTournament() {
                         placeholder='Organização' 
                         type='text' 
                         value=''
-                        
                     />
                     
-                    <TextFieldSmall 
-                        label='Esporte' 
-                        placeholder='Esporte' 
-                        type='text' 
-                        value=''
+                    <Combobox
+                        label='Esporte'     
                     />
 
-                    <TextFieldSmall 
-                        label='Cidade' 
-                        placeholder='Cidade' 
-                        type='text' 
-                        value=''
-                        
+                    <Combobox
+                        label='Cidade'     
                     />
+
                     <div className={styles.paragraph}>
                         <p >Período de Inscrições</p>
                         <hr />
