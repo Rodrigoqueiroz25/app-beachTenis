@@ -18,7 +18,7 @@ export function MainRoutes(){
         { path: '/signup', element: <ContextSignupProvider><SignUp/></ContextSignupProvider> },
         { path: '/forgot-password', element: <ForgotPasswd/>},
         { path: '/create-password', element: <CreatePasswd/> },
-        { path: '/add-tournament', element: <AddTournament/> },
+        { path: '/add-tournament', element: <PrivateRoute><AddTournament/></PrivateRoute> },
         { path: '/home', element: <PrivateRoute><Home/></PrivateRoute> },
         { path: '*', element: <h1>sds</h1> },
     ]);
