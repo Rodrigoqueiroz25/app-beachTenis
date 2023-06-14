@@ -44,11 +44,13 @@ export function AddTournament() {
                     />
                     
                     <Combobox
-                        label='Esporte'     
+                        label='Esporte'
+                        endPoint='sports'     
                     />
 
                     <Combobox
-                        label='Cidade'     
+                        label='Cidade'
+                        endPoint='cities'     
                     />
 
                     <div className={styles.paragraph}>
