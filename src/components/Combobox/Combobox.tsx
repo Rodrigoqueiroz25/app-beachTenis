@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import useGetFetch from '../../hooks/useGetFetch';
 import { City } from '../../types/login';
@@ -16,8 +17,10 @@ export function Combobox({func, label, endPoint}: Props) {
     const { getData, msgFailedGet, error, result } = useGetFetch<City>();
 
     useEffect(() =>{
-        getData(endPoint)
-    });
+        setTimeout(() => {
+            getData(endPoint);
+        }, 500);
+    }, [msgFailedGet, error]);
 
 
     const [value, setValue] = useState('');

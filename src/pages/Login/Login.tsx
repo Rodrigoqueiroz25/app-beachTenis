@@ -31,7 +31,7 @@ export function Login() {
         if(itsAuth()){
             navigate('/home');
         }
-    })
+    },[]);
 
     return (
         <div className={styles.login}>
