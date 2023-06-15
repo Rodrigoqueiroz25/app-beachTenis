@@ -1,5 +1,6 @@
+
 import { useState } from "react";
-import { useCookies } from "react-cookie";
+import useCookiesSession from "./useCookiesSession";
 
 
 export default function useGetFetch<T>(){
@@ -8,7 +9,7 @@ export default function useGetFetch<T>(){
     const [error, setError] = useState<unknown>();
     const [result, setResult] = useState<T[]>([]);
     
-    const [cookies, setCookies] = useCookies();
+    const { getCookieToken } = useCookiesSession();
     
     
     async function getData(endpoint: string){
@@ -19,7 +20,7 @@ export default function useGetFetch<T>(){
                 'Accept': '*/*',
                 'Connection': 'keep-alive',
                 'Accept-Encoding': 'gzip, deflate, br',
-                'x-access-token': `${cookies.user_session}`
+                'x-access-token': `${getCookieToken()}`
             },
             mode: 'cors'
         }

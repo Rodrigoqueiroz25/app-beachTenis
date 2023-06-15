@@ -1,12 +1,13 @@
-import { useCookies } from "react-cookie";
+
+import useCookiesSession from "./useCookiesSession";
 
 
 export default function useVerifyAuth(){
     
-    const [cookies, setCookies] = useCookies();
+    const { cookiesSessionExists } = useCookiesSession();
 
     function isAuth(){
-        if (cookies.user_session && cookies.user_name) {
+        if (cookiesSessionExists()) {
             return true;
         }
         else{

@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+
 import { Navigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import useCookiesSession from "./hooks/useCookiesSession";
 
 
 type Props = {
@@ -9,9 +9,9 @@ type Props = {
 
 export function PrivateRoute({ children }: Props){
     
-    const [cookies, setCookies] = useCookies();
+    const { cookiesSessionExists } = useCookiesSession();
     
-    if (cookies.user_session && cookies.user_name) {
+    if (cookiesSessionExists()) {
         return children;
     }
     else{

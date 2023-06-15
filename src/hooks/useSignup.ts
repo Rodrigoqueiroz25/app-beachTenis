@@ -1,7 +1,8 @@
+
 import { useContext, useState } from "react";
 import { TLogado } from "../types/login";
-import { useCookies } from "react-cookie";
 import { ContextSignup } from "../contexts/ContextSignup";
+import useCookiesSession from "./useCookiesSession";
 
 
 export default function useSignup(){
@@ -12,7 +13,7 @@ export default function useSignup(){
     const [isAuth, setIsAuth] = useState<Boolean>(false);
     const [error, setError] = useState<unknown>();
     
-    const [cookies, setCookies] = useCookies();
+    const { setCookiesSession } = useCookiesSession();
     
     
     async function signup(){
@@ -42,16 +43,7 @@ export default function useSignup(){
             
             if(response.status === 200){
                 let json = await response.json() as TLogado;
-                setCookies('user_session', json.accessToken, {
-                    path: '/',
-                    sameSite: 'strict',
-                    maxAge: 20000
-                });
-                setCookies('user_name', json.name, {
-                    path: '/',
-                    sameSite: 'strict',
-                    maxAge: 20000
-                });
+                setCookiesSession(json.accessToken, json.name);
                 setIsAuth(true);
                 setIsLoading(false);
                 setMsgFailedAuth('');
