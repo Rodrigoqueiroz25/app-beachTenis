@@ -4,12 +4,12 @@ type StateType = {
     firstName: string
     lastName: string
     password: string
-    gender: string
+    gender: "M" | "F" | ""
     email: string
     cityId: string
     phoneNumber: string
     photo?: string
-    birthDate: string
+    dateBirthday: string
 }
 
 type ContextType = {
@@ -25,7 +25,7 @@ const initialState: StateType = {
     email: "",
     cityId: "4709",
     phoneNumber: "",
-    birthDate: "",
+    dateBirthday: "",
     photo: ""
 }
 

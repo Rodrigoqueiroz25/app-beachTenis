@@ -18,3 +18,9 @@ export type City = {
     name: string;
     stateId: number;
 }
+
+export type Sport = {
+    id: number;
+    description: string;
+    deleted?: boolean;
+}

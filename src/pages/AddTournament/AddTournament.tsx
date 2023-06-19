@@ -11,7 +11,7 @@ export function AddTournament() {
 
     
 
-    return (
+    return (       
         <div className={styles.container}>
             
             <header className={styles.title}>
@@ -47,12 +47,14 @@ export function AddTournament() {
                     
                     <Combobox
                         label='Esporte'
-                        endPoint='sports'     
+                        endPoint='sports'
+                        data='description'     
                     />
 
                     <Combobox
                         label='Cidade'
-                        endPoint='cities'     
+                        endPoint='cities'
+                        data='name'     
                     />
 
                     <div className={styles.paragraph}>

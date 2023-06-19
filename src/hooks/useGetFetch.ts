@@ -3,16 +3,16 @@ import { useState } from "react";
 import useCookiesSession from "./useCookiesSession";
 
 
-export default function useGetFetch<T>(){
+export default function useGetFetch(){
        
     const [msgFailedGet, setMsgFailedGet] = useState<String>('');
     const [error, setError] = useState<unknown>();
-    const [result, setResult] = useState<T[]>([]);
+    const [result, setResult] = useState<any>([]);
     
     const { getCookieToken } = useCookiesSession();
     
     
-    async function getData(endpoint: string){
+    async function getData(endpoint: string, data?: string){
         const options: RequestInit = {
             method: 'GET',
             headers: {
@@ -29,8 +29,18 @@ export default function useGetFetch<T>(){
             let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/${endpoint}`, options);
             
             if(response.status === 200){
-                let json = await response.json() as T[];
-                setResult(json);
+                let json = await response.json();
+                if(data){
+                    let arr = [...result];
+                    for (const j of json) {
+                        arr.push(j[data]);
+                    }
+                    setResult(arr);
+                }
+                else{
+                    setResult(json);
+                }
+                
             }
             else if(response.status === 403){
                 setMsgFailedGet("Acesso negado");

@@ -35,18 +35,15 @@ export function FormPhoneEmailPasswd({ func }: Props){
     function changePasswd(e: ChangeEvent<HTMLInputElement>){
         // setState({...state, password: e.target.value});
         setPasswd(e.target.value);
-        console.log(passwd);
     }
     
     function changeRePasswd(e: ChangeEvent<HTMLInputElement>){
         // setState({...state, password: e.target.value});
         setRePasswd(e.target.value);
-        console.log(rePasswd);
     }
 
     function handleSubmitForm(e: FormEvent<HTMLFormElement>){
         e.preventDefault();
-        console.log(state);
 
         if(passwd === rePasswd){
             setState({...state, password: passwd});

@@ -30,11 +30,11 @@ export function FormCreateProfile({ submit }: Props) {
     }
 
     function changeBirthDate(e: ChangeEvent<HTMLInputElement>) {
-        setState({ ...state, birthDate: e.target.value });
+        setState({ ...state, dateBirthday: e.target.value });
     }
 
     function changeGender(e: ChangeEvent<HTMLInputElement>){
-        setState({ ...state, gender: e.target.value });
+        setState({ ...state, gender: e.target.value as "" | "F" | "M"});
     }
 
     function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
@@ -81,7 +81,7 @@ export function FormCreateProfile({ submit }: Props) {
                         <TextField
                             placeholder=''
                             type='date'
-                            value={state.birthDate}
+                            value={state.dateBirthday}
                             func={changeBirthDate}
                         />
                     </div>
@@ -91,8 +91,8 @@ export function FormCreateProfile({ submit }: Props) {
                             <input 
                                 type="radio" 
                                 id='male' 
-                                value='m'
-                                checked={state.gender === 'm'}
+                                value='M'
+                                checked={state.gender === 'M'}
                                 onChange={changeGender}
                             />
                             <label htmlFor="male">Male</label>
@@ -101,8 +101,8 @@ export function FormCreateProfile({ submit }: Props) {
                             <input 
                                 type="radio" 
                                 id='female' 
-                                value='f'
-                                checked={state.gender === 'f'}
+                                value='F'
+                                checked={state.gender === 'F'}
                                 onChange={changeGender}
                             />
                             <label htmlFor="female">Female</label>

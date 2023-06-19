@@ -27,8 +27,12 @@ export function SignUp(){
                 && <Navigate to='/home'/>
             }
 
-            { !isAuth && msgFailedAuth
-                && 
+            {/* { !complete && !isAuth
+                ? <FormPhoneEmailPasswd func={() => setComplete(true)}/>
+                : <FormCreateProfile submit={signUp} />
+            } */}
+
+            { !isAuth && 
                     <div>
                         <p>{msgFailedAuth}</p>
                         { !complete && !isAuth
@@ -39,10 +43,6 @@ export function SignUp(){
                 
             }
 
-            { !complete && !isAuth
-                ? <FormPhoneEmailPasswd func={() => setComplete(true)}/>
-                : <FormCreateProfile submit={signUp} />
-            }
         </>
     );
 }
