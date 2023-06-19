@@ -10,7 +10,7 @@ export function SignUp(){
 
     const [complete, setComplete] = useState(false);
     
-    const { signup, isAuth, isLoading, error, msgFailedAuth } = useSignup();
+    const { signup, isAuth, isLoading, msgFailedAuth } = useSignup();
 
     function signUp(){
         setComplete(false);
@@ -26,11 +26,6 @@ export function SignUp(){
             { isAuth 
                 && <Navigate to='/home'/>
             }
-
-            {/* { !complete && !isAuth
-                ? <FormPhoneEmailPasswd func={() => setComplete(true)}/>
-                : <FormCreateProfile submit={signUp} />
-            } */}
 
             { !isAuth && 
                     <div>
