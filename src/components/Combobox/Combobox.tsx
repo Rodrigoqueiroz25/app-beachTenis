@@ -1,27 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import useGetFetch from '../../hooks/useGetFetch';
 import styles from './Combobox.module.css';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 type Props = {
     label: string;
-    endPoint: string;
+    field: string;
     func?: any;
-    data?: string;
+    data: any;
 }
 
 
-export function Combobox({func, label, endPoint, data}: Props) {
-
-    const { getData, msgFailedGet, error, result } = useGetFetch();
-
-    useEffect(() =>{
-        setTimeout(() => {
-            getData(endPoint, data);
-        }, 500);
-    }, [msgFailedGet, error]);
-
+export function Combobox({func, label, field, data}: Props) {
 
     const [value, setValue] = useState('');
 
@@ -34,9 +24,9 @@ export function Combobox({func, label, endPoint, data}: Props) {
         <div className={styles.combobox}>
             <div className={styles.selectWrapper}>
                 <select name="name" id="id" placeholder='teste' onChange={handleChange}>
-                    <option value=""></option>
-                    {result.map((res: any, key: number) => (
-                        <option key={key} value={res}>{res}</option>
+                    <option id='' value=""></option>
+                    {data.map((res: any, key: number) => (
+                        <option key={key} id={res['id']} value={res[field]}>{res[field]}</option>
                     ))}
                 </select>
                 <label className={`${value === "" ? styles.label_empty_option : styles.label_noempty_option}`} htmlFor="name">{label}</label>

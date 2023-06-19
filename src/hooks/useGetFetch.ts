@@ -7,8 +7,7 @@ export default function useGetFetch(){
        
     const [msgFailedGet, setMsgFailedGet] = useState<String>('');
     const [error, setError] = useState<unknown>();
-    const [result, setResult] = useState<any>([]);
-    
+
     const { getCookieToken } = useCookiesSession();
     
     
@@ -31,33 +30,35 @@ export default function useGetFetch(){
             if(response.status === 200){
                 let json = await response.json();
                 if(data){
-                    let arr = [...result];
+                    let arr = [...json];
                     for (const j of json) {
                         arr.push(j[data]);
                     }
-                    setResult(arr);
+                    return arr;
                 }
                 else{
-                    setResult(json);
+                    return json;
                 }
                 
             }
             else if(response.status === 403){
                 setMsgFailedGet("Acesso negado");
+                return [];
             }
             else{
                 setMsgFailedGet("Erro, tente novamente mais tarde");
+                return [];
             }
             
         } catch (err) {
             setError(err);
             setMsgFailedGet("Erro, tente novamente mais tarde");
+            return [];
         }
         
     }
     
     return {
-        result,
         error,
         msgFailedGet,
         getData

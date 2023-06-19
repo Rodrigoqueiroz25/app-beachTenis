@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
+
 
 import { FooterHome } from '../../components/FooterHome/FooterHome';
 import styles from './AddTournament.module.css';
@@ -6,10 +9,33 @@ import image from '../../assets/image.svg';
 import { Button } from '../../components/Button/Button';
 import { TextFieldSmall } from '../../components/TextFieldSmall/TextFieldSmall';
 import { Combobox } from '../../components/Combobox/Combobox';
+import useGetFetch from '../../hooks/useGetFetch';
+import { useEffect, useState } from 'react';
+import { City, Sport } from '../../types/login';
 
 export function AddTournament() {
 
+    const { getData, msgFailedGet, error } = useGetFetch();
+
+    const [sports, setSports] = useState<Sport[]>([]);
+    const [cities, setCities] = useState<City[]>([]);
+
+    let result: any[] = [];
     
+    useEffect(() =>{
+        setTimeout(async () => {
+            result = await getData('sports');
+            setSports(result);
+        }, 200);
+    }, [msgFailedGet, error]);
+
+    useEffect(() =>{
+        setTimeout(async () => {
+            result = await getData('cities');
+            setCities(result);
+        }, 200);
+    }, [msgFailedGet, error]);
+
 
     return (       
         <div className={styles.container}>
@@ -47,14 +73,14 @@ export function AddTournament() {
                     
                     <Combobox
                         label='Esporte'
-                        endPoint='sports'
-                        data='description'     
+                        field='description'
+                        data={sports}    
                     />
 
                     <Combobox
                         label='Cidade'
-                        endPoint='cities'
-                        data='name'     
+                        field='name'
+                        data={cities}     
                     />
 
                     <div className={styles.paragraph}>
