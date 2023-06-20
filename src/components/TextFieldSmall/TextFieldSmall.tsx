@@ -1,58 +1,37 @@
 
+
 import styles from './TextFieldSmall.module.css';
-import { ChangeEvent, useState } from 'react';
 
 type Props = {
     placeholder: string;
-    type: string;
-    value: string;
     label: string;
-    func: any;
+    register: any;
+    name: string;
+    errors: any;
 }
 
 
-export function TextFieldSmall({placeholder, type, func, label}: Props) {
-
-    const [typee, setType] = useState('text');
-    const [value, setValue] = useState('');
-
-    function focus(){
-        if(type === 'date'){
-            setType('date');
-        }
-    }
-
-    function blur(){
-        if(type === 'date'){
-            if(value === ''){
-                setType('text');
-            }
-        }
-    }
-
-    function handleChange(e: ChangeEvent<HTMLInputElement>){
-        setValue(e.target.value);
-        func(e.target.value);
-    }
+export function TextFieldSmall({ placeholder, label, register, name, errors }: Props) {
 
 
     return (
-        <div className={styles.textFieldSmall}>
-            <div className={styles.inputWrapper}>
-                <input 
-                    className={styles.input} 
-                    name="name" 
-                    type={typee} 
-                    placeholder={placeholder}
-                    value={value}
-                    onChange={handleChange}
-                    onFocus={focus}
-                    onBlur={blur}
-                    required
-                />
-                <label className={styles.label} htmlFor="name">{label}</label>
+        <>
+            <div className={styles.textFieldSmall}>
+                <div className={styles.inputWrapper}>
+                    <p className={styles.error}>{errors[name]?.message}</p>
+                    <input 
+                        className={errors[name]?.message ? `${styles['input']} ${styles['invalid']}` : styles['input']}
+                        placeholder={placeholder}
+                        {...register(name)}
+                    />
+                    <label className={styles.label} htmlFor={name}>
+                        {/* {errors[name]?.message ? errors[name]?.message : label} */}
+                        {label}
+                    </label>
+                </div>
             </div>
-        </div>
+        </>
+
     );
 
 }

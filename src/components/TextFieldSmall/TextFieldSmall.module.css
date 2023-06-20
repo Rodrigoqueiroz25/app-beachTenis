@@ -69,32 +69,42 @@
     color: #1a1c94;
     font-weight: 600;
   }
+
+  .error{
+    font-size: 1rem;
+    color: red;
+    position: absolute;
+    right: 0rem;
+    top: 3.2rem;
+  }
+
+  .invalid {
+    border-bottom: .1rem solid red;
+  }
   
-  /* reset input */
-  .input:required, .input:invalid {
-    box-shadow: none;
+  .invalid:focus {
+    border-image: linear-gradient(to right, #991c11, #cf1e15);
+    border-image-slice: 1;
+  }
+
+  .invalid:not(:focus) ~.label{
+    color: brown;
+    /* color: transparent; */
+    /* right: 1rem; */
+  }
+
+  .invalid:focus ~ .label {
+    color: brown;
+    /* color: transparent; */
   }
 
 
-  .line{
-    height: 0.12rem;
-    background-color: black;
-
-  }
-
-  .inputWrapper input[type="date"]::-webkit-datetime-edit:focus {
-    font-size: 1.2rem;
-  }
-
-
-
-  .inputWrapper input[type="date"]::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    background: url(../../assets/calendar.svg) no-repeat;
-    /* background-position: center; */
-    background-size: contain;
-    width: 1.2rem;
-    height: 1.2rem;
-    
-  }
-
+  
+ 
+  /* .invalid:not(:focus) ~ .error{
+    font-size: 1rem;
+    color: red;
+    position: absolute;
+    right: 1rem;
+    top: -0.7rem;
+  } */

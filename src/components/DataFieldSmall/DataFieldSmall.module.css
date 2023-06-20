@@ -1,16 +1,16 @@
 
-.combobox{
-    height: 4.5rem;
+.dataFieldSmall{
+    height: 5rem;
     margin-bottom: 0;
 }
 
-.selectWrapper {
+.inputWrapper {
     position: relative;
     width: 100%;
     height: 2.8rem;
   }
   
-  select {
+  .input {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -21,6 +21,7 @@
 
     outline: 0;
     height: 2rem;
+    padding: 1.1rem 0;
     font-size: 1.4rem;
     color: black;
     
@@ -30,43 +31,60 @@
     
   }
   
-  .label_empty_option {
-    position: absolute;
-    font-weight: 400;
-    top: 0.4rem;
-    display: block;
-    transition: 0.2s;
-    font-size: 1.3rem;
-    color: rgba(0, 0, 0, 0.6);
-    line-height: 150%;
+  .input::placeholder {
+    color: transparent;
   }
 
-  .label_noempty_option {
+  .input:placeholder-shown ~ .label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 0.6rem;
+  }
+  
+  .label {
     position: absolute;
     font-weight: 400;
     top: -1rem;
     display: block;
     transition: 0.2s;
     font-size: 1.2rem;
+    /* color: #9b9b9b; */
     color: rgba(0, 0, 0, 0.6);
     line-height: 150%;
   }
 
-  select:focus {
+  .input:focus {
     font-weight: 500;
     border-width: 2px;
     border-image: linear-gradient(to right, #114c99, #1544cf);
     border-image-slice: 1;
   }
 
-  select:focus ~ label {
+  .input:focus ~ .label {
     position: absolute;
-    top: -1.1rem;
+    top: -1.2rem;
     display: block;
     transition: 0.2s;
     font-size: 1.2rem;
     color: #1a1c94;
     font-weight: 600;
+  }
+  
+
+  .inputWrapper input[type="date"]::-webkit-datetime-edit:focus {
+    font-size: 1.2rem;
+  }
+
+
+
+  .inputWrapper input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    background: url(../../assets/calendar.svg) no-repeat;
+    /* background-position: center; */
+    background-size: contain;
+    width: 1.2rem;
+    height: 1.2rem;
+    
   }
 
   .invalid {
@@ -78,16 +96,16 @@
     border-image-slice: 1;
   }
 
-  .invalid:not(:focus) ~ label{
+  .invalid:not(:focus) ~.label{
     color: brown;
     /* right: 1rem; */
   }
 
-  .invalid:focus ~ label {
+  .invalid:focus ~ .label {
     color: #94221a;
   }
   
-  
+ 
   .error{
     font-size: 1rem;
     color: red;
@@ -95,3 +113,4 @@
     right: 0rem;
     top: 3.2rem;
   }
+
