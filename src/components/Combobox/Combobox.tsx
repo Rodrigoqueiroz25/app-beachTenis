@@ -6,7 +6,7 @@ import { ChangeEvent, useState } from 'react';
 type Props = {
     label: string;
     field: string;
-    func?: any;
+    func: any;
     data: any;
 }
 
@@ -17,7 +17,7 @@ export function Combobox({func, label, field, data}: Props) {
 
     function handleChange(e: ChangeEvent<HTMLSelectElement>){
         setValue(e.target.value);
-        func(e.target.value);
+        func(e.target.value, e.target.selectedOptions[0].id);
     }
 
     return (

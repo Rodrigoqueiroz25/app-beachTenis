@@ -7,7 +7,7 @@ type Props = {
     type: string;
     value: string;
     label: string;
-    func?: any;
+    func: any;
 }
 
 
@@ -32,7 +32,7 @@ export function TextFieldSmall({placeholder, type, func, label}: Props) {
 
     function handleChange(e: ChangeEvent<HTMLInputElement>){
         setValue(e.target.value);
-        func();
+        func(e.target.value);
     }
 
 
