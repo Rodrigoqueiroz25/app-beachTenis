@@ -17,6 +17,7 @@ import  *  as yup from  "yup";
 import { DataFieldSmall } from '../../components/DataFieldSmall/DataFieldSmall';
 
 
+
 export function AddTournament() {
 
     const { getData, msgFailedGet, error } = useGetFetch();
@@ -34,8 +35,6 @@ export function AddTournament() {
             setCities(await getData('cities'));
         }, 200);
     }, [msgFailedGet, error]);
-
-
 
     //-----------------------------validator hook-------------------------------------------
 
@@ -89,6 +88,7 @@ export function AddTournament() {
                     <TextFieldSmall 
                         label='Descrição' 
                         name='description'
+                        type='text'
                         placeholder='Descrição'  
                         register={register}
                         errors={errors}
@@ -97,6 +97,7 @@ export function AddTournament() {
                     <TextFieldSmall 
                         label='Organização' 
                         name='organization'
+                        type='text'
                         placeholder='Organização' 
                         register={register}
                         errors={errors}
@@ -105,21 +106,21 @@ export function AddTournament() {
                     
                     <Combobox
                         label='Esporte'
-                        field='description'
                         name='sportId'
                         register={register}
                         errors={errors}
-                        data={sports}
+                        data={sports.map(s => s.description)}
+                        ids={sports.map(s => s.id)}
                         watch={watch('sportId')}
                     />
 
                     <Combobox
                         label='Cidade'
-                        field='name'
                         name='cityId'
                         register={register}
                         errors={errors}
-                        data={cities}
+                        data={cities.map(c => c.name)}
+                        ids={cities.map(s => s.id)}
                         watch={watch('cityId')}
                     />
 
@@ -179,8 +180,6 @@ export function AddTournament() {
                     <textarea className={styles.info} 
                         placeholder='Outras informações'
                         {...register("otherInformation")}
-                        // value={dataForm.otherInformation}
-                        // onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {setDataForm({...dataForm, otherInformation: e.target.value})}}
                     ></textarea>
 
                     <Button text='Salvar'/>

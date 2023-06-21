@@ -8,6 +8,9 @@ import { PrivateRoute } from "../PrivateRoute";
 import { SignUp } from "../pages/SignUp/SignUp";
 import { ContextSignupProvider } from "../contexts/ContextSignup";
 import { AddTournament } from "../pages/AddTournament/AddTournament";
+import { AddCategories } from "../pages/AddCategories/AddCategories";
+
+
 
 
 export function MainRoutes(){
@@ -19,6 +22,7 @@ export function MainRoutes(){
         { path: '/forgot-password', element: <ForgotPasswd/>},
         { path: '/create-password', element: <CreatePasswd/> },
         { path: '/add-tournament', element: <PrivateRoute><AddTournament/></PrivateRoute> },
+        { path: '/add-categories', element: <PrivateRoute><AddCategories/></PrivateRoute> },
         { path: '/home', element: <PrivateRoute><Home/></PrivateRoute> },
         { path: '*', element: <h1>sds</h1> },
     ]);

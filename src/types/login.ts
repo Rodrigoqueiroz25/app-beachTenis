@@ -24,3 +24,9 @@ export type Sport = {
     description: string;
     deleted?: boolean;
 }
+
+export type Categorie = {
+    description: string;
+    numberAthletes: number;
+    numberAthletesRegistration: number;
+}

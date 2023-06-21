@@ -8,10 +8,11 @@ type Props = {
     register: any;
     name: string;
     errors: any;
+    type: "text" | "number";
 }
 
 
-export function TextFieldSmall({ placeholder, label, register, name, errors }: Props) {
+export function TextFieldSmall({ placeholder, label, register, name, errors, type }: Props) {
 
 
     return (
@@ -22,6 +23,7 @@ export function TextFieldSmall({ placeholder, label, register, name, errors }: P
                     <input 
                         className={errors[name]?.message ? `${styles['input']} ${styles['invalid']}` : styles['input']}
                         placeholder={placeholder}
+                        type={type}
                         {...register(name)}
                     />
                     <label className={styles.label} htmlFor={name}>

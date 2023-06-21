@@ -5,7 +5,7 @@ import { ChangeEvent, useState } from 'react';
 
 type Props = {
     label: string;
-    field: string;
+    ids?: any;
     name: string;
     register: any;
     errors: any;
@@ -14,13 +14,12 @@ type Props = {
 }
 
 
-export function Combobox({label, field, data, name, register, errors, watch}: Props) {
+export function Combobox({label, ids, data, name, register, errors, watch}: Props) {
 
     const [value, setValue] = useState('');
 
     function handleChange(e: ChangeEvent<HTMLSelectElement>){
         setValue(e.target.value);
-        
     }
 
     return (
@@ -28,22 +27,17 @@ export function Combobox({label, field, data, name, register, errors, watch}: Pr
             <div className={styles.selectWrapper}>
                 <select
                     className={errors[name]?.message ? styles['invalid'] : "" }
-                    name="name" 
-                    id="id" 
-                    placeholder='teste' 
                     onChange={handleChange}
-                    {...register(name)} 
-                    
+                    {...register(name)}
                 >
-
-                    <option id='' value=""></option>
+                    <option key={-1} value=""></option>
                     {data.map((res: any, key: number) => (
-                        <option key={key} value={res['id']}>{res[field]}</option>
+                        <option key={key} value={ids ? ids[key] : res}>{res}</option>
                     ))}
 
                 </select>
                 <p className={styles.error}>{errors[name]?.message}</p>
-                <label className={`${watch === "" ? styles.label_empty_option : styles.label_noempty_option}`} htmlFor="name">{label}</label>
+                <label className={`${!watch ? styles.label_empty_option : styles.label_noempty_option}`} htmlFor={name}>{label}</label>
             </div>
         </div>
     );
