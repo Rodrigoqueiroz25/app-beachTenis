@@ -12,13 +12,15 @@ import  *  as yup from  "yup";
 import { useState } from 'react';
 import { Categories } from './components/Categories/Categories';
 import { Categorie } from '../../types/login';
+import { useLocation } from 'react-router-dom';
 
 
 export function AddCategories() {
 
     const [list, setList] = useState([1,2,3,4,5,6,7,8,9,10]);
     const [listCategories, setListCategories] = useState<Categorie[]>([]);
-
+    
+    const location = useLocation();
 
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
