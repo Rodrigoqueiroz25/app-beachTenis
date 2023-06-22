@@ -1,20 +1,20 @@
 
 import { useState } from "react";
 import useCookiesSession from "./useCookiesSession";
-import { AddCategory, CategoryRegistered } from "../types/category";
+import { Category, CategoryRegistered } from "../types/category";
 
 
 export default function useFetchCategory(){
        
     const [isLoading, setIsLoading] = useState<Boolean>(false);
     const [isRegistered, setIsRegistered] = useState(false);
-    const [response, setResponse] = useState<CategoryRegistered | string>("");
+    const [response, setResponse] = useState<CategoryRegistered | CategoryRegistered[] | string>("");
     const [error, setError] = useState<string>();
     
     const { getCookieToken } = useCookiesSession();
     
     
-    async function registerCategory(data: AddCategory){
+    async function registerCategory(data: Category){
         const options: RequestInit = {
             method: 'POST',
             headers: {
@@ -57,13 +57,61 @@ export default function useFetchCategory(){
         }
         
     }
+
+    async function editCategory(data: Category, id: string){
+        const options: RequestInit = {
+            method: 'PUT',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive',
+                'x-access-token': `${getCookieToken()}`
+            },
+            body: JSON.stringify(data),
+            mode: 'cors'
+        }
+        
+        try {
+            setIsLoading(true);
+            let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/category/${id}`, options);
+            
+            if(response.status === 200){
+                let json = await response.json() as CategoryRegistered[];
+                setIsLoading(false);
+                setResponse(json);
+                console.log(json);
+            }
+            else if(response.status === 403){
+                let json = await response.json();
+                setIsLoading(false);
+                setError(json['error']);
+            }
+            else{
+                let json = await response.json();
+                setIsLoading(false);
+                setError(json['error']);
+            }
+            
+        } catch (err: any) {
+            setIsLoading(false);
+            setError(err.message);
+            setResponse("Erro, tente novamente mais tarde");
+        }
+        
+    }
+
+    
     
     return {
         isLoading,
         error,
         response,
         isRegistered,
-        registerCategory
+        registerCategory,
+        editCategory
     };
+
+    
     
 }

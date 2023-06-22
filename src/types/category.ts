@@ -1,16 +1,15 @@
 
-export type AddCategory = {
-    description: string,
-    tournamentId: number,
-    numberAthletes: number,
-    numberAthletesRegistration: number
+
+export interface Category {
+    description: string;
+    tournamentId?: number;
+    numberAthletes: number;
+    numberAthletesRegistration: number;
 }
 
-export type CategoryRegistered = {
-    description: string,
-    tournamentId: number,
-    numberAthletes: number,
-    numberAthletesRegistration: number,
-    id: number,
-    deleted: boolean
+export interface CategoryRegistered extends Category {
+    id: number;
+    deleted: boolean;
 }
+
+

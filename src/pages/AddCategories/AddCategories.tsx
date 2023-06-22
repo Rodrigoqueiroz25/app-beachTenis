@@ -19,12 +19,14 @@ import { Category } from './components/Categories/Category';
 
 export function AddCategories() {
 
+    const [ editMode, setEditMode ] = useState(false);
+    const [ idEdited, setIdEdited ] = useState("");
+
     const [list, setList] = useState([1,2,3,4,5,6,7,8,9,10]);
     const [listCategories, setListCategories] = useState<CategoryRegistered[]>([]);
-    const { registerCategory, isLoading, isRegistered, response } = useFetchCategory();
+    const { registerCategory, editCategory, isLoading, isRegistered, response } = useFetchCategory();
     
     const location = useLocation();
-    // console.log(location);
 
     useEffect(() =>{
         setTimeout(async () => {
@@ -37,24 +39,36 @@ export function AddCategories() {
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
         numberAthletes: yup.number().required("Digite algo"),
-        numberAthletesRegistration: yup.string().required("selecione uma opção")
+        numberAthletesRegistration: yup.number().required("selecione uma opção")
     });
 
-    const { register, handleSubmit, watch, formState: { errors }, reset } =  useForm({
+    const { register, handleSubmit, watch, formState: { errors }, reset, setValue } =  useForm({
         resolver: yupResolver(schema)
     });
 
-    async function addCategorie(data: any){
+    async function submit(data: any){
         console.log(data);
-        await registerCategory({...data, tournamentId: location.state.tournamentId});
+        if(editMode){
+            await editCategory({...data, tournamentId: location.state.tournamentId}, idEdited);
+        }
+        else{
+            await registerCategory({...data, tournamentId: location.state.tournamentId});
+        }
+        reset();
     }
 
-    function removeCategorie(){
-
+    function removeCategory(id: string){
+        console.log(id);
     }
 
-    function editCategorie(){
-
+    function editionCategory(id: string){
+        console.log(id);
+        const category = listCategories.find((c) => c.id === parseInt(id)) as CategoryRegistered;
+        setValue("description", category.description);
+        setValue("numberAthletes", category.numberAthletes);
+        setValue("numberAthletesRegistration", category.numberAthletesRegistration);
+        setEditMode(true);
+        setIdEdited(id);
     }
 
 
@@ -67,7 +81,7 @@ export function AddCategories() {
 
             <main>
 
-                <form className={styles.form} onSubmit={handleSubmit(addCategorie)}>  
+                <form className={styles.form} onSubmit={handleSubmit(submit)}>  
                 
                     <TextFieldSmall 
                         label='Descrição' 
@@ -99,10 +113,18 @@ export function AddCategories() {
                     <Button text='Adicionar'/>
                 </form>
                 
-                
+                { typeof response === "string" &&
+                    <p>{response}</p>
+                }
                 <div className={styles.listCategories}>
                     {listCategories.map((c: CategoryRegistered, key: number) => (
-                        <Category key={key} categorie={c.description}/>
+                        <Category 
+                            key={key} 
+                            category={c.description}
+                            id={`${c.id}`}
+                            edit={editionCategory}
+                            del={removeCategory}
+                        />
                     ))}
                 </div>
 

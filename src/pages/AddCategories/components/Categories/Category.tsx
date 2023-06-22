@@ -4,18 +4,30 @@ import imgEdit from '../../../../assets/edit.svg';
 import imgDelete from '../../../../assets/delete.svg';
 
 type Props = {
-    categorie: string;
+    category: string
+    id: string
+    edit: (id: string) => void
+    del: (id: string) => void
+
 }
 
-export function Category({ categorie }: Props) {
+export function Category({ category, id, edit, del }: Props) {
+
+    function edition(){
+        edit(id);
+    }
+
+    function deletion(){
+        del(id);
+    }
 
     return (
         <div className={styles.category}>
             <div className={styles.elements}>
-                <p className={styles.text}>{categorie}</p>
+                <p className={styles.text}>{category}</p>
                 <div className={styles.imgs}>
-                    <img src={imgEdit} alt="" />
-                    <img src={imgDelete} alt="" />
+                    <img src={imgEdit} alt="" onClick={edition}/>
+                    <img src={imgDelete} alt="" onClick={deletion}/>
                 </div>
             </div>
             <hr />
