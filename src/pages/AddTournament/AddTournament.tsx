@@ -1,22 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { FooterHome } from '../../components/FooterHome/FooterHome';
 import styles from './AddTournament.module.css';
 import photo from '../../assets/photo.svg';
 import image from '../../assets/image.svg';
+import { FooterHome } from '../../components/FooterHome/FooterHome';
 import { Button } from '../../components/Button/Button';
 import { TextFieldSmall } from '../../components/TextFieldSmall/TextFieldSmall';
 import { Combobox } from '../../components/Combobox/Combobox';
 import useGetFetch from '../../hooks/useGetFetch';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { City, Sport } from '../../types/login';
-
 import { useForm } from  "react-hook-form";
 import { yupResolver } from  "@hookform/resolvers/yup";
 import  *  as yup from  "yup";
 import { DataFieldSmall } from '../../components/DataFieldSmall/DataFieldSmall';
 import useFetchTournament from '../../hooks/useFetchTournament';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { convertData } from '../../helper/convertData';
 
 
 export type AddTour = {
@@ -36,8 +36,6 @@ export function AddTournament() {
     const { getData, msgFailedGet, error } = useGetFetch();
     const { registerTournament, response, isLoading, isRegistered } = useFetchTournament();
 
-    const navigate = useNavigate();
-
     const [sports, setSports] = useState<Sport[]>([]);
     const [cities, setCities] = useState<City[]>([]);
 
@@ -53,34 +51,6 @@ export function AddTournament() {
         }, 200);
     }, [msgFailedGet, error]);
 
-    //-------------------------------------------------------------------------------------
-
-    function convertData(date: Date): string{
-        return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
-    }
-
-
-    //-----------------------------validator hook-------------------------------------------
-
-    function teste(data: any){
-        console.log(data)
-        //transformar as datas em strings.
-        const dataFetch : AddTour = {
-            description: data.description,
-            cityId: data.cityId,
-            sportId: data.sportId,
-            dtStartTournament: convertData(data.dtStartTournament),
-            dtFinalTournament: convertData(data.dtFinalTournament),
-            dtStartRegistration: convertData(data.dtStartRegistration),
-            dtFinalRegistration: convertData(data.dtFinalRegistration),
-            otherInformation: data.otherInformation,
-            organization: data.organization
-        }
-        //fazer requisição aqui.
-        registerTournament(dataFetch);
-        
-
-    }
 
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
@@ -94,14 +64,26 @@ export function AddTournament() {
         otherInformation: yup.string()   
     });
 
-    const { register, handleSubmit, watch, formState: { errors }, reset } =  useForm({
+    const { register, handleSubmit, watch, formState: { errors } } =  useForm({
         resolver: yupResolver(schema)
     });
 
+    function saveDataform(data: any){
+        const dataFetch : AddTour = {
+            description: data.description,
+            cityId: data.cityId,
+            sportId: data.sportId,
+            dtStartTournament: convertData(data.dtStartTournament),
+            dtFinalTournament: convertData(data.dtFinalTournament),
+            dtStartRegistration: convertData(data.dtStartRegistration),
+            dtFinalRegistration: convertData(data.dtFinalRegistration),
+            otherInformation: data.otherInformation,
+            organization: data.organization
+        }
+        registerTournament(dataFetch);
+    }
 
-    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
+    
     return (
         <>
             { isLoading && 
@@ -129,7 +111,7 @@ export function AddTournament() {
                         </div>
                     </div>
 
-                    <form className={styles.form} onSubmit={handleSubmit(teste)}>
+                    <form className={styles.form} onSubmit={handleSubmit(saveDataform)}>
                         
                     
                         <TextFieldSmall 
