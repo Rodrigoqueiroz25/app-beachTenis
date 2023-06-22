@@ -9,18 +9,30 @@ import { Combobox } from '../../components/Combobox/Combobox';
 import { useForm } from  "react-hook-form";
 import { yupResolver } from  "@hookform/resolvers/yup";
 import  *  as yup from  "yup";
-import { useState } from 'react';
-import { Categories } from './components/Categories/Categories';
-import { Categorie } from '../../types/login';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import useFetchCategory from '../../hooks/useFetchCategory';
+import { CategoryRegistered } from '../../types/category';
+import { Category } from './components/Categories/Category';
+
 
 
 export function AddCategories() {
 
     const [list, setList] = useState([1,2,3,4,5,6,7,8,9,10]);
-    const [listCategories, setListCategories] = useState<Categorie[]>([]);
+    const [listCategories, setListCategories] = useState<CategoryRegistered[]>([]);
+    const { registerCategory, isLoading, isRegistered, response } = useFetchCategory();
     
     const location = useLocation();
+    // console.log(location);
+
+    useEffect(() =>{
+        setTimeout(async () => {
+            if(isRegistered){
+                setListCategories([...listCategories, response as CategoryRegistered]);
+            }
+        }, 100);
+    }, [response]);
 
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
@@ -32,10 +44,9 @@ export function AddCategories() {
         resolver: yupResolver(schema)
     });
 
-    function addCategorie(data: any){
-        console.log(data)
-        setListCategories([...listCategories, data as Categorie]);
-        //fazer requisição aqui.
+    async function addCategorie(data: any){
+        console.log(data);
+        await registerCategory({...data, tournamentId: location.state.tournamentId});
     }
 
     function removeCategorie(){
@@ -90,8 +101,8 @@ export function AddCategories() {
                 
                 
                 <div className={styles.listCategories}>
-                    {listCategories.map((c: Categorie, key: number) => (
-                        <Categories key={key} categorie={c.description}/>
+                    {listCategories.map((c: CategoryRegistered, key: number) => (
+                        <Category key={key} categorie={c.description}/>
                     ))}
                 </div>
 
