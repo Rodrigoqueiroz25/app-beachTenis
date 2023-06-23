@@ -16,7 +16,6 @@ import { CategoryRegistered } from '../../types/category';
 import { Category } from './components/Categories/Category';
 
 
-
 export function AddCategories() {
 
     const [ editMode, setEditMode ] = useState(false);
@@ -24,7 +23,7 @@ export function AddCategories() {
 
     const [list, setList] = useState([1,2,3,4,5,6,7,8,9,10]);
     const [listCategories, setListCategories] = useState<CategoryRegistered[]>([]);
-    const { registerCategory, editCategory, isLoading, isRegistered, response } = useFetchCategory();
+    const { registerCategory, registerCategoryEdited, isRegistered, response, error } = useFetchCategory();
     
     const location = useLocation();
 
@@ -49,10 +48,11 @@ export function AddCategories() {
     async function submit(data: any){
         console.log(data);
         if(editMode){
-            await editCategory({...data, tournamentId: location.state.tournamentId}, idEdited);
+            await registerCategoryEdited({...data, tournamentId: 8}, idEdited);
+            setEditMode(false);
         }
         else{
-            await registerCategory({...data, tournamentId: location.state.tournamentId});
+            await registerCategory({...data, tournamentId: 8});
         }
         reset();
     }
@@ -113,9 +113,10 @@ export function AddCategories() {
                     <Button text='Adicionar'/>
                 </form>
                 
-                { typeof response === "string" &&
-                    <p>{response}</p>
+                { error &&
+                    <p>{error}</p>
                 }
+
                 <div className={styles.listCategories}>
                     {listCategories.map((c: CategoryRegistered, key: number) => (
                         <Category 

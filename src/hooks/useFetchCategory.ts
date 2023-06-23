@@ -8,15 +8,14 @@ export default function useFetchCategory(){
        
     const [isLoading, setIsLoading] = useState<Boolean>(false);
     const [isRegistered, setIsRegistered] = useState(false);
-    const [response, setResponse] = useState<CategoryRegistered | CategoryRegistered[] | string>("");
+    const [response, setResponse] = useState<any>();
     const [error, setError] = useState<string>();
     
     const { getCookieToken } = useCookiesSession();
     
-    
-    async function registerCategory(data: Category){
+    async function fetchCategory<T>(method: string, endPoint: string, data?: Category){
         const options: RequestInit = {
-            method: 'POST',
+            method: method,
             headers: {
                 'Content-Type' : 'application/json',
                 'Accept': '*/*',
@@ -27,13 +26,13 @@ export default function useFetchCategory(){
             body: JSON.stringify(data),
             mode: 'cors'
         }
-        
+
         try {
             setIsLoading(true);
-            let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/category`, options);
+            let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/${endPoint}`, options);
             
             if(response.status === 200){
-                let json = await response.json() as CategoryRegistered;
+                let json = await response.json() as T;
                 setIsLoading(false);
                 setResponse(json);
                 setIsRegistered(true);
@@ -55,53 +54,103 @@ export default function useFetchCategory(){
             setError(err.message);
             setResponse("Erro, tente novamente mais tarde");
         }
-        
     }
 
-    async function editCategory(data: Category, id: string){
-        const options: RequestInit = {
-            method: 'PUT',
-            headers: {
-                'Content-Type' : 'application/json',
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Connection': 'keep-alive',
-                'x-access-token': `${getCookieToken()}`
-            },
-            body: JSON.stringify(data),
-            mode: 'cors'
-        }
-        
-        try {
-            setIsLoading(true);
-            let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/category/${id}`, options);
-            
-            if(response.status === 200){
-                let json = await response.json() as CategoryRegistered[];
-                setIsLoading(false);
-                setResponse(json);
-                console.log(json);
-            }
-            else if(response.status === 403){
-                let json = await response.json();
-                setIsLoading(false);
-                setError(json['error']);
-            }
-            else{
-                let json = await response.json();
-                setIsLoading(false);
-                setError(json['error']);
-            }
-            
-        } catch (err: any) {
-            setIsLoading(false);
-            setError(err.message);
-            setResponse("Erro, tente novamente mais tarde");
-        }
-        
+    async function registerCategory(data: Category) {
+        fetchCategory<CategoryRegistered>('POST',"category", data);
     }
 
+    async function registerCategoryEdited(data: Category, id: string) {
+        fetchCategory<CategoryRegistered>('PUT',`category/${id}`, data);
+    }
     
+    // async function registerCategory(data: Category){
+    //     const options: RequestInit = {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type' : 'application/json',
+    //             'Accept': '*/*',
+    //             'Accept-Encoding': 'gzip, deflate, br',
+    //             'Connection': 'keep-alive',
+    //             'x-access-token': `${getCookieToken()}`
+    //         },
+    //         body: JSON.stringify(data),
+    //         mode: 'cors'
+    //     }
+        
+    //     try {
+    //         setIsLoading(true);
+    //         let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/category`, options);
+            
+    //         if(response.status === 200){
+    //             let json = await response.json() as CategoryRegistered;
+    //             setIsLoading(false);
+    //             setResponse(json);
+    //             setIsRegistered(true);
+    //             console.log(json);
+    //         }
+    //         else if(response.status === 403){
+    //             let json = await response.json();
+    //             setIsLoading(false);
+    //             setError(json['error']);
+    //         }
+    //         else{
+    //             let json = await response.json();
+    //             setIsLoading(false);
+    //             setError(json['error']);
+    //         }
+            
+    //     } catch (err: any) {
+    //         setIsLoading(false);
+    //         setError(err.message);
+    //         setResponse("Erro, tente novamente mais tarde");
+    //     }
+        
+    // }
+
+    // async function editCategory(data: Category, id: string){
+    //     const options: RequestInit = {
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-Type' : 'application/json',
+    //             'Accept': '*/*',
+    //             'Accept-Encoding': 'gzip, deflate, br',
+    //             'Connection': 'keep-alive',
+    //             'x-access-token': `${getCookieToken()}`
+    //         },
+    //         body: JSON.stringify(data),
+    //         mode: 'cors'
+    //     }
+        
+    //     try {
+    //         setIsLoading(true);
+    //         let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/category/${id}`, options);
+            
+    //         if(response.status === 200){
+    //             let json = await response.json() as CategoryRegistered[];
+    //             setIsLoading(false);
+    //             setResponse(json);
+    //             console.log(json);
+    //         }
+    //         else if(response.status === 403){
+    //             let json = await response.json();
+    //             setIsLoading(false);
+    //             setError(json['error']);
+    //         }
+    //         else{
+    //             let json = await response.json();
+    //             setIsLoading(false);
+    //             setError(json['error']);
+    //         }
+            
+    //     } catch (err: any) {
+    //         setIsLoading(false);
+    //         setError(err.message);
+    //         setResponse("Erro, tente novamente mais tarde");
+    //     }
+        
+    // }
+
     
     return {
         isLoading,
@@ -109,7 +158,7 @@ export default function useFetchCategory(){
         response,
         isRegistered,
         registerCategory,
-        editCategory
+        registerCategoryEdited
     };
 
     
