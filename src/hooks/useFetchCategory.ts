@@ -1,19 +1,20 @@
 
 import { useState } from "react";
 import useCookiesSession from "./useCookiesSession";
-import { Category, CategoryRegistered } from "../types/category";
+import { Category } from "../types/category";
 
 
 export default function useFetchCategory(){
        
     const [isLoading, setIsLoading] = useState<Boolean>(false);
-    const [isRegistered, setIsRegistered] = useState(false);
-    const [response, setResponse] = useState<any>();
+    const [ok, setOk] = useState<Boolean>(false);
+    const [data, setData] = useState<any[]>([]);
     const [error, setError] = useState<string>();
     
     const { getCookieToken } = useCookiesSession();
     
-    async function fetchCategory<T>(method: string, endPoint: string, data?: Category){
+
+    async function fetchCategory(method: string, endPoint: string, data?: Category){
         const options: RequestInit = {
             method: method,
             headers: {
@@ -32,133 +33,52 @@ export default function useFetchCategory(){
             let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/${endPoint}`, options);
             
             if(response.status === 200){
-                let json = await response.json() as T;
+                let data = await response.json();
                 setIsLoading(false);
-                setResponse(json);
-                setIsRegistered(true);
-                console.log(json);
+                setData([].concat(data));
+                setOk(true);
             }
             else if(response.status === 403){
                 let json = await response.json();
                 setIsLoading(false);
+                setOk(false);
                 setError(json['error']);
             }
             else{
                 let json = await response.json();
                 setIsLoading(false);
+                setOk(false);
                 setError(json['error']);
             }
             
         } catch (err: any) {
             setIsLoading(false);
-            setError(err.message);
-            setResponse("Erro, tente novamente mais tarde");
+            console.error(err.message);
+            setError("Erro, tente novamente mais tarde.");
         }
     }
 
     async function registerCategory(data: Category) {
-        fetchCategory<CategoryRegistered>('POST',"category", data);
+        fetchCategory('POST',"category", data);
     }
 
     async function registerCategoryEdited(data: Category, id: string) {
-        fetchCategory<CategoryRegistered>('PUT',`category/${id}`, data);
+        fetchCategory('PUT',`category/${id}`, data);
+    }
+
+    async function getCategories(id: number) {
+        fetchCategory('GET', `category/loadByTournament?tournamentId=${id}`);
     }
     
-    // async function registerCategory(data: Category){
-    //     const options: RequestInit = {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type' : 'application/json',
-    //             'Accept': '*/*',
-    //             'Accept-Encoding': 'gzip, deflate, br',
-    //             'Connection': 'keep-alive',
-    //             'x-access-token': `${getCookieToken()}`
-    //         },
-    //         body: JSON.stringify(data),
-    //         mode: 'cors'
-    //     }
-        
-    //     try {
-    //         setIsLoading(true);
-    //         let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/category`, options);
-            
-    //         if(response.status === 200){
-    //             let json = await response.json() as CategoryRegistered;
-    //             setIsLoading(false);
-    //             setResponse(json);
-    //             setIsRegistered(true);
-    //             console.log(json);
-    //         }
-    //         else if(response.status === 403){
-    //             let json = await response.json();
-    //             setIsLoading(false);
-    //             setError(json['error']);
-    //         }
-    //         else{
-    //             let json = await response.json();
-    //             setIsLoading(false);
-    //             setError(json['error']);
-    //         }
-            
-    //     } catch (err: any) {
-    //         setIsLoading(false);
-    //         setError(err.message);
-    //         setResponse("Erro, tente novamente mais tarde");
-    //     }
-        
-    // }
-
-    // async function editCategory(data: Category, id: string){
-    //     const options: RequestInit = {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type' : 'application/json',
-    //             'Accept': '*/*',
-    //             'Accept-Encoding': 'gzip, deflate, br',
-    //             'Connection': 'keep-alive',
-    //             'x-access-token': `${getCookieToken()}`
-    //         },
-    //         body: JSON.stringify(data),
-    //         mode: 'cors'
-    //     }
-        
-    //     try {
-    //         setIsLoading(true);
-    //         let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/category/${id}`, options);
-            
-    //         if(response.status === 200){
-    //             let json = await response.json() as CategoryRegistered[];
-    //             setIsLoading(false);
-    //             setResponse(json);
-    //             console.log(json);
-    //         }
-    //         else if(response.status === 403){
-    //             let json = await response.json();
-    //             setIsLoading(false);
-    //             setError(json['error']);
-    //         }
-    //         else{
-    //             let json = await response.json();
-    //             setIsLoading(false);
-    //             setError(json['error']);
-    //         }
-            
-    //     } catch (err: any) {
-    //         setIsLoading(false);
-    //         setError(err.message);
-    //         setResponse("Erro, tente novamente mais tarde");
-    //     }
-        
-    // }
-
     
     return {
         isLoading,
         error,
-        response,
-        isRegistered,
+        data,
+        ok,
         registerCategory,
-        registerCategoryEdited
+        registerCategoryEdited,
+        getCategories
     };
 
     

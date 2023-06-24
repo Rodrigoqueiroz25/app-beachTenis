@@ -23,17 +23,31 @@ export function AddCategories() {
 
     const [list, setList] = useState([1,2,3,4,5,6,7,8,9,10]);
     const [listCategories, setListCategories] = useState<CategoryRegistered[]>([]);
-    const { registerCategory, registerCategoryEdited, isRegistered, response, error } = useFetchCategory();
+    const { registerCategory, registerCategoryEdited, getCategories, ok, data, error } = useFetchCategory();
     
     const location = useLocation();
 
     useEffect(() =>{
+        getCategories(location.state.tournamentId);
+    }, []);
+
+    useEffect(() =>{
         setTimeout(async () => {
-            if(isRegistered){
-                setListCategories([...listCategories, response as CategoryRegistered]);
+            if(ok){
+                if(listCategories.length === 0){
+                    setListCategories([...listCategories].concat(data));
+                }
+                else{
+                    data.forEach(d => {
+                        let arr = listCategories.filter(c => c.id !== d.id);
+                        arr.push(d);
+                        setListCategories(arr);
+                    });
+                }
             }
         }, 100);
-    }, [response]);
+    }, [data]);
+
 
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
@@ -45,17 +59,18 @@ export function AddCategories() {
         resolver: yupResolver(schema)
     });
 
-    async function submit(data: any){
-        console.log(data);
+    async function submit(dataForm: any){
+        console.log(dataForm);
         if(editMode){
-            await registerCategoryEdited({...data, tournamentId: 8}, idEdited);
+            await registerCategoryEdited({...dataForm, tournamentId: location.state.tournamentId}, idEdited);
             setEditMode(false);
         }
         else{
-            await registerCategory({...data, tournamentId: 8});
+            await registerCategory({...dataForm, tournamentId: location.state.tournamentId});
         }
         reset();
     }
+
 
     function removeCategory(id: string){
         console.log(id);
