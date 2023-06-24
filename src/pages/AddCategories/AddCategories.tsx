@@ -10,7 +10,7 @@ import { useForm } from  "react-hook-form";
 import { yupResolver } from  "@hookform/resolvers/yup";
 import  *  as yup from  "yup";
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useFetchCategory from '../../hooks/useFetchCategory';
 import { CategoryRegistered } from '../../types/category';
 import { Category } from './components/Categories/Category';
@@ -23,12 +23,19 @@ export function AddCategories() {
 
     const [list, setList] = useState([1,2,3,4,5,6,7,8,9,10]);
     const [listCategories, setListCategories] = useState<CategoryRegistered[]>([]);
-    const { registerCategory, registerCategoryEdited, getCategories, ok, data, error } = useFetchCategory();
+    const { registerCategory, registerCategoryEdited, getCategories, delCategory, ok, data, error } = useFetchCategory();
     
     const location = useLocation();
+    const navigate = useNavigate();
+
 
     useEffect(() =>{
-        getCategories(location.state.tournamentId);
+        if(location?.state?.tournamentId){
+            getCategories(location.state.tournamentId);
+        }
+        else{
+            navigate('/home');
+        }
     }, []);
 
     useEffect(() =>{
@@ -51,8 +58,8 @@ export function AddCategories() {
 
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
-        numberAthletes: yup.number().required("Digite algo"),
-        numberAthletesRegistration: yup.number().required("selecione uma opção")
+        numberAthletes: yup.number().required().typeError("digite um valor"),
+        numberAthletesRegistration: yup.number().required().typeError("selecione uma opção")
     });
 
     const { register, handleSubmit, watch, formState: { errors }, reset, setValue } =  useForm({
@@ -73,7 +80,9 @@ export function AddCategories() {
 
 
     function removeCategory(id: string){
-        console.log(id);
+        delCategory(parseInt(id));
+        let arr = listCategories.filter(c => c.id !== parseInt(id));
+        setListCategories(arr);        
     }
 
     function editionCategory(id: string){

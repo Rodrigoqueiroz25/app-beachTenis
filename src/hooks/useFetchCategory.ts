@@ -38,6 +38,10 @@ export default function useFetchCategory(){
                 setData([].concat(data));
                 setOk(true);
             }
+            else if(response.status === 204){
+                setIsLoading(false);
+                setOk(true);
+            }
             else if(response.status === 403){
                 let json = await response.json();
                 setIsLoading(false);
@@ -69,6 +73,10 @@ export default function useFetchCategory(){
     async function getCategories(id: number) {
         fetchCategory('GET', `category/loadByTournament?tournamentId=${id}`);
     }
+
+    async function delCategory(id: number) {
+        fetchCategory('DELETe', `category/${id}`)
+    }
     
     
     return {
@@ -78,7 +86,8 @@ export default function useFetchCategory(){
         ok,
         registerCategory,
         registerCategoryEdited,
-        getCategories
+        getCategories,
+        delCategory
     };
 
     
