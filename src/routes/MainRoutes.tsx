@@ -9,6 +9,7 @@ import { SignUp } from "../pages/SignUp/SignUp";
 import { ContextSignupProvider } from "../contexts/ContextSignup";
 import { AddTournament } from "../pages/AddTournament/AddTournament";
 import { AddCategories } from "../pages/AddCategories/AddCategories";
+import { ListTournaments } from "../pages/ListTournaments/ListTournaments";
 
 
 
@@ -23,6 +24,7 @@ export function MainRoutes(){
         { path: '/create-password', element: <CreatePasswd/> },
         { path: '/add-tournament', element: <PrivateRoute><AddTournament/></PrivateRoute> },
         { path: '/add-categories', element: <PrivateRoute><AddCategories/></PrivateRoute> },
+        { path: '/list-tournaments', element: <PrivateRoute><ListTournaments/></PrivateRoute> },
         { path: '/home', element: <PrivateRoute><Home/></PrivateRoute> },
         { path: '*', element: <h1>sds</h1> },
     ]);

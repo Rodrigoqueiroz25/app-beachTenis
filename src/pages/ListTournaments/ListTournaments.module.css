@@ -1,0 +1,29 @@
+
+.container {
+    font-weight: 500;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 7.3rem;
+    gap: 1.5rem;
+    margin-left: 3rem;
+
+}
+
+.title p{
+    font-size: 2.4rem;
+    color: black;
+    font-weight: 600;
+
+}
+
+.main{
+    margin: 0 1rem;
+}
+
