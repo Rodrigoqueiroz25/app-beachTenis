@@ -17,24 +17,13 @@ import { DataFieldSmall } from '../../components/DataFieldSmall/DataFieldSmall';
 import useFetchTournament from '../../hooks/useFetchTournament';
 import { Navigate } from 'react-router-dom';
 import { convertData } from '../../helper/convertData';
+import { AddTournamentDataForm } from '../../types/tournament';
 
-
-export type AddTour = {
-    description: string,
-    cityId: string,
-    sportId: string,
-    dtStartTournament: string,
-    dtFinalTournament: string,
-    dtStartRegistration: string,
-    dtFinalRegistration: string,
-    otherInformation: string,
-    organization: string
-}
 
 export function AddTournament() {
 
     const { getData, msgFailedGet, error } = useGetFetch();
-    const { registerTournament, response, isLoading, isRegistered } = useFetchTournament();
+    const { registerTournament, data, isLoading, ok } = useFetchTournament();
 
     const [sports, setSports] = useState<Sport[]>([]);
     const [cities, setCities] = useState<City[]>([]);
@@ -69,7 +58,7 @@ export function AddTournament() {
     });
 
     function saveDataform(data: any){
-        const dataFetch : AddTour = {
+        const dataFetch : AddTournamentDataForm = {
             description: data.description,
             cityId: data.cityId,
             sportId: data.sportId,
@@ -90,8 +79,8 @@ export function AddTournament() {
                 <p>isLoading</p>
             }
 
-            { isRegistered &&
-                <Navigate to="/add-categories" state={{tournamentId: response.id}}/>
+            { ok &&
+                <Navigate to="/add-categories" state={{tournamentId: data[0].id}}/>
             }
 
             <div className={styles.container}>

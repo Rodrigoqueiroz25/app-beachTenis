@@ -1,22 +1,22 @@
 
 import { useState } from "react";
 import useCookiesSession from "./useCookiesSession";
-import { AddTour } from "../pages/AddTournament/AddTournament";
+import { AddTournamentDataForm } from "../types/tournament";
 
 
 export default function useFetchTournament(){
        
     const [isLoading, setIsLoading] = useState<Boolean>(false);
-    const [isRegistered, setIsRegistered] = useState(false);
-    const [response, setResponse] = useState<any>();
-    const [error, setError] = useState<unknown>();
+    const [ok, setOk] = useState<Boolean>(false);
+    const [data, setData] = useState<any[]>([]);
+    const [error, setError] = useState<string>();
     
     const { getCookieToken } = useCookiesSession();
     
     
-    async function registerTournament(data: AddTour){
+    async function fetchTournament(method: string, endPoint: string, data?: AddTournamentDataForm){
         const options: RequestInit = {
-            method: 'POST',
+            method: method,
             headers: {
                 'Content-Type' : 'application/json',
                 'Accept': '*/*',
@@ -30,39 +30,54 @@ export default function useFetchTournament(){
         
         try {
             setIsLoading(true);
-            let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/tournament`, options);
+            let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/${endPoint}`, options);
             
             if(response.status === 200){
                 let json = await response.json();
                 setIsLoading(false);
-                setResponse(json);
-                setIsRegistered(true);
+                setData([].concat(json));
+                setOk(true);
+            }
+            else if(response.status === 204){
+                setIsLoading(false);
+                setOk(true);
             }
             else if(response.status === 403){
                 let json = await response.json();
                 setIsLoading(false);
-                setResponse(json['error']);
+                setOk(false);
+                setError(json['error']);
             }
             else{
                 let json = await response.json();
                 setIsLoading(false);
-                setResponse(json['error']);
+                setOk(false);
+                setError(json['error']);
             }
             
-        } catch (err) {
+        } catch (err: any) {
             setIsLoading(false);
-            setError(err);
-            setResponse("Erro, tente novamente mais tarde");
+            console.error(err.message);
+            setError("Erro, tente novamente mais tarde.");
         }
         
+    }
+
+    async function registerTournament(data: AddTournamentDataForm) {
+        fetchTournament('POST', 'tournament', data);
+    }
+
+    async function getTournaments() {
+        fetchTournament('GET', 'tournaments');
     }
     
     return {
         isLoading,
         error,
-        response,
-        isRegistered,
-        registerTournament
+        data,
+        ok,
+        registerTournament,
+        getTournaments
     };
     
 }
