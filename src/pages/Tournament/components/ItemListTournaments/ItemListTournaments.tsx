@@ -6,7 +6,7 @@ import image1 from '../../../../assets/image1.svg';
 import image2 from '../../../../assets/image2.svg';
 import { ButtonSmall } from '../../../../components/ButtonSmall/ButtonSmall';
 import { TournamentRegistered } from '../../../../types/tournament';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 
 type Props = {
@@ -15,10 +15,10 @@ type Props = {
 
 export function ItemListTournaments({ dataTournament }: Props) {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     function access(){
-        navigate(`/tournament/${dataTournament.id}`, { state: {tournament: dataTournament}})
+        // navigate(`/tournament/${dataTournament.id}`, { state: {tournament: dataTournament}})
     }
     
     function configure(){

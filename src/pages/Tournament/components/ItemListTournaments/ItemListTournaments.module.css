@@ -1,0 +1,87 @@
+
+.tournament{
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.25);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr 0.4fr;
+}
+
+.logo{
+    width: 14.1rem;
+    height: 8.2rem;
+
+    margin-top: 0.5rem;
+    margin-left: 0.6rem;
+    margin-bottom: 0.7rem;
+
+    grid-row: 1/3;
+}
+
+.dataIcons{
+    grid-row: 1/3;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+
+    margin-top: 1.3rem;
+    margin-left: 1.2rem;
+}
+
+.period{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #8a8a8a;
+}
+
+.photos{
+    margin-left: 0.1rem;
+}
+
+
+.txt{
+    grid-row: 3/4;
+    grid-column: 1/3;
+
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.6rem;
+    margin-bottom: 0.9rem;
+    gap: 0.2rem;
+
+}
+
+.description{
+    font-size: 1.7rem;
+    color: #3a3a3a;
+    font-weight: 500;
+}
+
+.informations{
+    color: #3a3a3a;    
+    font-size: 1.1rem;
+}
+
+
+.buttons{
+    grid-column: 3/4;
+    grid-row: 1/4;
+
+    display: grid;
+    grid-template-columns: 2.3rem 1fr;
+    grid-template-rows: 1.3fr 1.3fr 1fr 1fr;
+
+    margin-right: 0.4rem;
+}
+
+.buttons > :first-child{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+
+.buttons > :last-child{
+    grid-row: 3/3;
+    grid-column: 2/3;
+}
