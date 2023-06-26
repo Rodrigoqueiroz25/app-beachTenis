@@ -7,6 +7,8 @@ import { ButtonBack } from '../../components/ButtonBack/ButtonBack';
 import useFetchCategory from '../../hooks/useFetchCategory';
 import { useLocation, useParams } from 'react-router-dom';
 import { info } from 'console';
+import { CategoryRegistered } from '../../types/category';
+import { ItemListCategories } from './components/ItemListTournaments/ItemListCategories';
 
 const categories = "Categorias";
 const informations = "Informações";
@@ -64,7 +66,11 @@ export function Tournament(){
             
             { presentation === "Categorias" &&
 
-                <div></div>
+                <div className={styles.list}>
+                    {data.map((category: CategoryRegistered, key: number) => (
+                        <ItemListCategories dataCategory={category} key={key}/>
+                    ))}
+                </div>
 
             }
 
