@@ -38,8 +38,8 @@ export function ItemListTournaments({ dataTournament }: Props) {
                 </div>
             </div>
             <div className={styles.txt}>
-                <p className={styles.description}>{dataTournament.description}</p>
-                <p className={styles.informations}>{dataTournament.otherInformation}</p>
+                <p className={styles.description}>{dataTournament.organization}</p>
+                <p className={styles.informations}>{dataTournament.description}</p>
             </div>
             <div className={styles.buttons}>
                 <ButtonSmall func={access} text='Acessar'/>
