@@ -97,6 +97,10 @@
     color: #221fd1;
 }
 
+.link:hover{
+    cursor: pointer;
+}
+
 
 
 .tournaments{

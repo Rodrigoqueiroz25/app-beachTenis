@@ -31,7 +31,7 @@ export default function useCookiesSession(){
 
     function getCookieNameUser(){
         if(cookiesSessionExists()){
-            return cookies[nameCookieNameUser];
+            return cookies[nameCookieNameUser] as string;
         }
     }
 

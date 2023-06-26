@@ -4,18 +4,31 @@ import imgSearch from '../../assets/search.svg';
 import imgBell from '../../assets/bell.svg';
 import photoHome from '../../assets/photo_home.svg';
 import imgLocation from '../../assets/location.svg'
-import photoRanking from '../../assets/photo_ranking.svg';
-import imgEvent from '../../assets/Event-2.svg';
+// import photoRanking from '../../assets/photo_ranking.svg';
 import { FooterHome } from '../../components/FooterHome/FooterHome';
+import useCookiesSession from '../../hooks/useCookiesSession';
+import { useNavigate } from 'react-router-dom';
 
 export function Home(){
-    return (
-        
+
+    const { getCookieNameUser } = useCookiesSession();
+
+    const navigate = useNavigate();
+
+    function handleClickViewAllTournaments(){
+        navigate('/list-tournaments');
+    }
+
+    function handleClickViewAllRanking(){
+        //nothing
+    }
+
+    return (    
         <div className={styles.home}>
             <header className={`${styles.header} ${styles.paddingPage}`}>
                 <div className={styles.photoNameUser}>
                     <img src={photoHome} alt="" />
-                    <p>Hey, Alex</p>
+                    <p>Olá, {getCookieNameUser()?.split(' ')[0]}</p>
                 </div>
                 <div className={styles.icons}>
                     <img src={imgSearch} alt="" />
@@ -38,27 +51,31 @@ export function Home(){
                 <section className={styles.tournaments}>
                     <div className={styles.headerSection}>
                         <p className={styles.title}>Torneios</p>
-                        <p className={styles.link}>Ver todos</p>
+                        <p className={styles.link} 
+                           onClick={handleClickViewAllTournaments}
+                        >Ver todos</p>
                     </div>
                     
                     <div className={styles.tournament}>
-                        <img src={imgEvent} alt="" />
+                        
                     </div>
                 </section>
                 
                 <section className={styles.ranking}>
                     <div className={styles.headerSection}>
                         <p className={styles.title}>Ranking</p>
-                        <p className={styles.link}>Ver todos</p>
+                        <p className={styles.link}
+                           onClick={handleClickViewAllRanking}
+                        >Ver todos</p>
                     </div>
                     
-                    <div className={styles.peoples}>
+                    {/* <div className={styles.peoples}>
                         <img src={photoRanking} alt="" />
                         <img src={photoRanking} alt="" />
                         <img src={photoRanking} alt="" />
                         <img src={photoRanking} alt="" />
                         <img src={photoRanking} alt="" />
-                    </div>
+                    </div> */}
                 </section>
                 
             </main>
