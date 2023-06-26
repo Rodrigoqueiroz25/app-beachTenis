@@ -9,11 +9,8 @@
 .title {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     height: 7.3rem;
-    gap: 1.5rem;
-    margin-left: 3rem;
-
 }
 
 .title p{

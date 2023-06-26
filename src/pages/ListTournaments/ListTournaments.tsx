@@ -6,6 +6,7 @@ import { ItemListTournaments } from './components/ItemListTournaments/ItemListTo
 import { useEffect } from 'react';
 import useFetchTournament from '../../hooks/useFetchTournament';
 import { TournamentRegistered } from '../../types/tournament';
+import { ButtonBack } from '../../components/ButtonBack/ButtonBack';
 
 
 export function ListTournaments(){
@@ -14,13 +15,13 @@ export function ListTournaments(){
 
     useEffect(() => {
         getTournaments();
-    }, []);
+    }, [error]);
 
     return (    
         <div className={styles.container}>
             
             <header className={styles.title}>
-                <img src={setLeft} alt="" />
+                <ButtonBack endPoint='/home'/>
                 <p>Torneios</p>
             </header>
             

@@ -5,7 +5,7 @@ import styles from './AddCategories.module.css';
 import { Button } from '../../components/Button/Button';
 import { TextFieldSmall } from '../../components/TextFieldSmall/TextFieldSmall';
 import { Combobox } from '../../components/Combobox/Combobox';
-
+import setLeft from '../../assets/set_left.svg';
 import { useForm } from  "react-hook-form";
 import { yupResolver } from  "@hookform/resolvers/yup";
 import  *  as yup from  "yup";
@@ -14,6 +14,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useFetchCategory from '../../hooks/useFetchCategory';
 import { CategoryRegistered } from '../../types/category';
 import { Category } from './components/Categories/Category';
+import { ButtonBack } from '../../components/ButtonBack/ButtonBack';
 
 
 export function AddCategories() {
@@ -100,6 +101,7 @@ export function AddCategories() {
         <div className={styles.container}>
             
             <header className={styles.title}>
+                <ButtonBack endPoint='/list-tournaments'/>
                 <p>Adicionar Categorias</p>
             </header>
 
