@@ -6,9 +6,9 @@ import useCookiesSession from "./useCookiesSession";
 
 export default function useAuth(email: string, senha: string){
        
-    const [isLoading, setIsLoading] = useState<Boolean>(false);
-    const [msgFailedAuth, setMsgFailedAuth] = useState<String>('');
-    const [isAuth, setIsAuth] = useState<Boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [msgFailedAuth, setMsgFailedAuth] = useState<string>('');
+    const [isAuth, setIsAuth] = useState<boolean>(false);
     const [error, setError] = useState<unknown>();
     
     const { setCookiesSession } = useCookiesSession();

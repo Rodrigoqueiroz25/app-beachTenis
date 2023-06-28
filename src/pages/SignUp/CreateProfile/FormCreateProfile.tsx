@@ -1,51 +1,34 @@
 
-
-import { HeaderLogin } from '../../../../components/HeaderLogin/HeaderLogin';
+import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
 import styles from './FormCreateProfile.module.css';
-import imgCreateProfile from '../../../../assets/create_profile_title.svg';
-import { TextField } from '../../../../components/TextField/TextField';
-import { Button } from '../../../../components/Button/Button';
-import imgRectangle from '../../../../assets/Rectangle.svg';
-import imgPhotoCircle from '../../../../assets/photo_create_profile.svg';
-import { ChangeEvent, FormEvent, useContext } from 'react';
-import { ContextSignup } from '../../../../contexts/ContextSignup';
+import imgCreateProfile from '@/assets/create_profile_title.svg';
+import { TextField } from '@/components/TextField/TextField';
+import { Button } from '@/components/Button/Button';
+import imgRectangle from '@/assets/Rectangle.svg';
+import imgPhotoCircle from '@/assets/photo_create_profile.svg';
+import { ChangeEvent, FormEvent } from 'react';
 
 
-type Props = {
-    submit: any;
+type FormCreateProfileProps = {
+    firstName: string
+    setFirstName: (p: string) => void
+    lastName: string
+    setLastName: (p: string) => void
+    dateBirthday: string
+    setDateBirthday: (p: string) => void
+    gender: string
+    setGender: (p: string) => void
+    handleSubmit: (e: FormEvent<HTMLFormElement>) => void
 }
 
-export function FormCreateProfile({ submit }: Props) {
+type Prop = {
+    props: FormCreateProfileProps;
+}
 
-
-    const { state, setState } = useContext(ContextSignup);
-
-
-    function changeFirstName(e: ChangeEvent<HTMLInputElement>) {
-        setState({...state, firstName: e.target.value})
-    }
-
-    function changeLastName(e: ChangeEvent<HTMLInputElement>) {
-        setState({...state, lastName: e.target.value})
-    }
-
-    function changeBirthDate(e: ChangeEvent<HTMLInputElement>) {
-        setState({ ...state, dateBirthday: e.target.value });
-    }
-
-    function changeGender(e: ChangeEvent<HTMLInputElement>){
-        setState({ ...state, gender: e.target.value as "" | "F" | "M"});
-    }
-
-    function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        console.log(state);
-        submit();
-
-    }
+export function FormCreateProfile({ props }: Prop) {
 
     return (
-        <div className={styles.formCreateProfile}>
+        <div className={styles.container}>
 
             <HeaderLogin>
                 <div className={styles.containerTitle}>
@@ -63,26 +46,26 @@ export function FormCreateProfile({ submit }: Props) {
                     <Button text='Upload Image' />
                 </div>
 
-                <form className={styles.form} onSubmit={handleSubmitForm}>
+                <form className={styles.form} onSubmit={props.handleSubmit}>
                     <TextField
                         placeholder='First Name'
                         type='text'
-                        value={state.firstName}
-                        func={changeFirstName}
+                        value={props.firstName}
+                        func={(e: ChangeEvent<HTMLInputElement>) => props.setFirstName(e.target.value)}
                     />
                     <TextField
                         placeholder='Last Name'
                         type='text'
-                        value={state.lastName}
-                        func={changeLastName}
+                        value={props.lastName}
+                        func={(e: ChangeEvent<HTMLInputElement>) => props.setLastName(e.target.value)}
                     />
                     <div className={styles.date}>
                         <p>DOB</p>
                         <TextField
                             placeholder=''
                             type='date'
-                            value={state.dateBirthday}
-                            func={changeBirthDate}
+                            value={props.dateBirthday}
+                            func={(e: ChangeEvent<HTMLInputElement>) => props.setDateBirthday(e.target.value)}
                         />
                     </div>
                     <div className={styles.gender}>
@@ -92,8 +75,8 @@ export function FormCreateProfile({ submit }: Props) {
                                 type="radio" 
                                 id='male' 
                                 value='M'
-                                checked={state.gender === 'M'}
-                                onChange={changeGender}
+                                checked={props.gender === 'M'}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => props.setGender(e.target.value)}
                             />
                             <label htmlFor="male">Male</label>
                         </div>
@@ -102,8 +85,8 @@ export function FormCreateProfile({ submit }: Props) {
                                 type="radio" 
                                 id='female' 
                                 value='F'
-                                checked={state.gender === 'F'}
-                                onChange={changeGender}
+                                checked={props.gender === 'F'}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => props.setGender(e.target.value)}
                             />
                             <label htmlFor="female">Female</label>
                         </div>

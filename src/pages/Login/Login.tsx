@@ -35,6 +35,7 @@ export function Login() {
 
     return (
         <div className={styles.login}>
+            
             { isLoading && 
                 <p>isLoading</p>
             }
@@ -69,17 +70,16 @@ export function Login() {
                                 src={imgEye}
                             />
                             
-                           
-                            
-        
                             <div className={styles.forgotPasswd}>
                                 <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
                             </div>
+
                             {!isAuth &&
                                 <div className={styles.msgErroLogin}>
                                     <p>{msgFailedAuth}</p>
                                 </div>
                             }
+
                             <Button text='Log in' />
                         </form>
                     </main>
@@ -87,7 +87,8 @@ export function Login() {
                     <footer className={styles.footer}>
                         <FooterLogin text="Don't have a register?" textLink='Sign up' endPoint='/signup' />
                     </footer>
-                </>   
+                </>  
+
             : 
                 <Navigate to='/home'/>
             }

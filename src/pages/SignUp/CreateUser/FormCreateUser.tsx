@@ -1,53 +1,43 @@
 
-import { HeaderLogin } from '../../../../components/HeaderLogin/HeaderLogin';
-import styles from './FormPhoneEmailPasswd.module.css';
-import imgBeachTenis from '../../../../assets/player-beachTenis.svg';
-import imgMail from '../../../../assets/Mail.svg';
-import imgEye from '../../../../assets/eye.svg';
-import { TextField } from '../../../../components/TextField/TextField';
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
-import { ContextSignup } from '../../../../contexts/ContextSignup';
-import { Button } from '../../../../components/Button/Button';
-import { FooterLogin } from '../../../../components/FooterLogin/FooterLogin';
+import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
+import styles from './FormCreateUser.module.css';
+import imgBeachTenis from '@/assets/player-beachTenis.svg';
+import imgMail from '@/assets/Mail.svg';
+import imgEye from '@/assets/eye.svg';
+import { TextField } from '@/components/TextField/TextField';
+import { Button } from '@/components/Button/Button';
+import { FooterLogin } from '@/components/FooterLogin/FooterLogin';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
-type Props = {
-    func: any;
+
+type FormCreateUserProps = {
+    phoneNumber: string
+    setPhoneNumber: (p: string) => void
+    email: string
+    setEmail: (p: string) => void
+    password: string
+    setPassword: (p: string) => void
+    handleSubmit: (e: FormEvent<HTMLFormElement>) => void
 }
 
-export function FormPhoneEmailPasswd({ func }: Props){
+type Prop = {
+    props: FormCreateUserProps;
+}
 
-    const {state, setState} = useContext(ContextSignup);
+
+export function FormCreateUser( {props}: Prop){
 
     const [passwd, setPasswd] = useState("");
     const [rePasswd, setRePasswd] = useState("");
-
     const [msgPasswdDiff, setMsgPasswdDiff] = useState("");
 
-    
-    function changePhone(e: ChangeEvent<HTMLInputElement>){
-        setState({...state, phoneNumber: e.target.value})
-    }
-    
-    function changeEmail(e: ChangeEvent<HTMLInputElement>){
-        setState({...state, email: e.target.value});
-    }
-    
-    function changePasswd(e: ChangeEvent<HTMLInputElement>){
-        // setState({...state, password: e.target.value});
-        setPasswd(e.target.value);
-    }
-    
-    function changeRePasswd(e: ChangeEvent<HTMLInputElement>){
-        // setState({...state, password: e.target.value});
-        setRePasswd(e.target.value);
-    }
 
-    function handleSubmitForm(e: FormEvent<HTMLFormElement>){
+    function handleSubmit(e: FormEvent<HTMLFormElement>){
         e.preventDefault();
 
         if(passwd === rePasswd){
-            setState({...state, password: passwd});
-            func();
+            props.setPassword(passwd);
+            props.handleSubmit(e);
         }
         else{
             setMsgPasswdDiff("campo senha e repetir senha diferentes");
@@ -55,7 +45,7 @@ export function FormPhoneEmailPasswd({ func }: Props){
     }
 
     return (
-        <div className={styles.formPhoneEmailPasswd}>
+        <div className={styles.container}>
             <HeaderLogin>
                 <div className={styles.containerTitle}>        
                     <div className={styles.msgWelcome}>
@@ -65,15 +55,15 @@ export function FormPhoneEmailPasswd({ func }: Props){
                 </div>
             </HeaderLogin>
             <main>
-                <form className={styles.form} onSubmit={handleSubmitForm}>
+                <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.inputPhoneNumber}>
                         <p>+55</p>
                         <TextField 
                             placeholder="Phone Number"
                             mask="(00) 00000-0000"
                             type='tel'
-                            value={state.phoneNumber}
-                            func={changePhone}
+                            value={props.phoneNumber}
+                            func={(e: ChangeEvent<HTMLInputElement>) => props.setPhoneNumber(e.target.value)}
                         />
                     </div>
                     
@@ -81,22 +71,22 @@ export function FormPhoneEmailPasswd({ func }: Props){
                         placeholder='E-mail' 
                         type='email' 
                         src={imgMail}
-                        value={state.email}
-                        func={changeEmail}    
+                        value={props.email}
+                        func={(e: ChangeEvent<HTMLInputElement>) => props.setEmail(e.target.value)}    
                     />
                     <TextField 
                         placeholder='Password' 
                         type='password' 
                         src={imgEye}
                         value={passwd}
-                        func={changePasswd}
+                        func={(e: ChangeEvent<HTMLInputElement>) => setPasswd(e.target.value)}
                     />
                     <TextField 
                         placeholder='Repeat Password' 
                         type='password' 
                         src={imgEye}
                         value={rePasswd}
-                        func={changeRePasswd}
+                        func={(e: ChangeEvent<HTMLInputElement>) => setRePasswd(e.target.value)}
                     />
 
                     <div className={styles.msgPasswdDiff}>

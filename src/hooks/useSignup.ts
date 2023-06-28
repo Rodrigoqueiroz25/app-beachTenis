@@ -1,7 +1,7 @@
 
 import { useContext, useState } from "react";
 import { TLogado } from "../types/login";
-import { ContextSignup } from "../contexts/ContextSignup";
+import { ContextSignup } from "@/contexts/ContextSignup";
 import useCookiesSession from "./useCookiesSession";
 
 
@@ -56,9 +56,10 @@ export default function useSignup(){
                 setState({...state, password: ""})
             }
             else{
+                let json = await response.json();
                 setIsLoading(false);
                 setIsAuth(false);
-                setMsgFailedAuth("Erro, tente novamente mais tarde");
+                setMsgFailedAuth(json['error']);
             }
             
         } catch (err) {
