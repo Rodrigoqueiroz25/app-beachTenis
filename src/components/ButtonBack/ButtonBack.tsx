@@ -1,6 +1,6 @@
 
 import styles from './ButtonBack.module.css';
-import setLeft from '../../assets/set_left.svg';
+import setLeft from '@/assets/set_left.svg';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {

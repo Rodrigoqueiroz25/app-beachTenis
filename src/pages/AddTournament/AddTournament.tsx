@@ -1,22 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import styles from './AddTournament.module.css';
-import photo from '../../assets/photo.svg';
-import image from '../../assets/image.svg';
-import { FooterHome } from '../../components/FooterHome/FooterHome';
-import { Button } from '../../components/Button/Button';
-import { TextFieldSmall } from '../../components/TextFieldSmall/TextFieldSmall';
-import { Combobox } from '../../components/Combobox/Combobox';
+import  *  as yup from  "yup";
+import { yupResolver } from  "@hookform/resolvers/yup";
 import { useEffect, useState } from 'react';
 import { useForm } from  "react-hook-form";
-import { yupResolver } from  "@hookform/resolvers/yup";
-import  *  as yup from  "yup";
-import { DataFieldSmall } from '../../components/DataFieldSmall/DataFieldSmall';
-
 import { Navigate } from 'react-router-dom';
-import { convertData } from '../../helper/convertData';
-import useFetchData from '@/hooks/useFetchData';
 
+import styles from './AddTournament.module.css';
+import photo from '@/assets/photo.svg';
+import image from '@/assets/image.svg';
+import { FooterHome } from '@/components/FooterHome/FooterHome';
+import { Button } from '@/components/Button/Button';
+import { TextFieldSmall } from '@/components/TextFieldSmall/TextFieldSmall';
+import { Combobox } from '@/components/Combobox/Combobox';
+import { DataFieldSmall } from '@/components/DataFieldSmall/DataFieldSmall';
+import { convertData } from '@/helper/convertData';
+import useFetchData from '@/hooks/useFetchData';
 import request from '@/helper/request';
 import useCookiesSession from '@/hooks/useCookiesSession';
 import { IFormAddTournament, ITournamentRegistered } from '@/interfaces/ITournament';

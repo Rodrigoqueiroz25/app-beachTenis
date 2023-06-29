@@ -1,12 +1,14 @@
 
-import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
+import { ChangeEvent, FormEvent } from 'react';
+
 import styles from './FormCreateProfile.module.css';
 import imgCreateProfile from '@/assets/create_profile_title.svg';
-import { TextField } from '@/components/TextField/TextField';
-import { Button } from '@/components/Button/Button';
 import imgRectangle from '@/assets/Rectangle.svg';
 import imgPhotoCircle from '@/assets/photo_create_profile.svg';
-import { ChangeEvent, FormEvent } from 'react';
+
+import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
+import { TextField } from '@/components/TextField/TextField';
+import { Button } from '@/components/Button/Button';
 
 
 type FormCreateProfileProps = {

@@ -1,12 +1,12 @@
 
 import styles from './Home.module.css';
-import imgSearch from '../../assets/search.svg';
-import imgBell from '../../assets/bell.svg';
-import photoHome from '../../assets/photo_home.svg';
-import imgLocation from '../../assets/location.svg'
-// import photoRanking from '../../assets/photo_ranking.svg';
-import { FooterHome } from '../../components/FooterHome/FooterHome';
-import useCookiesSession from '../../hooks/useCookiesSession';
+import imgSearch from '@/assets/search.svg';
+import imgBell from '@/assets/bell.svg';
+import photoHome from '@/assets/photo_home.svg';
+import imgLocation from '@/assets/location.svg'
+// import photoRanking from '@/assets/photo_ranking.svg';
+import { FooterHome } from '@/components/FooterHome/FooterHome';
+import useCookiesSession from '@/hooks/useCookiesSession';
 import { useNavigate } from 'react-router-dom';
 
 export function Home(){

@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { FooterHome } from '@/components/FooterHome/FooterHome';
-import styles from './AddCategories.module.css';
-import { Button } from '../../components/Button/Button';
-import { TextFieldSmall } from '../../components/TextFieldSmall/TextFieldSmall';
-import { Combobox } from '../../components/Combobox/Combobox';
-
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import *  as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 
+import styles from './AddCategories.module.css';
 import { Category } from './components/Categories/Category';
-import { ButtonBack } from '../../components/ButtonBack/ButtonBack';
+
+import { FooterHome } from '@/components/FooterHome/FooterHome';
+import { Button } from '@/components/Button/Button';
+import { TextFieldSmall } from '@/components/TextFieldSmall/TextFieldSmall';
+import { Combobox } from '@/components/Combobox/Combobox';
+import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
 import { ICategory, ICategoryRegistered } from '@/interfaces/ICategory';
 

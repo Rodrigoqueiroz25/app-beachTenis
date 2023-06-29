@@ -1,13 +1,16 @@
 
-import styles from './Tournament.module.css';
-import logo from '../../assets/logoTour.jpg';
-import { FooterHome } from '../../components/FooterHome/FooterHome';
 import { useEffect, useState } from 'react';
-import { ButtonBack } from '../../components/ButtonBack/ButtonBack';
 import { useLocation, useParams } from 'react-router-dom';
+
+import styles from './Tournament.module.css';
+import logo from '@/assets/logoTour.jpg';
+
+import { FooterHome } from '@/components/FooterHome/FooterHome';
+import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import { ItemListCategories } from './components/ItemListTournaments/ItemListCategories';
-import useFetchData from '@/hooks/useFetchData';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
+
+import useFetchData from '@/hooks/useFetchData';
 
 const categories = "Categorias";
 const informations = "Informações";

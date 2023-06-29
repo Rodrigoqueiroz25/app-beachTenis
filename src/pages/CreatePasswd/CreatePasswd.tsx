@@ -1,11 +1,10 @@
 
-
-import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
 import styles from './CreatePasswd.module.css';
-import imgCreatePasswd from '../../assets/create_passwd.svg';
-import { TextField } from '../../components/TextField/TextField';
-import { Button } from '../../components/Button/Button';
-import imgRectangle from '../../assets/Rectangle.svg';
+import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
+import imgCreatePasswd from '@/assets/create_passwd.svg';
+import { TextField } from '@/components/TextField/TextField';
+import { Button } from '@/components/Button/Button';
+import imgRectangle from '@/assets/Rectangle.svg';
 
 export function CreatePasswd(){
     return (

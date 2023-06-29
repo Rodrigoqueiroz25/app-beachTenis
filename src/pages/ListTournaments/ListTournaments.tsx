@@ -1,8 +1,9 @@
 
+import { useEffect } from 'react';
+
 import styles from './ListTournaments.module.css';
 import { FooterHome } from '@/components/FooterHome/FooterHome';
 import { ItemListTournaments } from './components/ItemListTournaments/ItemListTournaments';
-import { useEffect } from 'react';
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
 import { ITournamentRegistered } from '@/interfaces/ITournament';

@@ -1,13 +1,15 @@
 
-import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
+import { ChangeEvent, FormEvent, useState } from 'react';
+
 import styles from './FormCreateUser.module.css';
 import imgBeachTenis from '@/assets/player-beachTenis.svg';
 import imgMail from '@/assets/Mail.svg';
 import imgEye from '@/assets/eye.svg';
+
+import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
 import { TextField } from '@/components/TextField/TextField';
 import { Button } from '@/components/Button/Button';
 import { FooterLogin } from '@/components/FooterLogin/FooterLogin';
-import { ChangeEvent, FormEvent, useState } from 'react';
 
 
 type FormCreateUserProps = {

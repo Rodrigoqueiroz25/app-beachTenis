@@ -1,11 +1,10 @@
 
-
-import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
 import styles from './ForgotPasswd.module.css';
-import imgForgotPasswd from '../../assets/forgot_password.svg';
-import { TextField } from '../../components/TextField/TextField';
-import { Button } from '../../components/Button/Button';
-import imgRectangle from '../../assets/Rectangle.svg';
+import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
+import imgForgotPasswd from '@/assets/forgot_password.svg';
+import { TextField } from '@/components/TextField/TextField';
+import { Button } from '@/components/Button/Button';
+import imgRectangle from '@/assets/Rectangle.svg';
 import { Link } from 'react-router-dom';
 
 export function ForgotPasswd(){

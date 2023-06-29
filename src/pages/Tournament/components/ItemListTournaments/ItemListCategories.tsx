@@ -1,9 +1,9 @@
 
 import styles from './ItemListCategories.module.css';
+import image1 from '@/assets/image1.svg';
+import image2 from '@/assets/image2.svg';
 
-import image1 from '../../../../assets/image1.svg';
-import image2 from '../../../../assets/image2.svg';
-import { ButtonSmall } from '../../../../components/ButtonSmall/ButtonSmall';
+import { ButtonSmall } from '@/components/ButtonSmall/ButtonSmall';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 
 type Props = {

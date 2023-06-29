@@ -1,9 +1,9 @@
 
 import styles from './FooterHome.module.css';
-import imgHome from '../../assets/home.svg'
-import imgHistory from '../../assets/history.svg'
-import imgProfile from '../../assets/profile.svg'
-import imgWallet from '../../assets/wallet.svg'
+import imgHome from '@/assets/home.svg'
+import imgHistory from '@/assets/history.svg'
+import imgProfile from '@/assets/profile.svg'
+import imgWallet from '@/assets/wallet.svg'
 
 
 export function FooterHome() {

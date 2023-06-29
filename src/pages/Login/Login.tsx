@@ -1,15 +1,16 @@
 
-import styles from './Login.module.css';
-import imgBeachTenis from '../../assets/player-beachTenis.svg';
-import imgMail from '../../assets/Mail.svg';
-import imgEye from '../../assets/eye.svg';
-import { Button } from '../../components/Button/Button';
-import { FooterLogin } from '../../components/FooterLogin/FooterLogin';
-import { TextField } from '../../components/TextField/TextField';
-import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import useVerifyAuth from '../../hooks/useVerifyAuth';
+
+import styles from './Login.module.css';
+import imgBeachTenis from '@/assets/player-beachTenis.svg';
+import imgMail from '@/assets/Mail.svg';
+import imgEye from '@/assets/eye.svg';
+import { Button } from '@/components/Button/Button';
+import { FooterLogin } from '@/components/FooterLogin/FooterLogin';
+import { TextField } from '@/components/TextField/TextField';
+import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
+import useVerifyAuth from '@/hooks/useVerifyAuth';
 import useAuth from '@/hooks/useAuth';
 
 

@@ -1,7 +1,7 @@
 
 import styles from './Category.module.css';
-import imgEdit from '../../../../assets/edit.svg';
-import imgDelete from '../../../../assets/delete.svg';
+import imgEdit from '@/assets/edit.svg';
+import imgDelete from '@/assets/delete.svg';
 
 type Props = {
     category: string

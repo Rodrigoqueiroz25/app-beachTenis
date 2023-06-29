@@ -1,11 +1,11 @@
 
-import styles from './ItemListTournaments.module.css';
-
-import logoTour from '../../../../assets/logoTour.jpg';
-import image1 from '../../../../assets/image1.svg';
-import image2 from '../../../../assets/image2.svg';
-import { ButtonSmall } from '../../../../components/ButtonSmall/ButtonSmall';
 import { useNavigate } from 'react-router-dom';
+
+import styles from './ItemListTournaments.module.css';
+import logoTour from '@/assets/logoTour.jpg';
+import image1 from '@/assets/image1.svg';
+import image2 from '@/assets/image2.svg';
+import { ButtonSmall } from '@/components/ButtonSmall/ButtonSmall';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
 
 
