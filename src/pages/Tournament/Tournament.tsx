@@ -4,18 +4,18 @@ import logo from '../../assets/logoTour.jpg';
 import { FooterHome } from '../../components/FooterHome/FooterHome';
 import { useEffect, useState } from 'react';
 import { ButtonBack } from '../../components/ButtonBack/ButtonBack';
-import useFetchCategory from '../../hooks/useFetchCategory';
 import { useLocation, useParams } from 'react-router-dom';
-import { info } from 'console';
 import { CategoryRegistered } from '../../types/category';
 import { ItemListCategories } from './components/ItemListTournaments/ItemListCategories';
+import useFetchData from '@/hooks/useFetchData';
+import { ICategoryRegistered } from '@/interfaces/ICategory';
 
 const categories = "Categorias";
 const informations = "Informações";
 
 export function Tournament(){
 
-    const { getCategories, data, error, isLoading, ok } = useFetchCategory();
+    const { fetchData, data, error, isLoading, ok } = useFetchData<ICategoryRegistered[]>();
 
     const [presentation, setPresentation] = useState(categories);
 
@@ -24,7 +24,7 @@ export function Tournament(){
 
     useEffect(() => {
         if(params.id){
-            getCategories(parseInt(params.id));
+            fetchData('GET', `category/loadByTournament?tournamentId=${params.id}`);
         }
     }, [error]);
 
@@ -67,7 +67,7 @@ export function Tournament(){
             { presentation === "Categorias" &&
 
                 <div className={styles.list}>
-                    {data.map((category: CategoryRegistered, key: number) => (
+                    {data?.map((category: CategoryRegistered, key: number) => (
                         <ItemListCategories dataCategory={category} key={key}/>
                     ))}
                 </div>

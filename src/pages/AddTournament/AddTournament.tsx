@@ -7,39 +7,44 @@ import { FooterHome } from '../../components/FooterHome/FooterHome';
 import { Button } from '../../components/Button/Button';
 import { TextFieldSmall } from '../../components/TextFieldSmall/TextFieldSmall';
 import { Combobox } from '../../components/Combobox/Combobox';
-import useGetFetch from '../../hooks/useGetFetch';
-import { useEffect, useState } from 'react';
+import useGetFetch from '../../../.unused/useGetFetch';
+import { useEffect, useInsertionEffect, useLayoutEffect, useState } from 'react';
 import { City, Sport } from '../../types/login';
 import { useForm } from  "react-hook-form";
 import { yupResolver } from  "@hookform/resolvers/yup";
 import  *  as yup from  "yup";
 import { DataFieldSmall } from '../../components/DataFieldSmall/DataFieldSmall';
-import useFetchTournament from '../../hooks/useFetchTournament';
+
 import { Navigate } from 'react-router-dom';
 import { convertData } from '../../helper/convertData';
-import { AddTournamentDataForm } from '../../types/tournament';
+import { AddTournamentDataForm, TournamentRegistered } from '../../types/tournament';
+import useFetchData from '@/hooks/useFetchData';
+import { render } from 'react-dom';
+import request from '@/helper/request';
+import useCookiesSession from '@/hooks/useCookiesSession';
 
 
 export function AddTournament() {
 
-    const { getData, msgFailedGet, error } = useGetFetch();
-    const { registerTournament, data, isLoading, ok } = useFetchTournament();
-
+    const { fetchData, data, isLoading, ok, error } = useFetchData<TournamentRegistered, AddTournamentDataForm>();
+    
     const [sports, setSports] = useState<Sport[]>([]);
     const [cities, setCities] = useState<City[]>([]);
 
-    useEffect(() =>{
-        setTimeout(async () => {
-            setSports(await getData('sports'));
-        }, 200);
-    }, [msgFailedGet, error]);
+    const { getCookieToken } = useCookiesSession();
 
     useEffect(() =>{
         setTimeout(async () => {
-            setCities(await getData('cities'));
-        }, 200);
-    }, [msgFailedGet, error]);
-
+            let sports = await request<Sport[],{}>('GET', 'sports', getCookieToken());
+            if(sports.ok){
+                setSports(sports.data as Sport[]);
+            }
+            let cities = await request<City[],{}>('GET', 'cities', getCookieToken());
+            if(cities.ok){
+                setCities(cities.data as City[]);
+            }
+        }, 200);   
+    }, []);
 
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
@@ -58,7 +63,7 @@ export function AddTournament() {
     });
 
     function saveDataform(data: any){
-        const dataFetch : AddTournamentDataForm = {
+        fetchData('POST', 'tournament', {
             description: data.description,
             cityId: data.cityId,
             sportId: data.sportId,
@@ -68,8 +73,7 @@ export function AddTournament() {
             dtFinalRegistration: convertData(data.dtFinalRegistration),
             otherInformation: data.otherInformation,
             organization: data.organization
-        }
-        registerTournament(dataFetch);
+        });
     }
 
     
@@ -80,7 +84,7 @@ export function AddTournament() {
             }
 
             { ok &&
-                <Navigate to="/add-categories" state={{tournamentId: data[0].id}}/>
+                <Navigate to="/add-categories" state={{tournamentId: data?.id}}/>
             }
 
             <div className={styles.container}>

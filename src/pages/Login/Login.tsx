@@ -9,8 +9,9 @@ import { TextField } from '../../components/TextField/TextField';
 import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import useAuth from '../../hooks/useAuth';
 import useVerifyAuth from '../../hooks/useVerifyAuth';
+import useAuth from '@/hooks/useAuth';
+
 
 
 export function Login() {
@@ -19,7 +20,8 @@ export function Login() {
     const [email, setEmail] = useState('');
     const [passwd, setPasswd] = useState('');
 
-    const { authenticate, isAuth, isLoading, error, msgFailedAuth } = useAuth(email, passwd);
+    const { authenticate, isAuth, isLoading, error } = useAuth();
+
     const itsAuth = useVerifyAuth();
     
     function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
@@ -76,7 +78,7 @@ export function Login() {
 
                             {!isAuth &&
                                 <div className={styles.msgErroLogin}>
-                                    <p>{msgFailedAuth}</p>
+                                    <p>{error}</p>
                                 </div>
                             }
 

@@ -1,71 +1,54 @@
 
 import { useState } from "react";
-import { TLogado } from "../types/login";
+import { TLogado } from "@/types/login";
 import useCookiesSession from "./useCookiesSession";
+import request from "@/helper/request";
+import { IDataLogin } from "@/interfaces/IDataLogin";
+import { isError } from "@/interfaces/IError";
 
-
-export default function useAuth(email: string, senha: string){
+export default function useAuth(){
        
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [msgFailedAuth, setMsgFailedAuth] = useState<string>('');
     const [isAuth, setIsAuth] = useState<boolean>(false);
-    const [error, setError] = useState<unknown>();
+    const [error, setError] = useState<string>('');
     
     const { setCookiesSession } = useCookiesSession();
-    
-    
+
     async function authenticate(email: string, passwd: string){
-        const options: RequestInit = {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json',
-                'Accept': '*/*',
-                'Connection': 'keep-alive'
-            },
-            body: JSON.stringify({
-                email: email.toLowerCase(),
-                password: passwd.toLowerCase()
-            }),
-            mode: 'cors'
+        setIsLoading(true);
+        let result = await request<TLogado, IDataLogin>('POST', 'login', "", {email: email, password: passwd});
+        setIsLoading(false);
+        if(result.ok){
+            switch (result.code) {
+                case 200:
+                    if(!isError(result.data)){
+                        setCookiesSession(result.data?.accessToken as string, result.data?.name as string);
+                    }
+                    setIsAuth(true);
+                    break;
+                case 401:
+                    console.error(result.code, result.data);
+                    setError("usuario/senha invalido");
+                    break;
+                default:
+                    console.error(result.code, result.data);
+                    break;
+            }
         }
-        
-        try {
-            setIsLoading(true);
-            let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/login`, options);
-            
-            if(response.status === 200){
-                let json = await response.json() as TLogado;
-                setCookiesSession(json.accessToken, json.name);
-                setIsAuth(true);
-                setIsLoading(false);
-                setMsgFailedAuth('');
+        else{
+            if(result.catchErr){
+                console.error(result.catchErr);
+                setError("Erro, tente novamente mais tarde.");
             }
-            else if(response.status === 401){
-                setIsLoading(false);
-                setIsAuth(false);
-                setMsgFailedAuth("usuario/senha invalido");
-            }
-            else{
-                setIsLoading(false);
-                setIsAuth(false);
-                setMsgFailedAuth("Erro, tente novamente mais tarde");
-            }
-            
-        } catch (err) {
-            setIsLoading(false);
-            setIsAuth(false);
-            setError(err);
-            setMsgFailedAuth("Erro, tente novamente mais tarde");
-        }
-        
+        }        
     }
-    
+
+
     return {
+        authenticate,
         isLoading,
         isAuth,
-        error,
-        msgFailedAuth,
-        authenticate
-    };
-    
+        error
+    }
+
 }

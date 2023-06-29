@@ -1,37 +1,26 @@
+import { IDataSignUp } from "@/interfaces/IDataSignUp";
 import { ReactNode, SetStateAction, createContext, useState } from "react";
 
-type StateType = {
-    firstName: string
-    lastName: string
-    password: string
-    gender: "M" | "F" | ""
-    email: string
-    cityId: string
-    phoneNumber: string
-    photo?: string
-    dateBirthday: string
-}
-
 type ContextType = {
-    state: StateType
-    setState: React.Dispatch<React.SetStateAction<StateType>>
+    state: IDataSignUp
+    setState: React.Dispatch<React.SetStateAction<IDataSignUp>>
 }
 
-const initialState: StateType = {
-    firstName: "",
-    lastName: "",
+const initialState: IDataSignUp = {
+    name: "",
     gender: "",
     password: "",
     email: "",
     cityId: "4709",
     phoneNumber: "",
     dateBirthday: "",
-    photo: ""
+    photo: "",
+    role: ""
 }
 
 export const ContextSignup = createContext<ContextType>({
     state: initialState,
-    setState: (obj: SetStateAction<StateType>) => null
+    setState: (obj: SetStateAction<IDataSignUp>) => null
 });
 
 
