@@ -8,10 +8,9 @@ import { AddTournament } from "@/pages/AddTournament/AddTournament";
 import { AddCategories } from "@/pages/AddCategories/AddCategories";
 import { ListTournaments } from "@/pages/ListTournaments/ListTournaments";
 import { Tournament } from "@/pages/Tournament/Tournament";
-import { Login } from "@/pages/Login/Login";
 import { CreateUser } from "@/pages/SignUp/CreateUser/CreateUser";
 import { CreateProfile } from "@/pages/SignUp/CreateProfile/CreateProfile";
-
+import { Login } from "@/pages/Login/Login";
 
 
 export function MainRoutes(){
