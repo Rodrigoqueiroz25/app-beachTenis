@@ -16,7 +16,6 @@ import { Category } from './components/Categories/Category';
 import { ButtonBack } from '../../components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
 import { ICategory, ICategoryRegistered } from '@/interfaces/ICategory';
-import { CategoryRegistered } from '@/types/category';
 
 
 export function AddCategories() {
@@ -49,7 +48,7 @@ export function AddCategories() {
                     setListCategories([...listCategories].concat(data));
                 }
                 else {
-                    addCategoriesState((data as unknown) as CategoryRegistered);
+                    addCategoriesState((data as unknown) as ICategoryRegistered);
                 }
             }
         }, 100);
@@ -78,7 +77,7 @@ export function AddCategories() {
         reset();
     }
 
-    function addCategoriesState(category: CategoryRegistered) {
+    function addCategoriesState(category: ICategoryRegistered) {
         let arr = listCategories.filter(c => c.id !== category.id);
         arr.push(category);
         setListCategories(arr);

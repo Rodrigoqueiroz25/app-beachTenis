@@ -7,9 +7,7 @@ import { FooterHome } from '../../components/FooterHome/FooterHome';
 import { Button } from '../../components/Button/Button';
 import { TextFieldSmall } from '../../components/TextFieldSmall/TextFieldSmall';
 import { Combobox } from '../../components/Combobox/Combobox';
-import useGetFetch from '../../../.unused/useGetFetch';
-import { useEffect, useInsertionEffect, useLayoutEffect, useState } from 'react';
-import { City, Sport } from '../../types/login';
+import { useEffect, useState } from 'react';
 import { useForm } from  "react-hook-form";
 import { yupResolver } from  "@hookform/resolvers/yup";
 import  *  as yup from  "yup";
@@ -17,31 +15,33 @@ import { DataFieldSmall } from '../../components/DataFieldSmall/DataFieldSmall';
 
 import { Navigate } from 'react-router-dom';
 import { convertData } from '../../helper/convertData';
-import { AddTournamentDataForm, TournamentRegistered } from '../../types/tournament';
 import useFetchData from '@/hooks/useFetchData';
-import { render } from 'react-dom';
+
 import request from '@/helper/request';
 import useCookiesSession from '@/hooks/useCookiesSession';
+import { IFormAddTournament, ITournamentRegistered } from '@/interfaces/ITournament';
+import { ICity } from '@/interfaces/ICity';
+import { ISport } from '@/interfaces/ISport';
 
 
 export function AddTournament() {
 
-    const { fetchData, data, isLoading, ok, error } = useFetchData<TournamentRegistered, AddTournamentDataForm>();
+    const { fetchData, data, isLoading, ok, error } = useFetchData<ITournamentRegistered, IFormAddTournament>();
     
-    const [sports, setSports] = useState<Sport[]>([]);
-    const [cities, setCities] = useState<City[]>([]);
+    const [sports, setSports] = useState<ISport[]>([]);
+    const [cities, setCities] = useState<ICity[]>([]);
 
     const { getCookieToken } = useCookiesSession();
 
     useEffect(() =>{
         setTimeout(async () => {
-            let sports = await request<Sport[],{}>('GET', 'sports', getCookieToken());
+            let sports = await request<ISport[],{}>('GET', 'sports', getCookieToken());
             if(sports.ok){
-                setSports(sports.data as Sport[]);
+                setSports(sports.data as ISport[]);
             }
-            let cities = await request<City[],{}>('GET', 'cities', getCookieToken());
+            let cities = await request<ICity[],{}>('GET', 'cities', getCookieToken());
             if(cities.ok){
-                setCities(cities.data as City[]);
+                setCities(cities.data as ICity[]);
             }
         }, 200);   
     }, []);

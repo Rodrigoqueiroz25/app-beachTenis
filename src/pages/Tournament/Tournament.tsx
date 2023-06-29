@@ -5,7 +5,6 @@ import { FooterHome } from '../../components/FooterHome/FooterHome';
 import { useEffect, useState } from 'react';
 import { ButtonBack } from '../../components/ButtonBack/ButtonBack';
 import { useLocation, useParams } from 'react-router-dom';
-import { CategoryRegistered } from '../../types/category';
 import { ItemListCategories } from './components/ItemListTournaments/ItemListCategories';
 import useFetchData from '@/hooks/useFetchData';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
@@ -67,7 +66,7 @@ export function Tournament(){
             { presentation === "Categorias" &&
 
                 <div className={styles.list}>
-                    {data?.map((category: CategoryRegistered, key: number) => (
+                    {data?.map((category: ICategoryRegistered, key: number) => (
                         <ItemListCategories dataCategory={category} key={key}/>
                     ))}
                 </div>

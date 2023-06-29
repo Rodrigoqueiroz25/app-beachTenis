@@ -5,12 +5,12 @@ import logoTour from '../../../../assets/logoTour.jpg';
 import image1 from '../../../../assets/image1.svg';
 import image2 from '../../../../assets/image2.svg';
 import { ButtonSmall } from '../../../../components/ButtonSmall/ButtonSmall';
-import { TournamentRegistered } from '../../../../types/tournament';
 import { useNavigate } from 'react-router-dom';
+import { ITournamentRegistered } from '@/interfaces/ITournament';
 
 
 type Props = {
-    dataTournament: TournamentRegistered
+    dataTournament: ITournamentRegistered
 }
 
 export function ItemListTournaments({ dataTournament }: Props) {

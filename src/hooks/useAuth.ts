@@ -1,10 +1,10 @@
 
 import { useState } from "react";
-import { TLogado } from "@/types/login";
 import useCookiesSession from "./useCookiesSession";
 import request from "@/helper/request";
 import { IDataLogin } from "@/interfaces/IDataLogin";
 import { isError } from "@/interfaces/IError";
+import { ILoginResult } from "@/interfaces/ILoginResult";
 
 export default function useAuth(){
        
@@ -16,7 +16,7 @@ export default function useAuth(){
 
     async function authenticate(email: string, passwd: string){
         setIsLoading(true);
-        let result = await request<TLogado, IDataLogin>('POST', 'login', "", {email: email, password: passwd});
+        let result = await request<ILoginResult, IDataLogin>('POST', 'login', "", {email: email, password: passwd});
         setIsLoading(false);
         if(result.ok){
             switch (result.code) {

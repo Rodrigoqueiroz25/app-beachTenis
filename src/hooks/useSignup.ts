@@ -1,11 +1,11 @@
 
 import { useContext, useState } from "react";
-import { TLogado } from "@/types/login";
 import { ContextSignup } from "@/contexts/ContextSignup";
 import useCookiesSession from "./useCookiesSession";
 import request from "@/helper/request";
 import { IDataSignUp } from "@/interfaces/IDataSignUp";
 import { isError } from "@/interfaces/IError";
+import { ILoginResult } from "@/interfaces/ILoginResult";
 
 
 export default function useSignup(){
@@ -21,7 +21,7 @@ export default function useSignup(){
     
     async function signup(){
         setIsLoading(true);
-        let result = await request<TLogado, IDataSignUp>('POST', 'signup', "", {
+        let result = await request<ILoginResult, IDataSignUp>('POST', 'signup', "", {
             email: state.email.toLowerCase(),
             password: state.password.toLowerCase(),
             name: state.name.toLowerCase(),
