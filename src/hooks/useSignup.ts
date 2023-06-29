@@ -6,6 +6,7 @@ import request from "@/helper/request";
 import { IDataSignUp } from "@/interfaces/IDataSignUp";
 import { isError } from "@/interfaces/IError";
 import { ILoginResult } from "@/interfaces/ILoginResult";
+import { Request, getRequestArgs } from "@/helper/getRequestArgs";
 
 
 export default function useSignup(){
@@ -21,7 +22,7 @@ export default function useSignup(){
     
     async function signup(){
         setIsLoading(true);
-        let result = await request<ILoginResult, IDataSignUp>('POST', 'signup', "", {
+        let result = await request<ILoginResult, IDataSignUp>(getRequestArgs(Request.signup),{
             email: state.email.toLowerCase(),
             password: state.password.toLowerCase(),
             name: state.name.toLowerCase(),

@@ -7,6 +7,7 @@ import { ItemListTournaments } from './components/ItemListTournaments/ItemListTo
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
+import { Request, getRequestArgs } from '@/helper/getRequestArgs';
 
 
 export function ListTournaments(){
@@ -14,7 +15,7 @@ export function ListTournaments(){
     const { fetchData, data, error, isLoading, ok } = useFetchData<ITournamentRegistered[]>();
 
     useEffect(() => {
-        fetchData('GET', 'tournaments');
+        fetchData(getRequestArgs(Request.getTournaments));
     }, [error]);
 
     return (    

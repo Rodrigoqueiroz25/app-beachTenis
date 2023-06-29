@@ -1,8 +1,10 @@
 
 import { IError } from "@/interfaces/IError";
+import { IRequest } from "@/interfaces/IRequest";
 import { IResultFetch } from "@/interfaces/IResultFetch";
 
-export default async function request<R, E>(method: string, endPoint: string, cookie?: string, data?: E) {
+// export default async function request<R, E>(method: string, endPoint: string, cookie?: string, data?: E) {
+export default async function request<R, E>(paramRequest: IRequest, data?: E, cookie?: string) {
 
     let result: IResultFetch<R> = {
         code: 0,
@@ -11,7 +13,7 @@ export default async function request<R, E>(method: string, endPoint: string, co
     }
 
     const options: RequestInit = {
-        method: method,
+        method: paramRequest.method,
         headers: {
             'Content-Type': 'application/json',
             'Accept': '*/*',
@@ -24,7 +26,7 @@ export default async function request<R, E>(method: string, endPoint: string, co
     }
 
     try {
-        let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api/${endPoint}`, options);
+        let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api${paramRequest.url()}`, options);
         result.code = response.status;
         result.ok = true;
         if(response.status === 200){

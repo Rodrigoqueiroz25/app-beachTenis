@@ -21,6 +21,7 @@ import useCookiesSession from '@/hooks/useCookiesSession';
 import { IFormAddTournament, ITournamentRegistered } from '@/interfaces/ITournament';
 import { ICity } from '@/interfaces/ICity';
 import { ISport } from '@/interfaces/ISport';
+import { Request, getRequestArgs } from "@/helper/getRequestArgs";
 
 
 export function AddTournament() {
@@ -34,11 +35,11 @@ export function AddTournament() {
 
     useEffect(() =>{
         setTimeout(async () => {
-            let sports = await request<ISport[],{}>('GET', 'sports', getCookieToken());
+            let sports = await request<ISport[],{}>(getRequestArgs(Request.getSports), getCookieToken());
             if(sports.ok){
                 setSports(sports.data as ISport[]);
             }
-            let cities = await request<ICity[],{}>('GET', 'cities', getCookieToken());
+            let cities = await request<ICity[],{}>(getRequestArgs(Request.getCities), getCookieToken());
             if(cities.ok){
                 setCities(cities.data as ICity[]);
             }
@@ -62,7 +63,7 @@ export function AddTournament() {
     });
 
     function saveDataform(data: any){
-        fetchData('POST', 'tournament', {
+        fetchData(getRequestArgs(Request.createTournament), {
             description: data.description,
             cityId: data.cityId,
             sportId: data.sportId,

@@ -16,6 +16,7 @@ import { Combobox } from '@/components/Combobox/Combobox';
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
 import { ICategory, ICategoryRegistered } from '@/interfaces/ICategory';
+import { Request, getRequestArgs } from "@/helper/getRequestArgs";
 
 
 export function AddCategories() {
@@ -34,7 +35,7 @@ export function AddCategories() {
 
     useEffect(() => {
         if (location?.state?.tournamentId) {
-            fetchData('GET', `category/loadByTournament?tournamentId=${location.state.tournamentId}`);
+            fetchData(getRequestArgs(Request.getCategories));
         }
         else {
             navigate('/home');
@@ -68,11 +69,11 @@ export function AddCategories() {
     async function submit(dataForm: any) {
         console.log(dataForm);
         if (editMode) {
-            fetchData('PUT', `category/${idEdited}`, { ...dataForm, tournamentId: location.state.tournamentId });
+            fetchData(getRequestArgs(Request.updateCategory, idEdited), { ...dataForm, tournamentId: location.state.tournamentId });
             setEditMode(false);
         }
         else {
-            fetchData('POST', `category`, { ...dataForm, tournamentId: location.state.tournamentId });
+            fetchData(getRequestArgs(Request.createCategory), { ...dataForm, tournamentId: location.state.tournamentId });
         }
         reset();
     }
@@ -84,7 +85,7 @@ export function AddCategories() {
     }
 
     function removeCategory(id: string) {
-        fetchData('DELETE', `category/${id}`);
+        fetchData(getRequestArgs(Request.deleteCategory, id));
         let arr = listCategories.filter(c => c.id !== parseInt(id));
         setListCategories(arr);
     }

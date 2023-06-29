@@ -5,6 +5,7 @@ import request from "@/helper/request";
 import { IDataLogin } from "@/interfaces/IDataLogin";
 import { isError } from "@/interfaces/IError";
 import { ILoginResult } from "@/interfaces/ILoginResult";
+import { Request, getRequestArgs } from "@/helper/getRequestArgs";
 
 export default function useAuth(){
        
@@ -16,7 +17,7 @@ export default function useAuth(){
 
     async function authenticate(email: string, passwd: string){
         setIsLoading(true);
-        let result = await request<ILoginResult, IDataLogin>('POST', 'login', "", {email: email, password: passwd});
+        let result = await request<ILoginResult, IDataLogin>(getRequestArgs(Request.login), {email: email, password: passwd});
         setIsLoading(false);
         if(result.ok){
             switch (result.code) {

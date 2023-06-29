@@ -11,6 +11,7 @@ import { ItemListCategories } from './components/ItemListTournaments/ItemListCat
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 
 import useFetchData from '@/hooks/useFetchData';
+import { Request, getRequestArgs } from '@/helper/getRequestArgs';
 
 const categories = "Categorias";
 const informations = "Informações";
@@ -26,7 +27,7 @@ export function Tournament(){
 
     useEffect(() => {
         if(params.id){
-            fetchData('GET', `category/loadByTournament?tournamentId=${params.id}`);
+            fetchData(getRequestArgs(Request.getCategories, params.id))
         }
     }, [error]);
 
