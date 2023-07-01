@@ -10,6 +10,7 @@ import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
 import { TextField } from '@/components/TextField/TextField';
 import { Button } from '@/components/Button/Button';
 import { FooterLogin } from '@/components/FooterLogin/FooterLogin';
+import { Routes } from '@/enums/routes.enum';
 
 
 type FormCreateUserProps = {
@@ -97,7 +98,7 @@ export function FormCreateUser( {props}: Prop){
                     <Button text='Sign Up'/>
                 </form>
             </main>
-            <FooterLogin text='Already a Member?' textLink='Log in' endPoint='/login'/>
+            <FooterLogin text='Already a Member?' textLink='Log in' endPoint={Routes.login}/>
         
         </div>
 

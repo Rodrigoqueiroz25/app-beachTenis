@@ -8,6 +8,7 @@ import imgLocation from '@/assets/location.svg'
 import { FooterHome } from '@/components/FooterHome/FooterHome';
 import useCookiesSession from '@/hooks/useCookiesSession';
 import { useNavigate } from 'react-router-dom';
+import { Routes } from '@/enums/routes.enum';
 
 export function Home(){
 
@@ -16,7 +17,7 @@ export function Home(){
     const navigate = useNavigate();
 
     function handleClickViewAllTournaments(){
-        navigate('/list-tournaments');
+        navigate(Routes.listTournaments);
     }
 
     function handleClickViewAllRanking(){

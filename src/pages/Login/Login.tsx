@@ -6,6 +6,7 @@ import styles from './Login.module.css';
 import useVerifyAuth from '@/hooks/useVerifyAuth';
 import useAuth from '@/hooks/useAuth';
 import { LoginForm } from './LoginForm';
+import { Routes } from '@/enums/routes.enum';
 
 
 export function Login() {
@@ -25,7 +26,7 @@ export function Login() {
     
     useEffect(() => {
         if(itsAuth()){
-            navigate('/home');
+            navigate(Routes.home);
         }
     },[]);
 
@@ -46,7 +47,7 @@ export function Login() {
                         error={error}
                         isAuth={isAuth}
                     /> 
-                : <Navigate to='/home'/> 
+                : <Navigate to={Routes.home}/> 
             }
         </div>
     );

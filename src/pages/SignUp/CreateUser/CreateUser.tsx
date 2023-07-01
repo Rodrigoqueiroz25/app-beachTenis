@@ -3,6 +3,7 @@ import { FormEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContextSignup } from '@/contexts/ContextSignup';
 import { FormCreateUser } from './FormCreateUser';
+import { Routes } from '@/enums/routes.enum';
 
 
 export function CreateUser(){
@@ -24,7 +25,7 @@ export function CreateUser(){
     }
     
     function handleSubmitForm(e: FormEvent<HTMLFormElement>){
-        navigate('/signup/create-profile', {state: {userCreated: true}});
+        navigate(Routes.createProfile, {state: {userCreated: true}});
     }
 
     return (

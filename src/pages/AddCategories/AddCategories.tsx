@@ -17,6 +17,7 @@ import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
 import { ICategory, ICategoryRegistered } from '@/interfaces/ICategory';
 import { Request, getRequestArgs } from "@/helper/getRequestArgs";
+import { Routes } from "@/enums/routes.enum";
 
 
 export function AddCategories() {
@@ -38,7 +39,7 @@ export function AddCategories() {
             fetchData(getRequestArgs(Request.getCategories));
         }
         else {
-            navigate('/home');
+            navigate(Routes.home);
         }
     }, []);
 
@@ -105,7 +106,7 @@ export function AddCategories() {
         <div className={styles.container}>
 
             <header className={styles.title}>
-                <ButtonBack endPoint='/list-tournaments' />
+                <ButtonBack endPoint={Routes.listTournaments} />
                 <p>Adicionar Categorias</p>
             </header>
 

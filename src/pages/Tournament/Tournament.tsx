@@ -15,6 +15,7 @@ import { Request, getRequestArgs } from '@/helper/getRequestArgs';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Informations } from './components/Informations/Informations';
 import { categories, informations } from '@/constants/constants';
+import { Routes } from '@/enums/routes.enum';
 
 
 export function Tournament(){
@@ -31,7 +32,7 @@ export function Tournament(){
 
     useEffect(() => {
         if(!location.state?.tournament){
-            navigate('/list-tournaments');
+            navigate(Routes.listTournaments);
         }
         else{
             setDataTournament(location.state.tournament);
@@ -59,7 +60,7 @@ export function Tournament(){
             
             <header className={styles.header}>
                 <div className={styles.title}>
-                    <ButtonBack endPoint='/list-tournaments'/>
+                    <ButtonBack endPoint={Routes.listTournaments}/>
                     <p>Torneio</p>
                 </div>
                 <div className={styles.tournament}>

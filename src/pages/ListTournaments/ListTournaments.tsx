@@ -8,6 +8,7 @@ import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Request, getRequestArgs } from '@/helper/getRequestArgs';
+import { Routes } from '@/enums/routes.enum';
 
 
 export function ListTournaments(){
@@ -22,7 +23,7 @@ export function ListTournaments(){
         <div className={styles.container}>
             
             <header className={styles.title}>
-                <ButtonBack endPoint='/home'/>
+                <ButtonBack endPoint={Routes.home}/>
                 <p>Torneios</p>
             </header>
             

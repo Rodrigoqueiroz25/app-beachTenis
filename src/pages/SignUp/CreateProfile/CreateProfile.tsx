@@ -4,6 +4,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { ContextSignup } from '@/contexts/ContextSignup';
 import { FormCreateProfile } from './FormCreateProfile';
 import useSignup from '@/hooks/useSignup';
+import { Routes } from '@/enums/routes.enum';
 
 
 export function CreateProfile() {
@@ -19,7 +20,7 @@ export function CreateProfile() {
 
     useEffect(() => {
         if (!location.state?.userCreated) {
-            navigate('/signup')
+            navigate(Routes.signup)
         }
     });
 
@@ -56,7 +57,7 @@ export function CreateProfile() {
             }
 
             {isAuth
-                ? <Navigate to='/home' />
+                ? <Navigate to={Routes.home} />
                 : <FormCreateProfile props={{
                     firstName: firstName,
                     lastName: lastName,

@@ -7,6 +7,7 @@ import image1 from '@/assets/image1.svg';
 import image2 from '@/assets/image2.svg';
 import { ButtonSmall } from '@/components/ButtonSmall/ButtonSmall';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
+import { Routes } from '@/enums/routes.enum';
 
 
 type Props = {
@@ -18,7 +19,7 @@ export function ItemListTournaments({ dataTournament }: Props) {
     const navigate = useNavigate();
 
     function access(){
-        navigate(`/tournament/${dataTournament.id}`, { state: {tournament: dataTournament}})
+        navigate(`${Routes.tournamentLessParam}/${dataTournament.id}`, { state: {tournament: dataTournament}})
     }
     
     function configure(){

@@ -22,6 +22,7 @@ import { IFormAddTournament, ITournamentRegistered } from '@/interfaces/ITournam
 import { ICity } from '@/interfaces/ICity';
 import { ISport } from '@/interfaces/ISport';
 import { Request, getRequestArgs } from "@/helper/getRequestArgs";
+import { Routes } from "@/enums/routes.enum";
 
 
 export function AddTournament() {
@@ -84,7 +85,7 @@ export function AddTournament() {
             }
 
             { ok &&
-                <Navigate to="/add-categories" state={{tournamentId: data?.id}}/>
+                <Navigate to={Routes.addCategories} state={{tournamentId: data?.id}}/>
             }
 
             <div className={styles.container}>

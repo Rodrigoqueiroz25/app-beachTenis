@@ -11,24 +11,25 @@ import { Tournament } from "@/pages/Tournament/Tournament";
 import { CreateUser } from "@/pages/SignUp/CreateUser/CreateUser";
 import { CreateProfile } from "@/pages/SignUp/CreateProfile/CreateProfile";
 import { Login } from "@/pages/Login/Login";
+import { Routes } from "@/enums/routes.enum";
 
 
 export function MainRoutes(){
     
     return useRoutes([
-        { path: '/', element: <Navigate to="/login"/> },
-        { path: '/login', element: <Login/>},
-        { path: '/signup', element: <ContextSignupProvider><CreateUser/></ContextSignupProvider> },
-        { path: '/signup/create-user', element: <ContextSignupProvider><CreateUser/></ContextSignupProvider> },
-        { path: '/signup/create-profile', element: <ContextSignupProvider><CreateProfile/></ContextSignupProvider> },
-        { path: '/forgot-password', element: <ForgotPasswd/>},
-        { path: '/create-password', element: <CreatePasswd/> },
-        { path: '/add-tournament', element: <PrivateRoute><AddTournament/></PrivateRoute> },
-        { path: '/add-categories', element: <PrivateRoute><AddCategories/></PrivateRoute> },
-        { path: '/list-tournaments', element: <PrivateRoute><ListTournaments/></PrivateRoute> },
-        { path: '/tournament/:id', element: <PrivateRoute><Tournament/></PrivateRoute> },
-        { path: '/home', element: <PrivateRoute><Home/></PrivateRoute> },
-        { path: '*', element: <h1>sds</h1> },
+        { path: Routes.root, element: <Navigate to="/login"/> },
+        { path: Routes.login, element: <Login/>},
+        { path: Routes.signup, element: <ContextSignupProvider><CreateUser/></ContextSignupProvider> },
+        { path: Routes.createUser, element: <ContextSignupProvider><CreateUser/></ContextSignupProvider> },
+        { path: Routes.createProfile, element: <ContextSignupProvider><CreateProfile/></ContextSignupProvider> },
+        { path: Routes.forgotPasswd, element: <ForgotPasswd/>},
+        { path: Routes.createPasswd, element: <CreatePasswd/> },
+        { path: Routes.addTournament, element: <PrivateRoute><AddTournament/></PrivateRoute> },
+        { path: Routes.addCategories, element: <PrivateRoute><AddCategories/></PrivateRoute> },
+        { path: Routes.listTournaments, element: <PrivateRoute><ListTournaments/></PrivateRoute> },
+        { path: Routes.tournament, element: <PrivateRoute><Tournament/></PrivateRoute> },
+        { path: Routes.home, element: <PrivateRoute><Home/></PrivateRoute> },
+        { path: Routes.null, element: <h1>sds</h1> },
     ]);
 
 }

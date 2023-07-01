@@ -10,6 +10,7 @@ import { Button } from '@/components/Button/Button';
 import { FooterLogin } from '@/components/FooterLogin/FooterLogin';
 import { TextField } from '@/components/TextField/TextField';
 import { HeaderLogin } from '@/components/HeaderLogin/HeaderLogin';
+import { Routes } from '@/enums/routes.enum';
 
 
 type Props = {
@@ -55,7 +56,7 @@ export function LoginForm(props: Props) {
                     />
 
                     <div className={styles.forgotPasswd}>
-                        <Link className={styles.link} to="/forgot-password">Forgot Password?</Link>
+                        <Link className={styles.link} to={Routes.forgotPasswd}>Forgot Password?</Link>
                     </div>
 
                     {!props.isAuth &&
