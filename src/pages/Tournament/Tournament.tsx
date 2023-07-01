@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import styles from './Tournament.module.css';
 import logo from '@/assets/logoTour.jpg';
@@ -12,24 +12,38 @@ import { ICategoryRegistered } from '@/interfaces/ICategory';
 
 import useFetchData from '@/hooks/useFetchData';
 import { Request, getRequestArgs } from '@/helper/getRequestArgs';
+import { ITournamentRegistered } from '@/interfaces/ITournament';
+import { Informations } from './components/Informations/Informations';
+import { categories, informations } from '@/constants/constants';
 
-const categories = "Categorias";
-const informations = "Informações";
 
 export function Tournament(){
 
     const { fetchData, data, error, isLoading, ok } = useFetchData<ICategoryRegistered[]>();
 
     const [presentation, setPresentation] = useState(categories);
+    const [dataTournament, setDataTournament] = useState<ITournamentRegistered>({} as ITournamentRegistered);
 
     const location = useLocation();
     const params = useParams();
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        if(!location.state?.tournament){
+            navigate('/list-tournaments');
+        }
+        else{
+            setDataTournament(location.state.tournament);
+        }
+    }, [location.state.tournament, navigate]);
 
     useEffect(() => {
         if(params.id){
             fetchData(getRequestArgs(Request.getCategories, params.id))
         }
     }, [error]);
+
 
     function handleClickCategories(){
         setPresentation(categories);
@@ -46,11 +60,11 @@ export function Tournament(){
             <header className={styles.header}>
                 <div className={styles.title}>
                     <ButtonBack endPoint='/list-tournaments'/>
-                    <p>{presentation}</p>
+                    <p>Torneio</p>
                 </div>
                 <div className={styles.tournament}>
                     <img src={logo} alt=""/>
-                    <p>{location.state.tournament.description}</p>
+                    <p>{location.state?.tournament.description}</p>
                 </div>
                 <div className={styles.buttons}>
                     <button 
@@ -79,7 +93,7 @@ export function Tournament(){
 
             { presentation === "Informações" &&
 
-                <div></div>
+                <Informations infoTournament={dataTournament} />
 
             }
 

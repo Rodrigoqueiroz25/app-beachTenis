@@ -1,0 +1,32 @@
+
+.informations{
+    margin: 4rem 1rem 0 1rem;
+}
+
+.informations h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #3a3a3a;
+    margin-bottom: 1.2rem;
+}
+
+.informations p{
+    font-size: 1.3rem;
+    letter-spacing: -0.26px;
+    color: #21272E;
+    margin-bottom: 1rem;
+    
+}
+
+.informations hr{
+    margin: 1.3rem 0 1.3rem 0;
+
+}
+
+.informations h4{
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.26px;
+    margin-bottom: 0.8rem;
+
+}
