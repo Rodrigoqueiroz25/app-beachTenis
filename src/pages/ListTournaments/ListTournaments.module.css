@@ -4,6 +4,8 @@
     font-style: normal;
     display: flex;
     flex-direction: column;
+
+    margin-bottom: 6.5rem;
 }
 
 .title {

@@ -7,6 +7,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.5fr 0.5fr 0.4fr;
+    
+    margin-bottom: 1.5rem;
 }
 
 .logo{

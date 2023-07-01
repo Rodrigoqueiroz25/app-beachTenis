@@ -4,7 +4,8 @@
     font-style: normal;
     display: flex;
     flex-direction: column;
-    /* background-color: #fbf8f8; */
+    
+    margin-bottom: 6.5rem;
 }
 
 .header {
