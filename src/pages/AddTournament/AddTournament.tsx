@@ -23,6 +23,9 @@ import { ICity } from '@/interfaces/ICity';
 import { ISport } from '@/interfaces/ISport';
 import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
+import { ButtonSwitchScreen } from "@/components/ButtonSwitchScreen/ButtonSwitchScreen";
+
+import leftArrow from '@/assets/set_left.svg';
 
 
 export function AddTournament() {
@@ -91,6 +94,7 @@ export function AddTournament() {
             <div className={styles.container}>
                 
                 <header className={styles.title}>
+                    <ButtonSwitchScreen endPoint={Routes.listTournaments} icon={leftArrow}/>
                     <p>Adicione um Torneio</p>
                 </header>
 

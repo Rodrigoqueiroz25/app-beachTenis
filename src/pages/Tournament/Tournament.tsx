@@ -7,6 +7,7 @@ import logo from '@/assets/logoTour.jpg';
 
 import { FooterHome } from '@/components/FooterHome/FooterHome';
 import leftArrow from '@/assets/set_left.svg';
+import addImg from '@/assets/add.svg';
 import { ItemListCategories } from './components/ItemListTournaments/ItemListCategories';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 
@@ -65,6 +66,7 @@ export function Tournament(){
                 <div className={styles.title}>
                     <ButtonSwitchScreen endPoint={Routes.listTournaments} icon={leftArrow}/>
                     <p>Torneio</p>
+                    <ButtonSwitchScreen endPoint={Routes.addCategories} icon={addImg}/>
                 </div>
                 <div className={styles.tournament}>
                     <img src={logo} alt=""/>

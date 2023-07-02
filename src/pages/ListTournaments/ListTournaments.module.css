@@ -11,8 +11,9 @@
 .title {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 7.3rem;
+    margin: 0 1rem 0 1rem;
 }
 
 .title p{

@@ -5,6 +5,7 @@ import styles from './ListTournaments.module.css';
 import { FooterHome } from '@/components/FooterHome/FooterHome';
 import { ItemListTournaments } from './components/ItemListTournaments/ItemListTournaments';
 import leftArrow from '@/assets/set_left.svg';
+import addImg from '@/assets/add.svg';
 import useFetchData from '@/hooks/useFetchData';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Routes } from '@/enums/routes.enum';
@@ -28,6 +29,7 @@ export function ListTournaments(){
             <header className={styles.title}>
                 <ButtonSwitchScreen endPoint={Routes.home} icon={leftArrow}/>
                 <p>Torneios</p>
+                <ButtonSwitchScreen endPoint={Routes.addTournament} icon={addImg}/>
             </header>
             
             <main className={styles.main}>
