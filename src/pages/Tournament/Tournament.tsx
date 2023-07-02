@@ -6,7 +6,7 @@ import styles from './Tournament.module.css';
 import logo from '@/assets/logoTour.jpg';
 
 import { FooterHome } from '@/components/FooterHome/FooterHome';
-import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
+import leftArrow from '@/assets/set_left.svg';
 import { ItemListCategories } from './components/ItemListTournaments/ItemListCategories';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 
@@ -17,6 +17,7 @@ import { categories, informations } from '@/constants/constants';
 import { Routes } from '@/enums/routes.enum';
 import { Requests } from '@/helper/Requests';
 import useCookiesSession from '@/hooks/useCookiesSession';
+import { ButtonSwitchScreen } from '@/components/ButtonSwitchScreen/ButtonSwitchScreen';
 
 
 export function Tournament(){
@@ -62,7 +63,7 @@ export function Tournament(){
             
             <header className={styles.header}>
                 <div className={styles.title}>
-                    <ButtonBack endPoint={Routes.listTournaments}/>
+                    <ButtonSwitchScreen endPoint={Routes.listTournaments} icon={leftArrow}/>
                     <p>Torneio</p>
                 </div>
                 <div className={styles.tournament}>

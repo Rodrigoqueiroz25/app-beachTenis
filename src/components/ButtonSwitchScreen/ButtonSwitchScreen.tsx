@@ -1,13 +1,13 @@
 
-import styles from './ButtonBack.module.css';
-import setLeft from '@/assets/set_left.svg';
+import styles from './ButtonSwitchScreen.module.css';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
     endPoint: string;
+    icon: string;
 }
 
-export function ButtonBack({ endPoint }: Props){
+export function ButtonSwitchScreen({ endPoint, icon }: Props){
 
     const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ export function ButtonBack({ endPoint }: Props){
         <div className={styles.button}
              onClick={handleClick}
         >
-            <img src={setLeft} alt="" />
+            <img src={icon} alt="" />
         </div>
     );
 }

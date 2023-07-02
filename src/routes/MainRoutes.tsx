@@ -17,7 +17,7 @@ import { Routes } from "@/enums/routes.enum";
 export function MainRoutes(){
     
     return useRoutes([
-        { path: Routes.root, element: <Navigate to="/login"/> },
+        { path: Routes.root, element: <Navigate to={Routes.login}/> },
         { path: Routes.login, element: <Login/>},
         { path: Routes.signup, element: <ContextSignupProvider><CreateUser/></ContextSignupProvider> },
         { path: Routes.createUser, element: <ContextSignupProvider><CreateUser/></ContextSignupProvider> },

@@ -7,18 +7,21 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
 import styles from './AddCategories.module.css';
+import leftArrow from '@/assets/set_left.svg';
+
 import { Category } from './components/Categories/Category';
 
 import { FooterHome } from '@/components/FooterHome/FooterHome';
 import { Button } from '@/components/Button/Button';
 import { TextFieldSmall } from '@/components/TextFieldSmall/TextFieldSmall';
 import { Combobox } from '@/components/Combobox/Combobox';
-import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
+
 import useFetchData from '@/hooks/useFetchData';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import useCookiesSession from "@/hooks/useCookiesSession";
+import { ButtonSwitchScreen } from "@/components/ButtonSwitchScreen/ButtonSwitchScreen";
 
 
 export function AddCategories() {
@@ -108,7 +111,7 @@ export function AddCategories() {
         <div className={styles.container}>
 
             <header className={styles.title}>
-                <ButtonBack endPoint={Routes.listTournaments} />
+                <ButtonSwitchScreen endPoint={Routes.listTournaments} icon={leftArrow}/>
                 <p>Adicionar Categorias</p>
             </header>
 
