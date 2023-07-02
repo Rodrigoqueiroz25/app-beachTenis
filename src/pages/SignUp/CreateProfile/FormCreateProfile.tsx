@@ -45,7 +45,7 @@ export function FormCreateProfile({ props }: Prop) {
 
                 <div className={styles.uploadPhoto}>
                     <img src={imgPhotoCircle} alt="" />
-                    <Button text='Upload Image' />
+                    <Button>Enviar</Button>
                 </div>
 
                 <form className={styles.form} onSubmit={props.handleSubmit}>
@@ -94,7 +94,7 @@ export function FormCreateProfile({ props }: Prop) {
                         </div>
 
                     </div>
-                    <Button text='Login' />
+                    <Button>Login</Button>
                 </form>
             </main>
 

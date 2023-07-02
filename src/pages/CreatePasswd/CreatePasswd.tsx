@@ -21,7 +21,7 @@ export function CreatePasswd(){
                 <form className={styles.form} action="post">
                     <TextField placeholder='Enter New Password' type='text'/>
                     <TextField placeholder='Reenter New Password' type='text'/>
-                    <Button text='Login'/>
+                    <Button>Login</Button>
                 </form>                
             </main>
             

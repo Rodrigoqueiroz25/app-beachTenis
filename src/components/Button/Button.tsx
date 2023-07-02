@@ -1,12 +1,16 @@
 
+import { ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.css';
 
-type Props = {
-    text: string;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    small?: boolean;
 }
 
-export function Button({text}:Props){
+export function Button({ small = false, ...props}: ButtonProps){
     return (
-        <button className={styles.button}>{text}</button>
+        <button 
+            {...props}
+            className={`${styles.button} ${small ? styles.small : styles.large}`}
+        />
     );
 }

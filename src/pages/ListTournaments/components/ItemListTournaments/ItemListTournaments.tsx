@@ -5,9 +5,9 @@ import styles from './ItemListTournaments.module.css';
 import logoTour from '@/assets/logoTour.jpg';
 import image1 from '@/assets/image1.svg';
 import image2 from '@/assets/image2.svg';
-import { ButtonSmall } from '@/components/ButtonSmall/ButtonSmall';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Routes } from '@/enums/routes.enum';
+import { Button } from '@/components/Button/Button';
 
 
 type Props = {
@@ -26,7 +26,6 @@ export function ItemListTournaments({ dataTournament }: Props) {
         //nothing    
     }
     
-    
     return (
         <div className={styles.tournament}>
             <img className={styles.logo} src={logoTour} alt="logo do torneio" />
@@ -43,8 +42,8 @@ export function ItemListTournaments({ dataTournament }: Props) {
                 <p className={styles.informations}>{dataTournament.description}</p>
             </div>
             <div className={styles.buttons}>
-                <ButtonSmall func={access} text='Acessar'/>
-                <ButtonSmall func={configure} text='Configurar'/>
+                <Button small onClick={access} >Acessar</Button>
+                <Button small onClick={configure}>Configurar</Button>
             </div>
             
         </div>

@@ -95,7 +95,7 @@ export function FormCreateUser( {props}: Prop){
                     <div className={styles.msgPasswdDiff}>
                         <p>{msgPasswdDiff}</p>
                     </div>
-                    <Button text='Sign Up'/>
+                    <Button>Signup</Button>
                 </form>
             </main>
             <FooterLogin text='Already a Member?' textLink='Log in' endPoint={Routes.login}/>

@@ -27,7 +27,7 @@ export function ForgotPasswd(){
                             <Link className={styles.linkToLoginScreen} to='/login'>Log in</Link>
                         </p>
                     </div>
-                    <Button text='Submit'/>
+                    <Button>Enviar</Button>
                 </form>                
             </main>
             

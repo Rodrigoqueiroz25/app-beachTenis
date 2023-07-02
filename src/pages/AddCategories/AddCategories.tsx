@@ -143,7 +143,7 @@ export function AddCategories() {
                         errors={errors}
                     />
                     <div className={styles.spaceButton}></div>
-                    <Button text='Adicionar' />
+                    <Button>Adicionar</Button>
                 </form>
 
                 {error &&

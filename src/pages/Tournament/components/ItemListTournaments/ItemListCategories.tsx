@@ -2,8 +2,7 @@
 import styles from './ItemListCategories.module.css';
 import image1 from '@/assets/image1.svg';
 import image2 from '@/assets/image2.svg';
-
-import { ButtonSmall } from '@/components/ButtonSmall/ButtonSmall';
+import { Button } from '@/components/Button/Button';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 
 type Props = {
@@ -30,7 +29,7 @@ export function ItemListCategories({ dataCategory }: Props) {
                 <p className={styles.numberAthletes}>{dataCategory.numberAthletes}</p>            
             </div>
             <div className={styles.buttons}>
-                <ButtonSmall func={games} text='jogos'/>
+                <Button small>Jogos</Button>
             </div>
             
         </div>

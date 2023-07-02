@@ -205,7 +205,7 @@ export function AddTournament() {
                             {...register("otherInformation")}
                         ></textarea>
 
-                        <Button text='Salvar'/>
+                        <Button>Salvar</Button>
                     </form>
 
                 </main>

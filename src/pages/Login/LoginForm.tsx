@@ -65,7 +65,7 @@ export function LoginForm(props: Props) {
                         </div>
                     }
 
-                    <Button text='Log in' />
+                    <Button>Login</Button>
                 </form>
             </main>
 
