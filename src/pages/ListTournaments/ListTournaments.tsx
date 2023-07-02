@@ -7,16 +7,18 @@ import { ItemListTournaments } from './components/ItemListTournaments/ItemListTo
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
-import { Request, getRequestArgs } from '@/helper/getRequestArgs';
 import { Routes } from '@/enums/routes.enum';
+import { Requests } from '@/helper/Requests';
+import useCookiesSession from '@/hooks/useCookiesSession';
 
 
 export function ListTournaments(){
 
     const { fetchData, data, error, isLoading, ok } = useFetchData<ITournamentRegistered[]>();
+    const { getCookieToken } = useCookiesSession();
 
     useEffect(() => {
-        fetchData(getRequestArgs(Request.getTournaments));
+        fetchData(Requests.getTournaments(getCookieToken()));
     }, [error]);
 
     return (    

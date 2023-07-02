@@ -15,9 +15,10 @@ import { TextFieldSmall } from '@/components/TextFieldSmall/TextFieldSmall';
 import { Combobox } from '@/components/Combobox/Combobox';
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import useFetchData from '@/hooks/useFetchData';
-import { ICategory, ICategoryRegistered } from '@/interfaces/ICategory';
-import { Request, getRequestArgs } from "@/helper/getRequestArgs";
+import { ICategoryRegistered } from '@/interfaces/ICategory';
 import { Routes } from "@/enums/routes.enum";
+import { Requests } from "@/helper/Requests";
+import useCookiesSession from "@/hooks/useCookiesSession";
 
 
 export function AddCategories() {
@@ -28,15 +29,16 @@ export function AddCategories() {
     const [list, setList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const [listCategories, setListCategories] = useState<ICategoryRegistered[]>([]);
 
-    const { data, error, fetchData, isLoading, ok } = useFetchData<ICategoryRegistered[], ICategory>();
+    const { data, error, fetchData, isLoading, ok } = useFetchData<ICategoryRegistered[]>();
 
     const location = useLocation();
     const navigate = useNavigate();
+    const { getCookieToken } = useCookiesSession();
 
 
     useEffect(() => {
         if (location?.state?.tournamentId) {
-            fetchData(getRequestArgs(Request.getCategories));
+            fetchData(Requests.getCategories(location.state.tournamentId, getCookieToken()))
         }
         else {
             navigate(Routes.home);
@@ -70,11 +72,11 @@ export function AddCategories() {
     async function submit(dataForm: any) {
         console.log(dataForm);
         if (editMode) {
-            fetchData(getRequestArgs(Request.updateCategory, idEdited), { ...dataForm, tournamentId: location.state.tournamentId });
+            fetchData(Requests.updateCategory({ ...dataForm, tournamentId: location.state.tournamentId }, parseInt(idEdited), getCookieToken()));
             setEditMode(false);
         }
         else {
-            fetchData(getRequestArgs(Request.createCategory), { ...dataForm, tournamentId: location.state.tournamentId });
+            fetchData(Requests.createCategory({ ...dataForm, tournamentId: location.state.tournamentId }, getCookieToken()));
         }
         reset();
     }
@@ -86,7 +88,7 @@ export function AddCategories() {
     }
 
     function removeCategory(id: string) {
-        fetchData(getRequestArgs(Request.deleteCategory, id));
+        fetchData(Requests.deleteCategory(parseInt(id), getCookieToken()));
         let arr = listCategories.filter(c => c.id !== parseInt(id));
         setListCategories(arr);
     }

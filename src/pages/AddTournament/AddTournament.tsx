@@ -18,16 +18,16 @@ import { convertData } from '@/helper/convertData';
 import useFetchData from '@/hooks/useFetchData';
 import request from '@/helper/request';
 import useCookiesSession from '@/hooks/useCookiesSession';
-import { IFormAddTournament, ITournamentRegistered } from '@/interfaces/ITournament';
+import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { ICity } from '@/interfaces/ICity';
 import { ISport } from '@/interfaces/ISport';
-import { Request, getRequestArgs } from "@/helper/getRequestArgs";
 import { Routes } from "@/enums/routes.enum";
+import { Requests } from "@/helper/Requests";
 
 
 export function AddTournament() {
 
-    const { fetchData, data, isLoading, ok, error } = useFetchData<ITournamentRegistered, IFormAddTournament>();
+    const { fetchData, data, isLoading, ok, error } = useFetchData<ITournamentRegistered>();
     
     const [sports, setSports] = useState<ISport[]>([]);
     const [cities, setCities] = useState<ICity[]>([]);
@@ -36,11 +36,11 @@ export function AddTournament() {
 
     useEffect(() =>{
         setTimeout(async () => {
-            let sports = await request<ISport[],{}>(getRequestArgs(Request.getSports), getCookieToken());
+            let sports = await request<ISport[]>(Requests.getSports(getCookieToken()));
             if(sports.ok){
                 setSports(sports.data as ISport[]);
             }
-            let cities = await request<ICity[],{}>(getRequestArgs(Request.getCities), getCookieToken());
+            let cities = await request<ICity[]>(Requests.getCities(getCookieToken()));
             if(cities.ok){
                 setCities(cities.data as ICity[]);
             }
@@ -64,7 +64,7 @@ export function AddTournament() {
     });
 
     function saveDataform(data: any){
-        fetchData(getRequestArgs(Request.createTournament), {
+        fetchData(Requests.createTournament({
             description: data.description,
             cityId: data.cityId,
             sportId: data.sportId,
@@ -74,7 +74,7 @@ export function AddTournament() {
             dtFinalRegistration: convertData(data.dtFinalRegistration),
             otherInformation: data.otherInformation,
             organization: data.organization
-        });
+        }, getCookieToken()));
     }
 
     

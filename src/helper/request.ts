@@ -3,9 +3,7 @@ import { IError } from "@/interfaces/IError";
 import { IRequest } from "@/interfaces/IRequest";
 import { IResultFetch } from "@/interfaces/IResultFetch";
 
-// export default async function request<R, E>(method: string, endPoint: string, cookie?: string, data?: E) {
-export default async function request<R, E>(paramRequest: IRequest, data?: E, cookie?: string) {
-
+export default async function request<R, E = unknown>(paramRequest: IRequest<E>) {
     let result: IResultFetch<R> = {
         code: 0,
         ok: false,
@@ -19,14 +17,14 @@ export default async function request<R, E>(paramRequest: IRequest, data?: E, co
             'Accept': '*/*',
             'Accept-Encoding': 'gzip, deflate, br',
             'Connection': 'keep-alive',
-            'x-access-token': `${cookie}`
+            'x-access-token': `${paramRequest.cookie}`
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(paramRequest.body),
         mode: 'cors'
     }
 
     try {
-        let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api${paramRequest.url()}`, options);
+        let response = await fetch(`${process.env.REACT_APP_HOST_API}:${process.env.REACT_APP_PORT_API}/api${paramRequest.url}`, options);
         result.code = response.status;
         result.ok = true;
         if(response.status === 200){

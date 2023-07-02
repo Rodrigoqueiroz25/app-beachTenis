@@ -11,11 +11,12 @@ import { ItemListCategories } from './components/ItemListTournaments/ItemListCat
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 
 import useFetchData from '@/hooks/useFetchData';
-import { Request, getRequestArgs } from '@/helper/getRequestArgs';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Informations } from './components/Informations/Informations';
 import { categories, informations } from '@/constants/constants';
 import { Routes } from '@/enums/routes.enum';
+import { Requests } from '@/helper/Requests';
+import useCookiesSession from '@/hooks/useCookiesSession';
 
 
 export function Tournament(){
@@ -28,6 +29,7 @@ export function Tournament(){
     const location = useLocation();
     const params = useParams();
     const navigate = useNavigate();
+    const { getCookieToken } = useCookiesSession();
 
 
     useEffect(() => {
@@ -41,7 +43,7 @@ export function Tournament(){
 
     useEffect(() => {
         if(params.id){
-            fetchData(getRequestArgs(Request.getCategories, params.id))
+            fetchData(Requests.getCategories(parseInt(params.id), getCookieToken()))
         }
     }, [error]);
 

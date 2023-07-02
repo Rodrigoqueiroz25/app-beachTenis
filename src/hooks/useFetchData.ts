@@ -1,24 +1,22 @@
 
 import { useState } from "react";
-import useCookiesSession from "./useCookiesSession";
 import request from "@/helper/request";
 import { isError } from "@/interfaces/IError";
 import { IRequest } from "@/interfaces/IRequest";
 
 
-export default function useFetchData<R, E = {}>() {
+export default function useFetchData<R>() {
 
     const [isLoading, setIsLoading] = useState<Boolean>(false);
     const [ok, setOk] = useState<Boolean>(false);
     const [data, setData] = useState<R>();
     const [error, setError] = useState<string>();
+    
 
-    const { getCookieToken } = useCookiesSession();
-
-    async function fetchData(requestData: IRequest, data?: E) {
+    async function fetchData<E>(requestData: IRequest<E>) {
 
         setIsLoading(true);
-        let result = await request<R, E>(requestData, data, getCookieToken());
+        let result = await request<R, E>(requestData);
         setIsLoading(false);
 
         if(result.ok){

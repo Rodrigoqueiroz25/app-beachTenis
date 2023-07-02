@@ -6,7 +6,7 @@ import request from "@/helper/request";
 import { IDataSignUp } from "@/interfaces/IDataSignUp";
 import { isError } from "@/interfaces/IError";
 import { ILoginResult } from "@/interfaces/ILoginResult";
-import { Request, getRequestArgs } from "@/helper/getRequestArgs";
+import { Requests } from "@/helper/Requests";
 
 
 export default function useSignup(){
@@ -22,7 +22,7 @@ export default function useSignup(){
     
     async function signup(){
         setIsLoading(true);
-        let result = await request<ILoginResult, IDataSignUp>(getRequestArgs(Request.signup),{
+        let result = await request<ILoginResult, IDataSignUp>(Requests.signup({
             email: state.email.toLowerCase(),
             password: state.password.toLowerCase(),
             name: state.name.toLowerCase(),
@@ -31,7 +31,7 @@ export default function useSignup(){
             cityId: state.cityId,
             dateBirthday: state.dateBirthday.toLowerCase().split('-').reverse().join('/'),
             role: ""
-        });
+        }));
         setIsLoading(false);
         if(result.ok){
             switch (result.code) {

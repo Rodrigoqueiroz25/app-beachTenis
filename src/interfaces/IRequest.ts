@@ -1,10 +1,9 @@
-// import { ENDPOINT } from "@/constants/endPoints";
+
 import { HTTPMETHODS } from "@/constants/httpMethods";
 
-export interface IRequest{
+export interface IRequest<T = unknown>{
     method: HTTPMETHODS,
-    endPoint: string,
-    parametersURL?: string,
-    parametersSearch?: string,
-    url: (id?: string) => string
+    body?: T,
+    cookie?: string,
+    url: string
 }
