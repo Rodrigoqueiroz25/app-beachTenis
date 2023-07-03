@@ -66,24 +66,8 @@
     font-size: 1.1rem;
 }
 
-
 .buttons{
     grid-column: 3/4;
     grid-row: 1/4;
 
-    display: grid;
-    grid-template-columns: 2.3rem 1fr;
-    grid-template-rows: 1.3fr 1.3fr 1fr 1fr;
-
-    margin-right: 0.4rem;
-}
-
-.buttons > :first-child{
-    grid-row: 2/3;
-    grid-column: 2/3;
-}
-
-.buttons > :last-child{
-    grid-row: 3/3;
-    grid-column: 2/3;
 }

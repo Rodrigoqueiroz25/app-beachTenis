@@ -1,2 +1,4 @@
 node_modules
 .unused
+src/components/Button
+src/pages

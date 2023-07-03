@@ -11,25 +11,24 @@ import { Requests } from "@/helper/Requests";
 
 export default function useSignup(){
        
-    const {state, setState} = useContext(ContextSignup);
+    const contextSignup = useContext(ContextSignup);
     
     const [isLoading, setIsLoading] = useState<Boolean>(false);
     const [isAuth, setIsAuth] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     
     const { setCookiesSession } = useCookiesSession();
-    
-    
+
     async function signup(){
         setIsLoading(true);
         let result = await request<ILoginResult, IDataSignUp>(Requests.signup({
-            email: state.email.toLowerCase(),
-            password: state.password.toLowerCase(),
-            name: state.name.toLowerCase(),
-            phoneNumber: state.phoneNumber.toLowerCase(),
-            gender: state.gender,
-            cityId: state.cityId,
-            dateBirthday: state.dateBirthday.toLowerCase().split('-').reverse().join('/'),
+            email: contextSignup.state.email.toLowerCase(),
+            password: contextSignup.state.password.toLowerCase(),
+            name: contextSignup.state.name.toLowerCase(),
+            phoneNumber: contextSignup.state.phoneNumber.toLowerCase(),
+            gender: contextSignup.state.gender,
+            cityId: contextSignup.state.cityId,
+            dateBirthday: contextSignup.state.dateBirthday.toLowerCase().split('-').reverse().join('/'),
             role: ""
         }));
         setIsLoading(false);
@@ -37,14 +36,16 @@ export default function useSignup(){
             switch (result.code) {
                 case 200:
                     if(!isError(result.data)){
-                        setCookiesSession(result.data?.accessToken as string, result.data?.name as string);
+                        if(result.data){
+                            setCookiesSession(result.data.accessToken, result.data.name, result.data.isAdmin);
+                        }
                     }
                     setIsAuth(true);
                     break;
                 case 403:
                     console.error(result.code, result.data);
                     setError("Email já cadastrado");
-                    setState({...state, password: ""});
+                    contextSignup.setState({...contextSignup.state, password: ""});
                     break;
                 default:
                     console.error(result.code, result.data);

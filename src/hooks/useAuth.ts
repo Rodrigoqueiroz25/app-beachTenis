@@ -23,7 +23,9 @@ export default function useAuth(){
             switch (result.code) {
                 case 200:
                     if(!isError(result.data)){
-                        setCookiesSession(result.data?.accessToken as string, result.data?.name as string);
+                        if(result.data){
+                            setCookiesSession(result.data.accessToken, result.data.name, result.data.isAdmin);
+                        }
                     }
                     setIsAuth(true);
                     break;

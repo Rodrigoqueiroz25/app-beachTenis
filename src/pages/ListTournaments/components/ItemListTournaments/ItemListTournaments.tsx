@@ -8,6 +8,7 @@ import image2 from '@/assets/image2.svg';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Routes } from '@/enums/routes.enum';
 import { Button } from '@/components/Button/Button';
+import { ItemListButtons } from './ItemListButtons';
 
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
 export function ItemListTournaments({ dataTournament }: Props) {
 
     const navigate = useNavigate();
-
+    
     function access(){
         navigate(`${Routes.tournamentLessParam}/${dataTournament.id}`, { state: {tournament: dataTournament}})
     }
@@ -41,10 +42,20 @@ export function ItemListTournaments({ dataTournament }: Props) {
                 <p className={styles.description}>{dataTournament.organization}</p>
                 <p className={styles.informations}>{dataTournament.description}</p>
             </div>
-            <div className={styles.buttons}>
-                <Button small onClick={access} >Acessar</Button>
-                <Button small onClick={configure}>Configurar</Button>
-            </div>
+            <ItemListButtons className={styles.buttons}>
+                { sessionStorage.getItem('isAdmin') === 'true' 
+                ? 
+                <>
+                    <Button small onClick={access} >Acessar</Button>
+                    <Button small onClick={configure}>Configurar</Button>
+                </>
+                : 
+                <>
+                    <Button small onClick={access} >Acessar</Button>
+                </>
+
+                }
+            </ItemListButtons>
             
         </div>
     );

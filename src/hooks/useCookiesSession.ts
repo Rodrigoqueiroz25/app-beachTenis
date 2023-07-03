@@ -9,7 +9,7 @@ export default function useCookiesSession(){
     const [cookies, setCookies] = useCookies();
 
 
-    function setCookiesSession(accessToken: string, nameUser: string): boolean{
+    function setCookiesSession(accessToken: string, nameUser: string, isAdmin: string): boolean{
         setCookies(nameCookieToken, accessToken, {
             path: '/',
             sameSite: 'strict',
@@ -20,6 +20,7 @@ export default function useCookiesSession(){
             sameSite: 'strict',
             maxAge: 20000
         });
+        sessionStorage.setItem('isAdmin', isAdmin);
 
         if(cookiesSessionExists()){
             return true;
