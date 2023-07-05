@@ -3,8 +3,8 @@
 export interface ICategory {
     description: string;
     tournamentId?: number;
-    numberAthletes: number;
-    numberAthletesRegistration: number;
+    numberAthletes: string;
+    numberAthletesRegistration: string;
 }
 
 export interface ICategoryRegistered extends ICategory {

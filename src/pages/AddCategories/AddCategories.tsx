@@ -64,8 +64,8 @@ export function AddCategories() {
 
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
-        numberAthletes: yup.number().required().typeError("digite um valor"),
-        numberAthletesRegistration: yup.number().required().typeError("selecione uma opção")
+        numberAthletes: yup.string().required().typeError("digite um valor"),
+        numberAthletesRegistration: yup.string().required().typeError("selecione uma opção")
     });
 
     const { register, handleSubmit, watch, formState: { errors }, reset, setValue } = useForm({

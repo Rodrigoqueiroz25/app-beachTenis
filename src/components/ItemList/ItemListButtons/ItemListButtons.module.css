@@ -1,0 +1,17 @@
+
+.wrapper{
+    /* display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.3fr 1.3fr 1fr 1fr; */
+
+    height: 100%;
+}
+
+.elements{
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+
+    gap: 1.5rem;
+}
+

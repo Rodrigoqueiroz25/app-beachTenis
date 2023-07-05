@@ -1,0 +1,15 @@
+
+
+.text {
+    color: #3a3a3a;
+}
+
+.normal{
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.small{
+    font-size: 1.1rem;
+    font-weight: 400;
+}

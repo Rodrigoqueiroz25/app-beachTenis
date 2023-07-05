@@ -26,5 +26,5 @@
       }
   },
   "exclude": ["node_modules", "**/node_modules/*"],
-  "include": ["src", "src/components/.tsx", ".unused/useAuth3.ts", ".unused/useAuth.ts", ".unused/useSignup.ts", ".unused/useFetchTournament.ts", ".unused/useFetchTournament2.ts", ".unused/useGetFetch.ts", ".unused/useFetchCategory.ts"]
+  "include": ["src", "src/components/.tsx", ".unused/useAuth3.ts", ".unused/useAuth.ts", ".unused/useSignup.ts", ".unused/useFetchTournament.ts", ".unused/useFetchTournament2.ts", ".unused/useGetFetch.ts", ".unused/useFetchCategory.ts", ".unused/ItemListCategory"]
 }

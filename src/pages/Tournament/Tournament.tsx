@@ -8,7 +8,6 @@ import logo from '@/assets/logoTour.jpg';
 import { FooterHome } from '@/components/FooterHome/FooterHome';
 import leftArrow from '@/assets/set_left.svg';
 import addImg from '@/assets/add.svg';
-import { ItemListCategories } from './components/ItemListTournaments/ItemListCategories';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 
 import useFetchData from '@/hooks/useFetchData';
@@ -19,9 +18,11 @@ import { Routes } from '@/enums/routes.enum';
 import { Requests } from '@/helper/Requests';
 import useCookiesSession from '@/hooks/useCookiesSession';
 import { ButtonSwitchScreen } from '@/components/ButtonSwitchScreen/ButtonSwitchScreen';
+import { Button } from '@/components/Button/Button';
+import { ItemList } from '@/components/ItemList';
 
 
-export function Tournament(){
+export function Tournament() {
 
     const { fetchData, data, error, isLoading, ok } = useFetchData<ICategoryRegistered[]>();
 
@@ -35,77 +36,83 @@ export function Tournament(){
 
 
     useEffect(() => {
-        if(!location.state?.tournament){
+        if (!location.state?.tournament) {
             navigate(Routes.listTournaments);
         }
-        else{
+        else {
             setDataTournament(location.state.tournament);
         }
     }, [location.state.tournament, navigate]);
 
     useEffect(() => {
-        if(params.id){
+        if (params.id) {
             fetchData(Requests.getCategories(parseInt(params.id), getCookieToken()))
         }
     }, [error]);
 
 
-    function handleClickCategories(){
+    function handleClickCategories() {
         setPresentation(categories);
     }
 
-    function handleClickInformations(){
+    function handleClickInformations() {
         setPresentation(informations);
     }
 
-
-    return (    
+    return (
         <div className={styles.container}>
-            
+
             <header className={styles.header}>
                 <div className={styles.title}>
-                    <ButtonSwitchScreen endPoint={Routes.listTournaments} icon={leftArrow}/>
+                    <ButtonSwitchScreen endPoint={Routes.listTournaments} icon={leftArrow} />
                     <p>Torneio</p>
-                    <ButtonSwitchScreen endPoint={Routes.addCategories} icon={addImg}/>
+                    <ButtonSwitchScreen endPoint={Routes.addCategories} icon={addImg} />
                 </div>
                 <div className={styles.tournament}>
-                    <img src={logo} alt=""/>
+                    <img src={logo} alt="" />
                     <p>{location.state?.tournament.description}</p>
                 </div>
                 <div className={styles.buttons}>
-                    <button 
+                    <button
                         value={categories}
                         onClick={handleClickCategories}
                         className={presentation === categories ? `${styles.focus}` : ""}
                     >Categorias</button>
-                    
-                    <button 
+
+                    <button
                         value={informations}
                         onClick={handleClickInformations}
                         className={presentation === informations ? `${styles.focus}` : ""}
                     >Informações</button>
                 </div>
             </header>
-            
-            { presentation === "Categorias" &&
+
+            {presentation === "Categorias" &&
 
                 <div className={styles.list}>
                     {data?.map((category: ICategoryRegistered, key: number) => (
-                        <ItemListCategories dataCategory={category} key={key}/>
+                        <ItemList.Wrapper key={key}>
+                            <div className={styles.itemList}>
+                                <ItemList.Text text={category.description} />
+                                <ItemList.Photos />
+                                <ItemList.Text small text={category.numberAthletes} />
+                                <Button small>Jogos</Button>
+                            </div>
+                        </ItemList.Wrapper>
                     ))}
                 </div>
 
             }
 
-            { presentation === "Informações" &&
+            {presentation === "Informações" &&
 
                 <Informations infoTournament={dataTournament} />
 
             }
 
-            <FooterHome/>
-            
+            <FooterHome />
+
         </div>
-        
+
     );
 }

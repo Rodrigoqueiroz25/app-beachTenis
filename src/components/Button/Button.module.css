@@ -6,7 +6,6 @@
     border-radius: 1.7rem;
     border: none;
     transition: background-color 0.25s;
-    width: 80%;
     height: 100%;
 }
 
@@ -18,6 +17,7 @@
 
   .small{
     height: 2.534rem;
+    width: 7rem;
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0;
