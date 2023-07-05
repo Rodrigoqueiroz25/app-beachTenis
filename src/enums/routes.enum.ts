@@ -14,6 +14,7 @@ export enum Routes {
     tournament = '/tournament/:id',
     tournamentLessParam = '/tournament',
     home = '/home',
+    profile = '/profile',
     null = '*',
     root = '/'
 }
