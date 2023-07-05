@@ -15,6 +15,7 @@ import { ItemList } from '@/components/ItemList';
 import { PostLogged } from '@/components/PostLogged';
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import { ButtonPlus } from '@/components/ButtonPlus/ButtonPlus';
+import { isAdmin } from '@/helper/isAdmin';
 
 
 
@@ -37,7 +38,9 @@ export function ListTournaments() {
             <PostLogged.Header>
                 <ButtonBack onClick={() => navigate(Routes.home)}/>
                 <p>Torneios</p>
-                <ButtonPlus onClick={() => navigate(Routes.addTournament)}/>
+                { isAdmin() &&
+                    <ButtonPlus onClick={() => navigate(Routes.addTournament)}/>
+                }
             </PostLogged.Header>
             <main className={styles.main}>
                 {data?.map((d: ITournamentRegistered, key: number) => (
@@ -48,7 +51,7 @@ export function ListTournaments() {
                             <ItemList.Photos />
                             <ItemList.Text text={d.organization} />
                             <ItemList.Text small text={d.description} />
-                            {sessionStorage.getItem('isAdmin') === 'true'
+                            { isAdmin()
                                 ?
                                 <>
                                     <Button small onClick={() => access(d)} >Acessar</Button>

@@ -23,6 +23,7 @@ import { ItemList } from '@/components/ItemList';
 import { PostLogged } from '@/components/PostLogged';
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import { ButtonPlus } from '@/components/ButtonPlus/ButtonPlus';
+import { isAdmin } from '@/helper/isAdmin';
 
 
 export function Tournament() {
@@ -69,7 +70,9 @@ export function Tournament() {
                 <PostLogged.Header>
                     <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                     <p>Torneio</p>
-                    <ButtonPlus onClick={() => navigate(Routes.addCategories)} />
+                    { isAdmin() &&
+                        <ButtonPlus onClick={() => navigate(Routes.addCategories)} />
+                    }
                 </PostLogged.Header>
                 <div className={styles.tournament}>
                     <img src={logo} alt="" />
