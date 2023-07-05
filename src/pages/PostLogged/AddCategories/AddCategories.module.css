@@ -6,32 +6,15 @@
     
 }
 
-.title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 7.3rem;
-    
-}
-
-.title p{
-    font-size: 2.4rem;
-    color: black;
-    font-weight: 600;
-
-}
-
 .form{
-    margin: 1.1rem 2.1rem;
-    margin-bottom: 4.5rem;
+    margin: 2rem 1rem 4rem 1rem;
 }
 
 .spaceButton{
     display: block;
-    margin-top: 6.7rem;
+    margin-top: 4.7rem;
 }
 
 .listCategories{
-    margin: 1.1rem 2.1rem;
-
+    margin: 2rem 1rem 4rem 1rem;
 }

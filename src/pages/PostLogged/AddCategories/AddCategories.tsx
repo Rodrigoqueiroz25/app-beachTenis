@@ -31,7 +31,6 @@ export function AddCategories() {
 
     const [list, setList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const [listCategories, setListCategories] = useState<ICategoryRegistered[]>([]);
-
     const { data, error, fetchData, isLoading, ok } = useFetchData<ICategoryRegistered[]>();
 
     const location = useLocation();
@@ -65,8 +64,8 @@ export function AddCategories() {
 
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
-        numberAthletes: yup.string().required().typeError("digite um valor"),
-        numberAthletesRegistration: yup.string().required().typeError("selecione uma opção")
+        numberAthletes: yup.string().required("digite um valor"),
+        numberAthletesRegistration: yup.string().required("selecione uma opção")
     });
 
     const { register, handleSubmit, watch, formState: { errors }, reset, setValue } = useForm({
@@ -115,9 +114,7 @@ export function AddCategories() {
             </PostLogged.Header>
 
             <main>
-
                 <form className={styles.form} onSubmit={handleSubmit(submit)}>
-
                     <TextFieldSmall
                         label='Descrição'
                         name='description'
@@ -145,7 +142,7 @@ export function AddCategories() {
                         errors={errors}
                     />
                     <div className={styles.spaceButton}></div>
-                    <Button>Adicionar</Button>
+                    <Button>{editMode ? "Alterar" : "Adicionar"}</Button>
                 </form>
 
                 {error &&
