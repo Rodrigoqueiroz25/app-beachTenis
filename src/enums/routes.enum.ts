@@ -7,6 +7,8 @@ export enum Routes {
     forgotPasswd = '/forgot-password',
     createPasswd = '/create-password',
     addTournament = '/add-tournament',
+    addTournamentSponsor = '/add-tournament-sponsor/:tournamentId',
+    addTournamentSponsorLessParam = '/add-tournament-sponsor',
     addCategories = '/add-categories',
     listTournaments = '/list-tournaments',
     tournament = '/tournament/:id',

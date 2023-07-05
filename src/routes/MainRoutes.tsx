@@ -17,6 +17,7 @@ export function MainRoutes(){
         { path: Routes.forgotPasswd, element: <Pages.RecoveryPasswd.ForgotPasswd/>},
         { path: Routes.createPasswd, element: <Pages.RecoveryPasswd.CreatePasswd/> },
         { path: Routes.addTournament, element: <PrivateRoute><Pages.AddTournament/></PrivateRoute> },
+        { path: Routes.addTournamentSponsor, element: <PrivateRoute><Pages.AddTournamentSponsor/></PrivateRoute> },
         { path: Routes.addCategories, element: <PrivateRoute><Pages.AddCategories/></PrivateRoute> },
         { path: Routes.listTournaments, element: <PrivateRoute><Pages.ListTournaments/></PrivateRoute> },
         { path: Routes.tournament, element: <PrivateRoute><Pages.Tournament/></PrivateRoute> },

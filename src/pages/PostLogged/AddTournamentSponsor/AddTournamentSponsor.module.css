@@ -1,0 +1,54 @@
+
+.container {
+    font-weight: 500;
+    font-style: normal;
+    
+    
+}
+
+
+.form{
+    margin: 1.4rem;
+    /* display: grid;
+    grid-template-rows: 0.2fr 0.8fr 0.5fr max-content; */
+    margin-bottom: 1.6rem;
+}
+
+.form > :nth-child(1){
+    grid-row: 1/2;
+}
+
+.form > :nth-child(2){
+    grid-row: 2/3;
+}
+
+.form > :nth-child(3){
+    grid-row: 4/5;
+
+}
+
+
+
+.info{
+    padding: 1rem;
+    margin: 0.5rem 0;
+    height: 10.7rem;
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 2.6rem;
+
+}
+
+.info:placeholder-shown {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 150%;
+    color: #3F3D56;
+}
+
+.button{
+    position: fixed;
+    width: 95%;
+    bottom: 9rem;
+    left: 0.7rem;
+}

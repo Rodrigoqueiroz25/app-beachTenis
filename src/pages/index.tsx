@@ -8,6 +8,7 @@ import { ListTournaments } from "./PostLogged/ListTournaments/ListTournaments";
 import { Tournament } from "./PostLogged/Tournament/Tournament";
 import { AddCategories } from "./PostLogged/AddCategories/AddCategories";
 import { AddTournament } from "./PostLogged/AddTournament/AddTournament";
+import { AddTournamentSponsor } from "./PostLogged/AddTournamentSponsor/AddTournamentSponsor";
 
 export const Pages = {
     Login: Login,
@@ -18,6 +19,7 @@ export const Pages = {
     ListTournaments: ListTournaments,
     Tournament: Tournament,
     AddCategories: AddCategories,
-    AddTournament: AddTournament
+    AddTournament: AddTournament,
+    AddTournamentSponsor: AddTournamentSponsor
 
 }
