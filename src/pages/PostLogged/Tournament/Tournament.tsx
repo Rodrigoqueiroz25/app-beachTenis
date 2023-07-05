@@ -71,7 +71,7 @@ export function Tournament() {
                     <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                     <p>Torneio</p>
                     { isAdmin() &&
-                        <ButtonPlus onClick={() => navigate(Routes.addCategories)} />
+                        <ButtonPlus onClick={() => navigate(Routes.addCategories, {state: {tournamentId: params.id}})} />
                     }
                 </PostLogged.Header>
                 <div className={styles.tournament}>

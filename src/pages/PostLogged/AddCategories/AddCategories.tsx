@@ -7,7 +7,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
 import styles from './AddCategories.module.css';
-import leftArrow from '@/assets/set_left.svg';
 
 import { Category } from './components/Categories/Category';
 
@@ -63,6 +62,7 @@ export function AddCategories() {
     }, [data]);
 
 
+
     const schema = yup.object().shape({
         description: yup.string().required("Digite uma descrição"),
         numberAthletes: yup.string().required().typeError("digite um valor"),
@@ -112,8 +112,8 @@ export function AddCategories() {
         <div className={styles.container}>
 
             <PostLogged.Header>
-                <ButtonBack onClick={() => navigate(Routes.home)}/>
-                <p>Adiconar Categorias</p>
+                <ButtonBack onClick={() => navigate(Routes.listTournaments)}/>
+                <p>Adicionar Categorias</p>
             </PostLogged.Header>
 
             <main>
