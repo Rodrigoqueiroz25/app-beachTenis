@@ -1,14 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import  *  as yup from  "yup";
-import { yupResolver } from  "@hookform/resolvers/yup";
+import *  as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from 'react';
-import { useForm } from  "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import styles from './AddTournament.module.css';
-import photo from '@/assets/photo.svg';
-import image from '@/assets/image.svg';
 import { FooterHome } from '@/components/FooterHome/FooterHome';
 import { Button } from '@/components/Button/Button';
 import { TextFieldSmall } from '@/components/TextFieldSmall/TextFieldSmall';
@@ -25,12 +23,13 @@ import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import { PostLogged } from "@/components/PostLogged";
 import { ButtonBack } from "@/components/ButtonBack/ButtonBack";
+import { AddBanner } from "@/components/AddBanner/AddBanner";
 
 
 export function AddTournament() {
 
     const { fetchData, data, isLoading, ok, error } = useFetchData<ITournamentRegistered>();
-    
+
     const [sports, setSports] = useState<ISport[]>([]);
     const [cities, setCities] = useState<ICity[]>([]);
 
@@ -38,17 +37,17 @@ export function AddTournament() {
 
     const navigate = useNavigate();
 
-    useEffect(() =>{
+    useEffect(() => {
         setTimeout(async () => {
             let sports = await request<ISport[]>(Requests.getSports(getCookieToken()));
-            if(sports.ok){
+            if (sports.ok) {
                 setSports(sports.data as ISport[]);
             }
             let cities = await request<ICity[]>(Requests.getCities(getCookieToken()));
-            if(cities.ok){
+            if (cities.ok) {
                 setCities(cities.data as ICity[]);
             }
-        }, 200);   
+        }, 200);
     }, []);
 
     const schema = yup.object().shape({
@@ -60,14 +59,14 @@ export function AddTournament() {
         dtFinalTournament: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data"),
         dtStartRegistration: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data"),
         dtFinalRegistration: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data"),
-        otherInformation: yup.string()   
+        otherInformation: yup.string()
     });
 
-    const { register, handleSubmit, watch, formState: { errors } } =  useForm({
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
-    function saveDataform(data: any){
+    function saveDataform(data: any) {
         fetchData(Requests.createTournament({
             description: data.description,
             cityId: data.cityId,
@@ -81,57 +80,45 @@ export function AddTournament() {
         }, getCookieToken()));
     }
 
-    
+
     return (
         <>
-            { isLoading && 
+            {isLoading &&
                 <p>isLoading</p>
             }
 
-            { ok &&
-                <Navigate to={Routes.addCategories} state={{tournamentId: data?.id}}/>
+            {ok &&
+                <Navigate to={Routes.addCategories} state={{ tournamentId: data?.id }} />
             }
 
             <div className={styles.container}>
-                
-            <PostLogged.Header>
-                <ButtonBack onClick={() => navigate(Routes.listTournaments)}/>
-                <p>Adicione um torneio</p>
-            </PostLogged.Header>
 
+                <PostLogged.Header>
+                    <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
+                    <p>Adicione um torneio</p>
+                </PostLogged.Header>
                 <main>
-                    <div className={styles.iconWrapper}>
-                        <div className={styles.iconContainer}>
-                            <img className={styles.icon} src={image} alt="" />
-                            <img className={styles.iconPhoto} src={photo} alt="" />
-                        </div>
-                        <div className={styles.addBanner}>
-                            <p>Adicione um banner</p>
-                        </div>
-                    </div>
-
+                    <AddBanner />
                     <form className={styles.form} onSubmit={handleSubmit(saveDataform)}>
-                        
-                    
-                        <TextFieldSmall 
-                            label='Descrição' 
+                        <TextFieldSmall
+                            label='Descrição'
                             name='description'
                             type='text'
-                            placeholder='Descrição'  
+                            placeholder='Descrição'
                             register={register}
                             errors={errors}
                         />
 
-                        <TextFieldSmall 
-                            label='Organização' 
+                        <TextFieldSmall
+                            label='Organização'
                             name='organization'
                             type='text'
-                            placeholder='Organização' 
+                            placeholder='Organização'
                             register={register}
                             errors={errors}
                         />
-                        
-                        
+
+
                         <Combobox
                             label='Esporte'
                             name='sportId'
@@ -152,60 +139,60 @@ export function AddTournament() {
                             watch={watch('cityId')}
                         />
 
-                        
+
                         <div className={styles.paragraph}>
                             <p >Período de Inscrições</p>
                             <hr />
                         </div>
-                        
+
                         <div className={styles.inputDates}>
                             <div className={styles.input}>
                                 <DataFieldSmall
                                     label='Data início'
-                                    name='dtStartRegistration' 
-                                    placeholder='Data início'  
+                                    name='dtStartRegistration'
+                                    placeholder='Data início'
                                     register={register}
                                     errors={errors}
                                 />
-                            </div>      
+                            </div>
                             <div className={styles.input}>
                                 <DataFieldSmall
                                     label='Data Final'
-                                    name='dtFinalRegistration' 
-                                    placeholder='Data Final'  
+                                    name='dtFinalRegistration'
+                                    placeholder='Data Final'
                                     register={register}
                                     errors={errors}
                                 />
-                            </div>  
+                            </div>
                         </div>
 
                         <div className={styles.paragraph}>
                             <p >Período do Torneio</p>
                             <hr />
                         </div>
-                        
+
                         <div className={styles.inputDates}>
                             <div className={styles.input}>
-                            <DataFieldSmall
+                                <DataFieldSmall
                                     label='Data inicial'
-                                    name='dtStartTournament' 
-                                    placeholder='Data inicial'  
+                                    name='dtStartTournament'
+                                    placeholder='Data inicial'
                                     register={register}
                                     errors={errors}
                                 />
-                            </div>      
+                            </div>
                             <div className={styles.input}>
                                 <DataFieldSmall
                                     label='Data Final'
-                                    name='dtFinalTournament' 
-                                    placeholder='Data Final'  
+                                    name='dtFinalTournament'
+                                    placeholder='Data Final'
                                     register={register}
                                     errors={errors}
                                 />
-                            </div>  
+                            </div>
                         </div>
 
-                        <textarea className={styles.info} 
+                        <textarea className={styles.info}
                             placeholder='Outras informações'
                             {...register("otherInformation")}
                         ></textarea>
