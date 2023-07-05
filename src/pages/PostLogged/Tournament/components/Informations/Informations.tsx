@@ -7,7 +7,7 @@ type Props = {
 }
 
 export function Informations({infoTournament}: Props) {
-
+    console.log(infoTournament);
     return (
         <div className={styles.informations}>
             <h3>Informações do torneio</h3>
@@ -15,13 +15,13 @@ export function Informations({infoTournament}: Props) {
             <hr />
             <h3>Cronograma</h3>
             <h4>Início das inscrições</h4>
-            <p>{infoTournament?.dtStartRegistration}</p>
+            <p>{infoTournament?.dtStartRegistrationFormatted}</p>
             <h4>Fim das inscrições</h4>
-            <p>{infoTournament?.dtFinalRegistration}</p>
+            <p>{infoTournament?.dtFinalRegistrationFormatted}</p>
             <h4>Início dos jogos</h4>
-            <p>{infoTournament?.dtStartTournament}</p>
+            <p>{infoTournament?.dtStartTournamentFormatted}</p>
             <h4>Fim dos jogos</h4>
-            <p>{infoTournament?.dtFinalTournament}</p>
+            <p>{infoTournament?.dtFinalTournamentFormatted}</p>
             <hr />
             <h3>Patrocínio</h3>
         </div>

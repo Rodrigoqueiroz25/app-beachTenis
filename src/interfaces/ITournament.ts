@@ -21,4 +21,9 @@ export interface ITournamentRegistered extends ITournament {
     sport: ISport
     city: ICity
     deleted: boolean
+    dtStartTournamentFormatted: string
+    dtFinalTournamentFormatted: string
+    dtStartRegistrationFormatted: string
+    dtFinalRegistrationFormatted: string
+
 }
