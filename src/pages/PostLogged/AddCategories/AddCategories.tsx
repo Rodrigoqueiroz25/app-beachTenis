@@ -74,7 +74,6 @@ export function AddCategories() {
     });
 
     async function submit(dataForm: any) {
-        console.log(dataForm);
         if (editMode) {
             fetchData(Requests.updateCategory({ ...dataForm, tournamentId: location.state.tournamentId }, parseInt(idEdited), getCookieToken()));
             setEditMode(false);
@@ -98,7 +97,6 @@ export function AddCategories() {
     }
 
     function editCategoryState(id: string) {
-        console.log(id);
         const category = listCategories.find((c) => c.id === parseInt(id)) as ICategoryRegistered;
         setValue("description", category.description);
         setValue("numberAthletes", category.numberAthletes);

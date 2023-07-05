@@ -7,7 +7,7 @@ type Props = {
 }
 
 export function Informations({infoTournament}: Props) {
-    console.log(infoTournament);
+    
     return (
         <div className={styles.informations}>
             <h3>Informações do torneio</h3>
