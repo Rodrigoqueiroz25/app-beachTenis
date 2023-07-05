@@ -11,21 +11,13 @@
 .header {
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     margin-left: 1rem;
     margin-right: 1rem;
 
     gap: 1rem;
 }
 
-.title{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 2.4rem;
-    color: black;
-    font-weight: 600;
-}
 
 .tournament{
     display: flex;

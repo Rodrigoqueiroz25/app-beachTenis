@@ -1,0 +1,27 @@
+
+.header {
+    display: grid;
+    grid-template-columns: 0.1fr 1fr 0.1fr;
+    
+    height: 4rem;
+    margin: 1rem 1.2rem 1rem 1.2rem;
+
+    justify-items: center;
+    align-items: center;
+}
+
+.header > :nth-child(1){
+    justify-self: flex-start;
+}
+
+.header > :nth-child(3){
+    justify-self: flex-end;
+}
+
+
+.header > :nth-child(2) {
+    font-size: 2.4rem;
+    color: black;
+    font-weight: 600;
+
+}

@@ -17,9 +17,12 @@ import { categories, informations } from '@/constants/constants';
 import { Routes } from '@/enums/routes.enum';
 import { Requests } from '@/helper/Requests';
 import useCookiesSession from '@/hooks/useCookiesSession';
-import { ButtonSwitchScreen } from '@/components/ButtonSwitchScreen/ButtonSwitchScreen';
+
 import { Button } from '@/components/Button/Button';
 import { ItemList } from '@/components/ItemList';
+import { PostLogged } from '@/components/PostLogged';
+import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
+import { ButtonPlus } from '@/components/ButtonPlus/ButtonPlus';
 
 
 export function Tournament() {
@@ -63,11 +66,11 @@ export function Tournament() {
         <div className={styles.container}>
 
             <header className={styles.header}>
-                <div className={styles.title}>
-                    <ButtonSwitchScreen endPoint={Routes.listTournaments} icon={leftArrow} />
+                <PostLogged.Header>
+                    <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                     <p>Torneio</p>
-                    <ButtonSwitchScreen endPoint={Routes.addCategories} icon={addImg} />
-                </div>
+                    <ButtonPlus onClick={() => navigate(Routes.addCategories)} />
+                </PostLogged.Header>
                 <div className={styles.tournament}>
                     <img src={logo} alt="" />
                     <p>{location.state?.tournament.description}</p>

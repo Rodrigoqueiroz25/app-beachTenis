@@ -21,7 +21,8 @@ import { ICategoryRegistered } from '@/interfaces/ICategory';
 import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import useCookiesSession from "@/hooks/useCookiesSession";
-import { ButtonSwitchScreen } from "@/components/ButtonSwitchScreen/ButtonSwitchScreen";
+import { PostLogged } from "@/components/PostLogged";
+import { ButtonBack } from "@/components/ButtonBack/ButtonBack";
 
 
 export function AddCategories() {
@@ -110,10 +111,10 @@ export function AddCategories() {
     return (
         <div className={styles.container}>
 
-            <header className={styles.title}>
-                <ButtonSwitchScreen endPoint={Routes.listTournaments} icon={leftArrow}/>
-                <p>Adicionar Categorias</p>
-            </header>
+            <PostLogged.Header>
+                <ButtonBack onClick={() => navigate(Routes.home)}/>
+                <p>Adiconar Categorias</p>
+            </PostLogged.Header>
 
             <main>
 

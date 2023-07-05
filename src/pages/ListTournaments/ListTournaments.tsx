@@ -1,20 +1,20 @@
 
-import { MouseEventHandler, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import styles from './ListTournaments.module.css';
 import { FooterHome } from '@/components/FooterHome/FooterHome';
-import leftArrow from '@/assets/set_left.svg';
-import addImg from '@/assets/add.svg';
 import useFetchData from '@/hooks/useFetchData';
 import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Routes } from '@/enums/routes.enum';
 import { Requests } from '@/helper/Requests';
 import useCookiesSession from '@/hooks/useCookiesSession';
-import { ButtonSwitchScreen } from '@/components/ButtonSwitchScreen/ButtonSwitchScreen';
 import logoTour from '@/assets/logoTour.jpg';
 import { Button } from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { ItemList } from '@/components/ItemList';
+import { PostLogged } from '@/components/PostLogged';
+import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
+import { ButtonPlus } from '@/components/ButtonPlus/ButtonPlus';
 
 
 
@@ -34,15 +34,12 @@ export function ListTournaments() {
 
     return (
         <div className={styles.container}>
-
-            <header className={styles.title}>
-                <ButtonSwitchScreen endPoint={Routes.home} icon={leftArrow} />
+            <PostLogged.Header>
+                <ButtonBack onClick={() => navigate(Routes.home)}/>
                 <p>Torneios</p>
-                <ButtonSwitchScreen endPoint={Routes.addTournament} icon={addImg} />
-            </header>
-
+                <ButtonPlus onClick={() => navigate(Routes.addTournament)}/>
+            </PostLogged.Header>
             <main className={styles.main}>
-
                 {data?.map((d: ITournamentRegistered, key: number) => (
                     <ItemList.Wrapper key={key}>
                         <div className={styles.itemList}>
