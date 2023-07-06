@@ -1,0 +1,111 @@
+
+.container {
+
+    font-weight: 500;
+    font-style: normal;
+    
+}
+
+
+.form{
+    margin: 1.1rem 2.1rem;
+    margin-bottom: 9.6rem;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.paragraph{
+    margin-top: 2rem;
+    margin-bottom: 1.4rem;
+}
+
+.paragraph p{
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+    /* color: #9b9b9b; */
+
+}
+
+.inputDates{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.input {
+    width: 45%;
+
+}
+
+.info{
+    padding: 1rem;
+    margin: 0.5rem 0;
+    height: 10.7rem;
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 2.6rem;
+
+}
+
+.info:placeholder-shown {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 150%;
+    color: #3F3D56;
+  }
+
+.gender{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 3rem;
+}
+
+.gender p{
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.radioButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1.4rem;
+}
+
+.radioButton input{
+    border: 0.1rem solid black;
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.radioButton label{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #3f3d56;
+}
+
+.photo{
+    width: 11rem;
+    height: 11rem;
+    justify-self: center;
+    align-self: center;
+
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.photo::after{
+    content: url('../../../assets/photo.svg');
+    position: absolute;
+    bottom: 1.4rem;
+    right: 2rem;
+}

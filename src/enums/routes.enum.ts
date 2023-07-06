@@ -1,7 +1,7 @@
 
 export enum Routes {
     login = '/login',
-    signup = 'signup',
+    signup = '/signup',
     createUser = '/signup/create-user',
     createProfile = '/signup/create-profile',
     forgotPasswd = '/forgot-password',
@@ -14,7 +14,7 @@ export enum Routes {
     tournament = '/tournament/:id',
     tournamentLessParam = '/tournament',
     home = '/home',
-    profile = '/profile',
+    editProfile = '/profile',
     null = '*',
     root = '/'
 }

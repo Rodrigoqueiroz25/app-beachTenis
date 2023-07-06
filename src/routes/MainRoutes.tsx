@@ -22,6 +22,7 @@ export function MainRoutes(){
         { path: Routes.listTournaments, element: <PrivateRoute><Pages.ListTournaments/></PrivateRoute> },
         { path: Routes.tournament, element: <PrivateRoute><Pages.Tournament/></PrivateRoute> },
         { path: Routes.home, element: <PrivateRoute><Pages.Home/></PrivateRoute> },
+        { path: Routes.editProfile, element: <PrivateRoute><Pages.Profile/></PrivateRoute> },
         { path: Routes.null, element: <h1>sds</h1> },
     ]);
 

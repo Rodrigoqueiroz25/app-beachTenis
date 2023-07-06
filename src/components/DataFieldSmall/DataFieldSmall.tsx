@@ -9,9 +9,10 @@ type Props = {
     register: any;
     name: string;
     errors: any;
+    errors2?: any;
 }
 
-export function DataFieldSmall({placeholder, label, register, name, errors}: Props) {
+export function DataFieldSmall({placeholder, label, register, name, errors, errors2}: Props) {
 
     const [type, setType] = useState('text');
 
@@ -29,18 +30,21 @@ export function DataFieldSmall({placeholder, label, register, name, errors}: Pro
         <div className={styles.dataFieldSmall}>
             <div className={styles.inputWrapper}>
                 <input 
-                    className={errors[name]?.message ? `${styles['input']} ${styles['invalid']}` : styles['input']} 
+                    className={errors[name]?.message || errors2 ? `${styles['input']} ${styles['invalid']}` : styles['input']} 
                     type={type} 
                     placeholder={placeholder}
-                    {...register(name)}
+                    
                     onFocus={focus}
                     onBlur={blur}
+                    // onChange={func}
+                    {...register(name)}
                 />
                 <p className={styles.error}>{errors[name]?.message}</p>
+                <p className={styles.error}>{errors2 ? errors2 : ""}</p>
                 <label className={styles.label} htmlFor={name}>
                         {/* {errors[name]?.message ? errors[name]?.message : label} */}
                         {label}
-                    </label>
+                </label>
             </div>
         </div>
     );

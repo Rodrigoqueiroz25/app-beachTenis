@@ -9,6 +9,7 @@ import { Tournament } from "./PostLogged/Tournament/Tournament";
 import { AddCategories } from "./PostLogged/AddCategories/AddCategories";
 import { AddTournament } from "./PostLogged/AddTournament/AddTournament";
 import { AddTournamentSponsor } from "./PostLogged/AddTournamentSponsor/AddTournamentSponsor";
+import { EditProfile } from "./PostLogged/EditProfile/EditProfile";
 
 export const Pages = {
     Login: Login,
@@ -16,6 +17,7 @@ export const Pages = {
     RecoveryPasswd: {ForgotPasswd, CreatePasswd},
 
     Home: Home,
+    Profile: EditProfile,
     ListTournaments: ListTournaments,
     Tournament: Tournament,
     AddCategories: AddCategories,

@@ -5,6 +5,8 @@ import { IDataSignUp } from "@/interfaces/IDataSignUp";
 import { IRequest } from "@/interfaces/IRequest"
 import { IFormAddTournament } from "@/interfaces/ITournament";
 import { ITournamentSponsor } from "@/interfaces/ITournamentSponsor";
+import { IUserAccount } from "@/interfaces/IUserAccount";
+import { IUserAccountUpdate } from "@/interfaces/IUserAccountUpdate";
 
 // export enum Request {
 //     login = 'login',
@@ -49,12 +51,20 @@ export class Requests {
         }
     }
 
-    public static updateUser(data: IDataSignUp, param: number, cookie: string): IRequest<IDataSignUp>{
+    public static updateUser(data: IUserAccountUpdate, param: number, cookie: string): IRequest<IUserAccountUpdate>{
         return {
             method: HTTPMETHODS.PUT,
             cookie: cookie,
             body: data,
             url: `/account/${param}`
+        }
+    }
+
+    public static getUserByToken(cookie: string): IRequest{
+        return {
+            method: HTTPMETHODS.GET,
+            cookie: cookie,
+            url: `/account/loadByToken`
         }
     }
 

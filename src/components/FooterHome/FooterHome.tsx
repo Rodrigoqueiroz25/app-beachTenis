@@ -27,7 +27,7 @@ export function FooterHome() {
                     <img src={imgWallet} alt="" />
                     <p>Pagamentos</p>
                 </div>
-                <div className={styles.option} onClick={() => navigate(Routes.profile)}>
+                <div className={styles.option} onClick={() => navigate(Routes.editProfile)}>
                     <img src={imgProfile} alt="" />
                     <p>Perfil</p>
                 </div>
