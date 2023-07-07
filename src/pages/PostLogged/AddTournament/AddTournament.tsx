@@ -9,9 +9,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import styles from './AddTournament.module.css';
 import { FooterHome } from '@/components/FooterHome/FooterHome';
 import { Button } from '@/components/Button/Button';
-import { TextFieldSmall } from '@/components/TextFieldSmall/TextFieldSmall';
 import { Combobox } from '@/components/Combobox/Combobox';
-import { DataFieldSmall } from '@/components/DataFieldSmall/DataFieldSmall';
 import { convertData } from '@/helper/convertData';
 import useFetchData from '@/hooks/useFetchData';
 import request from '@/helper/request';
@@ -24,6 +22,7 @@ import { Requests } from "@/helper/Requests";
 import { PostLogged } from "@/components/PostLogged";
 import { ButtonBack } from "@/components/ButtonBack/ButtonBack";
 import { AddBanner } from "@/components/AddBanner/AddBanner";
+import { InputForm } from "@/components/InputForm/InputForm";
 
 
 export function AddTournament() {
@@ -55,10 +54,19 @@ export function AddTournament() {
         organization: yup.string().required("Digite algo"),
         cityId: yup.string().required("selecione uma opção"),
         sportId: yup.string().required("selecione uma opção"),
-        dtStartTournament: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data"),
-        dtFinalTournament: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data"),
         dtStartRegistration: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data"),
-        dtFinalRegistration: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data"),
+        dtFinalRegistration: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data")
+            .test("dateTest", "data final de registro deve ser posterior a inicial", function(value){
+                return this.parent.dtStartRegistration < (value as Date);
+            }),
+        dtStartTournament: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data")
+            .test("dateTest", "data deve ser posterior ao periodo de inscrição.", function(value){
+                return this.parent.dtFinalRegistration < (value as Date);
+            }),
+        dtFinalTournament: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data")
+            .test("dateTest", "data deve ser posterior a data inicial do torneio", function(value){
+                return this.parent.dtStartTournament < (value as Date);
+            }),
         otherInformation: yup.string()
     });
 
@@ -100,22 +108,22 @@ export function AddTournament() {
                 <main>
                     <AddBanner />
                     <form className={styles.form} onSubmit={handleSubmit(saveDataform)}>
-                        <TextFieldSmall
+                        <InputForm
                             label='Descrição'
                             name='description'
                             type='text'
                             placeholder='Descrição'
                             register={register}
-                            errors={errors}
+                            msgError={errors.description?.message}
                         />
 
-                        <TextFieldSmall
+                        <InputForm
                             label='Organização'
                             name='organization'
                             type='text'
                             placeholder='Organização'
                             register={register}
-                            errors={errors}
+                            msgError={errors.organization?.message}
                         />
 
 
@@ -147,21 +155,23 @@ export function AddTournament() {
 
                         <div className={styles.inputDates}>
                             <div className={styles.input}>
-                                <DataFieldSmall
+                                <InputForm
                                     label='Data início'
                                     name='dtStartRegistration'
                                     placeholder='Data início'
+                                    type="date"
                                     register={register}
-                                    errors={errors}
+                                    msgError={errors.dtStartRegistration?.message}
                                 />
                             </div>
                             <div className={styles.input}>
-                                <DataFieldSmall
+                                <InputForm
                                     label='Data Final'
                                     name='dtFinalRegistration'
                                     placeholder='Data Final'
+                                    type="date"
                                     register={register}
-                                    errors={errors}
+                                    msgError={errors.dtFinalRegistration?.message}
                                 />
                             </div>
                         </div>
@@ -173,21 +183,23 @@ export function AddTournament() {
 
                         <div className={styles.inputDates}>
                             <div className={styles.input}>
-                                <DataFieldSmall
+                                <InputForm
                                     label='Data inicial'
                                     name='dtStartTournament'
                                     placeholder='Data inicial'
+                                    type="date"
                                     register={register}
-                                    errors={errors}
+                                    msgError={errors.dtStartTournament?.message}
                                 />
                             </div>
                             <div className={styles.input}>
-                                <DataFieldSmall
+                                <InputForm
                                     label='Data Final'
                                     name='dtFinalTournament'
                                     placeholder='Data Final'
+                                    type="date"
                                     register={register}
-                                    errors={errors}
+                                    msgError={errors.dtFinalTournament?.message}
                                 />
                             </div>
                         </div>
