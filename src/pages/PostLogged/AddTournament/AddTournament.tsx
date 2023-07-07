@@ -54,16 +54,16 @@ export function AddTournament() {
         organization: yup.string().required("Digite algo"),
         cityId: yup.string().required("selecione uma opção"),
         sportId: yup.string().required("selecione uma opção"),
-        dtStartRegistration: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data"),
-        dtFinalRegistration: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data")
+        dtStartRegistration: yup.date().nullable().typeError("digite uma data"),
+        dtFinalRegistration: yup.date().nullable().typeError("digite uma data")
             .test("dateTest", "data final de registro deve ser posterior a inicial", function(value){
                 return this.parent.dtStartRegistration < (value as Date);
             }),
-        dtStartTournament: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data")
+        dtStartTournament: yup.date().nullable().typeError("digite uma data")
             .test("dateTest", "data deve ser posterior ao periodo de inscrição.", function(value){
                 return this.parent.dtFinalRegistration < (value as Date);
             }),
-        dtFinalTournament: yup.date().nullable().min(new Date(), "data deve ser maior que a atual").typeError("digite uma data")
+        dtFinalTournament: yup.date().nullable().typeError("digite uma data")
             .test("dateTest", "data deve ser posterior a data inicial do torneio", function(value){
                 return this.parent.dtStartTournament < (value as Date);
             }),

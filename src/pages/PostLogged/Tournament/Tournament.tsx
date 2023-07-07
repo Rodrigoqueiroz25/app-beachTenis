@@ -24,6 +24,7 @@ import { PostLogged } from '@/components/PostLogged';
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
 import { ButtonPlus } from '@/components/ButtonPlus/ButtonPlus';
 import { isAdmin } from '@/helper/isAdmin';
+import { stringToDate } from '@/helper/convertData';
 
 
 export function Tournament() {
@@ -102,7 +103,13 @@ export function Tournament() {
                                 <ItemList.Text text={category.description} />
                                 <ItemList.Photos />
                                 <ItemList.Text small text={category.numberAthletes} />
-                                <Button small>Jogos</Button>
+                                { (stringToDate(dataTournament.dtStartRegistration) as Date).getTime() <= new Date().getTime() && new Date().getTime() <= (stringToDate(dataTournament.dtFinalRegistration) as Date).getTime() ?
+                                    <Button small>Inscrever</Button> : <></>    
+                                }
+
+                                { (stringToDate(dataTournament.dtFinalRegistration) as Date).getTime() <= new Date().getTime() && new Date().getTime() <= (stringToDate(dataTournament.dtFinalTournament) as Date).getTime() ?
+                                    <Button small>Jogos</Button> : <></>    
+                                }
                             </div>
                         </ItemList.Wrapper>
                     ))}
