@@ -19,3 +19,10 @@ export function stringToDate(str: string){
         return date;
     }
 }
+
+export function dateDayActual(): Date{
+    let t = new Date();
+    t.setHours(0,0,0,0);
+    t.setDate(t.getDate());
+    return t;
+}
