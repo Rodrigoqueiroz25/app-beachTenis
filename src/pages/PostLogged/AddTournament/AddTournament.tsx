@@ -91,7 +91,7 @@ export function AddTournament() {
             }
 
             {ok &&
-                <Navigate to={Routes.addCategories} state={{ tournamentId: data?.id }} />
+                <Navigate to={Routes.addCategories} state={{ tournament: data }} />
             }
 
             <PostLogged.Layout

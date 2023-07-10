@@ -19,6 +19,7 @@ import { Requests } from "@/helper/Requests";
 import useCookiesSession from "@/hooks/useCookiesSession";
 import { PostLogged } from "@/components/PostLogged";
 import { ButtonBack } from "@/components/PostLogged/ButtonBack/ButtonBack";
+import { ITournamentRegistered } from "@/interfaces/ITournament";
 
 
 export function AddCategories() {
@@ -28,6 +29,7 @@ export function AddCategories() {
 
     const [list, setList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const [listCategories, setListCategories] = useState<ICategoryRegistered[]>([]);
+    const [dataTournament, setDataTournament] = useState<ITournamentRegistered>({} as ITournamentRegistered);
     const { data, error, fetchData, isLoading, ok } = useFetchData<ICategoryRegistered[]>();
 
     const location = useLocation();
@@ -36,8 +38,9 @@ export function AddCategories() {
 
 
     useEffect(() => {
-        if (location?.state?.tournamentId) {
-            fetchData(Requests.getCategories(location.state.tournamentId, getCookieToken()))
+        if (location?.state?.tournament) {
+            fetchData(Requests.getCategories(location.state.tournament.id, getCookieToken()));
+            setDataTournament(location.state.tournament);
         }
         else {
             navigate(Routes.home);
@@ -71,11 +74,11 @@ export function AddCategories() {
 
     async function submit(dataForm: any) {
         if (editMode) {
-            fetchData(Requests.updateCategory({ ...dataForm, tournamentId: location.state.tournamentId }, parseInt(idEdited), getCookieToken()));
+            fetchData(Requests.updateCategory({ ...dataForm, tournamentId: dataTournament.id }, parseInt(idEdited), getCookieToken()));
             setEditMode(false);
         }
         else {
-            fetchData(Requests.createCategory({ ...dataForm, tournamentId: location.state.tournamentId }, getCookieToken()));
+            fetchData(Requests.createCategory({ ...dataForm, tournamentId: dataTournament.id }, getCookieToken()));
         }
         reset();
     }
@@ -107,7 +110,7 @@ export function AddCategories() {
             <PostLogged.Layout
                 header={
                     <>
-                        <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
+                        <ButtonBack onClick={() => navigate(`${Routes.tournamentLessParam}/${location.state.tournament.id}`, { state: { tournament: location.state.tournament } })} />
                         <p>Adicionar Categorias</p>
                     </>
                 }

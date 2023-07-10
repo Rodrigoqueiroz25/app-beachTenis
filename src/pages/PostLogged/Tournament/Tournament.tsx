@@ -68,7 +68,7 @@ export function Tournament() {
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                         <p>Torneio</p>
                         {isAdmin() &&
-                            <PostLogged.ButtonPlus onClick={() => navigate(Routes.addCategories, { state: { tournamentId: params.id } })} />
+                            <PostLogged.ButtonPlus onClick={() => navigate(Routes.addCategories, { state: { tournament: dataTournament } })} />
                         }
                     </>
                 }
