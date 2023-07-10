@@ -5,7 +5,6 @@ import imgBell from '@/assets/bell.svg';
 import photoHome from '@/assets/photo_home.svg';
 import imgLocation from '@/assets/location.svg'
 // import photoRanking from '@/assets/photo_ranking.svg';
-import { FooterHome } from '@/components/FooterHome/FooterHome';
 import useCookiesSession from '@/hooks/useCookiesSession';
 import { useNavigate } from 'react-router-dom';
 import { Routes } from '@/enums/routes.enum';
@@ -81,7 +80,7 @@ export function Home(){
                 
             </main>
             
-            <FooterHome/>
+            {/* <FooterHome/> */}
             
         </div>
         

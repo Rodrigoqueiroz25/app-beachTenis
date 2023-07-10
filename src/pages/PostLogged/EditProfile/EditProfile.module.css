@@ -1,15 +1,8 @@
 
-.container {
-
-    font-weight: 500;
-    font-style: normal;
-    
-}
-
-
 .form{
-    margin: 1.1rem 2.1rem;
-    margin-bottom: 9.6rem;
+    /* margin: 1.1rem 2.1rem; */
+    margin-top: 1.5rem;
+    margin-bottom: 2.6rem;
     display: flex;
     flex-direction: column;
     

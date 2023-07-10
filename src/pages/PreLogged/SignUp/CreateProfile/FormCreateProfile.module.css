@@ -3,15 +3,6 @@ p{
     color: #3f3d56;
 }
 
-.container{
-    font-weight: 500;
-    font-style: normal;
-
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-}
 
 .containerTitle{
     width: 100%;
@@ -40,23 +31,24 @@ p{
 
 
 .containerMain{
-    margin: 4.6rem 3.3rem 0rem;
-    text-align: center;
+    /* margin: 4.6rem 3.3rem 0rem; */
+    /*  text-align: center; */
 }
 
 
 .uploadPhoto{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
+    gap: 2rem;
     
     margin-bottom: 3rem;
     
 }
 
 .uploadPhoto Button{
-    width: 20rem;
+    /* width: 20rem; */
     border-radius: 3.1rem;
 }
 
@@ -119,5 +111,5 @@ p{
 /* not run in firefox */
 input[type="date"]::-webkit-calendar-picker-indicator{
     cursor: pointer;
-    background: url(@/assets/Icon_calendar.svg);    
+    background: url(/src/assets/Icon_calendar.svg);    
 }

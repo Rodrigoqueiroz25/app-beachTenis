@@ -4,20 +4,16 @@ import *  as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useForm } from "react-hook-form";
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useFetchData from '@/hooks/useFetchData';
 import useCookiesSession from '@/hooks/useCookiesSession';
 
 import styles from './AddTournamentSponsor.module.css';
 
-import { FooterHome } from '@/components/FooterHome/FooterHome';
 import { Button } from '@/components/Button/Button';
-import { TextFieldSmall } from '@/components/TextFieldSmall/TextFieldSmall';
 import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import { PostLogged } from "@/components/PostLogged";
-import { ButtonBack } from "@/components/ButtonBack/ButtonBack";
-import { AddBanner } from "@/components/AddBanner/AddBanner";
 import { ITournamentSponsorRegistered } from "@/interfaces/ITournamentSponsor";
 
 
@@ -59,7 +55,39 @@ export function AddTournamentSponsor() {
                 <Navigate to={Routes.} state={} />
             } */}
 
-            <div className={styles.container}>
+            <PostLogged.Layout
+                header={
+                    <>
+                        <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
+                        <p>Adicione um Patrocínio</p>
+                    </>
+                }
+                main={
+                    <>
+                        <PostLogged.AddBanner />
+                        <form className={styles.form} onSubmit={handleSubmit(saveDataform)}>
+                            <PostLogged.Input
+                                label='Nome'
+                                name='name'
+                                type='text'
+                                placeholder='Nome'
+                                register={register}
+                                msgError={errors.name?.message}
+                            />
+
+                            <textarea className={styles.info}
+                                placeholder='Outras informações'
+                                {...register("otherInformation")}
+                            ></textarea>
+                            <div className={styles.button}>
+                                <Button>Salvar</Button>
+                            </div>
+                        </form>
+                    </>
+                }
+            />
+
+            {/* <div className={styles.container}>
 
                 <PostLogged.Header>
                     <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
@@ -90,7 +118,7 @@ export function AddTournamentSponsor() {
 
                 <FooterHome />
 
-            </div>
+            </div> */}
         </>
     );
 }

@@ -1,17 +1,17 @@
 
-import styles from './InputForm.module.css';
+import styles from './Input.module.css';
 import { InputHTMLAttributes } from 'react';
 
-interface InputFormProps extends InputHTMLAttributes<HTMLInputElement>{
+interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
     msgError?: string
     label: string
     register: any
 }
 
-export function InputForm(props: InputFormProps) {
+export function Input(props: InputProps) {
 
     return (
-        <div className={styles.inputForm}>
+        <div className={styles.wrapper}>
             <div className={styles.inputWrapper}>
                 <input 
                     className={ props.msgError? `${styles['input']} ${styles['invalid']}` : styles['input']} 

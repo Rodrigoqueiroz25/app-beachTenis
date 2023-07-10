@@ -1,0 +1,19 @@
+
+.container{
+    display: grid;
+    grid-template-rows: 19rem 1fr 1fr;
+    max-height: 100vh;
+    align-items: end;
+}
+
+.main{
+    font-weight: 500;
+    font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: space-between;
+
+    margin: 6rem 2.5rem 0rem 2.5rem;
+}

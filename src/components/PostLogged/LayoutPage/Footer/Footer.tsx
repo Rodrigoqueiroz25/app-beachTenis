@@ -1,5 +1,5 @@
 
-import styles from './FooterHome.module.css';
+import styles from './Footer.module.css';
 import imgHome from '@/assets/home.svg'
 import imgHistory from '@/assets/history.svg'
 import imgProfile from '@/assets/profile.svg'
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Routes } from '@/enums/routes.enum';
 
 
-export function FooterHome() {
+export function Footer() {
 
     const navigate = useNavigate();
 

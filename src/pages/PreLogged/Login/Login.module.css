@@ -1,16 +1,4 @@
 
-.login{
-    font-weight: 500;
-    font-style: normal;
-
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-
-
-}
-
 
 .containerTitle{
     width: 100%;
@@ -48,8 +36,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
-    
-    margin: 0rem 3.3rem 0rem;
+    margin-top: 3rem;
     
 }
 

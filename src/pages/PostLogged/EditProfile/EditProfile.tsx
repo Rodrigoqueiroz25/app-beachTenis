@@ -8,20 +8,18 @@ import { useNavigate } from 'react-router-dom';
 
 import imgPhotoCircle from '@/assets/photo_create_profile.svg';
 import styles from './EditProfile.module.css';
-import { FooterHome } from '@/components/FooterHome/FooterHome';
 import { Button } from '@/components/Button/Button';
-import { Combobox } from '@/components/Combobox/Combobox';
+
 import useFetchData from '@/hooks/useFetchData';
 import useCookiesSession from '@/hooks/useCookiesSession';
 
 import { ICity } from '@/interfaces/ICity';
 import { Routes } from "@/enums/routes.enum";
 import { PostLogged } from "@/components/PostLogged";
-import { ButtonBack } from "@/components/ButtonBack/ButtonBack";
 import { IUserAccount } from "@/interfaces/IUserAccount";
 import { Requests } from "@/helper/Requests";
 import { parseDateString } from "@/helper/convertData";
-import { InputForm } from "@/components/InputForm/InputForm";
+
 
 export function EditProfile() {
 
@@ -35,7 +33,7 @@ export function EditProfile() {
     const [gender, setGender] = useState("");
     const [idUser, setIdUser] = useState("");
     const [errorss, setErrors] = useState("");
-    
+
     const navigate = useNavigate();
 
 
@@ -46,16 +44,16 @@ export function EditProfile() {
     useEffect(() => {
         citiesFetch.fetchData(Requests.getCities(getCookieToken()));
     }, [citiesFetch.error]);
-    
+
     useEffect(() => {
-        if(citiesFetch.data){
+        if (citiesFetch.data) {
             setCities(citiesFetch.data);
         }
     }, [citiesFetch.data]);
 
 
     useEffect(() => {
-        if(userAccountFetch.data){
+        if (userAccountFetch.data) {
             setValue('name', userAccountFetch.data.name);
             setValue('email', userAccountFetch.data.email);
             setValue('phone', userAccountFetch.data.phoneNumber);
@@ -89,7 +87,7 @@ export function EditProfile() {
 
     function saveDataform(data: any) {
         try {
-            schemaData.validateSync({birthday: data.dateBirthday});
+            schemaData.validateSync({ birthday: data.dateBirthday });
             setErrors("");
             userAccountUpdateFetch.fetchData(Requests.updateUser({
                 email: data.email,
@@ -104,14 +102,14 @@ export function EditProfile() {
         } catch (error) {
             let c = error as yup.ValidationError;
             setErrors(c.message);
-            
+
         }
     }
 
 
-    function valida(str: string){
+    function valida(str: string) {
         try {
-            schemaData.validateSync({birthday: str});
+            schemaData.validateSync({ birthday: str });
             setErrors("");
         } catch (error) {
             let c = error as yup.ValidationError;
@@ -126,98 +124,96 @@ export function EditProfile() {
                 <p>isLoading</p>
             }
 
-            <div className={styles.container}>
-
-                <PostLogged.Header>
-                    <ButtonBack onClick={() => navigate(Routes.home)} />
-                </PostLogged.Header>
-    
-                <main>
-                    <form className={styles.form} onSubmit={handleSubmit(saveDataform)}>
-                        <div className={styles.photo}>
-                            <img src={imgPhotoCircle} alt="" />
-                        </div>
-                        <InputForm
-                            label='Nome'
-                            name='name'
-                            type='text'
-                            placeholder='Nome'
-                            register={register}
-                            msgError={errors['name']?.message}
-                        />
-
-                        <InputForm
-                            label='E-mail'
-                            name='email'
-                            type='text'
-                            placeholder='E-mail'
-                            register={register}
-                            msgError={errors['email']?.message}
-                        />
-
-                        <InputForm
-                            label="Telefone"
-                            type="text"
-                            placeholder="Telefone"
-                            name="phone"
-                            register={register}
-                            msgError={errors['phone']?.message}
-                        />
-
-                        <Combobox
-                            label='Cidade'
-                            name='city'
-                            register={register}
-                            errors={errors}
-                            data={cities.map(c => c.name)}
-                            ids={cities.map(c => c.id)}
-                            watch={watch('city')}
-                        />
-
-                        <InputForm
-                            label="Data de Nascimento"
-                            type="date"
-                            placeholder="Data de Nascimento"
-                            name="dateBirthday"
-                            register={register}
-                            msgError={errors['dateBirthday']?.message ? errors['dateBirthday']?.message : errorss}
-                        />
-
-                        <div className={styles.gender}>
-                            <p>Gender</p>
-                        
-                            <div className={styles.radioButton}>
-                                <input
-                                    type="radio"
-                                    id='male'
-                                    value='M'
-                                    checked={gender === 'M'}
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
-                                    
-                                />
-                                <label htmlFor="male">Male</label>
+            <PostLogged.Layout
+                header={
+                    <>
+                        <PostLogged.ButtonBack onClick={() => navigate(Routes.home)} />
+                    </>
+                }
+                main={
+                    <>
+                        <form className={styles.form} onSubmit={handleSubmit(saveDataform)}>
+                            <div className={styles.photo}>
+                                <img src={imgPhotoCircle} alt="" />
                             </div>
-                            <div className={styles.radioButton}>
-                                <input
-                                    type="radio"
-                                    id='female'
-                                    value='F'
-                                    checked={gender === 'F'}
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
-                                />
-                                <label htmlFor="female">Female</label>
+                            <PostLogged.Input
+                                label='Nome'
+                                name='name'
+                                type='text'
+                                placeholder='Nome'
+                                register={register}
+                                msgError={errors['name']?.message}
+                            />
+
+                            <PostLogged.Input
+                                label='E-mail'
+                                name='email'
+                                type='text'
+                                placeholder='E-mail'
+                                register={register}
+                                msgError={errors['email']?.message}
+                            />
+
+                            <PostLogged.Input
+                                label="Telefone"
+                                type="text"
+                                placeholder="Telefone"
+                                name="phone"
+                                register={register}
+                                msgError={errors['phone']?.message}
+                            />
+
+                            <PostLogged.Combobox
+                                label='Cidade'
+                                name='city'
+                                register={register}
+                                errors={errors}
+                                data={cities.map(c => c.name)}
+                                ids={cities.map(c => c.id)}
+                                watch={watch('city')}
+                            />
+
+                            <PostLogged.Input
+                                label="Data de Nascimento"
+                                type="date"
+                                placeholder="Data de Nascimento"
+                                name="dateBirthday"
+                                register={register}
+                                msgError={errors['dateBirthday']?.message ? errors['dateBirthday']?.message : errorss}
+                            />
+
+                            <div className={styles.gender}>
+                                <p>Gender</p>
+
+                                <div className={styles.radioButton}>
+                                    <input
+                                        type="radio"
+                                        id='male'
+                                        value='M'
+                                        checked={gender === 'M'}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
+
+                                    />
+                                    <label htmlFor="male">Male</label>
+                                </div>
+                                <div className={styles.radioButton}>
+                                    <input
+                                        type="radio"
+                                        id='female'
+                                        value='F'
+                                        checked={gender === 'F'}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
+                                    />
+                                    <label htmlFor="female">Female</label>
+                                </div>
+
                             </div>
 
-                        </div>
-
-                        <Button>Salvar</Button>
-                    </form>
-
-                </main>
-
-                <FooterHome />
-
-            </div>
+                            <Button>Salvar</Button>
+                        </form>
+                    </>
+                }
+            />
         </>
     );
 }

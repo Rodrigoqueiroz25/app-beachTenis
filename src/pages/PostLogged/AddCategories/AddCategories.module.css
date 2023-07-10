@@ -1,13 +1,6 @@
 
-.container {
-
-    font-weight: 500;
-    font-style: normal;
-    
-}
-
 .form{
-    margin: 2rem 1rem 4rem 1rem;
+    margin: 2rem 0 4rem 0;
 }
 
 .spaceButton{
@@ -16,5 +9,5 @@
 }
 
 .listCategories{
-    margin: 2rem 1rem 4rem 1rem;
+    margin: 2rem 0 4rem 0;
 }

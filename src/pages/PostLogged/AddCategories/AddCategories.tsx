@@ -10,10 +10,7 @@ import styles from './AddCategories.module.css';
 
 import { Category } from './components/Categories/Category';
 
-import { FooterHome } from '@/components/FooterHome/FooterHome';
 import { Button } from '@/components/Button/Button';
-import { TextFieldSmall } from '@/components/TextFieldSmall/TextFieldSmall';
-import { Combobox } from '@/components/Combobox/Combobox';
 
 import useFetchData from '@/hooks/useFetchData';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
@@ -21,7 +18,7 @@ import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import useCookiesSession from "@/hooks/useCookiesSession";
 import { PostLogged } from "@/components/PostLogged";
-import { ButtonBack } from "@/components/ButtonBack/ButtonBack";
+import { ButtonBack } from "@/components/PostLogged/ButtonBack/ButtonBack";
 
 
 export function AddCategories() {
@@ -106,14 +103,70 @@ export function AddCategories() {
 
 
     return (
-        <div className={styles.container}>
+        <>
+            <PostLogged.Layout
+                header={
+                    <>
+                        <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
+                        <p>Adicionar Categorias</p>
+                    </>
+                }
+                main={
+                    <>
+                        <form className={styles.form} onSubmit={handleSubmit(submit)}>
+                            <PostLogged.Input
+                                label='Descrição'
+                                name='description'
+                                type='text'
+                                placeholder='Descrição'
+                                register={register}
+                                msgError={errors.description?.message}
+                            />
 
-            <PostLogged.Header>
-                <ButtonBack onClick={() => navigate(Routes.listTournaments)}/>
+                            <PostLogged.Combobox
+                                label='Quantidade de pessoas por inscrição'
+                                name='numberAthletesRegistration'
+                                register={register}
+                                errors={errors}
+                                data={list}
+                                watch={watch("numberAthletesRegistration")}
+                            />
+
+                            <PostLogged.Input
+                                label='Quantidade máxima de inscritos'
+                                name='numberAthletes'
+                                type='number'
+                                placeholder='Quantidade máxima de inscritos'
+                                register={register}
+                                msgError={errors.numberAthletes?.message}
+                            />
+                            <div className={styles.spaceButton}></div>
+                            <Button>{editMode ? "Alterar" : "Adicionar"}</Button>
+                        </form>
+
+                        {error &&
+                            <p>{error}</p>
+                        }
+
+                        <div className={styles.listCategories}>
+                            {listCategories.map((c: ICategoryRegistered, key: number) => (
+                                <Category
+                                    key={key}
+                                    category={c.description}
+                                    id={`${c.id}`}
+                                    edit={editCategoryState}
+                                    del={removeCategory}
+                                />
+                            ))}
+                        </div>
+                    </>
+                }
+            />
+            {/* <PostLogged.Header>
+                <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                 <p>Adicionar Categorias</p>
             </PostLogged.Header>
-
-            <main>
+            <PostLogged.Main>
                 <form className={styles.form} onSubmit={handleSubmit(submit)}>
                     <TextFieldSmall
                         label='Descrição'
@@ -161,10 +214,8 @@ export function AddCategories() {
                     ))}
                 </div>
 
-            </main>
-
-            <FooterHome />
-
-        </div>
+            </PostLogged.Main>
+            <FooterHome /> */}
+        </>
     );
 }

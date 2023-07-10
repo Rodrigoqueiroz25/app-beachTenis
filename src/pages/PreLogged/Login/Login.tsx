@@ -31,7 +31,7 @@ export function Login() {
     },[]);
 
     return (
-        <div className={styles.login}>
+        <div>
             
             { isLoading && 
                 <p>isLoading</p>

@@ -5,7 +5,6 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styles from './Tournament.module.css';
 import logo from '@/assets/logoTour.jpg';
 
-import { FooterHome } from '@/components/FooterHome/FooterHome';
 import leftArrow from '@/assets/set_left.svg';
 import addImg from '@/assets/add.svg';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
@@ -19,10 +18,7 @@ import { Requests } from '@/helper/Requests';
 import useCookiesSession from '@/hooks/useCookiesSession';
 
 import { Button } from '@/components/Button/Button';
-import { ItemList } from '@/components/ItemList';
 import { PostLogged } from '@/components/PostLogged';
-import { ButtonBack } from '@/components/ButtonBack/ButtonBack';
-import { ButtonPlus } from '@/components/ButtonPlus/ButtonPlus';
 import { isAdmin } from '@/helper/isAdmin';
 import { stringToDate } from '@/helper/convertData';
 
@@ -65,67 +61,71 @@ export function Tournament() {
     }
 
     return (
-        <div className={styles.container}>
-
-            <header className={styles.header}>
-                <PostLogged.Header>
-                    <ButtonBack onClick={() => navigate(Routes.listTournaments)} />
-                    <p>Torneio</p>
-                    { isAdmin() &&
-                        <ButtonPlus onClick={() => navigate(Routes.addCategories, {state: {tournamentId: params.id}})} />
-                    }
-                </PostLogged.Header>
-                <div className={styles.tournament}>
-                    <img src={logo} alt="" />
-                    <p>{location.state?.tournament.description}</p>
-                </div>
-                <div className={styles.buttons}>
-                    <button
-                        value={categories}
-                        onClick={handleClickCategories}
-                        className={presentation === categories ? `${styles.focus}` : ""}
-                    >Categorias</button>
-
-                    <button
-                        value={informations}
-                        onClick={handleClickInformations}
-                        className={presentation === informations ? `${styles.focus}` : ""}
-                    >Informações</button>
-                </div>
-            </header>
-
-            {presentation === "Categorias" &&
-
-                <div className={styles.list}>
-                    {data?.map((category: ICategoryRegistered, key: number) => (
-                        <ItemList.Wrapper key={key}>
-                            <div className={styles.itemList}>
-                                <ItemList.Text text={category.description} />
-                                <ItemList.Photos />
-                                <ItemList.Text small text={category.numberAthletes} />
-                                { (stringToDate(dataTournament.dtStartRegistration) as Date).getTime() <= new Date().getTime() && new Date().getTime() <= (stringToDate(dataTournament.dtFinalRegistration) as Date).getTime() ?
-                                    <Button small>Inscrever</Button> : <></>    
-                                }
-
-                                { (stringToDate(dataTournament.dtFinalRegistration) as Date).getTime() <= new Date().getTime() && new Date().getTime() <= (stringToDate(dataTournament.dtFinalTournament) as Date).getTime() ?
-                                    <Button small>Jogos</Button> : <></>    
-                                }
+        <>
+            <PostLogged.Layout
+                header={
+                    <>
+                        <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
+                        <p>Torneio</p>
+                        {isAdmin() &&
+                            <PostLogged.ButtonPlus onClick={() => navigate(Routes.addCategories, { state: { tournamentId: params.id } })} />
+                        }
+                    </>
+                }
+                main={
+                    <>
+                        <header className={styles.header}>
+                            <div className={styles.tournament}>
+                                <img src={logo} alt="" />
+                                <p>{location.state?.tournament.description}</p>
                             </div>
-                        </ItemList.Wrapper>
-                    ))}
-                </div>
+                            <div className={styles.buttons}>
+                                <button
+                                    value={categories}
+                                    onClick={handleClickCategories}
+                                    className={presentation === categories ? `${styles.focus}` : ""}
+                                >Categorias</button>
 
-            }
+                                <button
+                                    value={informations}
+                                    onClick={handleClickInformations}
+                                    className={presentation === informations ? `${styles.focus}` : ""}
+                                >Informações</button>
+                            </div>
+                        </header>
 
-            {presentation === "Informações" &&
+                        {presentation === "Categorias" &&
 
-                <Informations infoTournament={dataTournament} />
+                            <div className={styles.list}>
+                                {data?.map((category: ICategoryRegistered, key: number) => (
+                                    <PostLogged.Item.Wrapper key={key}>
+                                        <div className={styles.itemList}>
+                                            <PostLogged.Item.Text text={category.description} />
+                                            <PostLogged.Item.Photos />
+                                            <PostLogged.Item.Text small text={category.numberAthletes} />
+                                            {(stringToDate(dataTournament.dtStartRegistration) as Date).getTime() <= new Date().getTime() && new Date().getTime() <= (stringToDate(dataTournament.dtFinalRegistration) as Date).getTime() ?
+                                                <Button small>Inscrever</Button> : <></>
+                                            }
 
-            }
+                                            {(stringToDate(dataTournament.dtFinalRegistration) as Date).getTime() <= new Date().getTime() && new Date().getTime() <= (stringToDate(dataTournament.dtFinalTournament) as Date).getTime() ?
+                                                <Button small>Jogos</Button> : <></>
+                                            }
+                                        </div>
+                                    </PostLogged.Item.Wrapper>
+                                ))}
+                            </div>
 
-            <FooterHome />
+                        }
 
-        </div>
+                        {presentation === "Informações" &&
 
+                            <Informations infoTournament={dataTournament} />
+
+                        }
+                    </>
+                }
+            />
+
+        </>
     );
 }

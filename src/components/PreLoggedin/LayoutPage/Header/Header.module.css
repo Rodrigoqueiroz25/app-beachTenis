@@ -1,0 +1,33 @@
+.wrapper {
+  /* margin-top: 9.3rem; */
+  /* margin-bottom: 4rem; */
+
+}
+
+.container {
+  width: 100%;
+  height: 9.5rem;
+  position: relative;
+
+}
+
+.divBlue {
+  background-color: rgba(18, 44, 145, 0.7);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 60px 60px 0 0;
+}
+
+.divWhite {
+  background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2.5rem;
+  bottom: 0;
+  border-radius: 70px 70px 0 0;
+  height: 7.1rem;
+}
