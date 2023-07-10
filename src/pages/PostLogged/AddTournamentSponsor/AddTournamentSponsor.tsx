@@ -15,6 +15,7 @@ import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import { PostLogged } from "@/components/PostLogged";
 import { ITournamentSponsorRegistered } from "@/interfaces/ITournamentSponsor";
+import { Validations } from "@/helper/Validations";
 
 
 export function AddTournamentSponsor() {
@@ -26,14 +27,8 @@ export function AddTournamentSponsor() {
     const navigate = useNavigate();
     const params = useParams();
 
-
-    const schema = yup.object().shape({
-        name: yup.string().required("Digite um nome"),
-        otherInformation: yup.string()
-    });
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(Validations.formTournamentSponsor)
     });
 
     function saveDataform(data: any) {

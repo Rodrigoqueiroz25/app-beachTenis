@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import *  as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -20,6 +19,7 @@ import useCookiesSession from "@/hooks/useCookiesSession";
 import { PostLogged } from "@/components/PostLogged";
 import { ButtonBack } from "@/components/PostLogged/ButtonBack/ButtonBack";
 import { ITournamentRegistered } from "@/interfaces/ITournament";
+import { Validations } from "@/helper/Validations";
 
 
 export function AddCategories() {
@@ -35,6 +35,11 @@ export function AddCategories() {
     const location = useLocation();
     const navigate = useNavigate();
     const { getCookieToken } = useCookiesSession();
+
+    const { register, handleSubmit, watch, formState: { errors }, reset, setValue } = useForm({
+        resolver: yupResolver(Validations.formCategories)
+    });
+
 
 
     useEffect(() => {
@@ -61,16 +66,6 @@ export function AddCategories() {
     }, [data]);
 
 
-
-    const schema = yup.object().shape({
-        description: yup.string().required("Digite uma descrição"),
-        numberAthletes: yup.string().required("digite um valor"),
-        numberAthletesRegistration: yup.string().required("selecione uma opção")
-    });
-
-    const { register, handleSubmit, watch, formState: { errors }, reset, setValue } = useForm({
-        resolver: yupResolver(schema)
-    });
 
     async function submit(dataForm: any) {
         if (editMode) {

@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import *  as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
@@ -8,7 +7,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import styles from './AddTournament.module.css';
 import { Button } from '@/components/Button/Button';
-import { convertData, dateDayActual } from '@/helper/convertData';
+import { convertData } from '@/helper/convertData';
 import useFetchData from '@/hooks/useFetchData';
 import request from '@/helper/request';
 import useCookiesSession from '@/hooks/useCookiesSession';
@@ -18,6 +17,7 @@ import { ISport } from '@/interfaces/ISport';
 import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import { PostLogged } from "@/components/PostLogged";
+import { Validations } from "@/helper/Validations";
 
 
 export function AddTournament() {
@@ -30,6 +30,11 @@ export function AddTournament() {
     const { getCookieToken } = useCookiesSession();
 
     const navigate = useNavigate();
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+        resolver: yupResolver(Validations.formTournament)
+    });
+
 
     useEffect(() => {
         setTimeout(async () => {
@@ -44,30 +49,6 @@ export function AddTournament() {
         }, 200);
     }, []);
 
-    const schema = yup.object().shape({
-        description: yup.string().required("Digite uma descrição"),
-        organization: yup.string().required("Digite algo"),
-        cityId: yup.string().required("selecione uma opção"),
-        sportId: yup.string().required("selecione uma opção"),
-        dtStartRegistration: yup.date().min(dateDayActual(), "data deve ser igual ou posterior a atual").nullable().typeError("digite uma data"),
-        dtFinalRegistration: yup.date().nullable().min(dateDayActual(), "data deve ser igual ou posterior a atual").typeError("digite uma data")
-            .test("dateTest", "data final de registro deve ser posterior a inicial", function (value) {
-                return this.parent.dtStartRegistration < (value as Date);
-            }),
-        dtStartTournament: yup.date().nullable().min(dateDayActual(), "data deve ser igual ou posterior a atual").typeError("digite uma data")
-            .test("dateTest", "data deve ser posterior ao periodo de inscrição.", function (value) {
-                return this.parent.dtFinalRegistration < (value as Date);
-            }),
-        dtFinalTournament: yup.date().nullable().min(dateDayActual(), "data deve ser igual ou posterior a atual").typeError("digite uma data")
-            .test("dateTest", "data deve ser posterior a data inicial do torneio", function (value) {
-                return this.parent.dtStartTournament < (value as Date);
-            }),
-        otherInformation: yup.string()
-    });
-
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({
-        resolver: yupResolver(schema)
-    });
 
     function saveDataform(data: any) {
         fetchData(Requests.createTournament({

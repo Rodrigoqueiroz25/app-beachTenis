@@ -18,7 +18,7 @@ import { Routes } from "@/enums/routes.enum";
 import { PostLogged } from "@/components/PostLogged";
 import { IUserAccount } from "@/interfaces/IUserAccount";
 import { Requests } from "@/helper/Requests";
-import { parseDateString } from "@/helper/convertData";
+import { Validations } from "@/helper/Validations";
 
 
 export function EditProfile() {
@@ -35,6 +35,10 @@ export function EditProfile() {
     const [errorss, setErrors] = useState("");
 
     const navigate = useNavigate();
+
+    const { register, handleSubmit, watch, formState: { errors }, setValue, reset } = useForm({
+        resolver: yupResolver(Validations.formEditProfile)
+    });
 
 
     useEffect(() => {
@@ -64,22 +68,6 @@ export function EditProfile() {
         }
     }, [userAccountFetch.data, cities]);
 
-    const schema = yup.object().shape({
-        name: yup.string().required("campo nome não pode ser vazio"),
-        email: yup.string().email().required("campo email não pode ser vazio"),
-        phone: yup.string().min(14, "numero de telefone inválido").required("digite um número para contato"),
-        city: yup.string().required("selecione uma opção"),
-        dateBirthday: yup.string().required("digite algo"),
-    });
-
-    const schemaData = yup.object().shape({
-        birthday: yup.date().transform(parseDateString).min(new Date('1900-01-01'), "data deve ser maior").typeError("Campo não deve estar em branco")
-    });
-
-    const { register, handleSubmit, watch, formState: { errors }, setValue, reset } = useForm({
-        resolver: yupResolver(schema)
-    });
-
     useEffect(() => {
         valida(watch('dateBirthday'));
     }, [watch('dateBirthday')]);
@@ -87,7 +75,7 @@ export function EditProfile() {
 
     function saveDataform(data: any) {
         try {
-            schemaData.validateSync({ birthday: data.dateBirthday });
+            Validations.dateOfBirthFieldForm.validateSync({ birthday: data.dateBirthday });
             setErrors("");
             userAccountUpdateFetch.fetchData(Requests.updateUser({
                 email: data.email,
@@ -109,7 +97,7 @@ export function EditProfile() {
 
     function valida(str: string) {
         try {
-            schemaData.validateSync({ birthday: str });
+            Validations.dateOfBirthFieldForm.validateSync({ birthday: str });
             setErrors("");
         } catch (error) {
             let c = error as yup.ValidationError;
