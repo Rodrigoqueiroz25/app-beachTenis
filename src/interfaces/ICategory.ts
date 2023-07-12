@@ -8,7 +8,7 @@ export interface ICategory {
 }
 
 export interface ICategoryRegistered extends ICategory {
-    id: number;
+    id: string;
     deleted: boolean;
 }
 

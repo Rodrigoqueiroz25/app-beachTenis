@@ -51,7 +51,7 @@ export class Requests {
         }
     }
 
-    public static updateUser(data: IUserAccountUpdate, param: number, cookie: string): IRequest<IUserAccountUpdate>{
+    public static updateUser(data: IUserAccountUpdate, param: string, cookie: string): IRequest<IUserAccountUpdate>{
         return {
             method: HTTPMETHODS.PUT,
             cookie: cookie,
@@ -85,7 +85,7 @@ export class Requests {
         }
     }
 
-    public static updateCategory(data: ICategory, param: number, cookie: string): IRequest<ICategory> {
+    public static updateCategory(data: ICategory, param: string, cookie: string): IRequest<ICategory> {
         return {
             method: HTTPMETHODS.PUT,
             cookie: cookie,

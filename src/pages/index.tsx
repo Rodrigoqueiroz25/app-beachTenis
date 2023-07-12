@@ -1,15 +1,16 @@
-import { ForgotPasswd } from "./PreLogged/ForgotPasswd/ForgotPasswd";
-import { CreatePasswd } from "./PreLogged/CreatePasswd/CreatePasswd";
-import { Login } from "./PreLogged/Login/Login";
-import { CreateProfile } from "./PreLogged/SignUp/CreateProfile/CreateProfile";
-import { CreateUser } from "./PreLogged/SignUp/CreateUser/CreateUser";
+import { ForgotPasswd } from "./PreLogged/ForgotPasswd";
+import { CreatePasswd } from "./PreLogged/CreatePasswd";
+import { CreateProfile } from "./PreLogged/SignUp/CreateProfile";
+import { CreateUser } from "./PreLogged/SignUp/CreateUser";
 import { Home } from "./PostLogged/Home/Home";
-import { ListTournaments } from "./PostLogged/ListTournaments/ListTournaments";
-import { Tournament } from "./PostLogged/Tournament/Tournament";
-import { AddCategories } from "./PostLogged/AddCategories/AddCategories";
-import { AddTournament } from "./PostLogged/AddTournament/AddTournament";
-import { AddTournamentSponsor } from "./PostLogged/AddTournamentSponsor/AddTournamentSponsor";
-import { EditProfile } from "./PostLogged/EditProfile/EditProfile";
+
+import { HandleCategories } from "./PostLogged/HandleCategories";
+import { FormTournament } from "./PostLogged/FormTournament";
+import { FormTournamentSponsor } from "./PostLogged/FormTournamentSponsor";
+import { EditProfile } from "./PostLogged/EditProfile";
+import { ListTournaments } from "./PostLogged/ListTournaments";
+import { TournamentContainer } from "./PostLogged/Tournament/TournamentContainer";
+import { Login } from "./PreLogged/Login";
 
 export const Pages = {
     Login: Login,
@@ -17,11 +18,11 @@ export const Pages = {
     RecoveryPasswd: {ForgotPasswd, CreatePasswd},
 
     Home: Home,
-    Profile: EditProfile,
+    EditProfile: EditProfile,
     ListTournaments: ListTournaments,
-    Tournament: Tournament,
-    AddCategories: AddCategories,
-    AddTournament: AddTournament,
-    AddTournamentSponsor: AddTournamentSponsor
+    Tournament: TournamentContainer,
+    HandleCategories: HandleCategories,
+    FormTournament: FormTournament,
+    FormTournamentSponsor: FormTournamentSponsor 
 
 }

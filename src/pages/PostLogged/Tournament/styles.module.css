@@ -1,0 +1,93 @@
+
+.header {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+
+.tournament{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tournament img{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2rem;
+    border: 0.1rem solid #000;
+}
+
+.tournament p{
+    color: #3a3a3a;
+    font-size: 1.1rem;
+    line-height: 150%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    width: 10.6rem;
+    height: 3rem;
+
+    border-radius: 0.6rem;
+    border: none;
+    background: white;
+    box-shadow: 0 0.1rem 0.4rem 0 rgba(0, 0, 0, 0.25);
+
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: background-color 0.25s;
+}
+
+.focus{
+    background: #221FD1;
+    color: #FFFFFF;
+}
+
+.list{
+    margin: 3rem 0 0 0;
+}
+
+
+.itemList{
+    grid-column: 2/3;
+    grid-row: 2/3;
+
+    display: grid;
+    grid-template-areas:
+        'description games'
+        'photos games'
+        'numberAth games'
+        ;
+    row-gap: 0.5rem;
+}
+
+.itemList > :nth-child(1){
+    grid-area: description;
+}
+
+.itemList > :nth-child(2){
+    grid-area: photos;
+
+}
+
+.itemList > :nth-child(3){
+    grid-area: numberAth;
+}
+
+.itemList > :nth-child(4){
+    grid-area: games;
+    justify-self: end;
+    margin-top: 0.5rem;
+}
+
+.itemList > :nth-child(5){}
