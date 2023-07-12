@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { ICategory } from '@/interfaces/ICategory';
 import { Validations } from '@/helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 interface FormCategoriesProps {
@@ -16,6 +16,8 @@ interface FormCategoriesProps {
 
 
 export function Form({submit, categoryToEdit}: FormCategoriesProps) {
+    
+    const [editMode, setEditMode] = useState<boolean>(false);
 
     const { register, handleSubmit, watch, formState: { errors }, reset, setValue } = useForm({
         resolver: yupResolver(Validations.formCategories)
@@ -23,6 +25,8 @@ export function Form({submit, categoryToEdit}: FormCategoriesProps) {
 
     useEffect(() =>{
         if(categoryToEdit){
+            setEditMode(true);
+
             setValue("description", categoryToEdit.description);
             setValue("numberAthletes", categoryToEdit.numberAthletes);
             setValue("numberAthletesRegistration", categoryToEdit.numberAthletesRegistration);
@@ -32,6 +36,7 @@ export function Form({submit, categoryToEdit}: FormCategoriesProps) {
 
     function submitForm(data: any){
         reset();
+        setEditMode(false);
         submit(data);
     }
 
@@ -63,8 +68,9 @@ export function Form({submit, categoryToEdit}: FormCategoriesProps) {
                 register={register}
                 msgError={errors.numberAthletes?.message}
             />
-            <div className={styles.spaceButton}></div>
-            <Button>{categoryToEdit ? "Alterar" : "Adicionar"}</Button>
+            <div className={styles.btn}>
+                <Button>{editMode ? "Alterar" : "Adicionar"}</Button>
+            </div>
         </form>
     );
 }

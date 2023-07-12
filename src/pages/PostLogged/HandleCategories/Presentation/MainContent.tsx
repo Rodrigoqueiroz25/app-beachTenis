@@ -3,7 +3,8 @@ import { ICategoryRegistered } from '@/interfaces/ICategory';
 import { Form } from './Form';
 import { useState } from 'react';
 import styles from '../styles.module.css';
-import { Category } from './Category/Category';
+import { PostLogged } from '@/components/PostLogged';
+import { Button } from '@/components/Button/Button';
 
 
 interface MainContentProps {
@@ -28,17 +29,18 @@ export function MainContent({ listCategories, removeCategory, submitForm }: Main
                 categoryToEdit={categoryToEdit}
             />
 
-            <div className={styles.listCategories}>
-                {listCategories.map((c: ICategoryRegistered, key: number) => (
-                    <Category
-                        key={key}
-                        category={c.description}
-                        id={c.id}
-                        edit={setValueFieldsForm}
-                        del={removeCategory}
-                    />
+            <div className={styles.list}>
+                {listCategories?.map((category: ICategoryRegistered, key: number) => (
+                    <PostLogged.Item.Wrapper key={key}>
+                        <div className={styles.itemList}>
+                            <PostLogged.Item.Text text={category.description} />
+                            <Button small onClick={() => setValueFieldsForm(category.id)}>Editar</Button>
+                            <Button small onClick={() => removeCategory(category.id)}>Excluir</Button>
+                        </div>
+                    </PostLogged.Item.Wrapper>
                 ))}
             </div>
+            
         </>
     );
 }

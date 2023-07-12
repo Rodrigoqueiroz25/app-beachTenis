@@ -11,3 +11,42 @@
 .listCategories{
     margin: 2rem 0 4rem 0;
 }
+
+/* .list{
+    margin: 3rem 0 0 0;
+} */
+
+
+.itemList{
+    grid-column: 2/3;
+    grid-row: 2/3;
+
+    display: grid;
+    grid-template-areas:
+        'description editBtn'
+        'description delBtn'
+        'description delBtn'
+        ;
+    row-gap: 0.5rem;
+    align-items: center;
+    justify-items: end;
+}
+
+.itemList > :nth-child(1){
+    grid-area: description;
+    justify-self: start;
+}
+
+.itemList > :nth-child(2){
+    grid-area: editBtn;
+
+}
+
+.itemList > :nth-child(3){
+    grid-area: delBtn;
+}
+
+.btn{
+    margin-top: 4rem;
+
+}
