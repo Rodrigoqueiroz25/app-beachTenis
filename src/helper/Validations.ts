@@ -19,16 +19,16 @@ export class Validations {
             sportId: yup.string().required("selecione uma opção"),
             dtStartRegistration: yup.date().min(dateDayActual(), "data deve ser igual ou posterior a atual").nullable().typeError("digite uma data"),
             dtFinalRegistration: yup.date().nullable().min(dateDayActual(), "data deve ser igual ou posterior a atual").typeError("digite uma data")
-                .test("dateTest", "data final de registro deve ser posterior a inicial", function (value) {
-                    return this.parent.dtStartRegistration < (value as Date);
+                .test("dateTest", "data final de registro deve ser igual ou posterior a inicial", function (value) {
+                    return this.parent.dtStartRegistration <= (value as Date);
                 }),
             dtStartTournament: yup.date().nullable().min(dateDayActual(), "data deve ser igual ou posterior a atual").typeError("digite uma data")
                 .test("dateTest", "data deve ser posterior ao periodo de inscrição.", function (value) {
                     return this.parent.dtFinalRegistration < (value as Date);
                 }),
             dtFinalTournament: yup.date().nullable().min(dateDayActual(), "data deve ser igual ou posterior a atual").typeError("digite uma data")
-                .test("dateTest", "data deve ser posterior a data inicial do torneio", function (value) {
-                    return this.parent.dtStartTournament < (value as Date);
+                .test("dateTest", "data final deve ser igual ou posterior a data inicial do torneio", function (value) {
+                    return this.parent.dtStartTournament <= (value as Date);
                 }),
             otherInformation: yup.string()
     });
