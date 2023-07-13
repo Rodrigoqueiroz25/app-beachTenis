@@ -56,14 +56,13 @@ export function MainContent({dataTournament, listCategories}: MainContentProps) 
             </header>
 
             {presentation === "Categorias" &&
-
                 <div className={styles.list}>
                     {listCategories?.map((category: ICategoryRegistered, key: number) => (
                         <PostLogged.Item.Wrapper key={key}>
                             <div className={styles.itemList}>
                                 <PostLogged.Item.Text text={category.description} />
                                 <PostLogged.Item.Photos />
-                                <PostLogged.Item.Text small text={category.numberAthletes} />
+                                <PostLogged.Item.Text small text={`${category.numberRegistration} inscrito(s) de ${category.numberAthletes}`} />
                                 {(stringToDate(dataTournament.dtStartRegistration) as Date).getTime() <= new Date().getTime() && new Date().getTime() <= (stringToDate(dataTournament.dtFinalRegistration) as Date).getTime() ?
                                     <Button small>Inscrever</Button> : <></>
                                 }
@@ -75,13 +74,10 @@ export function MainContent({dataTournament, listCategories}: MainContentProps) 
                         </PostLogged.Item.Wrapper>
                     ))}
                 </div>
-
             }
 
             {presentation === "Informações" &&
-
                 <Informations infoTournament={dataTournament} />
-
             }
         </>
 

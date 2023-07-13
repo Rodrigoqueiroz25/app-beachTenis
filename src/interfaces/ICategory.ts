@@ -10,6 +10,7 @@ export interface ICategory {
 export interface ICategoryRegistered extends ICategory {
     id: string;
     deleted: boolean;
+    numberRegistration: string;
 }
 
 
