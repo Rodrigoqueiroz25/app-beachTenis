@@ -5,16 +5,23 @@ import { MainContent } from './Presentation/MainContent';
 
 
 export function CreatePasswdContainer() {
+    
+    function handleSubmitForm(dada: any){
+        //nothing
+    }
+    
     return (
 
         <PreLoggedin.Layout
             header={
                 <div className={styles.containerTitle}>
-                    <p className={styles.title}>Create New Password</p>
+                    <p className={styles.title}>Criar Nova Senha</p>
                 </div>
             }  
             main={
-                <MainContent/>
+                <MainContent
+                    submit={handleSubmitForm}
+                />
             }
         />
     );

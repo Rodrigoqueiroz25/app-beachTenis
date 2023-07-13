@@ -5,6 +5,13 @@ import { dateDayActual, parseDateString } from "./convertData";
 
 export class Validations {
 
+    public static formCreatePasswd = yup.object().shape({
+        passwd: yup.string().required("Digite a nova senha."),
+        repPasswd: yup.string().required("digite novamente a nova senha.")
+            .test("repeatPasswd", "as duas senhas digitadas devem ser iguais", function (value) {
+                return this.parent.passwd === value;
+            })
+    });        
 
     public static formLogin = yup.object().shape({
         email: yup.string().email("digite um email válido.").required("Digite um email para entrar."),
