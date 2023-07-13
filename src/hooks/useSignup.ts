@@ -1,11 +1,9 @@
 
 import { useContext, useState } from "react";
 import { ContextSignup } from "@/contexts/ContextSignup";
-import useCookiesSession from "./useCookiesSession";
 import request from "@/helper/request";
 import { IDataSignUp } from "@/interfaces/IDataSignUp";
-import { isError } from "@/interfaces/IError";
-import { ILoginResult } from "@/interfaces/ILoginResult";
+// import { ILoginResult } from "@/interfaces/ILoginResult";
 import { Requests } from "@/helper/Requests";
 
 
@@ -14,14 +12,14 @@ export default function useSignup(){
     const contextSignup = useContext(ContextSignup);
     
     const [isLoading, setIsLoading] = useState<Boolean>(false);
-    const [isAuth, setIsAuth] = useState<boolean>(false);
+    const [ok, setOk] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     
-    const { setCookiesSession } = useCookiesSession();
+    // const { setCookiesSession } = useCookiesSession();
 
     async function signup(){
         setIsLoading(true);
-        let result = await request<ILoginResult, IDataSignUp>(Requests.signup({
+        let result = await request<{}, IDataSignUp>(Requests.signup({
             email: contextSignup.state.email.toLowerCase(),
             password: contextSignup.state.password.toLowerCase(),
             name: contextSignup.state.name.toLowerCase(),
@@ -35,17 +33,17 @@ export default function useSignup(){
         if(result.ok){
             switch (result.code) {
                 case 200:
-                    if(!isError(result.data)){
-                        if(result.data){
-                            setCookiesSession(result.data.accessToken, result.data.name, result.data.isAdmin);
-                        }
-                    }
-                    setIsAuth(true);
+                    // if(!isError(result.data)){
+                    //     if(result.data){
+                    //         setCookiesSession(result.data.accessToken, result.data.name, result.data.isAdmin);
+                    //     }
+                    // }
+                    setOk(true);
                     break;
                 case 403:
                     console.error(result.code, result.data);
                     setError("Email já cadastrado");
-                    contextSignup.setState({...contextSignup.state, password: ""});
+                    // contextSignup.setState({...contextSignup.state, password: ""});
                     break;
                 default:
                     console.error(result.code, result.data);
@@ -63,7 +61,7 @@ export default function useSignup(){
     
     return {
         isLoading,
-        isAuth,
+        ok,
         error,
         signup
     };

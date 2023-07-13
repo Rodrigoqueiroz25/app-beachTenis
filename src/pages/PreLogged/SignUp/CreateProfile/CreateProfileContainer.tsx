@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
@@ -14,7 +15,7 @@ export function CreateProfileContainer() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { signup, isAuth, isLoading, error } = useSignup();
+    const { signup, ok, isLoading, error } = useSignup();
     const { state, setState } = useContext(ContextSignup);
 
     const [firstName, setFirstName] = useState('');
@@ -24,16 +25,19 @@ export function CreateProfileContainer() {
         if (!location.state?.userCreated) {
             navigate(Routes.signup)
         }
-    });
+    },[location.state?.userCreated]);
+
+    useEffect(() => {
+        setState({ ...state, name: `${firstName} ${lastName}` });
+    },[firstName, lastName]);
+    
 
 
     function changeFirstName(firstName: string) {
-        // setState({ ...state, firstName: firstName })
         setFirstName(firstName);
     }
 
     function changeLastName(lastName: string) {
-        // setState({ ...state, lastName: lastName })
         setLastName(lastName);
     }
 
@@ -47,7 +51,6 @@ export function CreateProfileContainer() {
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setState({ ...state, name: `${firstName} ${lastName}` })
         signup();
     }
 
@@ -58,8 +61,8 @@ export function CreateProfileContainer() {
                 <p>isLoading</p>
             }
 
-            {isAuth
-                ? <Navigate to={Routes.home} />
+            {ok
+                ? <Navigate to={Routes.login} />
                 :
                 <PreLoggedin.Layout
                     header={
@@ -72,7 +75,7 @@ export function CreateProfileContainer() {
                     }
                     main={
                         <MainContent props={{
-                            firstName: firstName,
+                             firstName: firstName,
                             lastName: lastName,
                             gender: state.gender,
                             dateBirthday: state.dateBirthday,
@@ -85,14 +88,8 @@ export function CreateProfileContainer() {
                     }
 
                 />
-
-
             }
-            {!isAuth &&
-                <div>
-                    <p>{error}</p>
-                </div>
-            }
+
         </>
     );
 }
