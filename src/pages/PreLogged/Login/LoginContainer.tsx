@@ -1,6 +1,6 @@
 
 import { Navigate, useNavigate } from 'react-router-dom';
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import styles from './styles.module.css';
 import useVerifyAuth from '@/hooks/useVerifyAuth';
 import useAuth from '@/hooks/useAuth';
@@ -14,16 +14,11 @@ import { MainContent } from './Presentation/MainContent';
 export function LoginContainer() {
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [passwd, setPasswd] = useState('');
-
     const { authenticate, isAuth, isLoading, error } = useAuth();
-
     const itsAuth = useVerifyAuth();
 
-    function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        authenticate(email, passwd);
+    function handleSubmitForm(data: any) {
+        authenticate(data.email, data.passwd);
     }
 
     useEffect(() => {
@@ -51,11 +46,7 @@ export function LoginContainer() {
                     }
                     main={
                         <MainContent
-                            emailValue={email}
-                            passwdValue={passwd}
-                            setEmailValue={setEmail}
-                            setPasswdValue={setPasswd}
-                            handleSubmit={handleSubmitForm}
+                            submit={handleSubmitForm}
                             error={error}
                             isAuth={isAuth}
                         />

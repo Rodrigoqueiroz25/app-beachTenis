@@ -11,13 +11,43 @@
     top: 1.5rem;
 }
 
-input {
+.input {
     width: 100%;
     height: 5rem;
     border-radius: 0.4rem;
-    border: 0.1rem solid #8a8a8a;
+    border: 0.11rem solid #8a8a8a;
     padding: 2rem;
     font-size: 1.8rem;
     color: #3f3d56;
+    outline: none;
        
 }
+
+.input:focus{
+    border-width: 0.18rem;
+    border-image: linear-gradient(to right, #114c99, #1544cf);
+    border-image-slice: 1;
+}
+
+.invalid {
+    border: .18rem solid rgb(223, 5, 5);
+}
+
+.invalid::placeholder{
+    color: #f37b73;
+}
+
+.invalid:focus {
+    border-image: linear-gradient(to right, #80190f, #cf1e15);
+    border-image-slice: 1;
+    outline: none;
+}
+
+
+.error{
+    font-size: 1rem;
+    color: red;
+    position: absolute;
+    right: 0rem;
+    top: 5.3rem;
+  }

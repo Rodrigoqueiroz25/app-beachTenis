@@ -1,5 +1,4 @@
 
-import { IMaskInput } from 'react-imask';
 import styles from './Input.module.css';
 import { InputHTMLAttributes } from 'react';
 
@@ -7,21 +6,21 @@ import { InputHTMLAttributes } from 'react';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
     mask?: string;
     src?: string;
+    register?: any;
+    msgError?: string;
 }
 
 
 export function Input(props: InputProps) {
     return (
         <div className={styles.textField}>
-            <IMaskInput
+            <input
+                className={ props.msgError? `${styles['input']} ${styles['invalid']}` : styles['input']} 
                 placeholder={props.placeholder} 
-                mask={props.mask}
                 type={props.type} 
-                name={props.name} 
-                value={props.value}
-                onChange={props.onChange}
-                required
+                {...props.register(props.name)} 
             />
+            <p className={styles.error}>{props.msgError}</p>
             <img src={props.src} alt="" />
         </div>
     );

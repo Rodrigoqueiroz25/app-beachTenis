@@ -5,6 +5,13 @@ import { dateDayActual, parseDateString } from "./convertData";
 
 export class Validations {
 
+
+    public static formLogin = yup.object().shape({
+        email: yup.string().email("digite um email válido.").required("Digite um email para entrar."),
+        passwd: yup.string().required("digite a senha para entrar."),
+    });
+
+
     public static formCategories = yup.object().shape({
             description: yup.string().required("Digite uma descrição"),
             numberAthletes: yup.string().required("digite um valor"),
