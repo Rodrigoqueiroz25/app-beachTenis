@@ -5,6 +5,10 @@ import { dateDayActual, parseDateString } from "./convertData";
 
 export class Validations {
 
+    public static formForgotPasswd = yup.object().shape({
+        email: yup.string().email("digite um email válido.").required("Digite um email para entrar.")
+    });
+
     public static formCreatePasswd = yup.object().shape({
         passwd: yup.string().required("Digite a nova senha."),
         repPasswd: yup.string().required("digite novamente a nova senha.")
