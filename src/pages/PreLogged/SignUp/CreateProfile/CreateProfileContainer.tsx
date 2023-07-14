@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { ContextSignup } from '@/contexts/ContextSignup';
 import { MainContent } from './Presentation/MainContent';
 import imgCreateProfile from '@/assets/create_profile_title.svg';
 import useSignup from '@/hooks/useSignup';
 import { Routes } from '@/enums/routes.enum';
 import styles from './styles.module.css';
 import { PreLoggedin } from '@/components/PreLoggedin';
+import { IDataSignUp } from '@/interfaces/IDataSignUp';
+import { convertData } from '@/helper/convertData';
 
 export function CreateProfileContainer() {
 
@@ -16,42 +17,25 @@ export function CreateProfileContainer() {
     const navigate = useNavigate();
 
     const { signup, ok, isLoading, error } = useSignup();
-    const { state, setState } = useContext(ContextSignup);
-
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-
+   
     useEffect(() => {
-        if (!location.state?.userCreated) {
+        if (!location.state.phoneNumber) {
             navigate(Routes.signup)
         }
-    },[location.state?.userCreated]);
-
-    useEffect(() => {
-        setState({ ...state, name: `${firstName} ${lastName}` });
-    },[firstName, lastName]);
+    },[location.state.phoneNumber]);
     
 
-
-    function changeFirstName(firstName: string) {
-        setFirstName(firstName);
-    }
-
-    function changeLastName(lastName: string) {
-        setLastName(lastName);
-    }
-
-    function changeBirthDate(birthDate: string) {
-        setState({ ...state, dateBirthday: birthDate });
-    }
-
-    function changeGender(gender: string) {
-        setState({ ...state, gender: gender as "" | "F" | "M" });
-    }
-
-    function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        signup();
+    async function handleSubmitForm(data: any) {
+        let dataSignup: IDataSignUp = {
+            email: location.state.email,
+            password: location.state.password,
+            name: `${data.firstName} ${data.lastName}`,
+            phoneNumber: location.state.phoneNumber,
+            gender: data.gender,
+            cityId: '4709',
+            dateBirthday: convertData(data.dateBirthday)
+        }
+        signup(dataSignup);
     }
 
 
@@ -68,23 +52,15 @@ export function CreateProfileContainer() {
                     header={
                         <div className={styles.containerTitle}>
                             <p className={styles.title}>
-                                Profile
+                                Perfil
                                 <img src={imgCreateProfile} alt="" />
                             </p>
                         </div>
                     }
                     main={
-                        <MainContent props={{
-                             firstName: firstName,
-                            lastName: lastName,
-                            gender: state.gender,
-                            dateBirthday: state.dateBirthday,
-                            setFirstName: changeFirstName,
-                            setLastName: changeLastName,
-                            setDateBirthday: changeBirthDate,
-                            setGender: changeGender,
-                            handleSubmit
-                        }} />
+                       <MainContent
+                            submit={handleSubmitForm}
+                       />
                     }
 
                 />

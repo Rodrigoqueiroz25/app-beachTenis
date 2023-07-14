@@ -1,5 +1,5 @@
 
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import styles from '../styles.module.css';
 
@@ -7,25 +7,45 @@ import imgPhotoCircle from '@/assets/photo_create_profile.svg';
 
 import { Button } from '@/components/Button/Button';
 import { PreLoggedin } from '@/components/PreLoggedin';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { Validations } from '@/helper/Validations';
+import { ValidationError } from 'yup';
 
 
 interface MainContentProps {
-    firstName: string
-    setFirstName: (p: string) => void
-    lastName: string
-    setLastName: (p: string) => void
-    dateBirthday: string
-    setDateBirthday: (p: string) => void
-    gender: string
-    setGender: (p: string) => void
-    handleSubmit: (e: FormEvent<HTMLFormElement>) => void
+    submit: (data: any) => void
 }
 
-interface Props{
-    props: MainContentProps;
-}
 
-export function MainContent({props}: Props) {
+export function MainContent(props: MainContentProps) {
+
+    const [gender, setGender] = useState("");
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+        resolver: yupResolver(Validations.formCreateProfile)
+    });
+
+   
+    function submitForm(data: any){
+        data.gender = gender;
+        validateRadioButtonGender(gender, {func: props.submit, data: data});
+    }
+
+
+    function validateRadioButtonGender(str: string, opt?: { func?: any, data?: any}) {
+        try {
+            Validations.radioGroupGender.validateSync({ gender: str });
+            // setErrorData("");
+            if(opt){
+                opt.func(opt.data);
+            }
+        } catch (error) {
+            let c = error as ValidationError;
+            // setErrorData(c.message);
+        }
+    }
+
 
     return (
 
@@ -33,56 +53,62 @@ export function MainContent({props}: Props) {
 
             <div className={styles.uploadPhoto}>
                 <img src={imgPhotoCircle} alt="" />
-                <Button>Enviar</Button>
+                <Button disabled>Enviar</Button>
             </div>
 
-            <form className={styles.form} onSubmit={props.handleSubmit}>
+            <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
                 <PreLoggedin.Input
-                    placeholder='First Name'
+                    placeholder='Nome'
                     type='text'
-                    value={props.firstName}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => props.setFirstName(e.target.value)}
+                    name='firstName'
+                    msgError={errors.firstName?.message}
+                    register={register}
                 />
+
                 <PreLoggedin.Input
-                    placeholder='Last Name'
+                    placeholder='Sobrenome'
                     type='text'
-                    value={props.lastName}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => props.setLastName(e.target.value)}
+                    name='lastName'
+                    msgError={errors.lastName?.message}
+                    register={register}
                 />
+
                 <div className={styles.date}>
-                    <p>DOB</p>
+                    <p>Data de Nascimento</p>
                     <PreLoggedin.Input
                         placeholder=''
                         type='date'
-                        value={props.dateBirthday}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => props.setDateBirthday(e.target.value)}
+                        name='dateBirthday'
+                        msgError={errors.dateBirthday?.message}
+                        register={register}
                     />
+
                 </div>
+
                 <div className={styles.gender}>
-                    <p>Gender</p>
+                    <p>Gênero</p>
                     <div className={styles.radioButton}>
                         <input
                             type="radio"
                             id='male'
                             value='M'
-                            checked={props.gender === 'M'}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => props.setGender(e.target.value)}
+                            checked={gender === 'M'}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
                         />
-                        <label htmlFor="male">Male</label>
+                        <label htmlFor="male">Masculino</label>
                     </div>
                     <div className={styles.radioButton}>
                         <input
                             type="radio"
                             id='female'
                             value='F'
-                            checked={props.gender === 'F'}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => props.setGender(e.target.value)}
+                            checked={gender === 'F'}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
                         />
-                        <label htmlFor="female">Female</label>
+                        <label htmlFor="female">Feminino</label>
                     </div>
-
                 </div>
-                <Button>Login</Button>
+                <Button>Salvar</Button>
             </form>
         </main>
 
