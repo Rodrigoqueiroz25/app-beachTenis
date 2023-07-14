@@ -1,7 +1,5 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import { PrivateRoute } from "@/PrivateRoute";
-import { ContextSignupProvider } from "@/contexts/ContextSignup";
-
 import { Routes } from "@/enums/routes.enum";
 import { Pages } from "@/pages";
 
@@ -11,9 +9,9 @@ export function MainRoutes(){
     return useRoutes([
         { path: Routes.root, element: <Navigate to={Routes.login}/> },
         { path: Routes.login, element: <Pages.Login/>},
-        { path: Routes.signup, element: <ContextSignupProvider><Pages.Signup.CreateUser/></ContextSignupProvider> },
-        { path: Routes.createUser, element: <ContextSignupProvider><Pages.Signup.CreateUser/></ContextSignupProvider> },
-        { path: Routes.createProfile, element: <ContextSignupProvider><Pages.Signup.CreateProfile/></ContextSignupProvider> },
+        { path: Routes.signup, element: <Pages.Signup.CreateUser/> },
+        { path: Routes.createUser, element: <Pages.Signup.CreateUser/> },
+        { path: Routes.createProfile, element: <Pages.Signup.CreateProfile/> },
         { path: Routes.forgotPasswd, element: <Pages.RecoveryPasswd.ForgotPasswd/>},
         { path: Routes.createPasswd, element: <Pages.RecoveryPasswd.CreatePasswd/> },
         { path: Routes.addTournament, element: <PrivateRoute><Pages.FormTournament/></PrivateRoute> },
