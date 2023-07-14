@@ -17,7 +17,7 @@ export class Validations {
 
     public static formCreateUser = yup.object().shape({
         email: yup.string().email("digite um email válido.").required("Digite um email para entrar."),
-        phoneNumber: yup.string().required("digite um número de telefone.").matches(new RegExp('([(][0-9]{2}[)][0-9]{5}[-][0-9]{4}$)'),"padrão errado"),
+        phoneNumber: yup.string().required("digite um número de telefone.").matches(new RegExp('([(][0-9]{2}[)][0-9]{5}[-][0-9]{4}$)'),"número de telefone inválido"),
         passwd: yup.string().required("Digite a nova senha."),
         repPasswd: yup.string().required("digite novamente a nova senha.")
             .test("repeatPasswd", "as duas senhas digitadas devem ser iguais", function (value) {
@@ -81,7 +81,7 @@ export class Validations {
     public static formEditProfile = yup.object().shape({
         name: yup.string().required("campo nome não pode ser vazio"),
         email: yup.string().email().required("campo email não pode ser vazio"),
-        phone: yup.string().min(14, "numero de telefone inválido").required("digite um número para contato"),
+        phone: yup.string().required("digite um número de telefone.").max(14, "numero de telefone inválido").matches(new RegExp('([(][0-9]{2}[)][0-9]{5}$[-][0-9]{4}$)'),"número de telefone inválido"),
         city: yup.string().required("selecione uma opção"),
         dateBirthday: yup.string().required("digite algo")
     });
