@@ -19,10 +19,10 @@ export function CreateProfileContainer() {
     const { signup, ok, isLoading, error } = useSignup();
    
     useEffect(() => {
-        if (!location.state.phoneNumber) {
+        if (!location.state?.phoneNumber) {
             navigate(Routes.signup)
         }
-    },[location.state.phoneNumber]);
+    },[location.state?.phoneNumber]);
     
 
     async function handleSubmitForm(data: any) {
