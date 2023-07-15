@@ -16,5 +16,7 @@ export enum Routes {
     home = '/home',
     editProfile = '/profile',
     null = '*',
-    root = '/'
+    root = '/',
+    createCategory = '/create-category',
+    editCategory = '/edit-category'
 }

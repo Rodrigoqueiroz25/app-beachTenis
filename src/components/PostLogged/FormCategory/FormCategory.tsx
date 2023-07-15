@@ -1,42 +1,37 @@
 
-import styles from '../styles.module.css';
+import styles from './styles.module.css';
 import { PostLogged } from '@/components/PostLogged';
 import { Button } from '@/components/Button/Button';
 import { useForm } from 'react-hook-form';
 import { ICategory } from '@/interfaces/ICategory';
 import { Validations } from '@/helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 
-interface FormCategoriesProps {
+interface FormCategoryProps {
     submit: (dataForm: any) => void;
-    categoryToEdit?: ICategory;
+    defaultValues?: ICategory;
 }
 
 
-export function Form({submit, categoryToEdit}: FormCategoriesProps) {
-    
-    const [editMode, setEditMode] = useState<boolean>(false);
+export function FormCategory({submit, defaultValues}: FormCategoryProps) {
 
     const { register, handleSubmit, watch, formState: { errors }, reset, setValue } = useForm({
         resolver: yupResolver(Validations.formCategories)
     });
 
     useEffect(() =>{
-        if(categoryToEdit){
-            setEditMode(true);
-
-            setValue("description", categoryToEdit.description);
-            setValue("numberAthletes", categoryToEdit.numberAthletes);
-            setValue("numberAthletesRegistration", categoryToEdit.numberAthletesRegistration);
+        if(defaultValues){
+            setValue("description", defaultValues.description);
+            setValue("numberAthletes", defaultValues.numberAthletes);
+            setValue("numberAthletesRegistration", defaultValues.numberAthletesRegistration);
         }
-    }, [categoryToEdit]);
+    }, [defaultValues]);
 
 
     function submitForm(data: any){
         reset();
-        setEditMode(false);
         submit(data);
     }
 
@@ -69,7 +64,7 @@ export function Form({submit, categoryToEdit}: FormCategoriesProps) {
                 msgError={errors.numberAthletes?.message}
             />
             <div className={styles.btn}>
-                <Button>{editMode ? "Alterar" : "Adicionar"}</Button>
+                <Button>{defaultValues ? "Alterar" : "Adicionar"}</Button>
             </div>
         </form>
     );

@@ -30,7 +30,7 @@
   "scripts": {
     "start": "env-cmd -f ./.env craco start",
     "build": "env-cmd -f ./.env craco build",
-    "test": "craco test",
+    "test": "env-cmd -f ./.env craco test",
     "eject": "craco eject"
   },
   "eslintConfig": {

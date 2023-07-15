@@ -16,12 +16,13 @@ export function MainRoutes(){
         { path: Routes.createPasswd, element: <Pages.RecoveryPasswd.CreatePasswd/> },
         { path: Routes.addTournament, element: <PrivateRoute><Pages.FormTournament/></PrivateRoute> },
         { path: Routes.addTournamentSponsor, element: <PrivateRoute><Pages.FormTournamentSponsor/></PrivateRoute> },
-        { path: Routes.addCategories, element: <PrivateRoute><Pages.HandleCategories/></PrivateRoute> },
         { path: Routes.listTournaments, element: <PrivateRoute><Pages.ListTournaments/></PrivateRoute> },
         { path: Routes.tournament, element: <PrivateRoute><Pages.Tournament/></PrivateRoute> },
         { path: Routes.home, element: <PrivateRoute><Pages.Home/></PrivateRoute> },
         { path: Routes.editProfile, element: <PrivateRoute><Pages.EditProfile/></PrivateRoute> },
         { path: Routes.null, element: <h1>sds</h1> },
+        { path: Routes.createCategory, element: <PrivateRoute><Pages.CreateCategory/></PrivateRoute> },
+        { path: Routes.editCategory, element: <PrivateRoute><Pages.EditCategory/></PrivateRoute> },
     ]);
 
 }

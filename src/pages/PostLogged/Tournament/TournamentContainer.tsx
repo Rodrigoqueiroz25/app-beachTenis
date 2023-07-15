@@ -22,6 +22,7 @@ export function TournamentContainer() {
 
     const fetchCategories = useFetchData<ICategoryRegistered[]>();
 
+    const [listCategories, setListCategories] = useState<ICategoryRegistered[]>([]);
     const [dataTournament, setDataTournament] = useState<ITournamentRegistered>({} as ITournamentRegistered);
 
     const location = useLocation();
@@ -39,13 +40,24 @@ export function TournamentContainer() {
         }
     }, [location.state.tournament, navigate]);
 
+
     useEffect(() => {
         if (params.id) {
-            fetchCategories.fetchData(Requests.getCategories(parseInt(params.id), getCookieToken()))
+            fetchCategories.fetchData(Requests.getCategories(parseInt(params.id), getCookieToken()));
         }
     }, [fetchCategories.error]);
 
+    useEffect(() => {
+        if(fetchCategories.data){
+            setListCategories(fetchCategories.data);
+        }
+    }, [fetchCategories.data]);
 
+    function removeCategory(id: string) {
+        fetchCategories.fetchData(Requests.deleteCategory(parseInt(id), getCookieToken()));
+        let arr = listCategories.filter(c => c.id !== id);
+        setListCategories(arr);
+    }
 
     return (
         <>
@@ -55,14 +67,16 @@ export function TournamentContainer() {
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                         <p>Torneio</p>
                         {isAdmin() &&
-                            <PostLogged.ButtonPlus onClick={() => navigate(Routes.addCategories, { state: { tournament: dataTournament } })} />
+                            //<PostLogged.ButtonPlus onClick={() => navigate(Routes.addCategories, { state: { tournament: dataTournament } })} />
+                            <PostLogged.ButtonPlus onClick={() => navigate(Routes.createCategory, { state: { tournamentId: dataTournament.id } })} />
                         }
                     </>
                 }
                 main={
                     <MainContent
                         dataTournament={dataTournament}
-                        listCategories={fetchCategories.data}
+                        listCategories={listCategories}
+                        removeCategory={removeCategory}
                     />
                 }
             />

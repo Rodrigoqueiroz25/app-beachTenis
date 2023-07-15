@@ -3,14 +3,14 @@ import { CreatePasswd } from "./PreLogged/CreatePasswd";
 import { CreateProfile } from "./PreLogged/SignUp/CreateProfile";
 import { CreateUser } from "./PreLogged/SignUp/CreateUser";
 import { Home } from "./PostLogged/Home/Home";
-
-import { HandleCategories } from "./PostLogged/HandleCategories";
 import { FormTournament } from "./PostLogged/FormTournament";
 import { FormTournamentSponsor } from "./PostLogged/FormTournamentSponsor";
 import { EditProfile } from "./PostLogged/EditProfile";
 import { ListTournaments } from "./PostLogged/ListTournaments";
 import { TournamentContainer } from "./PostLogged/Tournament/TournamentContainer";
 import { Login } from "./PreLogged/Login";
+import { CreateCategory } from "./PostLogged/CreateCategory";
+import { EditCategory } from "./PostLogged/EditCategory";
 
 export const Pages = {
     Login: Login,
@@ -21,8 +21,10 @@ export const Pages = {
     EditProfile: EditProfile,
     ListTournaments: ListTournaments,
     Tournament: TournamentContainer,
-    HandleCategories: HandleCategories,
     FormTournament: FormTournament,
-    FormTournamentSponsor: FormTournamentSponsor 
+    FormTournamentSponsor: FormTournamentSponsor,
+
+    CreateCategory: CreateCategory,
+    EditCategory: EditCategory,
 
 }
