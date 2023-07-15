@@ -15,14 +15,14 @@ import { Validations } from "@/helper/Validations";
 import { IUserAccount } from "@/interfaces/IUserAccount";
 
 
-interface MainContentProps {
-    submit: any;
+interface FormProfileProps {
+    submit: (data: any) => void;
     cities: ICity[];
-    profile?: IUserAccount;
+    defaultValues?: IUserAccount;
 }
 
 
-export function MainContent({ submit, cities, profile }: MainContentProps) {
+export function FormProfile({ submit, cities, defaultValues }: FormProfileProps) {
 
     const [gender, setGender] = useState("");
     const [errorData, setErrorData] = useState("");
@@ -47,15 +47,15 @@ export function MainContent({ submit, cities, profile }: MainContentProps) {
 
 
     useEffect(() => {
-        if (profile) {
-            setValue('name', profile.name);
-            setValue('email', profile.email);
-            setValue('phone', profile.phoneNumber);
-            setValue('city', profile.cityId);
-            setValue('dateBirthday', profile.dateBirthday?.split('/').reverse().join('-'));
-            setGender(profile.gender?.toUpperCase());
+        if (defaultValues) {
+            setValue('name', defaultValues.name);
+            setValue('email', defaultValues.email);
+            setValue('phone', defaultValues.phoneNumber);
+            setValue('city', defaultValues.cityId);
+            setValue('dateBirthday', defaultValues.dateBirthday?.split('/').reverse().join('-'));
+            setGender(defaultValues.gender?.toUpperCase());
         }
-    }, [profile]);
+    }, [defaultValues]);
 
     useEffect(() => {
         validaDateBirthDay(watch('dateBirthday'));

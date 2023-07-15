@@ -11,7 +11,6 @@ import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import { PostLogged } from "@/components/PostLogged";
 import { ButtonBack } from "@/components/PostLogged/ButtonBack/ButtonBack";
-import { MainContent } from './Presentation/MainContent';
 
 
 export function CreateCategoryContainer() {

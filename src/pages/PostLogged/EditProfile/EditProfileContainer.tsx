@@ -12,7 +12,7 @@ import { Routes } from "@/enums/routes.enum";
 import { PostLogged } from "@/components/PostLogged";
 import { IUserAccount } from "@/interfaces/IUserAccount";
 import { Requests } from "@/helper/Requests";
-import { MainContent } from './Presentation/MainContent';
+import { FormProfile } from './Presentation/FormProfile';
 
 
 export function EditProfileContainer() {
@@ -75,10 +75,10 @@ export function EditProfileContainer() {
                     </>
                 }
                 main={
-                    <MainContent
+                    <FormProfile
                         submit={saveDataform} 
                         cities={cities}
-                        profile={profile}
+                        defaultValues={profile}
                     />
                 }
             />

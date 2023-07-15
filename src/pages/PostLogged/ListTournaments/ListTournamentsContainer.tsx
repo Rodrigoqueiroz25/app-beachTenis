@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { PostLogged } from '@/components/PostLogged';
 import { isAdmin } from '@/helper/isAdmin';
-import { MainContent } from './Presentation/MainContent';
+import { List } from './Presentation/List';
 
 
 
@@ -39,7 +39,7 @@ export function ListTournamentsContainer() {
                 </>
             }
             main={
-                <MainContent listTournaments={data} />
+                <List listTournaments={data} />
             }
         />
     );

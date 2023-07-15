@@ -11,11 +11,11 @@ import { PostLogged } from '@/components/PostLogged';
 import { isAdmin } from '@/helper/isAdmin';
 
 
-interface MainContentProps {
+interface ListProps {
     listTournaments?: ITournamentRegistered[];
 }
 
-export function MainContent({listTournaments}: MainContentProps) {
+export function List({listTournaments}: ListProps) {
 
     const navigate = useNavigate();
 

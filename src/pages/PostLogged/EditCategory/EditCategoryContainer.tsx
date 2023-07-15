@@ -10,7 +10,6 @@ import { ICategoryRegistered } from '@/interfaces/ICategory';
 import { Routes } from "@/enums/routes.enum";
 import { PostLogged } from "@/components/PostLogged";
 import { ButtonBack } from "@/components/PostLogged/ButtonBack/ButtonBack";
-import { MainContent } from './Presentation/MainContent';
 import { Requests } from '@/helper/Requests';
 
 
@@ -55,10 +54,6 @@ export function EditCategoryContainer() {
                         submit={submitForm}
                         defaultValues={category}
                     />
-                    // <MainContent
-                    //     submitForm={submit}
-                    //     categoryToEdit={category}
-                    // />
                 }
             />
         </>
