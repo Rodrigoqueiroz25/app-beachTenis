@@ -153,6 +153,14 @@ export class Requests {
         }       
     }
 
+    public static getTournament(param: string, cookie: string): IRequest {
+        return {
+            method: HTTPMETHODS.GET,
+            cookie: cookie,
+            url: `/tournament/loadById?id=${param}`
+        }       
+    }
+
     public static deleteTournament(param: number, cookie: string): IRequest {
         return {
             method: HTTPMETHODS.DELETE,

@@ -2,43 +2,41 @@
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-
-
+import useCookiesSession from '@/hooks/useCookiesSession';
 import { ICategoryRegistered } from '@/interfaces/ICategory';
-
 import useFetchData from '@/hooks/useFetchData';
-import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Routes } from '@/enums/routes.enum';
 import { Requests } from '@/helper/Requests';
-import useCookiesSession from '@/hooks/useCookiesSession';
-
 import { PostLogged } from '@/components/PostLogged';
 import { isAdmin } from '@/helper/isAdmin';
-
 import { MainContent } from './Presentation/MainContent';
+import { ITournamentDataGettedByIdResponse } from '@/interfaces/ITournament';
 
 
 export function TournamentContainer() {
 
     const fetchCategories = useFetchData<ICategoryRegistered[]>();
+    const fetchTournament = useFetchData<ITournamentDataGettedByIdResponse>();
 
     const [listCategories, setListCategories] = useState<ICategoryRegistered[]>([]);
-    const [dataTournament, setDataTournament] = useState<ITournamentRegistered>({} as ITournamentRegistered);
+    const [dataTournament, setDataTournament] = useState<ITournamentDataGettedByIdResponse>({} as ITournamentDataGettedByIdResponse);
 
-    const location = useLocation();
     const params = useParams();
     const navigate = useNavigate();
     const { getCookieToken } = useCookiesSession();
 
 
     useEffect(() => {
-        if (!location.state?.tournament) {
-            navigate(Routes.listTournaments);
+        if(params.id){
+            fetchTournament.fetchData(Requests.getTournament(params.id, getCookieToken()));
         }
-        else {
-            setDataTournament(location.state.tournament);
+    }, [fetchTournament.error])
+
+    useEffect(() => {
+        if(fetchTournament.data){
+            setDataTournament(fetchTournament.data);
         }
-    }, [location.state.tournament, navigate]);
+    }, [fetchTournament.data]);
 
 
     useEffect(() => {
@@ -53,11 +51,13 @@ export function TournamentContainer() {
         }
     }, [fetchCategories.data]);
 
+
     function removeCategory(id: string) {
         fetchCategories.fetchData(Requests.deleteCategory(parseInt(id), getCookieToken()));
         let arr = listCategories.filter(c => c.id !== id);
         setListCategories(arr);
     }
+
 
     return (
         <>

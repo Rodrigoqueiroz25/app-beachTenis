@@ -6,7 +6,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import useFetchData from '@/hooks/useFetchData';
 import request from '@/helper/request';
 import useCookiesSession from '@/hooks/useCookiesSession';
-import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { ICity } from '@/interfaces/ICity';
 import { ISport } from '@/interfaces/ISport';
 import { Routes } from "@/enums/routes.enum";
@@ -14,11 +13,12 @@ import { Requests } from "@/helper/Requests";
 import { PostLogged } from "@/components/PostLogged";
 import { Validations } from '@/helper/Validations';
 import { brazilDateString } from '@/helper/convertData';
+import { ITournamentDataWriteResponse } from '@/interfaces/ITournament';
 
 
 export function CreateTournamentContainer() {
 
-    const { fetchData, data, isLoading, ok, error } = useFetchData<ITournamentRegistered>();
+    const { fetchData, data, isLoading, ok, error } = useFetchData<ITournamentDataWriteResponse>();
 
     const [sports, setSports] = useState<ISport[]>([]);
     const [cities, setCities] = useState<ICity[]>([]);

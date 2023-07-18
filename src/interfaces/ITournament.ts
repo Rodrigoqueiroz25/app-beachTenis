@@ -16,26 +16,24 @@ export interface IFormTournament extends ITournament {
     sportId: string
 }
 
-export interface ITournamentRegistered extends ITournament {
+export interface ITournamentDataGettedAllResponse extends ITournament {
     id: number
     sport: ISport
     city: ICity
-    deleted: boolean
+}
+
+export interface ITournamentDataGettedByIdResponse extends ITournament{
+    id: number
+    cityId: string
+    sportId: string
     dtStartTournamentFormatted: string
     dtFinalTournamentFormatted: string
     dtStartRegistrationFormatted: string
     dtFinalRegistrationFormatted: string
-
 }
 
-export interface ITournamentForm{
-    description: string
-    organization: string
-    dtStartTournament: string
-    dtFinalTournament: string
-    dtStartRegistration: string
-    dtFinalRegistration: Date
-    otherInformation: string
+export interface ITournamentDataWriteResponse extends ITournament{
+    id: number
     cityId: string
     sportId: string
 }

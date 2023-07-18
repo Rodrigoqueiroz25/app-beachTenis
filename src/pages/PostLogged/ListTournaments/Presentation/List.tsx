@@ -1,36 +1,34 @@
 
 import styles from '../styles.module.css'
-import { ITournamentRegistered } from '@/interfaces/ITournament';
 import { Routes } from '@/enums/routes.enum';
-
 import logoTour from '@/assets/logoTour.jpg';
 import { Button } from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-
 import { PostLogged } from '@/components/PostLogged';
 import { isAdmin } from '@/helper/isAdmin';
-import { configure } from '@testing-library/react';
+import { ITournamentDataGettedAllResponse } from '@/interfaces/ITournament';
+
 
 
 interface ListProps {
-    listTournaments?: ITournamentRegistered[];
+    listTournaments?: ITournamentDataGettedAllResponse[];
 }
 
 export function List({listTournaments}: ListProps) {
 
     const navigate = useNavigate();
 
-    function access(tournament: ITournamentRegistered): void {
-        navigate(`${Routes.tournamentLessParam}/${tournament.id}`, { state: { tournament: tournament } })
+    function access(tournament: ITournamentDataGettedAllResponse): void {
+        navigate(`${Routes.tournamentLessParam}/${tournament.id}`)
     }
 
-    function configure(tournament: ITournamentRegistered): void{
+    function configure(tournament: ITournamentDataGettedAllResponse): void{
         navigate(Routes.editTournament, { state: { tournament: tournament }});
     }
 
     return (
         <>
-            {listTournaments?.map((d: ITournamentRegistered, key: number) => (
+            {listTournaments?.map((d: ITournamentDataGettedAllResponse, key: number) => (
                 <PostLogged.Item.Wrapper key={key}>
                     <div className={styles.itemList}>
                         <img src={logoTour} alt="logo do torneio" />

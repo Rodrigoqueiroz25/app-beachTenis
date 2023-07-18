@@ -35,6 +35,7 @@ export function EditCategoryContainer() {
 
     function submitForm(dataForm: any) {
         fetchData(Requests.updateCategory({ ...dataForm, tournamentId: category.tournamentId }, category.id, getCookieToken()));
+        navigate(`${Routes.tournamentLessParam}/${category?.tournamentId}`);
     }
 
 

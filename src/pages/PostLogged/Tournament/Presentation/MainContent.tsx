@@ -6,7 +6,7 @@ import logo from '@/assets/logoTour.jpg';
 
 import { ICategoryRegistered } from '@/interfaces/ICategory';
 
-import { ITournamentRegistered } from '@/interfaces/ITournament';
+import { ITournamentDataGettedByIdResponse } from '@/interfaces/ITournament';
 import { Informations } from './Informations/Informations';
 import { categories, informations } from '@/constants/constants';
 
@@ -19,7 +19,7 @@ import { isAdmin } from '@/helper/isAdmin';
 
 
 interface MainContentProps {
-    dataTournament: ITournamentRegistered;
+    dataTournament: ITournamentDataGettedByIdResponse;
     listCategories?: ICategoryRegistered[];
     removeCategory: (id: string) => void;
 }

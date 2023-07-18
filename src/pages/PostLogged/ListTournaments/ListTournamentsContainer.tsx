@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 
 import useFetchData from '@/hooks/useFetchData';
-import { ITournamentRegistered } from '@/interfaces/ITournament';
+import { ITournamentDataGettedAllResponse } from '@/interfaces/ITournament';
 import { Routes } from '@/enums/routes.enum';
 import { Requests } from '@/helper/Requests';
 import useCookiesSession from '@/hooks/useCookiesSession';
@@ -17,7 +17,7 @@ import { List } from './Presentation/List';
 
 export function ListTournamentsContainer() {
 
-    const { fetchData, data, error, isLoading, ok } = useFetchData<ITournamentRegistered[]>();
+    const { fetchData, data, error, isLoading, ok } = useFetchData<ITournamentDataGettedAllResponse[]>();
     const { getCookieToken } = useCookiesSession();
     const navigate = useNavigate();
 

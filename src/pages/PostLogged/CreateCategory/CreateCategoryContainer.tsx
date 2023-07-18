@@ -34,6 +34,7 @@ export function CreateCategoryContainer() {
 
     function submitForm(dataForm: any) {
         fetchData(Requests.createCategory({ ...dataForm, tournamentId: tournamentId }, getCookieToken()));
+        navigate(`${Routes.tournamentLessParam}/${location.state.tournamentId}`);
     }
     
 
