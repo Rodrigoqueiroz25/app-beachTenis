@@ -34,7 +34,7 @@ export function ListTournamentsContainer() {
                     <PostLogged.ButtonBack onClick={() => navigate(Routes.home)} />
                     <p>Torneios</p>
                     {isAdmin() &&
-                        <PostLogged.ButtonPlus onClick={() => navigate(Routes.addTournament)} />
+                        <PostLogged.ButtonPlus onClick={() => navigate(Routes.createTournament)} />
                     }
                 </>
             }

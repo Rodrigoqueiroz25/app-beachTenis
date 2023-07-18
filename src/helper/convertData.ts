@@ -26,3 +26,11 @@ export function dateDayActual(): Date{
     t.setDate(t.getDate());
     return t;
 }
+
+export function americanDateString(date: string){
+    return date.split('/').reverse().join('-');
+}
+
+export function brazilDateString(date: string){
+    return date.split('-').reverse().join('/');
+}

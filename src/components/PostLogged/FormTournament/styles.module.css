@@ -1,0 +1,47 @@
+
+.form{
+    margin-top: 1.1rem;
+    margin-bottom: 2.6rem;
+}
+
+
+.paragraph{
+    margin-top: 2.3rem;
+    margin-bottom: 1.8rem;
+}
+
+.paragraph p{
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.inputDates{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.input {
+    width: 45%;
+
+}
+
+.info{
+    padding: 1rem;
+    margin: 2rem 0;
+    height: 10.7rem;
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 2.6rem;
+
+}
+
+.info:placeholder-shown {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 150%;
+    color: #3F3D56;
+  }

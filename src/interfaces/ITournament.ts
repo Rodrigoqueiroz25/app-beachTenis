@@ -11,7 +11,7 @@ interface ITournament {
     otherInformation: string
 }
 
-export interface IFormAddTournament extends ITournament {
+export interface IFormTournament extends ITournament {
     cityId: string
     sportId: string
 }
@@ -26,4 +26,16 @@ export interface ITournamentRegistered extends ITournament {
     dtStartRegistrationFormatted: string
     dtFinalRegistrationFormatted: string
 
+}
+
+export interface ITournamentForm{
+    description: string
+    organization: string
+    dtStartTournament: string
+    dtFinalTournament: string
+    dtStartRegistration: string
+    dtFinalRegistration: Date
+    otherInformation: string
+    cityId: string
+    sportId: string
 }

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { PostLogged } from '@/components/PostLogged';
 import { isAdmin } from '@/helper/isAdmin';
+import { configure } from '@testing-library/react';
 
 
 interface ListProps {
@@ -21,6 +22,10 @@ export function List({listTournaments}: ListProps) {
 
     function access(tournament: ITournamentRegistered): void {
         navigate(`${Routes.tournamentLessParam}/${tournament.id}`, { state: { tournament: tournament } })
+    }
+
+    function configure(tournament: ITournamentRegistered): void{
+        navigate(Routes.editTournament, { state: { tournament: tournament }});
     }
 
     return (
@@ -37,7 +42,7 @@ export function List({listTournaments}: ListProps) {
                             ?
                             <>
                                 <Button small onClick={() => access(d)} >Acessar</Button>
-                                <Button small >Configurar</Button>
+                                <Button small onClick={() => configure(d)}>Configurar</Button>
                             </>
                             :
                             <>

@@ -3,7 +3,7 @@ import { ICategory } from "@/interfaces/ICategory";
 import { IDataLogin } from "@/interfaces/IDataLogin"
 import { IDataSignUp } from "@/interfaces/IDataSignUp";
 import { IRequest } from "@/interfaces/IRequest"
-import { IFormAddTournament } from "@/interfaces/ITournament";
+import { IFormTournament } from "@/interfaces/ITournament";
 import { ITournamentSponsor } from "@/interfaces/ITournamentSponsor";
 import { IUserAccount } from "@/interfaces/IUserAccount";
 import { IUserAccountUpdate } from "@/interfaces/IUserAccountUpdate";
@@ -127,12 +127,21 @@ export class Requests {
         }       
     }
     
-    public static createTournament(data: IFormAddTournament, cookie: string): IRequest<IFormAddTournament> {
+    public static createTournament(data: IFormTournament, cookie: string): IRequest<IFormTournament> {
         return {
             method: HTTPMETHODS.POST,
             body: data,
             cookie: cookie,
             url: `/tournament`
+        }       
+    }
+
+    public static editTournament(data: IFormTournament, param: string, cookie: string): IRequest<IFormTournament> {
+        return {
+            method: HTTPMETHODS.PUT,
+            body: data,
+            cookie: cookie,
+            url: `/tournament/${param}`
         }       
     }
 

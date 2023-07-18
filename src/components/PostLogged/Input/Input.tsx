@@ -5,7 +5,7 @@ import { InputHTMLAttributes } from 'react';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
     msgError?: string
     label: string
-    register: any
+    register?: any
 }
 
 export function Input(props: InputProps) {
@@ -17,7 +17,8 @@ export function Input(props: InputProps) {
                     className={ props.msgError? `${styles['input']} ${styles['invalid']}` : styles['input']} 
                     type={props.type} 
                     placeholder={props.placeholder}
-                    {...props.register(props.name)}
+                    disabled={props.disabled}
+                    {...props.register(props.name)}   
                 />
                 <p className={styles.error}>{props.msgError}</p>
                 <label className={styles.label} htmlFor={props.name}>

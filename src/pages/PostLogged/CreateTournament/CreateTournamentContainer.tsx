@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { convertData } from '@/helper/convertData';
 import useFetchData from '@/hooks/useFetchData';
 import request from '@/helper/request';
 import useCookiesSession from '@/hooks/useCookiesSession';
@@ -13,10 +12,11 @@ import { ISport } from '@/interfaces/ISport';
 import { Routes } from "@/enums/routes.enum";
 import { Requests } from "@/helper/Requests";
 import { PostLogged } from "@/components/PostLogged";
-import { MainContent } from './Presentation/MainContent';
+import { Validations } from '@/helper/Validations';
+import { brazilDateString } from '@/helper/convertData';
 
 
-export function FormTournamentContainer() {
+export function CreateTournamentContainer() {
 
     const { fetchData, data, isLoading, ok, error } = useFetchData<ITournamentRegistered>();
 
@@ -43,14 +43,15 @@ export function FormTournamentContainer() {
 
 
     function saveDataform(data: any) {
+        console.log(data);
         fetchData(Requests.createTournament({
             description: data.description,
             cityId: data.cityId,
             sportId: data.sportId,
-            dtStartTournament: convertData(data.dtStartTournament),
-            dtFinalTournament: convertData(data.dtFinalTournament),
-            dtStartRegistration: convertData(data.dtStartRegistration),
-            dtFinalRegistration: convertData(data.dtFinalRegistration),
+            dtStartTournament: brazilDateString(data.dtStartTournament),
+            dtFinalTournament: brazilDateString(data.dtFinalTournament),
+            dtStartRegistration: brazilDateString(data.dtStartRegistration),
+            dtFinalRegistration: brazilDateString(data.dtFinalRegistration),
             otherInformation: data.otherInformation,
             organization: data.organization
         }, getCookieToken()));
@@ -64,7 +65,7 @@ export function FormTournamentContainer() {
             }
 
             {ok &&
-                <Navigate to={Routes.addCategories} state={{ tournament: data }} />
+                <Navigate to={Routes.createCategory} state={{ tournamentId: data?.id }} />
             }
 
             <PostLogged.Layout
@@ -75,10 +76,11 @@ export function FormTournamentContainer() {
                     </>
                 }
                 main={
-                    <MainContent
+                    <PostLogged.FormTournament
                         submit={saveDataform}
                         cities={cities}
                         sports={sports}
+                        schema={Validations.formCreateTournament}
                     />
                 }
             />
