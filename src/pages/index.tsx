@@ -12,7 +12,7 @@ import { CreateCategory } from "./PostLogged/CreateCategory";
 import { EditCategory } from "./PostLogged/EditCategory";
 import { EditTournament } from "./PostLogged/EditTournament";
 import { CreateTournamentSponsor } from "./PostLogged/CreateTournamentSponsor";
-import { EditTournamentSponsor } from "./PostLogged/EditTournamentSponsor copy";
+import { EditTournamentSponsor } from "./PostLogged/EditTournamentSponsor";
 
 export const Pages = {
     Login: Login,

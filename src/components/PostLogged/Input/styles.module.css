@@ -1,0 +1,114 @@
+.wrapper {
+  height: 5rem;
+  margin-bottom: 0;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  height: 2.8rem;
+}
+
+.input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  border: 0;
+  border-bottom: .1rem solid #000;
+  border-radius: 0%;
+
+  outline: 0;
+  height: 2rem;
+  padding: 1.1rem 0;
+  font-size: 1.4rem;
+  color: black;
+
+  font-weight: 500;
+  background: transparent;
+  transition: border-color 0.2s;
+
+}
+
+.input::placeholder {
+  color: transparent;
+}
+
+.input:placeholder-shown~.label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 0.6rem;
+}
+
+.label {
+  position: absolute;
+  font-weight: 400;
+  top: -1rem;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  /* color: #9b9b9b; */
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 150%;
+}
+
+.input:focus {
+  font-weight: 500;
+  border-width: 2px;
+  border-image: linear-gradient(to right, #114c99, #1544cf);
+  border-image-slice: 1;
+}
+
+.input:focus~.label {
+  position: absolute;
+  top: -1.2rem;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  color: #1a1c94;
+  font-weight: 600;
+}
+
+
+.inputWrapper input[type="date"]::-webkit-datetime-edit:focus {
+  font-size: 1.2rem;
+}
+
+
+
+.inputWrapper input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  background: url('/src/assets/calendar.svg') no-repeat;
+  /* background-position: center; */
+  background-size: contain;
+  width: 1.1rem;
+  height: 1rem;
+
+}
+
+.invalid {
+  border-bottom: .1rem solid red;
+}
+
+.invalid:focus {
+  border-image: linear-gradient(to right, #991c11, #cf1e15);
+  border-image-slice: 1;
+}
+
+.invalid:not(:focus)~.label {
+  color: brown;
+  /* right: 1rem; */
+}
+
+.invalid:focus~.label {
+  color: #94221a;
+}
+
+
+.error {
+  font-size: 1rem;
+  color: red;
+  position: absolute;
+  right: 0rem;
+  top: 3.2rem;
+}

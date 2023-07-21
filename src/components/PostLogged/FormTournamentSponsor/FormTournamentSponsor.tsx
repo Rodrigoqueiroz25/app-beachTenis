@@ -8,20 +8,19 @@ import { Button } from '@/components/Button/Button';
 import { PostLogged } from "@/components/PostLogged";
 import { IFormTournamentSponsor } from "@/interfaces/ITournamentSponsor";
 import { useEffect } from "react";
+import { Validations } from "@/helper/Validations";
 
 
 interface FormTournamentSponsorProps {
     submit: (data: any) => void;
-    schema: yup.ObjectSchema<any>;
     defaultValues?: IFormTournamentSponsor;
 }
 
 
-export function FormTournamentSponsor({submit, schema, defaultValues}: FormTournamentSponsorProps) {
-
+export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSponsorProps) {
 
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(Validations.formTournamentSponsor)
     });
 
     useEffect(() => {
@@ -36,12 +35,10 @@ export function FormTournamentSponsor({submit, schema, defaultValues}: FormTourn
             <PostLogged.AddBanner />
             <form className={styles.form} onSubmit={handleSubmit(submit)}>
                 <PostLogged.Input
-                    label='Nome'
-                    name='name'
                     type='text'
                     placeholder='Nome'
-                    register={register}
                     msgError={errors.name?.message as string}
+                    {...register('name')}
                 />
 
                 <textarea className={styles.info}

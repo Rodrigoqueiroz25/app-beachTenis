@@ -125,42 +125,36 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
             <PostLogged.AddBanner />
             <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
                 <PostLogged.Input
-                    label='Descrição'
-                    name='description'
                     type='text'
                     placeholder='Descrição'
-                    register={register}
                     msgError={errors.description?.message as string}
+                    {...register("description")}
                 />
 
                 <PostLogged.Input
-                    label='Organização'
-                    name='organization'
                     type='text'
                     placeholder='Organização'
-                    register={register}
                     msgError={errors.organization?.message as string}
-                    
+                    {...register("organization")}
                 />
 
                 <PostLogged.Combobox
-                    label='Esporte'
-                    name='sportId'
-                    register={register}
+                    placeholder='Esporte'
                     msgError={errors.sportId?.message as string}
                     options={sports?.map(s => s.description)}
                     idOptions={sports?.map(s => s.id)}
                     isEmpty={watch('sportId') ? false : true}
+                    {...register('sportId')}
+
                 />
 
                 <PostLogged.Combobox
-                    label='Cidade'
-                    name='cityId'
-                    register={register}
+                    placeholder='Cidade'
                     msgError={errors.cityId?.message as string}
                     options={cities?.map(c => c.name)}
                     idOptions={cities?.map(s => s.id)}
                     isEmpty={watch('cityId') ? false : true}
+                    {...register('cityId')}
                 />
 
                 <div className={styles.paragraph}>
@@ -171,24 +165,20 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                 <div className={styles.inputDates}>
                     <div className={styles.input}>
                         <PostLogged.Input
-                            label='Data início'
-                            name='dtStartRegistration'
                             placeholder='Data início'
                             type='date'
-                            register={register}
                             msgError={errorValidate.dtStartRegistration?.message || errors.dtStartRegistration?.message as string}
                             disabled={fieldsInactives?.includes('dtStartRegistration')}
+                            {...register('dtStartRegistration')}
                         />
                     </div>
                     <div className={styles.input}>
                         <PostLogged.Input
-                            label='Data Final'
-                            name='dtFinalRegistration'
                             placeholder='Data Final'
                             type='date'
-                            register={register}
                             msgError={errorValidate.dtFinalRegistration?.message || errors.dtFinalRegistration?.message as string}
                             disabled={fieldsInactives?.includes('dtFinalRegistration')}
+                            {...register('dtFinalRegistration')}
                         />
                     </div>
                 </div>
@@ -201,24 +191,20 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                 <div className={styles.inputDates}>
                     <div className={styles.input}>
                         <PostLogged.Input
-                            label='Data inicial'
-                            name='dtStartTournament'
                             placeholder='Data inicial'
                             type='date'
-                            register={register}
                             msgError={errorValidate.dtStartTournament?.message || errors.dtStartTournament?.message as string}
                             disabled={fieldsInactives?.includes('dtStartTournament')}
+                            {...register('dtStartTournament')}
                         />
                     </div>
                     <div className={styles.input}>
                         <PostLogged.Input
-                            label='Data Final'
-                            name='dtFinalTournament'
                             placeholder='Data Final'
                             type='date'
-                            register={register}
                             msgError={errorValidate.dtFinalTournament?.message || errors.dtFinalTournament?.message as string}
                             disabled={fieldsInactives?.includes('dtFinalTournament')}
+                            {...register('dtFinalTournament')}
                         />
                     </div>
                 </div>

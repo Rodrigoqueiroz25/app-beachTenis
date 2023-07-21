@@ -4,7 +4,6 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Routes } from "@/enums/routes.enum";
 import { PostLogged } from "@/components/PostLogged";
 import useTournamentSponsor from '@/hooks/useTournamentSponsor';
-import { Validations } from '@/helper/Validations';
 import { useEffect } from 'react';
 
 
@@ -51,7 +50,6 @@ export function CreateTournamentSponsorContainer() {
                 main={
                     <PostLogged.FormTournamentSponsor
                         submit={saveDataform}
-                        schema={Validations.formTournamentSponsor}
                     />
                 }
             />

@@ -75,49 +75,40 @@ export function FormProfile({ submit, cities, defaultValues }: FormProfileProps)
                     <img src={imgPhotoCircle} alt="" />
                 </div>
                 <PostLogged.Input
-                    label='Nome'
-                    name='name'
                     type='text'
                     placeholder='Nome'
-                    register={register}
                     msgError={errors.name?.message}
+                    {...register('name')}
                 />
 
                 <PostLogged.Input
-                    label='E-mail'
-                    name='email'
                     type='text'
                     placeholder='E-mail'
-                    register={register}
                     msgError={errors.email?.message}
+                    {...register('email')}
                 />
 
                 <PostLogged.Input
-                    label="Telefone"
                     type="text"
                     placeholder="Telefone"
-                    name="phone"
-                    register={register}
                     msgError={errors.phone?.message}
+                    {...register('phone')}
                 />
 
                 <PostLogged.Combobox
-                    label='Cidade'
-                    name='city'
-                    register={register}
+                    placeholder='Cidade'
                     msgError={errors.city?.message}
                     options={cities?.map(c => c.name)}
                     idOptions={cities?.map(c => c.id)}
                     isEmpty={watch('city') ? false : true}
+                    {...register('city')}
                 />
 
                 <PostLogged.Input
-                    label="Data de Nascimento"
                     type="date"
                     placeholder="Data de Nascimento"
-                    name="dateBirthday"
-                    register={register}
                     msgError={errors.dateBirthday?.message ? errors.dateBirthday?.message : errorData}
+                    {...register('dateBirthday')}
                 />
 
                 <div className={styles.gender}>

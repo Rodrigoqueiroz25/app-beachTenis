@@ -38,30 +38,25 @@ export function FormCategory({submit, defaultValues}: FormCategoryProps) {
     return (
         <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
             <PostLogged.Input
-                label='Descrição'
-                name='description'
                 type='text'
                 placeholder='Descrição'
-                register={register}
                 msgError={errors.description?.message}
+                {...register("description")}
             />
 
             <PostLogged.Combobox
-                label='Quantidade de pessoas por inscrição'
-                name='numberAthletesRegistration'
-                register={register}
+                placeholder='Quantidade de pessoas por inscrição'
                 msgError={errors.numberAthletesRegistration?.message}
                 options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                 isEmpty={watch("numberAthletesRegistration") ? false : true }
+                {...register("numberAthletesRegistration")}
             />
 
             <PostLogged.Input
-                label='Quantidade máxima de inscritos'
-                name='numberAthletes'
                 type='number'
                 placeholder='Quantidade máxima de inscritos'
-                register={register}
                 msgError={errors.numberAthletes?.message}
+                {...register("numberAthletes")}
             />
             <div className={styles.btn}>
                 <Button>{defaultValues ? "Alterar" : "Adicionar"}</Button>
