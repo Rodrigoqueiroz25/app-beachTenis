@@ -32,7 +32,7 @@ interface FieldDatesFormTournament {
 
 
 export function FormTournament({submit, sports, cities, schema, defaultValues, fieldsInactives}: FormTournamentProps) {
-
+    
     const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(schema)
     });
@@ -148,8 +148,8 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                     name='sportId'
                     register={register}
                     msgError={errors.sportId?.message as string}
-                    options={sports.map(s => s.description)}
-                    idOptions={sports.map(s => s.id)}
+                    options={sports?.map(s => s.description)}
+                    idOptions={sports?.map(s => s.id)}
                     isEmpty={watch('sportId') ? false : true}
                 />
 
@@ -158,8 +158,8 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                     name='cityId'
                     register={register}
                     msgError={errors.cityId?.message as string}
-                    options={cities.map(c => c.name)}
-                    idOptions={cities.map(s => s.id)}
+                    options={cities?.map(c => c.name)}
+                    idOptions={cities?.map(s => s.id)}
                     isEmpty={watch('cityId') ? false : true}
                 />
 

@@ -6,31 +6,6 @@ import { IRequest } from "@/interfaces/IRequest"
 import { IFormTournament } from "@/interfaces/ITournament";
 import { ITournamentSponsor } from "@/interfaces/ITournamentSponsor";
 import { IUserAccount } from "@/interfaces/IUserAccount";
-import { IUserAccountUpdate } from "@/interfaces/IUserAccountUpdate";
-
-// export enum Request {
-//     login = 'login',
-//     signup = 'signup',
-//     updateUser = 'updateUser',
-
-//     getCategories = 'getCategories',
-//     createCategory = 'createCategory',
-//     updateCategory = 'updateCategory',
-//     deleteCategory = 'deleteCategory',
-
-//     createSport = 'createSport',
-//     getSports = 'getSports',
-
-//     getCities = 'getCities',
-
-//     createTournament = 'createTournament',
-//     getTournaments = 'getTournaments',
-//     deleteTournament = 'deleteTournament',
-
-//     createTournamentSponsor = 'createTournamentSponsor',
-//     getTournamentsSponsor = 'getTournamentsSponsor',
-//     deleteTournamentSponsor = 'deleteTournamentSponsor',
-// }
 
 
 export class Requests {
@@ -51,7 +26,7 @@ export class Requests {
         }
     }
 
-    public static updateUser(data: IUserAccountUpdate, param: string, cookie: string): IRequest<IUserAccountUpdate>{
+    public static updateUser(data: IUserAccount, param: string, cookie: string): IRequest<IUserAccount>{
         return {
             method: HTTPMETHODS.PUT,
             cookie: cookie,
@@ -68,7 +43,7 @@ export class Requests {
         }
     }
 
-    public static getCategories(param: number, cookie: string): IRequest{
+    public static getCategories(param: string, cookie: string): IRequest{
         return {
             method: HTTPMETHODS.GET,
             cookie: cookie,
@@ -94,7 +69,7 @@ export class Requests {
         }
     }
 
-    public static deleteCategory(param: number, cookie: string): IRequest {
+    public static deleteCategory(param: string, cookie: string): IRequest {
         return {
             method: HTTPMETHODS.DELETE,
             cookie: cookie,
@@ -178,7 +153,16 @@ export class Requests {
         }       
     }
 
-    public static getTournamentSponsors(param: number, cookie: string): IRequest {
+    public static editTournamentSponsor(data: ITournamentSponsor, param: string, cookie: string): IRequest<ITournamentSponsor> {
+        return {
+            method: HTTPMETHODS.PUT,
+            body: data,
+            cookie: cookie,
+            url: `/tournament-sponsor/${param}`
+        }       
+    }
+
+    public static getTournamentSponsors(param: string, cookie: string): IRequest {
         return {
             method: HTTPMETHODS.GET,
             cookie: cookie,
@@ -186,7 +170,7 @@ export class Requests {
         }       
     }
 
-    public static deleteTournamentSponsor(param: number, cookie: string): IRequest {
+    public static deleteTournamentSponsor(param: string, cookie: string): IRequest {
         return {
             method: HTTPMETHODS.DELETE,
             cookie: cookie,
@@ -196,160 +180,3 @@ export class Requests {
 
 
 }
-
-// let s = Requests.loginn({email: '', password: ''});
-
-
-
-// export function getRequestArgs(reqArgs: Request, param?: string): IRequest {
-//     switch (reqArgs) {
-//         case Request.login:
-//             return {
-//                 method: HTTPMETHODS.POST,
-//                 endPoint: "/login",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-//         case Request.updateUser:
-//             return {
-//                 method: HTTPMETHODS.PUT,
-//                 endPoint: "/account",
-//                 parametersURL: `${param}`,
-//                 url: function (): string {
-//                     return `${this.endPoint}/${this.parametersURL}`
-//                 }
-//             }
-//         case Request.signup:
-//             return {
-//                 method: HTTPMETHODS.POST,
-//                 endPoint: "/signup",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-
-//         case Request.getCategories:
-//             return {
-//                 method: HTTPMETHODS.GET,
-//                 endPoint: "/category/loadByTournament",
-//                 parametersSearch: `tournamentId=${param}`,
-//                 url: function (): string {
-//                     return `${this.endPoint}?${this.parametersSearch}`
-//                 }
-//             }
-
-//         case Request.createCategory:
-//             return {
-//                 method: HTTPMETHODS.POST,
-//                 endPoint: "/category",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-
-//         case Request.updateCategory:
-//             return {
-//                 method: HTTPMETHODS.PUT,
-//                 endPoint: "/category",
-//                 parametersURL: param,
-//                 url: function (): string {
-//                     return `${this.endPoint}/${this.parametersURL}`
-//                 }
-//             }
-
-//         case Request.deleteCategory:
-//             return {
-//                 method: HTTPMETHODS.DELETE,
-//                 endPoint: "/category",
-//                 parametersURL: param,
-//                 url: function (): string {
-//                     return `${this.endPoint}/${this.parametersURL}`
-//                 }
-//             }
-
-//         case Request.createSport:
-//             return {
-//                 method: HTTPMETHODS.POST,
-//                 endPoint: "/sport",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-
-//         case Request.getSports:
-//             return {
-//                 method: HTTPMETHODS.GET,
-//                 endPoint: "/sports",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-
-//         case Request.getCities:
-//             return {
-//                 method: HTTPMETHODS.GET,
-//                 endPoint: "/cities",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-
-//         case Request.createTournament:
-//             return {
-//                 method: HTTPMETHODS.POST,
-//                 endPoint: "/tournament",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-
-//         case Request.getTournaments:
-//             return {
-//                 method: HTTPMETHODS.GET,
-//                 endPoint: "/tournaments",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-
-//         case Request.deleteTournament:
-//             return {
-//                 method: HTTPMETHODS.DELETE,
-//                 endPoint: "/tournament",
-//                 parametersURL: param,
-//                 url: function (): string {
-//                     return `${this.endPoint}/${this.parametersURL}`
-//                 }
-//             }
-
-//         case Request.createTournamentSponsor:
-//             return {
-//                 method: HTTPMETHODS.POST,
-//                 endPoint: "/tournament-sponsor",
-//                 url: function (): string {
-//                     return `${this.endPoint}`
-//                 }
-//             }
-
-//         case Request.getTournamentsSponsor:
-//             return {
-//                 method: HTTPMETHODS.GET,
-//                 endPoint: "/tournament-sponsor/load-by-tournament",
-//                 parametersSearch: `tournamentId=${param}`,
-//                 url: function (): string {
-//                     return `${this.endPoint}?${this.parametersSearch}`
-//                 }
-//             }
-
-//         case Request.deleteTournamentSponsor:
-//             return {
-//                 method: HTTPMETHODS.DELETE,
-//                 endPoint: "/tournament-sponsor",
-//                 parametersURL: param,
-//                 url: function (): string {
-//                     return `${this.endPoint}/${this.parametersURL}`
-//                 }
-//             }
-//     }
-// }

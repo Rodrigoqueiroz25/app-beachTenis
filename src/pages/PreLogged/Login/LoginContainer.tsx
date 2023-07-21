@@ -9,16 +9,17 @@ import { Routes } from '@/enums/routes.enum';
 import { PreLoggedin } from '@/components/PreLoggedin';
 import { LinkOtherPage } from '@/components/PreLoggedin/LinkOtherPage/LinkOtherPage';
 import { MainContent } from './Presentation/MainContent';
+import useAccount from '@/hooks/useAccount';
 
 
 export function LoginContainer() {
 
     const navigate = useNavigate();
-    const { authenticate, isAuth, isLoading, error } = useAuth();
+    const { authenticate } = useAccount();
     const itsAuth = useVerifyAuth();
 
     function handleSubmitForm(data: any) {
-        authenticate(data.email, data.passwd);
+        authenticate.login({email: data.email, password: data.passwd});
     }
 
     useEffect(() => {
@@ -30,11 +31,11 @@ export function LoginContainer() {
     return (
         <div>
 
-            {isLoading &&
+            {authenticate.isLoading &&
                 <p>isLoading</p>
             }
 
-            {!isAuth ?
+            {!authenticate.ok ?
                 <PreLoggedin.Layout
                     header={
                         <div className={styles.containerTitle}>
@@ -47,8 +48,8 @@ export function LoginContainer() {
                     main={
                         <MainContent
                             submit={handleSubmitForm}
-                            error={error}
-                            isAuth={isAuth}
+                            error={authenticate.error}
+                            isAuth={authenticate.ok}
                         />
                     }
                     footer={

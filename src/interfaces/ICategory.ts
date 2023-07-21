@@ -1,15 +1,20 @@
 
-
-export interface ICategory {
+export interface IFormCategory {
     description: string;
-    tournamentId?: number;
     numberAthletes: string;
     numberAthletesRegistration: string;
 }
 
-export interface ICategoryRegistered extends ICategory {
+export interface ICategory extends IFormCategory{
+    tournamentId: number;
+}
+
+export interface ICategoryDataWriteResponse extends ICategory{
     id: string;
-    deleted: boolean;
+}
+
+export interface ICategoryGetResponse extends ICategory {
+    id: string;
     numberRegistration: string;
 }
 

@@ -2,10 +2,10 @@
 import { useState } from "react";
 import useCookiesSession from "./useCookiesSession";
 import request from "@/helper/request";
-import { IDataLogin } from "@/interfaces/IDataLogin";
 import { isError } from "@/interfaces/IError";
 import { ILoginResult } from "@/interfaces/ILoginResult";
-import { Requests } from "@/helper/Requests";
+import { IDataLogin } from "@/interfaces/IDataLogin";
+import { IRequest } from "@/interfaces/IRequest";
 
 export default function useAuth(){
        
@@ -15,10 +15,12 @@ export default function useAuth(){
     
     const { setCookiesSession } = useCookiesSession();
 
-    async function authenticate(email: string, passwd: string){
+    async function authenticate(requestData: IRequest<IDataLogin>){
+        
         setIsLoading(true);
-        let result = await request<ILoginResult, IDataLogin>(Requests.login({email: email, password: passwd}));
+        let result = await request<ILoginResult>(requestData);
         setIsLoading(false);
+        
         if(result.ok){
             switch (result.code) {
                 case 200:

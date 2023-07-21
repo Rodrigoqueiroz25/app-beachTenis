@@ -106,8 +106,8 @@ export function FormProfile({ submit, cities, defaultValues }: FormProfileProps)
                     name='city'
                     register={register}
                     msgError={errors.city?.message}
-                    options={cities.map(c => c.name)}
-                    idOptions={cities.map(c => c.id)}
+                    options={cities?.map(c => c.name)}
+                    idOptions={cities?.map(c => c.id)}
                     isEmpty={watch('city') ? false : true}
                 />
 

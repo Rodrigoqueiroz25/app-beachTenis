@@ -4,7 +4,6 @@ import { CreateProfile } from "./PreLogged/SignUp/CreateProfile";
 import { CreateUser } from "./PreLogged/SignUp/CreateUser";
 import { Home } from "./PostLogged/Home/Home";
 import { CreateTournament } from "./PostLogged/CreateTournament";
-import { FormTournamentSponsor } from "./PostLogged/FormTournamentSponsor";
 import { EditProfile } from "./PostLogged/EditProfile";
 import { ListTournaments } from "./PostLogged/ListTournaments";
 import { TournamentContainer } from "./PostLogged/Tournament/TournamentContainer";
@@ -12,6 +11,8 @@ import { Login } from "./PreLogged/Login";
 import { CreateCategory } from "./PostLogged/CreateCategory";
 import { EditCategory } from "./PostLogged/EditCategory";
 import { EditTournament } from "./PostLogged/EditTournament";
+import { CreateTournamentSponsor } from "./PostLogged/CreateTournamentSponsor";
+import { EditTournamentSponsor } from "./PostLogged/EditTournamentSponsor copy";
 
 export const Pages = {
     Login: Login,
@@ -24,7 +25,8 @@ export const Pages = {
     Tournament: TournamentContainer,
     CreateTournament: CreateTournament,
     EditTournament: EditTournament,
-    FormTournamentSponsor: FormTournamentSponsor,
+    CreateTournamentSponsor: CreateTournamentSponsor,
+    EditTournamentSponsor: EditTournamentSponsor,
 
     CreateCategory: CreateCategory,
     EditCategory: EditCategory,

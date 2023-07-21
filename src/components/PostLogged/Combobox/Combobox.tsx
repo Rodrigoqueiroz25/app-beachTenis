@@ -22,7 +22,7 @@ export function Combobox(props: ComboboxProps) {
                     {...props.register(props.name)}
                 >
                     <option key={-1} value=""></option>
-                    {props.options.map((res: any, key: number) => (
+                    {props?.options?.map((res: any, key: number) => (
                         <option key={key} value={props.idOptions ? props.idOptions[key] : res}>{res}</option>
                     ))}
 

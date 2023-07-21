@@ -1,12 +1,13 @@
 
-export interface ITournamentSponsor {
+export interface IFormTournamentSponsor {
     name: string,
-    tournamentId: string,
-    photo?: string,
     otherInformation: string
 }
+export interface ITournamentSponsor extends IFormTournamentSponsor{
+    tournamentId: string;
+    photo?: string;
+}
 
-export interface ITournamentSponsorRegistered extends ITournamentSponsor{
-    id: number
-    deleted: boolean
+export interface ITournamentSponsorResponse extends ITournamentSponsor{
+    id: string;
 }

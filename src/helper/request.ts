@@ -3,7 +3,7 @@ import { IError } from "@/interfaces/IError";
 import { IRequest } from "@/interfaces/IRequest";
 import { IResultFetch } from "@/interfaces/IResultFetch";
 
-export default async function request<R, E = unknown>(paramRequest: IRequest<E>) {
+export default async function request<R>(paramRequest: IRequest<any>) {
     let result: IResultFetch<R> = {
         code: 0,
         ok: false,

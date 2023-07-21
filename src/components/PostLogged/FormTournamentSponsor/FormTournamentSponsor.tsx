@@ -1,27 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import *  as yup from "yup";
 import { useForm } from "react-hook-form";
-
-import styles from '../styles.module.css';
-
+import styles from './styles.module.css';
 import { Button } from '@/components/Button/Button';
 import { PostLogged } from "@/components/PostLogged";
-import { Validations } from "@/helper/Validations";
+import { IFormTournamentSponsor } from "@/interfaces/ITournamentSponsor";
+import { useEffect } from "react";
 
 
-interface MainContentProps {
-    submit: any;
+interface FormTournamentSponsorProps {
+    submit: (data: any) => void;
+    schema: yup.ObjectSchema<any>;
+    defaultValues?: IFormTournamentSponsor;
 }
 
 
-export function MainContent({submit}: MainContentProps) {
+export function FormTournamentSponsor({submit, schema, defaultValues}: FormTournamentSponsorProps) {
 
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm({
-        resolver: yupResolver(Validations.formTournamentSponsor)
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+        resolver: yupResolver(schema)
     });
+
+    useEffect(() => {
+        if(defaultValues){
+            setValue("name", defaultValues.name);
+            setValue("otherInformation", defaultValues.otherInformation);
+        }
+    }, [defaultValues]);
 
     return (
         <>
@@ -33,7 +41,7 @@ export function MainContent({submit}: MainContentProps) {
                     type='text'
                     placeholder='Nome'
                     register={register}
-                    msgError={errors.name?.message}
+                    msgError={errors.name?.message as string}
                 />
 
                 <textarea className={styles.info}

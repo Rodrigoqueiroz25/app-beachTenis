@@ -2,69 +2,51 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
-import useFetchData from '@/hooks/useFetchData';
-import useCookiesSession from '@/hooks/useCookiesSession';
-
-import { ICity } from '@/interfaces/ICity';
 import { Routes } from "@/enums/routes.enum";
 import { PostLogged } from "@/components/PostLogged";
 import { IUserAccount } from "@/interfaces/IUserAccount";
-import { Requests } from "@/helper/Requests";
 import { FormProfile } from './Presentation/FormProfile';
+import useCities from '@/hooks/useCities';
+import useAccount from '@/hooks/useAccount';
 
 
 export function EditProfileContainer() {
 
-    const userAccountFetch = useFetchData<IUserAccount>();
-    const citiesFetch = useFetchData<ICity[]>();
+    const { getAccount, updateAccount } = useAccount();
+    const getCities = useCities();
 
-    const { getCookieToken } = useCookiesSession();
-
-    const [cities, setCities] = useState<ICity[]>([]);
     const [profile, setProfile] = useState<IUserAccount>({} as IUserAccount);
 
     const navigate = useNavigate();
 
     
     useEffect(() => {
-        userAccountFetch.fetchData(Requests.getUserByToken(getCookieToken()));
-    }, [userAccountFetch.error]);
+        getAccount.get();
+    }, [getAccount.error]);
 
     useEffect(() => {
-        if (userAccountFetch.data) {
-            setProfile(userAccountFetch.data);
+        if (getAccount.account) {
+            setProfile(getAccount.account);
         }
-    }, [userAccountFetch.data]);
-
-    useEffect(() => {
-        citiesFetch.fetchData(Requests.getCities(getCookieToken()));
-    }, [citiesFetch.error]);
-
-    useEffect(() => {
-        if (citiesFetch.data) {
-            setCities(citiesFetch.data);
-        }
-    }, [citiesFetch.data]);
+    }, [getAccount.account]);
 
 
     function saveDataform(data: any) {
-        userAccountFetch.fetchData(Requests.updateUser({
+        updateAccount.update({
             email: data.email,
             name: data.name,
             phoneNumber: data.phone,
             gender: data.gender,
             cityId: data.city,
             dateBirthday: data.dateBirthday.split('-').reverse().join('/')
-        }, profile.id, getCookieToken()));
+        }, profile.id!);
         navigate(Routes.home);
     }
 
 
     return (
         <>
-            {userAccountFetch.isLoading &&
+            {updateAccount.isLoading &&
                 <p>isLoading</p>
             }
 
@@ -77,7 +59,7 @@ export function EditProfileContainer() {
                 main={
                     <FormProfile
                         submit={saveDataform} 
-                        cities={cities}
+                        cities={getCities.cities}
                         defaultValues={profile}
                     />
                 }

@@ -1,10 +1,10 @@
 
 export interface IUserAccount {
-    id: string
+    id?: string
     email: string;
     name: string;
     phoneNumber: string;
-    gender: "M" | "F" | "";
+    gender: string;
     cityId: string;
     dateBirthday: string;
     photo?: string | null;

@@ -16,7 +16,7 @@ export default function useFetchData<R>() {
     async function fetchData<E>(requestData: IRequest<E>) {
 
         setIsLoading(true);
-        let result = await request<R, E>(requestData);
+        let result = await request<R>(requestData);
         setIsLoading(false);
 
         if(result.ok){

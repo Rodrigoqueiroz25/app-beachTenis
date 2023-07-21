@@ -1,29 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect } from 'react';
-
-import useFetchData from '@/hooks/useFetchData';
-import { ITournamentDataGettedAllResponse } from '@/interfaces/ITournament';
 import { Routes } from '@/enums/routes.enum';
-import { Requests } from '@/helper/Requests';
-import useCookiesSession from '@/hooks/useCookiesSession';
-
 import { useNavigate } from 'react-router-dom';
-
 import { PostLogged } from '@/components/PostLogged';
 import { isAdmin } from '@/helper/isAdmin';
 import { List } from './Presentation/List';
+import useTournament from '@/hooks/useTournament';
 
 
 
 export function ListTournamentsContainer() {
 
-    const { fetchData, data, error, isLoading, ok } = useFetchData<ITournamentDataGettedAllResponse[]>();
-    const { getCookieToken } = useCookiesSession();
+    const { getAllTournaments } = useTournament();
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchData(Requests.getTournaments(getCookieToken()));
-    }, [error]);
+        getAllTournaments.getAll();
+    }, [getAllTournaments.error]);
 
 
     return (
@@ -39,7 +33,7 @@ export function ListTournamentsContainer() {
                 </>
             }
             main={
-                <List listTournaments={data} />
+                <List listTournaments={getAllTournaments.tournaments} />
             }
         />
     );

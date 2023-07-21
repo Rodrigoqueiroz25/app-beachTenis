@@ -8,8 +8,6 @@ export enum Routes {
     createPasswd = '/create-password',
     createTournament = '/create-tournament',
     editTournament = '/edit-tournament',
-    addTournamentSponsor = '/add-tournament-sponsor/:tournamentId',
-    addTournamentSponsorLessParam = '/add-tournament-sponsor',
     addCategories = '/add-categories',
     listTournaments = '/list-tournaments',
     tournament = '/tournament/:id',
@@ -19,5 +17,7 @@ export enum Routes {
     null = '*',
     root = '/',
     createCategory = '/create-category',
-    editCategory = '/edit-category'
+    editCategory = '/edit-category',
+    createTournamentSponsor = '/create-tournament-sponsor/:tournamentId',
+    editTournamentSponsor = '/edit-tournament-sponsor/:sponsorId'
 }

@@ -5,6 +5,7 @@ import { ButtonPlus } from "./ButtonPlus/ButtonPlus";
 import { Combobox } from "./Combobox/Combobox";
 import { FormCategory } from "./FormCategory/FormCategory";
 import { FormTournament } from "./FormTournament/FormTournament";
+import { FormTournamentSponsor } from "./FormTournamentSponsor/FormTournamentSponsor";
 
 import { Input } from "./Input/Input";
 import { ItemList } from "./ItemList";
@@ -21,4 +22,5 @@ export const PostLogged = {
     
     FormCategory: FormCategory,
     FormTournament: FormTournament,
+    FormTournamentSponsor: FormTournamentSponsor,
 }

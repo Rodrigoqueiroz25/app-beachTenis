@@ -2,25 +2,20 @@
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-import useFetchData from '@/hooks/useFetchData';
-import useCookiesSession from "@/hooks/useCookiesSession";
-
-import { ICategoryRegistered } from '@/interfaces/ICategory';
 import { Routes } from "@/enums/routes.enum";
 import { PostLogged } from "@/components/PostLogged";
 import { ButtonBack } from "@/components/PostLogged/ButtonBack/ButtonBack";
-import { Requests } from '@/helper/Requests';
+import useCategory from '@/hooks/useCategory';
+import { ICategoryDataWriteResponse } from '@/interfaces/ICategory';
 
 
 export function EditCategoryContainer() {
 
-    const [category, setCategory] = useState<ICategoryRegistered>({} as ICategoryRegistered);
+    const [category, setCategory] = useState<ICategoryDataWriteResponse>({} as ICategoryDataWriteResponse);
 
-    const { data, error, fetchData, isLoading, ok } = useFetchData<ICategoryRegistered[]>();
+    const { editCategory } = useCategory();
     const location = useLocation();
     const navigate = useNavigate();
-    const { getCookieToken } = useCookiesSession();
 
 
     useEffect(() => {
@@ -28,13 +23,13 @@ export function EditCategoryContainer() {
             setCategory(location.state.category);
         }
         else {
-            navigate(Routes.home);
+            navigate(Routes.listTournaments);
         }
     }, []);
 
 
     function submitForm(dataForm: any) {
-        fetchData(Requests.updateCategory({ ...dataForm, tournamentId: category.tournamentId }, category.id, getCookieToken()));
+        editCategory.update({ ...dataForm, tournamentId: category.tournamentId}, category.id);
         navigate(`${Routes.tournamentLessParam}/${category?.tournamentId}`);
     }
 

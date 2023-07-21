@@ -4,20 +4,19 @@ import { useEffect } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { MainContent } from './Presentation/MainContent';
 import imgCreateProfile from '@/assets/create_profile_title.svg';
-import useSignup from '@/hooks/useSignup';
 import { Routes } from '@/enums/routes.enum';
 import styles from './styles.module.css';
 import { PreLoggedin } from '@/components/PreLoggedin';
 import { IDataSignUp } from '@/interfaces/IDataSignUp';
 import { convertData } from '@/helper/convertData';
+import useAccount from '@/hooks/useAccount';
 
 export function CreateProfileContainer() {
 
     const location = useLocation();
     const navigate = useNavigate();
+    const { register } = useAccount();
 
-    const { signup, ok, isLoading, error } = useSignup();
-   
     useEffect(() => {
         if (!location.state?.phoneNumber) {
             navigate(Routes.signup)
@@ -35,17 +34,17 @@ export function CreateProfileContainer() {
             cityId: '4709',
             dateBirthday: convertData(data.dateBirthday)
         }
-        signup(dataSignup);
+        register.signup(dataSignup);
     }
 
 
     return (
         <>
-            {isLoading &&
+            {register.isLoading &&
                 <p>isLoading</p>
             }
 
-            {ok
+            {register.ok
                 ? <Navigate to={Routes.login} />
                 :
                 <PreLoggedin.Layout

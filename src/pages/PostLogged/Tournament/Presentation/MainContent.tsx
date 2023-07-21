@@ -4,12 +4,10 @@ import { useState } from 'react';
 import styles from '../styles.module.css'
 import logo from '@/assets/logoTour.jpg';
 
-import { ICategoryRegistered } from '@/interfaces/ICategory';
-
-import { ITournamentDataGettedByIdResponse } from '@/interfaces/ITournament';
+import { ICategoryGetResponse } from '@/interfaces/ICategory';
+import { ITournamentDataGetByIdResponse } from '@/interfaces/ITournament';
 import { Informations } from './Informations/Informations';
 import { categories, informations } from '@/constants/constants';
-
 import { Button } from '@/components/Button/Button';
 import { PostLogged } from '@/components/PostLogged';
 import { stringToDate } from '@/helper/convertData';
@@ -19,10 +17,11 @@ import { isAdmin } from '@/helper/isAdmin';
 
 
 interface MainContentProps {
-    dataTournament: ITournamentDataGettedByIdResponse;
-    listCategories?: ICategoryRegistered[];
+    dataTournament: ITournamentDataGetByIdResponse;
+    listCategories?: ICategoryGetResponse[];
     removeCategory: (id: string) => void;
 }
+
 
 export function MainContent({dataTournament, listCategories, removeCategory}: MainContentProps) {
 
@@ -70,7 +69,7 @@ export function MainContent({dataTournament, listCategories, removeCategory}: Ma
 
             {presentation === "Categorias" &&
                 <div className={styles.list}>
-                    { listCategories && listCategories?.map((category: ICategoryRegistered, key: number) => (
+                    { listCategories && listCategories?.map((category: ICategoryGetResponse, key: number) => (
                         <PostLogged.Item.Wrapper key={key}>
                             <div className={styles.itemList}>
                                 <PostLogged.Item.Text text={category.description} />

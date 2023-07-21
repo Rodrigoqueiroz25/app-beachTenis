@@ -2,7 +2,7 @@
 import { useState } from "react";
 import request from "@/helper/request";
 import { IDataSignUp } from "@/interfaces/IDataSignUp";
-import { Requests } from "@/helper/Requests";
+import { IRequest } from "@/interfaces/IRequest";
 
 
 export default function useSignup(){
@@ -12,10 +12,12 @@ export default function useSignup(){
     const [error, setError] = useState<string>('');
     
 
-    async function signup(dataUser: IDataSignUp){
+    async function signup(requestData: IRequest<IDataSignUp>){
+        
         setIsLoading(true);
-        let result = await request<{}, IDataSignUp>(Requests.signup(dataUser));
+        let result = await request<{}>(requestData);
         setIsLoading(false);
+
         if(result.ok){
             switch (result.code) {
                 case 200:

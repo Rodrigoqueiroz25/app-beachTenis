@@ -16,13 +16,13 @@ export interface IFormTournament extends ITournament {
     sportId: string
 }
 
-export interface ITournamentDataGettedAllResponse extends ITournament {
+export interface ITournamentDataGetAllResponse extends ITournament {
     id: number
     sport: ISport
     city: ICity
 }
 
-export interface ITournamentDataGettedByIdResponse extends ITournament{
+export interface ITournamentDataGetByIdResponse extends ITournament{
     id: number
     cityId: string
     sportId: string

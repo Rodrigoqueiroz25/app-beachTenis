@@ -16,7 +16,6 @@ export function MainRoutes(){
         { path: Routes.createPasswd, element: <Pages.RecoveryPasswd.CreatePasswd/> },
         { path: Routes.createTournament, element: <PrivateRoute><Pages.CreateTournament/></PrivateRoute> },
         { path: Routes.editTournament, element: <PrivateRoute><Pages.EditTournament/></PrivateRoute> },
-        { path: Routes.addTournamentSponsor, element: <PrivateRoute><Pages.FormTournamentSponsor/></PrivateRoute> },
         { path: Routes.listTournaments, element: <PrivateRoute><Pages.ListTournaments/></PrivateRoute> },
         { path: Routes.tournament, element: <PrivateRoute><Pages.Tournament/></PrivateRoute> },
         { path: Routes.home, element: <PrivateRoute><Pages.Home/></PrivateRoute> },
@@ -24,6 +23,8 @@ export function MainRoutes(){
         { path: Routes.null, element: <h1>sds</h1> },
         { path: Routes.createCategory, element: <PrivateRoute><Pages.CreateCategory/></PrivateRoute> },
         { path: Routes.editCategory, element: <PrivateRoute><Pages.EditCategory/></PrivateRoute> },
+        { path: Routes.createTournamentSponsor, element: <PrivateRoute><Pages.CreateTournamentSponsor/></PrivateRoute> },
+        { path: Routes.editTournamentSponsor, element: <PrivateRoute><Pages.EditTournamentSponsor/></PrivateRoute> },
     ]);
 
 }
