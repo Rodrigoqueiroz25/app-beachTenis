@@ -23,5 +23,5 @@
     "baseUrl": "src",
   },
   "exclude": ["node_modules", "**/node_modules/*", ".unused/*"],
-  "include": ["src", "src/components/.tsx"]
+  "include": ["src", "cypress","@testing-library/cypress"]
 }

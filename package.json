@@ -27,10 +27,22 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "env-cmd -f ./.env react-scripts start",
+    "start": "env-cmd -f ./.env react-scripts -r @cypress/instrument-cra start",
     "build": "env-cmd -f ./.env react-scripts build",
     "test": "env-cmd -f ./.env react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --e2e && cypress run --component",
+    "test-cy": "start-test 3000 cy:run",
+    "pretest": "rm -rf .nyc_output coverage",
+    "posttest": "nyc report",
+    "coverage": "open coverage/lcov-report/index.html"
+  },
+  "nyc": {
+    "exclude": [
+      "src/reportWebVitals.js"
+    ],
+    "excludeAfterRemap": true
   },
   "eslintConfig": {
     "extends": [
@@ -53,11 +65,17 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
+    "@cypress/code-coverage": "^3.11.0",
+    "@cypress/instrument-cra": "^1.4.0",
+    "@testing-library/cypress": "^9.0.0",
     "@types/date-fns": "^2.6.0",
+    "@types/testing-library__cypress": "^5.0.9",
     "commitizen": "^4.3.0",
+    "cypress": "^12.17.2",
     "cz-conventional-changelog": "^3.3.0",
     "env-cmd": "^10.1.0",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "start-server-and-test": "^2.0.0"
   },
   "config": {
     "commitizen": {
