@@ -1,7 +1,7 @@
 
 import styles from './ItemListPhotos.module.css';
-import image1 from '@/assets/image1.svg';
-import image2 from '@/assets/image2.svg';
+import image1 from 'assets/image1.svg';
+import image2 from 'assets/image2.svg';
 
 
 interface ItemListPhotosProps {

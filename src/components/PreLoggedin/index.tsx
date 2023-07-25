@@ -1,5 +1,4 @@
 
-import { Input2 } from "../../../.unused/Input copy/Input";
 import { Input } from "./Input/Input";
 import { InputMasked } from "./InputMasked/InputMasked";
 import { Footer } from "./LayoutPage/Footer/Footer";

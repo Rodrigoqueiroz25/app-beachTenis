@@ -4,11 +4,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import *  as yup from "yup";
 import { useForm } from "react-hook-form";
 import styles from './styles.module.css';
-import { Button } from '@/components/Button/Button';
-import { PostLogged } from "@/components/PostLogged";
-import { IFormTournamentSponsor } from "@/interfaces/ITournamentSponsor";
+import { Button } from 'components/Button/Button';
+import { PostLogged } from "components/PostLogged";
+import { IFormTournamentSponsor } from "interfaces/ITournamentSponsor";
 import { useEffect } from "react";
-import { Validations } from "@/helper/Validations";
+import { Validations } from "helper/Validations";
 
 
 interface FormTournamentSponsorProps {

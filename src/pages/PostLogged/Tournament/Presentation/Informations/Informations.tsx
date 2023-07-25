@@ -1,5 +1,5 @@
 
-import { ITournamentDataGetByIdResponse } from '@/interfaces/ITournament';
+import { ITournamentDataGetByIdResponse } from 'interfaces/ITournament';
 import styles from './Informations.module.css';
 
 type Props = {

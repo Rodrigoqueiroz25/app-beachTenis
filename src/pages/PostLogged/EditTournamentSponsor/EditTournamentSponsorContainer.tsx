@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { Routes } from "@/enums/routes.enum";
-import { PostLogged } from "@/components/PostLogged";
-import useTournamentSponsor from '@/hooks/useTournamentSponsor';
+import { Routes } from "enums/routes.enum";
+import { PostLogged } from "components/PostLogged";
+import useTournamentSponsor from 'hooks/useTournamentSponsor';
 import { useEffect } from 'react';
 
 

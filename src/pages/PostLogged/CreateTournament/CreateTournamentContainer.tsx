@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { Navigate, useNavigate } from 'react-router-dom';
-import { Routes } from "@/enums/routes.enum";
-import { PostLogged } from "@/components/PostLogged";
-import { Validations } from '@/helper/Validations';
-import { brazilDateString } from '@/helper/convertData';
-import useCities from '@/hooks/useCities';
-import useSports from '@/hooks/useSports';
-import useTournament from '@/hooks/useTournament';
+import { Routes } from "enums/routes.enum";
+import { PostLogged } from "components/PostLogged";
+import { Validations } from 'helper/Validations';
+import { brazilDateString } from 'helper/convertData';
+import useCities from 'hooks/useCities';
+import useSports from 'hooks/useSports';
+import useTournament from 'hooks/useTournament';
 
 
 export function CreateTournamentContainer() {

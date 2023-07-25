@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ICategoryGetResponse } from '@/interfaces/ICategory';
-import { Routes } from '@/enums/routes.enum';
-import { PostLogged } from '@/components/PostLogged';
-import { isAdmin } from '@/helper/isAdmin';
+import { ICategoryGetResponse } from 'interfaces/ICategory';
+import { Routes } from 'enums/routes.enum';
+import { PostLogged } from 'components/PostLogged';
+import { isAdmin } from 'helper/isAdmin';
 import { MainContent } from './Presentation/MainContent';
-import { ITournamentDataGetByIdResponse } from '@/interfaces/ITournament';
-import useTournament from '@/hooks/useTournament';
-import useCategory from '@/hooks/useCategory';
+import { ITournamentDataGetByIdResponse } from 'interfaces/ITournament';
+import useTournament from 'hooks/useTournament';
+import useCategory from 'hooks/useCategory';
 
 
 export function TournamentContainer() {

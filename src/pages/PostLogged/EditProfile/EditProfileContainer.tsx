@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Routes } from "@/enums/routes.enum";
-import { PostLogged } from "@/components/PostLogged";
-import { IUserAccount } from "@/interfaces/IUserAccount";
+import { Routes } from "enums/routes.enum";
+import { PostLogged } from "components/PostLogged";
+import { IUserAccount } from "interfaces/IUserAccount";
 import { FormProfile } from './Presentation/FormProfile';
-import useCities from '@/hooks/useCities';
-import useAccount from '@/hooks/useAccount';
+import useCities from 'hooks/useCities';
+import useAccount from 'hooks/useAccount';
 
 
 export function EditProfileContainer() {

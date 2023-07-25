@@ -2,18 +2,18 @@
 import { useState } from 'react';
 
 import styles from '../styles.module.css'
-import logo from '@/assets/logoTour.jpg';
+import logo from 'assets/logoTour.jpg';
 
-import { ICategoryGetResponse } from '@/interfaces/ICategory';
-import { ITournamentDataGetByIdResponse } from '@/interfaces/ITournament';
+import { ICategoryGetResponse } from 'interfaces/ICategory';
+import { ITournamentDataGetByIdResponse } from 'interfaces/ITournament';
 import { Informations } from './Informations/Informations';
-import { categories, informations } from '@/constants/constants';
-import { Button } from '@/components/Button/Button';
-import { PostLogged } from '@/components/PostLogged';
-import { stringToDate } from '@/helper/convertData';
+import { categories, informations } from 'constants/constants';
+import { Button } from 'components/Button/Button';
+import { PostLogged } from 'components/PostLogged';
+import { stringToDate } from 'helper/convertData';
 import { useNavigate } from 'react-router-dom';
-import { Routes } from '@/enums/routes.enum';
-import { isAdmin } from '@/helper/isAdmin';
+import { Routes } from 'enums/routes.enum';
+import { isAdmin } from 'helper/isAdmin';
 
 
 interface MainContentProps {

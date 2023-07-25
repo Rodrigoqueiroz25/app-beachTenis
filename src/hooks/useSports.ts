@@ -1,9 +1,9 @@
 
 import { useEffect } from "react";
 import useFetchData from "./useFetchData";
-import { Requests } from "@/helper/Requests";
+import { Requests } from "helper/Requests";
 import useCookiesSession from "./useCookiesSession";
-import { ISport } from "@/interfaces/ISport";
+import { ISport } from "interfaces/ISport";
 
 
 export default function useSports() {

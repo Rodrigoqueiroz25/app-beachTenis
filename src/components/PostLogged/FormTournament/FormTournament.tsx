@@ -2,14 +2,14 @@
 
 import styles from './styles.module.css';
 import *  as yup from "yup";
-import { PostLogged } from '@/components/PostLogged';
+import { PostLogged } from 'components/PostLogged';
 import { FieldError, FieldErrors, useForm } from 'react-hook-form';
-import { Button } from '@/components/Button/Button';
-import { ICity } from '@/interfaces/ICity';
-import { ISport } from '@/interfaces/ISport';
+import { Button } from 'components/Button/Button';
+import { ICity } from 'interfaces/ICity';
+import { ISport } from 'interfaces/ISport';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Validations } from '@/helper/Validations';
-import { IFormTournament } from '@/interfaces/ITournament';
+import { Validations } from 'helper/Validations';
+import { IFormTournament } from 'interfaces/ITournament';
 import { useEffect, useState } from 'react';
 
 

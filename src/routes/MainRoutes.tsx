@@ -1,7 +1,7 @@
 import { Navigate, useRoutes } from "react-router-dom";
-import { PrivateRoute } from "@/PrivateRoute";
-import { Routes } from "@/enums/routes.enum";
-import { Pages } from "@/pages";
+import { PrivateRoute } from "PrivateRoute";
+import { Routes } from "enums/routes.enum";
+import { Pages } from "pages";
 
 
 export function MainRoutes(){

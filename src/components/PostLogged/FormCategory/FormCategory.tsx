@@ -1,10 +1,10 @@
 
 import styles from './styles.module.css';
-import { PostLogged } from '@/components/PostLogged';
-import { Button } from '@/components/Button/Button';
+import { PostLogged } from 'components/PostLogged';
+import { Button } from 'components/Button/Button';
 import { useForm } from 'react-hook-form';
-import { ICategory } from '@/interfaces/ICategory';
-import { Validations } from '@/helper/Validations';
+import { ICategory } from 'interfaces/ICategory';
+import { Validations } from 'helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 

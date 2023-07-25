@@ -2,13 +2,13 @@
 import { Link } from 'react-router-dom';
 
 import styles from '../styles.module.css';
-import imgMail from '@/assets/Mail.svg';
-import imgEye from '@/assets/eye.svg';
-import { Button } from '@/components/Button/Button';
-import { Routes } from '@/enums/routes.enum';
-import { PreLoggedin } from '@/components/PreLoggedin';
+import imgMail from 'assets/Mail.svg';
+import imgEye from 'assets/eye.svg';
+import { Button } from 'components/Button/Button';
+import { Routes } from 'enums/routes.enum';
+import { PreLoggedin } from 'components/PreLoggedin';
 import { useForm } from 'react-hook-form';
-import { Validations } from '@/helper/Validations';
+import { Validations } from 'helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 

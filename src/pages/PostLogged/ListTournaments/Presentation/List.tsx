@@ -1,12 +1,12 @@
 
 import styles from '../styles.module.css'
-import { Routes } from '@/enums/routes.enum';
-import logoTour from '@/assets/logoTour.jpg';
-import { Button } from '@/components/Button/Button';
+import { Routes } from 'enums/routes.enum';
+import logoTour from 'assets/logoTour.jpg';
+import { Button } from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import { PostLogged } from '@/components/PostLogged';
-import { isAdmin } from '@/helper/isAdmin';
-import { ITournamentDataGetAllResponse } from '@/interfaces/ITournament';
+import { PostLogged } from 'components/PostLogged';
+import { isAdmin } from 'helper/isAdmin';
+import { ITournamentDataGetAllResponse } from 'interfaces/ITournament';
 
 
 

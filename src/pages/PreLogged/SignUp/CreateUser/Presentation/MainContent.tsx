@@ -1,13 +1,13 @@
 
-import imgMail from '@/assets/Mail.svg';
-import imgEye from '@/assets/eye.svg';
+import imgMail from 'assets/Mail.svg';
+import imgEye from 'assets/eye.svg';
 import styles from '../styles.module.css';
 
-import { Button } from '@/components/Button/Button';
-import { PreLoggedin } from '@/components/PreLoggedin';
+import { Button } from 'components/Button/Button';
+import { PreLoggedin } from 'components/PreLoggedin';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Validations } from '@/helper/Validations';
+import { Validations } from 'helper/Validations';
 
 
 interface MainContentProps {

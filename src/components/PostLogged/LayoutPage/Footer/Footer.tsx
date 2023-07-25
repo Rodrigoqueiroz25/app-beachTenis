@@ -1,11 +1,11 @@
 
 import styles from './Footer.module.css';
-import imgHome from '@/assets/home.svg'
-import imgHistory from '@/assets/history.svg'
-import imgProfile from '@/assets/profile.svg'
-import imgWallet from '@/assets/wallet.svg'
+import imgHome from 'assets/home.svg'
+import imgHistory from 'assets/history.svg'
+import imgProfile from 'assets/profile.svg'
+import imgWallet from 'assets/wallet.svg'
 import { useNavigate } from 'react-router-dom';
-import { Routes } from '@/enums/routes.enum';
+import { Routes } from 'enums/routes.enum';
 
 
 export function Footer() {

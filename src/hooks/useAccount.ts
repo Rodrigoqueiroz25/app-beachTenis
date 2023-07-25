@@ -1,12 +1,12 @@
 
 import useFetchData from "./useFetchData"
-import { Requests } from "@/helper/Requests"
+import { Requests } from "helper/Requests"
 import useCookiesSession from "./useCookiesSession";
 import useAuth from "./useAuth";
 import useSignup from "./useSignup";
-import { IUserAccount } from "@/interfaces/IUserAccount";
-import { IDataLogin } from "@/interfaces/IDataLogin";
-import { IDataSignUp } from "@/interfaces/IDataSignUp";
+import { IUserAccount } from "interfaces/IUserAccount";
+import { IDataLogin } from "interfaces/IDataLogin";
+import { IDataSignUp } from "interfaces/IDataSignUp";
 
 
 export default function useAccount() {

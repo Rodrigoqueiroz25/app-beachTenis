@@ -1,9 +1,9 @@
 
 import { ReactNode } from 'react';
 import styles from './Footer.module.css';
-// import imgGoogle from '@/assets/google.svg';
-// import imgFacebook from '@/assets/Facebook.svg';
-import imgRectangle from '@/assets/Rectangle.svg';
+// import imgGoogle from 'assets/google.svg';
+// import imgFacebook from 'assets/Facebook.svg';
+import imgRectangle from 'assets/Rectangle.svg';
 
 interface FooterProps {
     children: ReactNode;

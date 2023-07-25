@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect } from 'react';
-import { Routes } from '@/enums/routes.enum';
+import { Routes } from 'enums/routes.enum';
 import { useNavigate } from 'react-router-dom';
-import { PostLogged } from '@/components/PostLogged';
-import { isAdmin } from '@/helper/isAdmin';
+import { PostLogged } from 'components/PostLogged';
+import { isAdmin } from 'helper/isAdmin';
 import { List } from './Presentation/List';
-import useTournament from '@/hooks/useTournament';
+import useTournament from 'hooks/useTournament';
 
 
 

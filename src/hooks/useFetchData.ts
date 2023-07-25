@@ -1,8 +1,8 @@
 
 import { useState } from "react";
-import request from "@/helper/request";
-import { isError } from "@/interfaces/IError";
-import { IRequest } from "@/interfaces/IRequest";
+import request from "helper/request";
+import { isError } from "interfaces/IError";
+import { IRequest } from "interfaces/IRequest";
 
 
 export default function useFetchData<R>() {

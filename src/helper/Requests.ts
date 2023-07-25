@@ -1,11 +1,11 @@
-import { HTTPMETHODS } from "@/constants/httpMethods"
-import { ICategory } from "@/interfaces/ICategory";
-import { IDataLogin } from "@/interfaces/IDataLogin"
-import { IDataSignUp } from "@/interfaces/IDataSignUp";
-import { IRequest } from "@/interfaces/IRequest"
-import { IFormTournament } from "@/interfaces/ITournament";
-import { ITournamentSponsor } from "@/interfaces/ITournamentSponsor";
-import { IUserAccount } from "@/interfaces/IUserAccount";
+import { HTTPMETHODS } from "constants/httpMethods"
+import { ICategory } from "interfaces/ICategory";
+import { IDataLogin } from "interfaces/IDataLogin"
+import { IDataSignUp } from "interfaces/IDataSignUp";
+import { IRequest } from "interfaces/IRequest"
+import { IFormTournament } from "interfaces/ITournament";
+import { ITournamentSponsor } from "interfaces/ITournamentSponsor";
+import { IUserAccount } from "interfaces/IUserAccount";
 
 
 export class Requests {

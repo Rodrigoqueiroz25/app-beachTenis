@@ -1,7 +1,7 @@
 
 import { HTMLAttributes } from 'react';
 import styles from './ButtonPlus.module.css';
-import plus from '@/assets/add.svg';
+import plus from 'assets/add.svg';
 
 interface ButtonPlusProps extends HTMLAttributes<HTMLDivElement> {
     

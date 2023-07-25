@@ -1,11 +1,11 @@
 
 import { useState } from "react";
 import useCookiesSession from "./useCookiesSession";
-import request from "@/helper/request";
-import { isError } from "@/interfaces/IError";
-import { ILoginResult } from "@/interfaces/ILoginResult";
-import { IDataLogin } from "@/interfaces/IDataLogin";
-import { IRequest } from "@/interfaces/IRequest";
+import request from "helper/request";
+import { isError } from "interfaces/IError";
+import { ILoginResult } from "interfaces/ILoginResult";
+import { IDataLogin } from "interfaces/IDataLogin";
+import { IRequest } from "interfaces/IRequest";
 
 export default function useAuth(){
        

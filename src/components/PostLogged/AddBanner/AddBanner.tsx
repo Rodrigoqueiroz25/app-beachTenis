@@ -1,7 +1,7 @@
 
 import styles from './AddBanner.module.css';
-import photo from '@/assets/photo.svg';
-import image from '@/assets/image.svg';
+import photo from 'assets/photo.svg';
+import image from 'assets/image.svg';
 
 export function AddBanner() {
 

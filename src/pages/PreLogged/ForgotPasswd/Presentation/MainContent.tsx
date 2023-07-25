@@ -1,9 +1,9 @@
 
 import styles from '../styles.module.css'
-import imgForgotPasswd from '@/assets/forgot_password.svg';
-import { Button } from '@/components/Button/Button';
-import { PreLoggedin } from '@/components/PreLoggedin';
-import { Validations } from '@/helper/Validations';
+import imgForgotPasswd from 'assets/forgot_password.svg';
+import { Button } from 'components/Button/Button';
+import { PreLoggedin } from 'components/PreLoggedin';
+import { Validations } from 'helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';

@@ -1,7 +1,7 @@
 
 import { HTMLAttributes } from 'react';
 import styles from './ButtonBack.module.css';
-import back from '@/assets/set_left.svg';
+import back from 'assets/set_left.svg';
 
 
 interface ButtonBackProps extends HTMLAttributes<HTMLDivElement> {

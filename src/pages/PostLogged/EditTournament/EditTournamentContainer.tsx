@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { IFormTournament } from '@/interfaces/ITournament';
-import { Routes } from "@/enums/routes.enum";
-import { PostLogged } from "@/components/PostLogged";
-import { Validations } from '@/helper/Validations';
-import { americanDateString, brazilDateString } from '@/helper/convertData';
-import useCities from '@/hooks/useCities';
-import useSports from '@/hooks/useSports';
-import useTournament from '@/hooks/useTournament';
+import { IFormTournament } from 'interfaces/ITournament';
+import { Routes } from "enums/routes.enum";
+import { PostLogged } from "components/PostLogged";
+import { Validations } from 'helper/Validations';
+import { americanDateString, brazilDateString } from 'helper/convertData';
+import useCities from 'hooks/useCities';
+import useSports from 'hooks/useSports';
+import useTournament from 'hooks/useTournament';
 
 
 export function EditTournamentContainer() {

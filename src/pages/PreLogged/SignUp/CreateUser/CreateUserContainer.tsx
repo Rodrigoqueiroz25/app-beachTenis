@@ -1,12 +1,12 @@
 
 import { useNavigate } from 'react-router-dom';
 import { MainContent } from './Presentation/MainContent';
-import { Routes } from '@/enums/routes.enum';
-import { PreLoggedin } from '@/components/PreLoggedin';
-import { LinkOtherPage } from '@/components/PreLoggedin/LinkOtherPage/LinkOtherPage';
+import { Routes } from 'enums/routes.enum';
+import { PreLoggedin } from 'components/PreLoggedin';
+import { LinkOtherPage } from 'components/PreLoggedin/LinkOtherPage/LinkOtherPage';
 import styles from './styles.module.css';
-import imgBeachTenis from '@/assets/player-beachTenis.svg';
-import { IDataSignUp } from '@/interfaces/IDataSignUp';
+import imgBeachTenis from 'assets/player-beachTenis.svg';
+import { IDataSignUp } from 'interfaces/IDataSignUp';
 
 export function CreateUserContainer() {
 

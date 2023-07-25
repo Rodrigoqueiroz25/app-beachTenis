@@ -2,7 +2,7 @@
 import { HTMLAttributes, ReactNode } from 'react';
 import styles from './Layout.module.css';
 import { Header } from '../Header/Header';
-import { Footer } from '@/components/PreLoggedin/LayoutPage/Footer/Footer';
+import { Footer } from 'components/PreLoggedin/LayoutPage/Footer/Footer';
 
 
 interface LayoutProps extends HTMLAttributes<HTMLDivElement>{

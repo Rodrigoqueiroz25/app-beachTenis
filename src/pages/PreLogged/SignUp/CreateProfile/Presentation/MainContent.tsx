@@ -3,13 +3,13 @@ import { ChangeEvent, useState } from 'react';
 
 import styles from '../styles.module.css';
 
-import imgPhotoCircle from '@/assets/photo_create_profile.svg';
+import imgPhotoCircle from 'assets/photo_create_profile.svg';
 
-import { Button } from '@/components/Button/Button';
-import { PreLoggedin } from '@/components/PreLoggedin';
+import { Button } from 'components/Button/Button';
+import { PreLoggedin } from 'components/PreLoggedin';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { Validations } from '@/helper/Validations';
+import { Validations } from 'helper/Validations';
 import { ValidationError } from 'yup';
 
 

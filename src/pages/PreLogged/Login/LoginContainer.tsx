@@ -2,14 +2,14 @@
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 import styles from './styles.module.css';
-import useVerifyAuth from '@/hooks/useVerifyAuth';
-import useAuth from '@/hooks/useAuth';
-import imgBeachTenis from '@/assets/player-beachTenis.svg';
-import { Routes } from '@/enums/routes.enum';
-import { PreLoggedin } from '@/components/PreLoggedin';
-import { LinkOtherPage } from '@/components/PreLoggedin/LinkOtherPage/LinkOtherPage';
+import useVerifyAuth from 'hooks/useVerifyAuth';
+import useAuth from 'hooks/useAuth';
+import imgBeachTenis from 'assets/player-beachTenis.svg';
+import { Routes } from 'enums/routes.enum';
+import { PreLoggedin } from 'components/PreLoggedin';
+import { LinkOtherPage } from 'components/PreLoggedin/LinkOtherPage/LinkOtherPage';
 import { MainContent } from './Presentation/MainContent';
-import useAccount from '@/hooks/useAccount';
+import useAccount from 'hooks/useAccount';
 
 
 export function LoginContainer() {

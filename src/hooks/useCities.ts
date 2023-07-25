@@ -1,8 +1,8 @@
 
 import { useEffect } from "react";
 import useFetchData from "./useFetchData";
-import { ICity } from "@/interfaces/ICity";
-import { Requests } from "@/helper/Requests";
+import { ICity } from "interfaces/ICity";
+import { Requests } from "helper/Requests";
 import useCookiesSession from "./useCookiesSession";
 
 

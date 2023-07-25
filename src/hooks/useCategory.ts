@@ -1,8 +1,8 @@
 
 import useFetchData from "./useFetchData"
-import { Requests } from "@/helper/Requests"
+import { Requests } from "helper/Requests"
 import useCookiesSession from "./useCookiesSession";
-import { ICategory, ICategoryDataWriteResponse, ICategoryGetResponse } from "@/interfaces/ICategory";
+import { ICategory, ICategoryDataWriteResponse, ICategoryGetResponse } from "interfaces/ICategory";
 
 
 export default function useCategory() {

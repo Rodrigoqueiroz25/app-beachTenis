@@ -1,5 +1,5 @@
 
-import { HTTPMETHODS } from "@/constants/httpMethods";
+import { HTTPMETHODS } from "constants/httpMethods";
 import { INotContent } from "./INotContent";
 
 export interface IRequest<T = INotContent>{

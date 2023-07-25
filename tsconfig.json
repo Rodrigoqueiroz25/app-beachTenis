@@ -21,9 +21,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "src",
-      "paths": {
-        "@/*": ["./*"]
-      }
   },
   "exclude": ["node_modules", "**/node_modules/*", ".unused/*"],
   "include": ["src", "src/components/.tsx"]

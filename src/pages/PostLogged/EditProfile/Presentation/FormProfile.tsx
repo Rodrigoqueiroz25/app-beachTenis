@@ -5,14 +5,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 
-import imgPhotoCircle from '@/assets/photo_create_profile.svg';
+import imgPhotoCircle from 'assets/photo_create_profile.svg';
 import styles from '../styles.module.css'
-import { Button } from '@/components/Button/Button';
+import { Button } from 'components/Button/Button';
 
-import { ICity } from '@/interfaces/ICity';
-import { PostLogged } from "@/components/PostLogged";
-import { Validations } from "@/helper/Validations";
-import { IUserAccount } from "@/interfaces/IUserAccount";
+import { ICity } from 'interfaces/ICity';
+import { PostLogged } from "components/PostLogged";
+import { Validations } from "helper/Validations";
+import { IUserAccount } from "interfaces/IUserAccount";
 
 
 interface FormProfileProps {

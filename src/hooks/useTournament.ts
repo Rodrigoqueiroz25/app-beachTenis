@@ -1,13 +1,13 @@
 
 import useFetchData from "./useFetchData"
-import { Requests } from "@/helper/Requests"
+import { Requests } from "helper/Requests"
 import useCookiesSession from "./useCookiesSession";
 import {
     IFormTournament,
     ITournamentDataGetAllResponse,
     ITournamentDataGetByIdResponse,
     ITournamentDataWriteResponse
-} from "@/interfaces/ITournament";
+} from "interfaces/ITournament";
 
 
 export default function useTournament() {

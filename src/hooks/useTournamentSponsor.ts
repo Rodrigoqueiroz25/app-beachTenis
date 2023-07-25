@@ -1,8 +1,8 @@
 
 import useFetchData from "./useFetchData"
-import { Requests } from "@/helper/Requests"
+import { Requests } from "helper/Requests"
 import useCookiesSession from "./useCookiesSession";
-import { ITournamentSponsor, ITournamentSponsorResponse } from "@/interfaces/ITournamentSponsor";
+import { ITournamentSponsor, ITournamentSponsorResponse } from "interfaces/ITournamentSponsor";
 
 
 export default function useTournamentSponsor() {

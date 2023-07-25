@@ -1,8 +1,8 @@
 
 import { useState } from "react";
-import request from "@/helper/request";
-import { IDataSignUp } from "@/interfaces/IDataSignUp";
-import { IRequest } from "@/interfaces/IRequest";
+import request from "helper/request";
+import { IDataSignUp } from "interfaces/IDataSignUp";
+import { IRequest } from "interfaces/IRequest";
 
 
 export default function useSignup(){

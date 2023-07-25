@@ -1,6 +1,6 @@
 
 import styles from './styles.module.css';
-import { PreLoggedin } from '@/components/PreLoggedin';
+import { PreLoggedin } from 'components/PreLoggedin';
 import { MainContent } from './Presentation/MainContent';
 
 export function ForgotPasswdContainer() {

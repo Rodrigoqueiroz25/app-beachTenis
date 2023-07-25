@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Routes } from "@/enums/routes.enum";
-import { PostLogged } from "@/components/PostLogged";
-import { ButtonBack } from "@/components/PostLogged/ButtonBack/ButtonBack";
-import useCategory from '@/hooks/useCategory';
-import { ICategoryDataWriteResponse } from '@/interfaces/ICategory';
+import { Routes } from "enums/routes.enum";
+import { PostLogged } from "components/PostLogged";
+import { ButtonBack } from "components/PostLogged/ButtonBack/ButtonBack";
+import useCategory from 'hooks/useCategory';
+import { ICategoryDataWriteResponse } from 'interfaces/ICategory';
 
 
 export function EditCategoryContainer() {

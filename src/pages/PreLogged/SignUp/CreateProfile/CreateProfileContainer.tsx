@@ -3,13 +3,13 @@
 import { useEffect } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { MainContent } from './Presentation/MainContent';
-import imgCreateProfile from '@/assets/create_profile_title.svg';
-import { Routes } from '@/enums/routes.enum';
+import imgCreateProfile from 'assets/create_profile_title.svg';
+import { Routes } from 'enums/routes.enum';
 import styles from './styles.module.css';
-import { PreLoggedin } from '@/components/PreLoggedin';
-import { IDataSignUp } from '@/interfaces/IDataSignUp';
-import { convertData } from '@/helper/convertData';
-import useAccount from '@/hooks/useAccount';
+import { PreLoggedin } from 'components/PreLoggedin';
+import { IDataSignUp } from 'interfaces/IDataSignUp';
+import { convertData } from 'helper/convertData';
+import useAccount from 'hooks/useAccount';
 
 export function CreateProfileContainer() {
 
