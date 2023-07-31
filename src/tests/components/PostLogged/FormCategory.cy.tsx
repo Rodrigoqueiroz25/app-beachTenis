@@ -142,4 +142,9 @@ describe('Testing with defaultValues <FormCategory>', () => {
     cy.findByPlaceholderText('Quantidade máxima de inscritos').should('have.value', '233')
   })
 
+  it('the button text must be "Alterar"', () => {
+    cy.findByText("Alterar").invoke('prop', 'tagName').should('eq', 'BUTTON')
+    cy.findByText("Alterar").should('be.visible')
+  })
+
 });

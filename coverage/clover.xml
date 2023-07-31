@@ -1,10 +1,239 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1690833329202" clover="3.2.0">
-  <project timestamp="1690833329202" name="All files">
-    <metrics statements="1" coveredstatements="1" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1" elements="5" coveredelements="5" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1"/>
-    <file name="Button.tsx" path="/workspaces/app-beachTenis/src/components/Button/Button.tsx">
-      <metrics statements="1" coveredstatements="1" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
-      <line num="10" count="65" type="stmt"/>
-    </file>
+<coverage generated="1690839235032" clover="3.2.0">
+  <project timestamp="1690839235032" name="All files">
+    <metrics statements="110" coveredstatements="36" conditionals="45" coveredconditionals="16" methods="49" coveredmethods="9" elements="204" coveredelements="61" complexity="0" loc="110" ncloc="110" packages="20" files="21" classes="21"/>
+    <package name="components.Button">
+      <metrics statements="1" coveredstatements="1" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="Button.tsx" path="/workspaces/app-beachTenis/src/components/Button/Button.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="10" count="473" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/index.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="14" count="20" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.AddBanner">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="AddBanner.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/AddBanner/AddBanner.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.ButtonBack">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ButtonBack.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ButtonBack/ButtonBack.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.ButtonPlus">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ButtonPlus.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ButtonPlus/ButtonPlus.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.Combobox">
+      <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
+      <file name="Combobox.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/Combobox/Combobox.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
+        <line num="13" count="20" type="stmt"/>
+        <line num="16" count="473" type="stmt"/>
+        <line num="25" count="4730" type="cond" truecount="1" falsecount="1"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.FormCategory">
+      <metrics statements="9" coveredstatements="9" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
+      <file name="FormCategory.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/FormCategory/FormCategory.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
+        <line num="20" count="473" type="stmt"/>
+        <line num="24" count="473" type="stmt"/>
+        <line num="25" count="209" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="34" count="7" type="stmt"/>
+        <line num="35" count="7" type="stmt"/>
+        <line num="38" count="473" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.FormTournament">
+      <metrics statements="40" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="14" coveredmethods="0"/>
+      <file name="FormTournament.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/FormTournament/FormTournament.tsx">
+        <metrics statements="40" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="14" coveredmethods="0"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="145" count="0" type="stmt"/>
+        <line num="154" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.FormTournamentSponsor">
+      <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="FormTournamentSponsor.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/FormTournamentSponsor/FormTournamentSponsor.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.Input">
+      <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="Input.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/Input/Input.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="10" count="20" type="stmt"/>
+        <line num="11" count="946" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.ItemList">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ItemList/index.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="20" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.ItemList.ItemListButtons">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ItemListButtons.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ItemList/ItemListButtons/ItemListButtons.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.ItemList.ItemListPeriod">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ItemListPeriod.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ItemList/ItemListPeriod/ItemListPeriod.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.ItemList.ItemListPhotos">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ItemListPhotos.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ItemList/ItemListPhotos/ItemListPhotos.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.ItemList.ItemListText">
+      <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ItemListText.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ItemList/ItemListText/ItemListText.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.ItemList.ItemListWrapper">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ItemListWrapper.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ItemList/ItemListWrapper/ItemListWrapper.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.LayoutPage.Footer">
+      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="Footer.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/LayoutPage/Footer/Footer.tsx">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.PostLogged.LayoutPage.Layout">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Layout.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/LayoutPage/Layout/Layout.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="enums">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="routes.enum.ts" path="/workspaces/app-beachTenis/src/enums/routes.enum.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="helper">
+      <metrics statements="33" coveredstatements="19" conditionals="4" coveredconditionals="1" methods="14" coveredmethods="2"/>
+      <file name="Validations.ts" path="/workspaces/app-beachTenis/src/helper/Validations.ts">
+        <metrics statements="21" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="9" count="20" type="stmt"/>
+        <line num="15" count="20" type="stmt"/>
+        <line num="19" count="20" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="29" count="20" type="stmt"/>
+        <line num="33" count="20" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="41" count="20" type="stmt"/>
+        <line num="47" count="20" type="stmt"/>
+        <line num="54" count="20" type="stmt"/>
+        <line num="66" count="20" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="88" count="20" type="stmt"/>
+        <line num="94" count="20" type="stmt"/>
+        <line num="102" count="20" type="stmt"/>
+        <line num="108" count="20" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+      </file>
+      <file name="convertData.ts" path="/workspaces/app-beachTenis/src/helper/convertData.ts">
+        <metrics statements="12" coveredstatements="6" conditionals="4" coveredconditionals="1" methods="6" coveredmethods="2"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="9" count="40" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="40" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="24" count="40" type="stmt"/>
+        <line num="25" count="40" type="stmt"/>
+        <line num="26" count="40" type="stmt"/>
+        <line num="27" count="40" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

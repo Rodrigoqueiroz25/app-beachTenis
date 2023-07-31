@@ -165,7 +165,7 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                 <div className={styles.inputDates}>
                     <div className={styles.input}>
                         <PostLogged.Input
-                            placeholder='Data início'
+                            placeholder='Data inícial'
                             type='date'
                             msgError={errorValidate.dtStartRegistration?.message || errors.dtStartRegistration?.message as string}
                             disabled={fieldsInactives?.includes('dtStartRegistration')}
