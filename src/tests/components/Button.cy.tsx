@@ -20,10 +20,10 @@ describe('Testings visuals <Button />', () => {
     cy.findByText('Teste').should('have.css', 'color', hexToRgb('ffffff'))
   })
 
-  it('have a height 4.3rem when have class .large', () => {
+  it('have a height 4.5rem when have class .large', () => {
     cy.mount(<Button>Teste</Button>)
     const c = cy.findByText('Teste');
-    c.should('have.css', 'height', '69.02857208251953px')
+    c.should('have.css', 'height', '72px')
   })
 
   it('have a font-size 1.8rem when have class .large', () => {
