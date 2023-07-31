@@ -14,7 +14,7 @@ export function ButtonPlus(props: ButtonPlusProps){
             {...props}
             className={styles.button}
         >
-            <img src={plus} alt="" />
+            <img src={plus} alt="símbolo de adição" />
         </div>
     );
 }

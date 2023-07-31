@@ -15,7 +15,7 @@ export function ButtonBack(props: ButtonBackProps){
             {...props}
             className={styles.button}
         >
-            <img src={back} alt="" />
+            <img src={back} alt="seta para esquerda" />
         </div>
     );
 }
