@@ -1,3 +1,4 @@
+
 .form{
     margin-top: 1.5rem;
     margin-bottom: 1.6rem;
@@ -16,23 +17,6 @@
 
 }
 
-
-.info{
-    padding: 1rem;
-    margin: 0.5rem 0;
-    height: 10.7rem;
-    width: 100%;
-    border-radius: 1rem;
-    margin-bottom: 2.6rem;
-
-}
-
-.info:placeholder-shown {
-    font-weight: 400;
-    font-size: 1.2rem;
-    line-height: 150%;
-    color: #3F3D56;
-}
 
 .button{
     position: fixed;

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -118,8 +118,7 @@
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,19 +138,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,7 +176,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable react-hooks/exhaustive-deps */
 &nbsp;
 import { yupResolver } from "@hookform/resolvers/yup";
-import *  as yup from "yup";
 import { useForm } from "react-hook-form";
 import styles from './styles.module.css';
 import { Button } from 'components/Button/Button';
@@ -194,20 +191,20 @@ interface FormTournamentSponsorProps {
 }
 &nbsp;
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >FormTournamentSponsor(</span>{submit, defaultValues}: FormTournamentSponsorProps) {
+export function FormTournamentSponsor({ submit, defaultValues }: FormTournamentSponsorProps) {
 &nbsp;
-    const { register, handleSubmit, formState: { errors }, setValue } = <span class="cstat-no" title="statement not covered" >useForm({</span>
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(Validations.formTournamentSponsor)
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if(defaultValues){</span>
+    useEffect(() =&gt; {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (defaultValues) {
 <span class="cstat-no" title="statement not covered" >            setValue("name", defaultValues.name);</span>
 <span class="cstat-no" title="statement not covered" >            setValue("otherInformation", defaultValues.otherInformation);</span>
         }
     }, [defaultValues]);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
         &lt;&gt;
             &lt;PostLogged.AddBanner /&gt;
             &lt;form className={styles.form} onSubmit={handleSubmit(submit)}&gt;
@@ -218,10 +215,10 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
                     {...register('name')}
                 /&gt;
 &nbsp;
-                &lt;textarea className={styles.info}
+                &lt;PostLogged.TextArea
                     placeholder='Outras informações'
                     {...register("otherInformation")}
-                &gt;&lt;/textarea&gt;
+                /&gt;
 &nbsp;
                 &lt;div className={styles.button}&gt;
                     &lt;Button&gt;Salvar&lt;/Button&gt;
@@ -238,7 +235,7 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-31T21:33:55.008Z
+                at 2023-07-31T23:19:31.419Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

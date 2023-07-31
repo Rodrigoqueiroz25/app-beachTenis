@@ -10,6 +10,7 @@ import { FormTournamentSponsor } from "./FormTournamentSponsor/FormTournamentSpo
 import { Input } from "./Input/Input";
 import { ItemList } from "./ItemList";
 import { Layout } from "./LayoutPage/Layout/Layout";
+import { TextArea } from "./TextArea/TextArea";
 
 export const PostLogged = {
     Layout: Layout,
@@ -19,6 +20,7 @@ export const PostLogged = {
     Combobox: Combobox,
     Input: Input,
     Item: ItemList,
+    TextArea: TextArea,
     
     FormCategory: FormCategory,
     FormTournament: FormTournament,

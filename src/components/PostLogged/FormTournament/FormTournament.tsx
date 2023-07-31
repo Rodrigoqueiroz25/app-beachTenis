@@ -31,15 +31,15 @@ interface FieldDatesFormTournament {
 }
 
 
-export function FormTournament({submit, sports, cities, schema, defaultValues, fieldsInactives}: FormTournamentProps) {
-    
+export function FormTournament({ submit, sports, cities, schema, defaultValues, fieldsInactives }: FormTournamentProps) {
+
     const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(schema)
     });
 
     const [attempToSubmit, setAttempToSubmit] = useState(false);
     const [permissionToSubmit, setPermissionToSubmit] = useState(false);
-   
+
     const [errorValidate, setErrorValidate] = useState<FieldErrors<FieldDatesFormTournament>>({
         dtStartRegistration: {} as FieldError,
         dtFinalRegistration: {} as FieldError,
@@ -47,8 +47,8 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
         dtFinalTournament: {} as FieldError
     });
 
-    useEffect(() =>{
-        if(defaultValues){
+    useEffect(() => {
+        if (defaultValues) {
             setValue("description", defaultValues.description);
             setValue("organization", defaultValues.organization);
             setValue("sportId", defaultValues.sportId);
@@ -63,7 +63,7 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
 
 
     useEffect(() => {
-        if(attempToSubmit){
+        if (attempToSubmit) {
             validateFieldDates({
                 dtStartRegistration: watch("dtStartRegistration"),
                 dtFinalRegistration: watch("dtFinalRegistration"),
@@ -71,10 +71,10 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                 dtFinalTournament: watch("dtFinalTournament")
             })
         }
-    },  [watch("dtStartRegistration") , watch("dtFinalRegistration"), watch("dtStartTournament"), watch("dtFinalTournament")]);
+    }, [watch("dtStartRegistration"), watch("dtFinalRegistration"), watch("dtStartTournament"), watch("dtFinalTournament")]);
 
-    useEffect(() =>{
-        if(permissionToSubmit){
+    useEffect(() => {
+        if (permissionToSubmit) {
             submit({
                 description: watch("description"),
                 organization: watch("organization"),
@@ -87,12 +87,12 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                 otherInformation: watch("otherInformation")
             } as IFormTournament);
         }
-    },[permissionToSubmit]);
+    }, [permissionToSubmit]);
 
 
-    function validateFieldDates(obj: any){
+    function validateFieldDates(obj: any) {
         try {
-            Validations.fieldsDateFormTournament.validateSync(obj, {abortEarly: false});
+            Validations.fieldsDateFormTournament.validateSync(obj, { abortEarly: false });
             setErrorValidate({});
         } catch (error) {
             let c = error as yup.ValidationError;
@@ -103,12 +103,12 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                 dtFinalTournament: c.inner.find(err => err.path === "dtFinalTournament") as FieldError
             }
             setPermissionToSubmit(false);
-            setErrorValidate({...t});
+            setErrorValidate({ ...t });
         }
     }
 
 
-    function handleSubmitForm(data: any){
+    function handleSubmitForm(data: any) {
         setAttempToSubmit(true);
         setPermissionToSubmit(true);
         validateFieldDates({
@@ -163,24 +163,20 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                 </div>
 
                 <div className={styles.inputDates}>
-                    <div className={styles.input}>
-                        <PostLogged.Input
-                            placeholder='Data inícial'
-                            type='date'
-                            msgError={errorValidate.dtStartRegistration?.message || errors.dtStartRegistration?.message as string}
-                            disabled={fieldsInactives?.includes('dtStartRegistration')}
-                            {...register('dtStartRegistration')}
-                        />
-                    </div>
-                    <div className={styles.input}>
-                        <PostLogged.Input
-                            placeholder='Data Final'
-                            type='date'
-                            msgError={errorValidate.dtFinalRegistration?.message || errors.dtFinalRegistration?.message as string}
-                            disabled={fieldsInactives?.includes('dtFinalRegistration')}
-                            {...register('dtFinalRegistration')}
-                        />
-                    </div>
+                    <PostLogged.Input
+                        placeholder='Data inícial'
+                        type='date'
+                        msgError={errorValidate.dtStartRegistration?.message || errors.dtStartRegistration?.message as string}
+                        disabled={fieldsInactives?.includes('dtStartRegistration')}
+                        {...register('dtStartRegistration')}
+                    />
+                    <PostLogged.Input
+                        placeholder='Data Final'
+                        type='date'
+                        msgError={errorValidate.dtFinalRegistration?.message || errors.dtFinalRegistration?.message as string}
+                        disabled={fieldsInactives?.includes('dtFinalRegistration')}
+                        {...register('dtFinalRegistration')}
+                    />
                 </div>
 
                 <div className={styles.paragraph}>
@@ -189,30 +185,26 @@ export function FormTournament({submit, sports, cities, schema, defaultValues, f
                 </div>
 
                 <div className={styles.inputDates}>
-                    <div className={styles.input}>
-                        <PostLogged.Input
-                            placeholder='Data inicial'
-                            type='date'
-                            msgError={errorValidate.dtStartTournament?.message || errors.dtStartTournament?.message as string}
-                            disabled={fieldsInactives?.includes('dtStartTournament')}
-                            {...register('dtStartTournament')}
-                        />
-                    </div>
-                    <div className={styles.input}>
-                        <PostLogged.Input
-                            placeholder='Data Final'
-                            type='date'
-                            msgError={errorValidate.dtFinalTournament?.message || errors.dtFinalTournament?.message as string}
-                            disabled={fieldsInactives?.includes('dtFinalTournament')}
-                            {...register('dtFinalTournament')}
-                        />
-                    </div>
+                    <PostLogged.Input
+                        placeholder='Data inicial'
+                        type='date'
+                        msgError={errorValidate.dtStartTournament?.message || errors.dtStartTournament?.message as string}
+                        disabled={fieldsInactives?.includes('dtStartTournament')}
+                        {...register('dtStartTournament')}
+                    />
+                    <PostLogged.Input
+                        placeholder='Data Final'
+                        type='date'
+                        msgError={errorValidate.dtFinalTournament?.message || errors.dtFinalTournament?.message as string}
+                        disabled={fieldsInactives?.includes('dtFinalTournament')}
+                        {...register('dtFinalTournament')}
+                    />
                 </div>
 
-                <textarea className={styles.info}
+                <PostLogged.TextArea
                     placeholder='Outras informações'
                     {...register("otherInformation")}
-                ></textarea>
+                />
 
                 <Button>{defaultValues ? "Alterar" : "Adicionar"}</Button>
             </form>

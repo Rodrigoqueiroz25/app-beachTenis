@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import *  as yup from "yup";
 import { useForm } from "react-hook-form";
 import styles from './styles.module.css';
 import { Button } from 'components/Button/Button';
@@ -17,14 +16,14 @@ interface FormTournamentSponsorProps {
 }
 
 
-export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSponsorProps) {
+export function FormTournamentSponsor({ submit, defaultValues }: FormTournamentSponsorProps) {
 
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(Validations.formTournamentSponsor)
     });
 
     useEffect(() => {
-        if(defaultValues){
+        if (defaultValues) {
             setValue("name", defaultValues.name);
             setValue("otherInformation", defaultValues.otherInformation);
         }
@@ -41,10 +40,10 @@ export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSpo
                     {...register('name')}
                 />
 
-                <textarea className={styles.info}
+                <PostLogged.TextArea
                     placeholder='Outras informações'
                     {...register("otherInformation")}
-                ></textarea>
+                />
 
                 <div className={styles.button}>
                     <Button>Salvar</Button>

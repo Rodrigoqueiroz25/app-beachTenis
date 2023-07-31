@@ -13,7 +13,7 @@ export default defineConfig({
       return config
     },
     viewportHeight: 812,
-    viewportWidth: 375
+    viewportWidth: 450
   },
 
   e2e: {
