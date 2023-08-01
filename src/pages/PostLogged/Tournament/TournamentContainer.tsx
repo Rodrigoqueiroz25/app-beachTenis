@@ -66,15 +66,15 @@ export function TournamentContainer() {
 
     return (
         <>
-            <PostLogged.Layout
+            <PostLogged.LayoutPage.Layout
                 header={
-                    <>
+                    <PostLogged.LayoutPage.Header>
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                         <p>Torneio</p>
                         {isAdmin() &&
                             <PostLogged.ButtonPlus onClick={() => navigate(Routes.createCategory, { state: { tournamentId: dataTournament.id } })} />
                         }
-                    </>
+                    </PostLogged.LayoutPage.Header>
                 }
                 main={
                     <MainContent

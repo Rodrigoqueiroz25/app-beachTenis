@@ -9,11 +9,11 @@ import { FormTournamentSponsor } from "./FormTournamentSponsor/FormTournamentSpo
 
 import { Input } from "./Input/Input";
 import { ItemList } from "./ItemList";
-import { Layout } from "./LayoutPage/Layout/Layout";
+import { LayoutPage } from "./LayoutPage";
 import { TextArea } from "./TextArea/TextArea";
 
 export const PostLogged = {
-    Layout: Layout,
+    LayoutPage: LayoutPage,
     AddBanner: AddBanner,
     ButtonBack: ButtonBack,
     ButtonPlus: ButtonPlus,

@@ -47,12 +47,12 @@ export function EditTournamentContainer() {
                 <Navigate to={Routes.listTournaments}/>
             }
 
-            <PostLogged.Layout
+            <PostLogged.LayoutPage.Layout
                 header={
-                    <>
+                    <PostLogged.LayoutPage.Header>
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                         <p>Altere o Torneio</p>
-                    </>
+                    </PostLogged.LayoutPage.Header>
                 }
                 main={
                     <PostLogged.FormTournament

@@ -40,12 +40,12 @@ export function CreateTournamentSponsorContainer() {
                 <Navigate to={`${Routes.tournamentLessParam}/${params.tournamentId}`}/>
             }
 
-            <PostLogged.Layout
+            <PostLogged.LayoutPage.Layout
                 header={
-                    <>
+                    <PostLogged.LayoutPage.Header>
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                         <p>Adicione um Patrocínio</p>
-                    </>
+                    </PostLogged.LayoutPage.Header>
                 }
                 main={
                     <PostLogged.FormTournamentSponsor

@@ -50,11 +50,11 @@ export function EditProfileContainer() {
                 <p>isLoading</p>
             }
 
-            <PostLogged.Layout
+            <PostLogged.LayoutPage.Layout
                 header={
-                    <>
+                    <PostLogged.LayoutPage.Header>
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.home)} />
-                    </>
+                    </PostLogged.LayoutPage.Header>
                 }
                 main={
                     <FormProfile

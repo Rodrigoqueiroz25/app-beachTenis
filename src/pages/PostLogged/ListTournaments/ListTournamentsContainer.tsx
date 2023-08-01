@@ -22,15 +22,15 @@ export function ListTournamentsContainer() {
 
     return (
 
-        <PostLogged.Layout
+        <PostLogged.LayoutPage.Layout
             header={
-                <>
+                <PostLogged.LayoutPage.Header>
                     <PostLogged.ButtonBack onClick={() => navigate(Routes.home)} />
                     <p>Torneios</p>
                     {isAdmin() &&
                         <PostLogged.ButtonPlus onClick={() => navigate(Routes.createTournament)} />
                     }
-                </>
+                </PostLogged.LayoutPage.Header>
             }
             main={
                 <List listTournaments={getAllTournaments.tournaments} />

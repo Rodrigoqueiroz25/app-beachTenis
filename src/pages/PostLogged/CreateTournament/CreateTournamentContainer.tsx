@@ -48,12 +48,12 @@ export function CreateTournamentContainer() {
                 <Navigate to={Routes.createCategory} state={{ tournamentId: createTournament.tournamentCreated?.id }} />
             }
 
-            <PostLogged.Layout
+            <PostLogged.LayoutPage.Layout
                 header={
-                    <>
+                    <PostLogged.LayoutPage.Header>
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                         <p>Adicione um torneio</p>
-                    </>
+                    </PostLogged.LayoutPage.Header>
                 }
                 main={
                     <PostLogged.FormTournament

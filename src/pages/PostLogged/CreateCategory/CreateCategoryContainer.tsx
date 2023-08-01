@@ -34,14 +34,14 @@ export function CreateCategoryContainer() {
 
     return (
         <>
-            <PostLogged.Layout
+            <PostLogged.LayoutPage.Layout
                 header={
-                    <>
+                    <PostLogged.LayoutPage.Header>
                         <ButtonBack onClick={() =>
                             navigate(`${Routes.tournamentLessParam}/${tournamentId}`)
                         } />
                         <p>Adicionar Categorias</p>
-                    </>
+                    </PostLogged.LayoutPage.Header>
                 }
                 main={
                     <PostLogged.FormCategory
