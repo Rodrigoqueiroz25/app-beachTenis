@@ -1,26 +1,29 @@
-
-.form{
+.form {
     margin-top: 1.5rem;
-    margin-bottom: 1.6rem;
+    display: grid;
+    /* grid-template-rows: 4rem 12rem 40vh; */
+    /* height: 60vh; */
 }
 
-.form > :nth-child(1){
+.form> :nth-child(1) {
     grid-row: 1/2;
 }
 
-.form > :nth-child(2){
+.form> :nth-child(2) {
     grid-row: 2/3;
 }
 
-.form > :nth-child(3){
-    grid-row: 4/5;
+.form> :nth-child(3) {
+    grid-row: 3/4;
+    align-self: end;
 
 }
 
 
-.button{
-    position: fixed;
-    width: 95%;
-    bottom: 9rem;
-    left: 0.7rem;
+.button {
+    /* margin-top: 40%; */
+    /* position: absolute;
+    bottom: 6rem;
+    width: 100%; */
+    /* width: 95vw; */
 }

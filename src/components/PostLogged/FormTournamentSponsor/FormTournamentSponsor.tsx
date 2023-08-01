@@ -16,14 +16,14 @@ interface FormTournamentSponsorProps {
 }
 
 
-export function FormTournamentSponsor({ submit, defaultValues }: FormTournamentSponsorProps) {
+export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSponsorProps) {
 
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(Validations.formTournamentSponsor)
     });
 
     useEffect(() => {
-        if (defaultValues) {
+        if(defaultValues){
             setValue("name", defaultValues.name);
             setValue("otherInformation", defaultValues.otherInformation);
         }
@@ -40,7 +40,7 @@ export function FormTournamentSponsor({ submit, defaultValues }: FormTournamentS
                     {...register('name')}
                 />
 
-                <PostLogged.TextArea
+                <PostLogged.TextArea 
                     placeholder='Outras informações'
                     {...register("otherInformation")}
                 />

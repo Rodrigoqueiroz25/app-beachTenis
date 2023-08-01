@@ -3635,7 +3635,7 @@
         "loc": {
           "start": {
             "line": 19,
-            "column": 93
+            "column": 91
           },
           "end": {
             "line": 56,
@@ -3726,6 +3726,6 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "6f9b9af65666e922ee5bd71cedc104fc5b8bda02"
+    "hash": "7c75ea491d4830babf2cf182f6ce3e23fc081037"
   }
 }

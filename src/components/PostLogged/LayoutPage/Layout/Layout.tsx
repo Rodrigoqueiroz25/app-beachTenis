@@ -10,7 +10,7 @@ interface LayoutProps extends HTMLAttributes<HTMLDivElement>{
 
 export function Layout({header, main}: LayoutProps){
     return (
-        <>
+        <div className={styles.wrapper}>
             <header className={styles.header}>
                 {header}
             </header>
@@ -18,7 +18,7 @@ export function Layout({header, main}: LayoutProps){
                 {main}
             </main>
             <Footer/>
-        </>
+        </div>
         
     );
 }

@@ -27,7 +27,7 @@ export function List({listTournaments}: ListProps) {
     }
 
     return (
-        <>
+        <div className={styles.list}>
             {listTournaments?.map((d: ITournamentDataGetAllResponse, key: number) => (
                 <PostLogged.Item.Wrapper key={key}>
                     <div className={styles.itemList}>
@@ -50,6 +50,6 @@ export function List({listTournaments}: ListProps) {
                     </div>
                 </PostLogged.Item.Wrapper>
             ))}
-        </>
+        </div>
     );
 }

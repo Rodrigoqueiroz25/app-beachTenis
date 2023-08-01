@@ -1,4 +1,9 @@
 
+.list{
+    margin-top: 1.5rem;
+    
+}
+
 .itemList{
     grid-column: 2/3;
     grid-row: 2/3;
