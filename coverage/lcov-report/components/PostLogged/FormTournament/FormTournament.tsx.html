@@ -275,15 +275,7 @@
 <a name='L210'></a><a href='#L210'>210</a>
 <a name='L211'></a><a href='#L211'>211</a>
 <a name='L212'></a><a href='#L212'>212</a>
-<a name='L213'></a><a href='#L213'>213</a>
-<a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a>
-<a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L213'></a><a href='#L213'>213</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -438,14 +430,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -536,15 +520,15 @@ interface FieldDatesFormTournament {
 }
 &nbsp;
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >FormTournament(</span>{submit, sports, cities, schema, defaultValues, fieldsInactives}: FormTournamentProps) {
-    
+export function <span class="fstat-no" title="function not covered" >FormTournament(</span>{ submit, sports, cities, schema, defaultValues, fieldsInactives }: FormTournamentProps) {
+&nbsp;
     const { register, handleSubmit, watch, formState: { errors }, setValue } = <span class="cstat-no" title="statement not covered" >useForm({</span>
         resolver: yupResolver(schema)
     });
 &nbsp;
     const [attempToSubmit, setAttempToSubmit] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
     const [permissionToSubmit, setPermissionToSubmit] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-   
+&nbsp;
     const [errorValidate, setErrorValidate] = <span class="cstat-no" title="statement not covered" >useState&lt;FieldErrors&lt;FieldDatesFormTournament&gt;&gt;({</span>
         dtStartRegistration: {} as FieldError,
         dtFinalRegistration: {} as FieldError,
@@ -552,8 +536,8 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
         dtFinalTournament: {} as FieldError
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt;{</span>
-<span class="cstat-no" title="statement not covered" >        if(defaultValues){</span>
+<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (defaultValues) {</span>
 <span class="cstat-no" title="statement not covered" >            setValue("description", defaultValues.description);</span>
 <span class="cstat-no" title="statement not covered" >            setValue("organization", defaultValues.organization);</span>
 <span class="cstat-no" title="statement not covered" >            setValue("sportId", defaultValues.sportId);</span>
@@ -568,7 +552,7 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
 &nbsp;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if(attempToSubmit){</span>
+<span class="cstat-no" title="statement not covered" >        if (attempToSubmit) {</span>
 <span class="cstat-no" title="statement not covered" >            validateFieldDates({</span>
                 dtStartRegistration: watch("dtStartRegistration"),
                 dtFinalRegistration: watch("dtFinalRegistration"),
@@ -576,10 +560,10 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
                 dtFinalTournament: watch("dtFinalTournament")
             })
         }
-    },  [watch("dtStartRegistration") , watch("dtFinalRegistration"), watch("dtStartTournament"), watch("dtFinalTournament")]);
+    }, [watch("dtStartRegistration"), watch("dtFinalRegistration"), watch("dtStartTournament"), watch("dtFinalTournament")]);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt;{</span>
-<span class="cstat-no" title="statement not covered" >        if(permissionToSubmit){</span>
+<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (permissionToSubmit) {</span>
 <span class="cstat-no" title="statement not covered" >            submit({</span>
                 description: watch("description"),
                 organization: watch("organization"),
@@ -592,12 +576,12 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
                 otherInformation: watch("otherInformation")
             } as IFormTournament);
         }
-    },[permissionToSubmit]);
+    }, [permissionToSubmit]);
 &nbsp;
 &nbsp;
-    function <span class="fstat-no" title="function not covered" >validateFieldDates(</span>obj: any){
+    function <span class="fstat-no" title="function not covered" >validateFieldDates(</span>obj: any) {
 <span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            Validations.fieldsDateFormTournament.validateSync(obj, {abortEarly: false});</span>
+<span class="cstat-no" title="statement not covered" >            Validations.fieldsDateFormTournament.validateSync(obj, { abortEarly: false });</span>
 <span class="cstat-no" title="statement not covered" >            setErrorValidate({});</span>
         } catch (error) {
             let c = <span class="cstat-no" title="statement not covered" >error as yup.ValidationError;</span>
@@ -608,12 +592,12 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
                 dtFinalTournament: c.inner.find(<span class="fstat-no" title="function not covered" >er</span>r =&gt; <span class="cstat-no" title="statement not covered" >err.path === "dtFinalTournament")</span> as FieldError
             }
 <span class="cstat-no" title="statement not covered" >            setPermissionToSubmit(false);</span>
-<span class="cstat-no" title="statement not covered" >            setErrorValidate({...t});</span>
+<span class="cstat-no" title="statement not covered" >            setErrorValidate({ ...t });</span>
         }
     }
 &nbsp;
 &nbsp;
-    function <span class="fstat-no" title="function not covered" >handleSubmitForm(</span>data: any){
+    function <span class="fstat-no" title="function not covered" >handleSubmitForm(</span>data: any) {
 <span class="cstat-no" title="statement not covered" >        setAttempToSubmit(true);</span>
 <span class="cstat-no" title="statement not covered" >        setPermissionToSubmit(true);</span>
 <span class="cstat-no" title="statement not covered" >        validateFieldDates({</span>
@@ -668,24 +652,20 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
                 &lt;/div&gt;
 &nbsp;
                 &lt;div className={styles.inputDates}&gt;
-                    &lt;div className={styles.input}&gt;
-                        &lt;PostLogged.Input
-                            placeholder='Data inícial'
-                            type='date'
-                            msgError={errorValidate.dtStartRegistration?.message || errors.dtStartRegistration?.message as string}
-                            disabled={fieldsInactives?.includes('dtStartRegistration')}
-                            {...register('dtStartRegistration')}
-                        /&gt;
-                    &lt;/div&gt;
-                    &lt;div className={styles.input}&gt;
-                        &lt;PostLogged.Input
-                            placeholder='Data Final'
-                            type='date'
-                            msgError={errorValidate.dtFinalRegistration?.message || errors.dtFinalRegistration?.message as string}
-                            disabled={fieldsInactives?.includes('dtFinalRegistration')}
-                            {...register('dtFinalRegistration')}
-                        /&gt;
-                    &lt;/div&gt;
+                    &lt;PostLogged.Input
+                        placeholder='Data inícial'
+                        type='date'
+                        msgError={errorValidate.dtStartRegistration?.message || errors.dtStartRegistration?.message as string}
+                        disabled={fieldsInactives?.includes('dtStartRegistration')}
+                        {...register('dtStartRegistration')}
+                    /&gt;
+                    &lt;PostLogged.Input
+                        placeholder='Data Final'
+                        type='date'
+                        msgError={errorValidate.dtFinalRegistration?.message || errors.dtFinalRegistration?.message as string}
+                        disabled={fieldsInactives?.includes('dtFinalRegistration')}
+                        {...register('dtFinalRegistration')}
+                    /&gt;
                 &lt;/div&gt;
 &nbsp;
                 &lt;div className={styles.paragraph}&gt;
@@ -694,30 +674,26 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
                 &lt;/div&gt;
 &nbsp;
                 &lt;div className={styles.inputDates}&gt;
-                    &lt;div className={styles.input}&gt;
-                        &lt;PostLogged.Input
-                            placeholder='Data inicial'
-                            type='date'
-                            msgError={errorValidate.dtStartTournament?.message || errors.dtStartTournament?.message as string}
-                            disabled={fieldsInactives?.includes('dtStartTournament')}
-                            {...register('dtStartTournament')}
-                        /&gt;
-                    &lt;/div&gt;
-                    &lt;div className={styles.input}&gt;
-                        &lt;PostLogged.Input
-                            placeholder='Data Final'
-                            type='date'
-                            msgError={errorValidate.dtFinalTournament?.message || errors.dtFinalTournament?.message as string}
-                            disabled={fieldsInactives?.includes('dtFinalTournament')}
-                            {...register('dtFinalTournament')}
-                        /&gt;
-                    &lt;/div&gt;
+                    &lt;PostLogged.Input
+                        placeholder='Data inicial'
+                        type='date'
+                        msgError={errorValidate.dtStartTournament?.message || errors.dtStartTournament?.message as string}
+                        disabled={fieldsInactives?.includes('dtStartTournament')}
+                        {...register('dtStartTournament')}
+                    /&gt;
+                    &lt;PostLogged.Input
+                        placeholder='Data Final'
+                        type='date'
+                        msgError={errorValidate.dtFinalTournament?.message || errors.dtFinalTournament?.message as string}
+                        disabled={fieldsInactives?.includes('dtFinalTournament')}
+                        {...register('dtFinalTournament')}
+                    /&gt;
                 &lt;/div&gt;
 &nbsp;
-                &lt;textarea className={styles.info}
+                &lt;PostLogged.TextArea
                     placeholder='Outras informações'
                     {...register("otherInformation")}
-                &gt;&lt;/textarea&gt;
+                /&gt;
 &nbsp;
                 &lt;Button&gt;{defaultValues ? "Alterar" : "Adicionar"}&lt;/Button&gt;
             &lt;/form&gt;
@@ -730,7 +706,7 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-31T23:19:31.419Z
+                at 2023-08-01T00:07:24.910Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -1,5 +1,7 @@
 
 .textarea{
+    box-sizing: border-box;
+    display: block;
     padding: 1rem;
     margin: 0.5rem 0;
     height: 10.7rem;
@@ -7,13 +9,11 @@
     border-radius: 1rem;
     margin-bottom: 2.6rem;
     outline: none;
+    resize: none;
 }
 
 .textarea:focus{
-    border-width: 2px;
-    border-image: linear-gradient(to right, #114c99, #1544cf);
-    border-image-slice: 1;
-    border-radius: 1rem;
+    border: 1px solid #114c99;
 }
 
 .textarea:placeholder-shown {
