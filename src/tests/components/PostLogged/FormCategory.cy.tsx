@@ -1,6 +1,11 @@
 import React from 'react'
 import { PostLogged } from 'components/PostLogged';
 
+function submit(data: any) {
+  expect(data.description).to.eq('Dupla Masculina A')
+  expect(data.numberAthletes).to.eq('233')
+  expect(data.numberAthletesRegistration).to.eq('2')
+}
 
 describe('Testing Funcional <FormCategory />', () => {
   it('renders', () => {
@@ -52,12 +57,8 @@ describe('Testing Funcional <FormCategory />', () => {
     .select(6, {force: true}).select(7, {force: true}).select(8, {force: true}).select(9, {force: true}).select(10, {force: true})
   });
 
-  it('field with placeholder "Descrição" does not change the value entered by the user', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
-    cy.findByPlaceholderText('Descrição').type('hello description').invoke('prop', 'value').should('eq', 'hello description')
-  });
 
-  it('field with placeholder "Quantidade de pessoas por inscrição" does not change the option selected by the user', () => {
+  it('field with placeholder "Quantidade de pessoas por inscrição" have the option values ​​the same as their name', () => {
     cy.mount(<PostLogged.FormCategory submit={() => ''} />)
     cy.get('select').select(1, {force: true}).invoke('prop', 'value').should('eq', '1');
     cy.get('select').select(2, {force: true}).invoke('prop', 'value').should('eq', '2');
@@ -71,12 +72,7 @@ describe('Testing Funcional <FormCategory />', () => {
     cy.get('select').select(10, {force: true}).invoke('prop', 'value').should('eq', '10');
   });
 
-  it('field with placeholder "Quantidade máxima de inscritos" does not change the value entered by the user', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
-    cy.findByPlaceholderText('Quantidade máxima de inscritos').type('50', {force: true}).invoke('prop', 'value').should('eq', '50')
-  });
-
-  it('button has a text "Adicionar" when prop form defaultValues ​​is empty', () => {
+  it('button has a text "Adicionar" when prop form defaultValues is empty', () => {
     cy.mount(<PostLogged.FormCategory submit={() => ''} />)
     cy.get('button').should('have.text', 'Adicionar')
   });
@@ -90,7 +86,14 @@ describe('Testing Funcional <FormCategory />', () => {
     cy.findByPlaceholderText('Descrição').should('have.value', '')
     cy.findByPlaceholderText('Quantidade de pessoas por inscrição').should('have.value', '')
     cy.findByPlaceholderText('Quantidade máxima de inscritos').should('have.value', '')
+  });
 
+  it('values entered in fields are not changed when submitted', () => {
+    cy.mount(<PostLogged.FormCategory submit={(data) => submit(data)} />)
+    cy.findByPlaceholderText('Descrição').type('Dupla Masculina A', {force: true});
+    cy.findByPlaceholderText('Quantidade de pessoas por inscrição').select(2, {force: true})
+    cy.findByPlaceholderText('Quantidade máxima de inscritos').type('233', {force: true})
+    cy.findByText('Adicionar').click();
   });
   
 });
@@ -128,7 +131,7 @@ describe('Testing Validations <FormCategory>', () => {
 describe('Testing with defaultValues <FormCategory>', () => {
 
   beforeEach(() => {
-    cy.mount(<PostLogged.FormCategory submit={(data:any) => data} defaultValues={{
+    cy.mount(<PostLogged.FormCategory submit={(data) => submit(data)} defaultValues={{
       description: "Dupla Masculina A",
       numberAthletes: "233",
       numberAthletesRegistration: "2",
@@ -143,8 +146,12 @@ describe('Testing with defaultValues <FormCategory>', () => {
   })
 
   it('the button text must be "Alterar"', () => {
-    cy.findByText("Alterar").invoke('prop', 'tagName').should('eq', 'BUTTON')
-    cy.findByText("Alterar").should('be.visible')
+    cy.get('button').should('have.text', 'Alterar')
   })
+
+
+  it('values entered in fields are not changed when submitted', () => {
+    cy.findByText('Alterar').click();
+  });
 
 });
