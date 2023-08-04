@@ -2,7 +2,7 @@ import { ForgotPasswd } from "./PreLogged/ForgotPasswd";
 import { CreatePasswd } from "./PreLogged/CreatePasswd";
 import { CreateProfile } from "./PreLogged/SignUp/CreateProfile";
 import { CreateUser } from "./PreLogged/SignUp/CreateUser";
-import { Home } from "./PostLogged/Home/Home";
+
 import { CreateTournament } from "./PostLogged/CreateTournament";
 import { EditProfile } from "./PostLogged/EditProfile";
 import { ListTournaments } from "./PostLogged/ListTournaments";
@@ -13,6 +13,7 @@ import { EditCategory } from "./PostLogged/EditCategory";
 import { EditTournament } from "./PostLogged/EditTournament";
 import { CreateTournamentSponsor } from "./PostLogged/CreateTournamentSponsor";
 import { EditTournamentSponsor } from "./PostLogged/EditTournamentSponsor";
+import { Home } from "./PostLogged/Home";
 
 export const Pages = {
     Login: Login,
