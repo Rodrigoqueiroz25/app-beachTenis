@@ -128,6 +128,14 @@ export class Requests {
         }       
     }
 
+    public static getTournamentsFilteredByDate(cookie: string): IRequest {
+        return {
+            method: HTTPMETHODS.GET,
+            cookie: cookie,
+            url: `/tournaments/filterDate`
+        }       
+    }
+
     public static getTournament(param: string, cookie: string): IRequest {
         return {
             method: HTTPMETHODS.GET,

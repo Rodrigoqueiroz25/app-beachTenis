@@ -1,22 +1,21 @@
 
 import styles from '../styles.module.css';
 import imgLocation from 'assets/location.svg'
-import photoRanking from 'assets/photo_ranking.svg';
 import { useNavigate } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { ICity } from 'interfaces/ICity';
 import { PostLogged } from 'components/PostLogged';
-import { ITournamentDataGetByIdResponse } from 'interfaces/ITournament';
+import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import logoTour from 'assets/logoTour.jpg';
 import { Button } from 'components/Button/Button';
 
 interface MainContentProps {
     cities: ICity[];
-    tournament?: ITournamentDataGetByIdResponse;
+    tournaments?: ITournamentDataGetResponse[];
 }
 
 
-export function MainContent({ cities, tournament }: MainContentProps) {
+export function MainContent({ cities, tournaments }: MainContentProps) {
 
     const navigate = useNavigate();
 
@@ -55,40 +54,24 @@ export function MainContent({ cities, tournament }: MainContentProps) {
 
                 <div className={styles.tournament}>
 
-                    {tournament &&
-                        <>
-                            <div className={styles.item}>
-                                <img className={styles.logo} src={logoTour} alt="logo do torneio" />
-                                <div className={styles.wrapper}>
-                                    <PostLogged.Item.Wrapper>
-                                        <div className={styles.itemList}>
-                                            <PostLogged.Item.Period dtInit={tournament.dtStartTournament} dtFinal={tournament.dtFinalTournament} />
-                                            <PostLogged.Item.Photos />
-                                            <PostLogged.Item.Text text={tournament.organization} />
-                                            <PostLogged.Item.Text small text={tournament.description} />
-                                            <Button small>Inscrição</Button>
-                                        </div>
-                                    </PostLogged.Item.Wrapper>
-                                </div>
+                    {tournaments?.map((tournament, key) => (
+                        <div className={styles.item}>
+                            <img className={styles.logo} src={logoTour} alt="logo do torneio" />
+                            <div className={styles.wrapper}>
+                                <PostLogged.Item.Wrapper>
+                                    <div className={styles.itemList}>
+                                        <PostLogged.Item.Period dtInit={tournament.dtStartTournament} dtFinal={tournament.dtFinalTournament} />
+                                        <PostLogged.Item.Photos />
+                                        <PostLogged.Item.Text small text="3.2 km" />
+                                        <PostLogged.Item.Text text={tournament.organization} />
+                                        <PostLogged.Item.Text small text={tournament.description} />
+                                        <PostLogged.Item.Text small text="Fee: Free" />
+                                        <Button small>Inscrição</Button>
+                                    </div>
+                                </PostLogged.Item.Wrapper>
                             </div>
-
-                            <div className={styles.item}>
-                                <img className={styles.logo} src={logoTour} alt="logo do torneio" />
-                                <div className={styles.wrapper}>
-                                    <PostLogged.Item.Wrapper>
-                                        <div className={styles.itemList}>
-                                            <PostLogged.Item.Period dtInit={tournament.dtStartTournament} dtFinal={tournament.dtFinalTournament} />
-                                            <PostLogged.Item.Photos />
-                                            <PostLogged.Item.Text text={tournament.organization} />
-                                            <PostLogged.Item.Text small text={tournament.description} />
-                                            <Button small>Inscrição</Button>
-                                        </div>
-                                    </PostLogged.Item.Wrapper>
-                                </div>
-                            </div>
-
-                        </>
-                    }
+                        </div>
+                    ))}
 
 
                 </div>
@@ -104,11 +87,7 @@ export function MainContent({ cities, tournament }: MainContentProps) {
                 </div>
 
                 <div className={styles.peoples}>
-                    <img src={photoRanking} alt="" />
-                    <img src={photoRanking} alt="" />
-                    <img src={photoRanking} alt="" />
-                    <img src={photoRanking} alt="" />
-                    <img src={photoRanking} alt="" />
+                    
                 </div>
             </section>
         </>

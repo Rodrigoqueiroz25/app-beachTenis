@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import useCookiesSession from 'hooks/useCookiesSession';
 import { PostLogged } from 'components/PostLogged';
@@ -12,11 +13,11 @@ export function HomeContainer() {
     const { getCookieNameUser } = useCookiesSession();
 
     const fetchCities = useCities();
-    const { getTournament } = useTournament();
+    const { getAllTournamentsFilteredByDate } = useTournament();
 
     useEffect(() => {
-        getTournament.get('16');
-    },[getTournament.error]);
+        getAllTournamentsFilteredByDate.getAllFilteredByDate();
+    },[getAllTournamentsFilteredByDate.error]);
 
     return (
         <PostLogged.LayoutPage.Layout
@@ -26,7 +27,7 @@ export function HomeContainer() {
             main={
                 <MainContent 
                     cities={fetchCities.cities}
-                    tournament={getTournament.tournament}
+                    tournaments={getAllTournamentsFilteredByDate.tournaments?.finished!}
                 />
             }
         />

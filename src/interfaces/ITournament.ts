@@ -32,8 +32,24 @@ export interface ITournamentDataGetByIdResponse extends ITournament{
     dtFinalRegistrationFormatted: string
 }
 
+
+export interface ITournamentDataGetResponse extends ITournament{
+    id: number
+    cityId: string
+    sportId: string
+    dtStartTournamentFormatted: string
+    dtFinalTournamentFormatted: string
+    dtStartRegistrationFormatted: string
+    dtFinalRegistrationFormatted: string
+}
+
 export interface ITournamentDataWriteResponse extends ITournament{
     id: number
     cityId: string
     sportId: string
+}
+
+export interface ITournamentFilteredDateResponse {
+    opened: ITournamentDataGetResponse[];
+    finished: ITournamentDataGetResponse[];
 }

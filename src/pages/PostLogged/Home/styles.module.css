@@ -177,8 +177,8 @@
         'period period period'
         'org org org'
         'description description description'
-        'photos photos photos'
-        'inscription inscription inscription'
+        'photos photos km'
+        'fee inscription inscription'
         
     ;
     
@@ -198,17 +198,29 @@
 }
 
 .itemList > :nth-child(3){
+    grid-area: km;
+    align-self: center;
+}
+
+.itemList > :nth-child(4){
     grid-area: org;
     margin-top: 0.2rem;
     justify-self: start;
 }
 
-.itemList > :nth-child(4){
+.itemList > :nth-child(5){
     grid-area: description;
     justify-self: start;
 }
 
-.itemList > :nth-child(5){
+.itemList > :nth-child(6){
+    grid-area: fee;
+    justify-self: start;
+    align-self: center;
+}
+
+
+.itemList > :nth-child(7){
     grid-area: inscription;
     justify-self: end;
 }

@@ -1,2 +1,5 @@
 node_modules
 .unused
+.env
+coverage
+.nyc_output
