@@ -5,9 +5,8 @@ import useCookiesSession from "./useCookiesSession";
 import {
     IFormTournament,
     ITournamentDataGetAllResponse,
-    ITournamentDataGetByIdResponse,
+    ITournamentDataGetResponse,
     ITournamentDataWriteResponse,
-    ITournamentFilteredDateResponse
 } from "interfaces/ITournament";
 
 
@@ -16,9 +15,8 @@ export default function useTournament() {
     const { getCookieToken } = useCookiesSession();
 
     const create = useFetchData<ITournamentDataWriteResponse>();
-    const getAll = useFetchData<ITournamentDataGetAllResponse[]>();
-    const getAllFilteredByDate = useFetchData<ITournamentFilteredDateResponse>();
-    const get = useFetchData<ITournamentDataGetByIdResponse>();
+    const getAll = useFetchData<ITournamentDataGetAllResponse>();
+    const get = useFetchData<ITournamentDataGetResponse>();
 
 
     const createTournament = {
@@ -55,21 +53,12 @@ export default function useTournament() {
         getAll: () => getAll.fetchData(Requests.getTournaments(getCookieToken()))
     };
 
-    const getAllTournamentsFilteredByDate = {
-        isLoading: getAllFilteredByDate.isLoading,
-        ok: getAllFilteredByDate.ok,
-        error: getAllFilteredByDate.error,
-        tournaments: getAllFilteredByDate.data,
-        getAllFilteredByDate: () => getAllFilteredByDate.fetchData(Requests.getTournamentsFilteredByDate(getCookieToken()))
-    };
-
 
     return {
         createTournament,
         editTournament,
         getTournament,
         getAllTournaments,
-        getAllTournamentsFilteredByDate
     }
 
 }

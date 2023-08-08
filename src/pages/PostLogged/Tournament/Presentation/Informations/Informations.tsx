@@ -1,9 +1,9 @@
 
-import { ITournamentDataGetByIdResponse } from 'interfaces/ITournament';
+import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import styles from './Informations.module.css';
 
 type Props = {
-    infoTournament: ITournamentDataGetByIdResponse;
+    infoTournament: ITournamentDataGetResponse;
 }
 
 export function Informations({infoTournament}: Props) {

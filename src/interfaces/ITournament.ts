@@ -16,22 +16,6 @@ export interface IFormTournament extends ITournament {
     sportId: string
 }
 
-export interface ITournamentDataGetAllResponse extends ITournament {
-    id: number
-    sport: ISport
-    city: ICity
-}
-
-export interface ITournamentDataGetByIdResponse extends ITournament{
-    id: number
-    cityId: string
-    sportId: string
-    dtStartTournamentFormatted: string
-    dtFinalTournamentFormatted: string
-    dtStartRegistrationFormatted: string
-    dtFinalRegistrationFormatted: string
-}
-
 
 export interface ITournamentDataGetResponse extends ITournament{
     id: number
@@ -43,13 +27,14 @@ export interface ITournamentDataGetResponse extends ITournament{
     dtFinalRegistrationFormatted: string
 }
 
+export interface ITournamentDataGetAllResponse extends ITournament {
+    opened: ITournamentDataGetResponse[];
+    finished: ITournamentDataGetResponse[];
+}
+
+
 export interface ITournamentDataWriteResponse extends ITournament{
     id: number
     cityId: string
     sportId: string
-}
-
-export interface ITournamentFilteredDateResponse {
-    opened: ITournamentDataGetResponse[];
-    finished: ITournamentDataGetResponse[];
 }

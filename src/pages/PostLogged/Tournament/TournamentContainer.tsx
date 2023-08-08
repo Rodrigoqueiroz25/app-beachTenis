@@ -7,9 +7,9 @@ import { Routes } from 'enums/routes.enum';
 import { PostLogged } from 'components/PostLogged';
 import { isAdmin } from 'helper/isAdmin';
 import { MainContent } from './Presentation/MainContent';
-import { ITournamentDataGetByIdResponse } from 'interfaces/ITournament';
 import useTournament from 'hooks/useTournament';
 import useCategory from 'hooks/useCategory';
+import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 
 
 export function TournamentContainer() {
@@ -19,7 +19,7 @@ export function TournamentContainer() {
     const { getAllCategories, deleteCategory } = useCategory();
 
     const [listCategories, setListCategories] = useState<ICategoryGetResponse[]>([]);
-    const [dataTournament, setDataTournament] = useState<ITournamentDataGetByIdResponse>({} as ITournamentDataGetByIdResponse);
+    const [dataTournament, setDataTournament] = useState<ITournamentDataGetResponse>({} as ITournamentDataGetResponse);
 
     const params = useParams();
     const navigate = useNavigate();

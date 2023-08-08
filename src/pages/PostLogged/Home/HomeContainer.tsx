@@ -13,11 +13,11 @@ export function HomeContainer() {
     const { getCookieNameUser } = useCookiesSession();
 
     const fetchCities = useCities();
-    const { getAllTournamentsFilteredByDate } = useTournament();
+    const { getAllTournaments } = useTournament();
 
     useEffect(() => {
-        getAllTournamentsFilteredByDate.getAllFilteredByDate();
-    },[getAllTournamentsFilteredByDate.error]);
+        getAllTournaments.getAll();
+    },[getAllTournaments.error]);
 
     return (
         <PostLogged.LayoutPage.Layout
@@ -27,7 +27,7 @@ export function HomeContainer() {
             main={
                 <MainContent 
                     cities={fetchCities.cities}
-                    tournaments={getAllTournamentsFilteredByDate.tournaments?.finished!}
+                    tournaments={getAllTournaments.tournaments?.finished!}
                 />
             }
         />

@@ -5,7 +5,7 @@ import styles from '../styles.module.css'
 import logo from 'assets/logoTour.jpg';
 
 import { ICategoryGetResponse } from 'interfaces/ICategory';
-import { ITournamentDataGetByIdResponse } from 'interfaces/ITournament';
+import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import { Informations } from './Informations/Informations';
 import { categories, informations } from 'constants/constants';
 import { Button } from 'components/Button/Button';
@@ -17,7 +17,7 @@ import { isAdmin } from 'helper/isAdmin';
 
 
 interface MainContentProps {
-    dataTournament: ITournamentDataGetByIdResponse;
+    dataTournament: ITournamentDataGetResponse;
     listCategories?: ICategoryGetResponse[];
     removeCategory: (id: string) => void;
 }

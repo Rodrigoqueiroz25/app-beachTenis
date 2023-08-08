@@ -124,14 +124,6 @@ export class Requests {
         return {
             method: HTTPMETHODS.GET,
             cookie: cookie,
-            url: `/tournaments`
-        }       
-    }
-
-    public static getTournamentsFilteredByDate(cookie: string): IRequest {
-        return {
-            method: HTTPMETHODS.GET,
-            cookie: cookie,
             url: `/tournaments/filterDate`
         }       
     }

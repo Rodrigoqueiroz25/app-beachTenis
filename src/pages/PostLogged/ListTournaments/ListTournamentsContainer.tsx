@@ -14,12 +14,12 @@ export function ListTournamentsContainer() {
 
     const [inProgress, setInProgress] = useState(true);
 
-    const { getAllTournamentsFilteredByDate } = useTournament();
+    const { getAllTournaments } = useTournament();
     const navigate = useNavigate();
 
     useEffect(() => {
-        getAllTournamentsFilteredByDate.getAllFilteredByDate();
-    }, [getAllTournamentsFilteredByDate.error]);
+        getAllTournaments.getAll();
+    }, [getAllTournaments.error]);
 
     function handleClickInProgress() {
         setInProgress(true);
@@ -60,7 +60,7 @@ export function ListTournamentsContainer() {
                 </>
             }
             main={
-                <List listTournaments={inProgress ? getAllTournamentsFilteredByDate.tournaments?.opened : getAllTournamentsFilteredByDate.tournaments?.finished} />
+                <List listTournaments={inProgress ? getAllTournaments.tournaments?.opened : getAllTournaments.tournaments?.finished} />
             }
         />
     );
