@@ -1,4 +1,33 @@
 
+.buttons{
+    display: flex;
+    
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    height: 3.5rem;
+}
+
+button {
+    width: 10.6rem;
+    height: 3rem;
+
+    border-radius: 0.6rem;
+    border: none;
+    background: white;
+    box-shadow: 0 0.1rem 0.4rem 0 rgba(0, 0, 0, 0.25);
+
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: background-color 0.25s;
+}
+
+.focus{
+    background: #221FD1;
+    color: #FFFFFF;
+}
+
+
 .list{
     margin-top: 1.5rem;
     
