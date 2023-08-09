@@ -8,6 +8,7 @@ import { PostLogged } from 'components/PostLogged';
 import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import logoTour from 'assets/logoTour.jpg';
 import { Button } from 'components/Button/Button';
+import { isAdmin } from 'helper/isAdmin';
 
 interface MainContentProps {
     cities: ICity[];
@@ -66,7 +67,10 @@ export function MainContent({ cities, tournaments }: MainContentProps) {
                                         <PostLogged.Item.Text text={tournament.organization} />
                                         <PostLogged.Item.Text small text={tournament.description} />
                                         <PostLogged.Item.Text small text="Fee: Free" />
-                                        <Button small>Inscrição</Button>
+                                        {!isAdmin() &&
+                                            <Button small onClick={() => navigate(`${Routes.tournamentLessParam}/${tournament.id}`)}>Inscrição</Button>
+                                        }
+                                        
                                     </div>
                                 </PostLogged.Item.Wrapper>
                             </div>

@@ -27,7 +27,7 @@ export function HomeContainer() {
             main={
                 <MainContent 
                     cities={fetchCities.cities}
-                    tournaments={getAllTournaments.tournaments?.finished!}
+                    tournaments={getAllTournaments.tournaments?.opened!}
                 />
             }
         />

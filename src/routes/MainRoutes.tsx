@@ -25,6 +25,7 @@ export function MainRoutes(){
         { path: Routes.editCategory, element: <PrivateRoute><Pages.EditCategory/></PrivateRoute> },
         { path: Routes.createTournamentSponsor, element: <PrivateRoute><Pages.CreateTournamentSponsor/></PrivateRoute> },
         { path: Routes.editTournamentSponsor, element: <PrivateRoute><Pages.EditTournamentSponsor/></PrivateRoute> },
+        { path: Routes.registerPlayerCategory, element: <PrivateRoute><Pages.RegisterPlayerCategory/></PrivateRoute> },
     ]);
 
 }

@@ -19,5 +19,6 @@ export enum Routes {
     createCategory = '/create-category',
     editCategory = '/edit-category',
     createTournamentSponsor = '/create-tournament-sponsor/:tournamentId',
-    editTournamentSponsor = '/edit-tournament-sponsor/:sponsorId'
+    editTournamentSponsor = '/edit-tournament-sponsor/:sponsorId',
+    registerPlayerCategory = '/category/register-player'
 }

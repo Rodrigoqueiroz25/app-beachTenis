@@ -14,6 +14,7 @@ import { EditTournament } from "./PostLogged/EditTournament";
 import { CreateTournamentSponsor } from "./PostLogged/CreateTournamentSponsor";
 import { EditTournamentSponsor } from "./PostLogged/EditTournamentSponsor";
 import { Home } from "./PostLogged/Home";
+import { RegisterPlayerCategory } from "./PostLogged/RegisterPlayerCategory";
 
 export const Pages = {
     Login: Login,
@@ -31,5 +32,6 @@ export const Pages = {
 
     CreateCategory: CreateCategory,
     EditCategory: EditCategory,
+    RegisterPlayerCategory: RegisterPlayerCategory
 
 }

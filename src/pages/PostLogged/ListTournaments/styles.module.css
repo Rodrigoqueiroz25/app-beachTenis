@@ -2,8 +2,9 @@
 .buttons{
     display: flex;
     
-    justify-content: space-between;
-    margin-top: 0.5rem;
+    justify-content: space-evenly;
+    gap: 4rem;
+    margin-top: 1rem;
     height: 3.5rem;
 }
 
