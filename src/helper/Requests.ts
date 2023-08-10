@@ -2,11 +2,12 @@ import { HTTPMETHODS } from "constants/httpMethods"
 import { ICategory } from "interfaces/ICategory";
 import { IDataLogin } from "interfaces/IDataLogin"
 import { IDataSignUp } from "interfaces/IDataSignUp";
+import { IRegistrationPostBody } from "interfaces/IRegistrations";
 import { IRequest } from "interfaces/IRequest"
 import { IFormTournament } from "interfaces/ITournament";
 import { ITournamentSponsor } from "interfaces/ITournamentSponsor";
 import { IUserAccount } from "interfaces/IUserAccount";
-
+import { INotContent } from 'interfaces/INotContent';
 
 export class Requests {
 
@@ -40,6 +41,14 @@ export class Requests {
             method: HTTPMETHODS.GET,
             cookie: cookie,
             url: `/account/loadByToken`
+        }
+    }
+
+    public static getUserByName(name: string, cookie: string): IRequest{
+        return {
+            method: HTTPMETHODS.GET,
+            cookie: cookie,
+            url: `/account/loadByName?name=${name}`
         }
     }
 
@@ -178,5 +187,21 @@ export class Requests {
         }       
     }
 
+    public static registerPlayerCategory(data: IRegistrationPostBody, cookie: string): IRequest<IRegistrationPostBody> {
+        return {
+            method: HTTPMETHODS.POST,
+            body: data,
+            cookie: cookie,
+            url: `/registrations`
+        }       
+    }
+
+    public static getPlayersRegisteredCategory(categoryId: string, cookie: string): IRequest<INotContent> {
+        return {
+            method: HTTPMETHODS.GET,
+            cookie: cookie,
+            url: `/registrations/loadByCategory?categoryId=${categoryId}`
+        }       
+    }
 
 }

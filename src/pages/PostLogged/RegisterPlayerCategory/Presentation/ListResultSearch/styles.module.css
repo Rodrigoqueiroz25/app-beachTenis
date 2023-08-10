@@ -1,0 +1,35 @@
+.list{
+    margin-top: 1.3rem;
+}
+
+
+.itemList{
+    grid-column: 2/3;
+    grid-row: 2/3;
+
+    display: grid;
+    grid-template-areas:
+        'photo name inscBtn'
+        ;
+    row-gap: 0.5rem;
+    align-items: center;
+    justify-items: end;
+    height: 6rem;
+}
+
+.itemList > :nth-child(1){
+    grid-area: photo;
+    justify-self: start;
+}
+
+.itemList > :nth-child(2){
+    grid-area: name;
+    justify-self: start;
+
+}
+
+.itemList > :nth-child(3){
+    grid-area: inscBtn;
+    justify-self: center;
+    width: 10rem;
+}

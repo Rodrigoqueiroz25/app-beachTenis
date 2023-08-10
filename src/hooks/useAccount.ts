@@ -16,6 +16,7 @@ export default function useAccount() {
     const login = useAuth();
     const signup = useSignup();
     const account = useFetchData<IUserAccount>();
+    const accountV = useFetchData<IUserAccount[]>();
 
 
     const authenticate = {
@@ -42,6 +43,13 @@ export default function useAccount() {
         get: () => account.fetchData(Requests.getUserByToken(getCookieToken()))
     };
 
+    const getAccountByName = {
+        isLoading: accountV.isLoading,
+        ok: accountV.ok,
+        error: accountV.error,
+        accounts: accountV.data,
+        get: (name: string) => accountV.fetchData(Requests.getUserByName(name, getCookieToken()))
+    };
 
     const register = {
         isLoading: signup.isLoading,
@@ -55,6 +63,7 @@ export default function useAccount() {
         authenticate,
         register,
         getAccount,
+        getAccountByName,
         updateAccount
     }
 

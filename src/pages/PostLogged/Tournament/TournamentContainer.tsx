@@ -66,11 +66,6 @@ export function TournamentContainer() {
     }, [getAllCategories.categories]);
 
 
-    useEffect(() => {
-        console.log(getAllCategories.ok, getAllCategories.error, getAllCategories.isLoading, getAllCategories.categories);
-    }, [getAllCategories.ok, getAllCategories.error, getAllCategories.isLoading, getAllCategories.categories])
-
-
     function removeCategory(id: string) {
         deleteCategory.delete(id);
         let arr = listCategories.filter(c => c.id !== id);
