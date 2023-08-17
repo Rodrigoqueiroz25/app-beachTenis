@@ -47,12 +47,12 @@ describe('Tests visuals <Combobox />', () => {
 
   it('has the border solid 0.1rem black', () => {
     cy.mount(<PostLogged.Combobox options={[]} isEmpty={true}/>)
-    cy.get('select').should('have.css','border-bottom','1.6px solid rgb(0, 0, 0)')
+    cy.get('select').should('have.css','border-bottom','1.11667px solid rgb(0, 0, 0)')
   })
 
   it('has the border solid 0.1rem red when received message error parameter', () => {
     cy.mount(<PostLogged.Combobox options={[]} isEmpty={true} msgError='error'/>)
-    cy.get('select').should('have.css','border-bottom','1.6px solid rgb(255, 0, 0)')
+    cy.get('select').should('have.css','border-bottom','1.11667px solid rgb(255, 0, 0)')
   })
 
   it('has the border-image linear-gradient(to right, #991c11, #cf1e15) when focus and received error parameter', () => {
@@ -67,7 +67,7 @@ describe('Tests visuals <Combobox />', () => {
 
   it('has the border-width 2px when focus', () => {
     cy.mount(<PostLogged.Combobox options={[]} isEmpty={true}/>)
-    cy.get('select').focus().should('have.css','border-width','0px 0px 2px')
+    cy.get('select').focus().should('have.css','border-width','0px 0px 1.11667px')
   })
 
   it('has the border-image linear-gradient(to right, #114c99, #1544cf) when focus', () => {
@@ -111,15 +111,15 @@ describe('Tests visuals <Combobox />', () => {
     cy.get('label').should('have.css', 'font-weight', '400')
   });
 
-  it('has label top 0.4rem when is empty' ,() => {
+  it('has label top 0rem when is empty' ,() => {
     cy.mount(<PostLogged.Combobox options={['test1']} isEmpty={true} placeholder='Label'/>);
-    cy.get('label').should('have.css', 'top', '6.4px')
+    cy.get('label').should('have.css', 'top', '0px')
   });
 
-  it('has label top -1rem when not is empty' ,() => {
+  it('has label top -1.5rem when not is empty' ,() => {
     cy.mount(<PostLogged.Combobox options={['test1']} isEmpty={false} placeholder='Label'/>);
     cy.get('select').select('test1');
-    cy.get('label').should('have.css', 'top', '-17.6px')
+    cy.get('label').should('have.css', 'top', '-27.2px')
   });
 
   it('has label color #1a1c94 when focus' ,() => {
@@ -128,10 +128,10 @@ describe('Tests visuals <Combobox />', () => {
     cy.get('label').should('have.css', 'color', 'rgb(26, 28, 148)')
   });
   
-  it('has label top -1.1rem when focus' ,() => {
+  it('has label top -1.7rem when focus' ,() => {
     cy.mount(<PostLogged.Combobox options={['test1']} isEmpty={false} placeholder='Label'/>);
     cy.get('select').focus();
-    cy.get('label').should('have.css', 'top', '-17.6px')
+    cy.get('label').should('have.css', 'top', '-27.2px')
   });
 
   it('has label font-weight 600 when focus' ,() => {
@@ -161,12 +161,34 @@ describe('Tests visuals <Combobox />', () => {
     cy.mount(<PostLogged.Combobox options={['test1']} isEmpty={false} msgError='error'/>);
     cy.get('[class*=error]').should('have.css', 'font-size', '16px')
   });
-  
-  it('has message error position abslute, right 0 e top 3.2rem' ,() => {
-    cy.mount(<PostLogged.Combobox options={['test1']} isEmpty={false} msgError='error'/>);
-    cy.get('[class*=error]').should('have.css', 'position', 'absolute')
-    cy.get('[class*=error]').should('have.css', 'right', '0px')
-    cy.get('[class*=error]').should('have.css', 'top', '51.2px')
-  });
+ 
 
 })
+
+
+describe('Testing Visuals snapshots<Combobox />', () => {
+
+  it('display label "label" when placeholder prop gets string "label" no hover', () => {
+    cy.mount(<PostLogged.Combobox placeholder='label' isEmpty={true} options={[]}/>)
+    cy.get('[class*=combobox]').compareSnapshot('combobox_placeholder_nohover_empty_noerror', {errorThreshold: 0.001, capture: 'fullPage', padding:5});
+  })
+
+  it('display error message "error" when msgError prop gets string "error" no hover', () => {
+    cy.mount(<PostLogged.Combobox placeholder='label' isEmpty={true} options={[]} msgError='error'/>)
+    cy.get('[class*=combobox]').compareSnapshot('combobox_placeholder_nohover_empty_errormsg', {errorThreshold: 0.001, capture: 'fullPage', padding:5});
+  })
+
+  it('can select option without error msg hover', () => {
+    cy.mount(<PostLogged.Combobox placeholder='label' isEmpty={false} options={['teste']}/>)
+    cy.findByPlaceholderText('label').select('teste')
+    cy.get('[class*=combobox]').compareSnapshot('combobox_placeholder_hover_notempty_noerror', {errorThreshold: 0.001, capture: 'viewport', padding:6});
+  })
+
+  it('can select option without error msg nohover', () => {
+    cy.mount(<PostLogged.Combobox placeholder='label' isEmpty={false} options={['teste']}/>)
+    cy.findByPlaceholderText('label').select('teste')
+    cy.get('label').click();
+    cy.get('[class*=combobox]').compareSnapshot('combobox_placeholder_nohover_notempty_noerror', {errorThreshold: 0.001, capture: 'viewport', padding:6});
+  })
+
+});

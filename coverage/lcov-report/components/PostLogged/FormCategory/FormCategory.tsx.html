@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -131,9 +131,7 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,7 +155,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -211,8 +209,7 @@ import { ICategory } from 'interfaces/ICategory';
 import { Validations } from 'helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
-import { FIELDS } from 'constants/fields';
-import { adicionar, alterar } from 'constants/wordsPhrases';
+import { adicionar, alterar, descricao, description, maxNumberAthletesCategory, numberAthletesPerRegistration, qtdMaxInscritos, qtdPessoasPorInscricao } from 'constants/wordsPhrases';
 &nbsp;
 &nbsp;
 interface FormCategoryProps {
@@ -226,13 +223,13 @@ export function <span class="fstat-no" title="function not covered" >FormCategor
     const { register, handleSubmit, watch, formState: { errors }, reset, setValue } = <span class="cstat-no" title="statement not covered" >useForm({</span>
         resolver: yupResolver(Validations.formCategories)
     });
-    const FIELD = <span class="cstat-no" title="statement not covered" >FIELDS.formCategory;</span>
+    
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt;{</span>
 <span class="cstat-no" title="statement not covered" >        if(defaultValues){</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.description.name, defaultValues[FIELD.description.name]);</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.numberAthletes.name, defaultValues[FIELD.numberAthletes.name]);</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.numberAthletesRegistration.name, defaultValues[FIELD.numberAthletesRegistration.name]);</span>
+<span class="cstat-no" title="statement not covered" >            setValue(description, defaultValues[description]);</span>
+<span class="cstat-no" title="statement not covered" >            setValue(maxNumberAthletesCategory, defaultValues[maxNumberAthletesCategory]);</span>
+<span class="cstat-no" title="statement not covered" >            setValue(numberAthletesPerRegistration, defaultValues[numberAthletesPerRegistration]);</span>
         }
     }, [defaultValues]);
 &nbsp;
@@ -246,24 +243,24 @@ export function <span class="fstat-no" title="function not covered" >FormCategor
         &lt;form className={styles.form} onSubmit={handleSubmit(submitForm)}&gt;
             &lt;PostLogged.Input
                 type='text'
-                placeholder={FIELD.description.placeholder}
-                msgError={errors.description?.message}
-                {...register(FIELD.description.name)}
+                placeholder={descricao}
+                msgError={errors[description]?.message}
+                {...register(description)}
             /&gt;
 &nbsp;
             &lt;PostLogged.Combobox
-                placeholder={FIELD.numberAthletesRegistration.placeholder}
-                msgError={errors.numberAthletesRegistration?.message}
+                placeholder={qtdPessoasPorInscricao}
+                msgError={errors[numberAthletesPerRegistration]?.message}
                 options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                isEmpty={watch(FIELD.numberAthletesRegistration.name) ? false : true }
-                {...register(FIELD.numberAthletesRegistration.name)}
+                isEmpty={watch(numberAthletesPerRegistration) ? false : true }
+                {...register(numberAthletesPerRegistration)}
             /&gt;
 &nbsp;
             &lt;PostLogged.Input
                 type='number'
-                placeholder={FIELD.numberAthletes.placeholder}
-                msgError={errors.numberAthletes?.message}
-                {...register(FIELD.numberAthletes.name)}
+                placeholder={qtdMaxInscritos}
+                msgError={errors[maxNumberAthletesCategory]?.message}
+                {...register(maxNumberAthletesCategory)}
             /&gt;
             &lt;div className={styles.btn}&gt;
                 &lt;Button&gt;{defaultValues ? alterar : adicionar}&lt;/Button&gt;
@@ -277,7 +274,7 @@ export function <span class="fstat-no" title="function not covered" >FormCategor
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-14T17:03:11.552Z
+                at 2023-08-17T22:26:16.201Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -104,25 +104,37 @@ describe('Testing Validations <FormCategory>', () => {
     cy.mount(<PostLogged.FormCategory submit={(data:any) => data} />)
   });
 
-  it('displays text "Digite uma descrição" when click add and field "Descrição" is empty', () => {
-    cy.findByPlaceholderText('Quantidade de pessoas por inscrição').select(1, {force: true})
-    cy.findByPlaceholderText('Quantidade máxima de inscritos').type('50', {force: true})
+  it('displays text "Digite uma descrição." when click add and field "Descrição" is empty', () => {
     cy.findByText("Adicionar").click()
-    cy.findByText("Digite uma descrição").should('be.visible')
+    cy.findByText("Digite uma descrição.").should('be.visible')
   })
 
-  it('displays text "selecione uma opção" when click add and field "Quantidade de pessoas por inscrição" is empty', () => {
-    cy.findByPlaceholderText('Descrição').type('hello description')
-    cy.findByPlaceholderText('Quantidade máxima de inscritos').type('50', {force: true})
+  it('displays text "Selecione uma opção." when click add and field "Quantidade de pessoas por inscrição" is empty', () => {
     cy.findByText("Adicionar").click()
-    cy.findByText("selecione uma opção").should('be.visible')
+    cy.findByText("Selecione uma opção.").should('be.visible')
   })
 
-  it('displays text "digite um valor" when click add and field "Quantidade máxima de inscritos" is empty', () => {
-    cy.findByPlaceholderText('Descrição').type('hello description')
-    cy.findByPlaceholderText('Quantidade de pessoas por inscrição').select(1, {force: true})
+  it('displays text "Digite um valor." when click add and field "Quantidade máxima de inscritos" is empty', () => {
     cy.findByText("Adicionar").click()
-    cy.findByText("digite um valor").should('be.visible')
+    cy.findByText("Digite um valor.").should('be.visible')
+  })
+
+  it('not displays text when click add and field "Descrição" not is empty', () => {
+    cy.findByPlaceholderText('Descrição').type('Dupla Masculina A', {force: true});
+    cy.findByText("Adicionar").click()
+    cy.findByPlaceholderText('Descrição').parent().parent().find('[class*=error]').should('have.text', '');
+  })
+
+  it('not displays text when click add and field "Quantidade de pessoas por inscrição" not is empty', () => {
+    cy.findByPlaceholderText('Quantidade de pessoas por inscrição').select(2, {force: true})
+    cy.findByText("Adicionar").click()
+    cy.findByPlaceholderText('Quantidade de pessoas por inscrição').parent().parent().find('[class*=error]').should('have.text', '');
+  })
+
+  it('not displays text when click add and field "Quantidade máxima de inscritos" not is empty', () => {
+    cy.findByPlaceholderText('Quantidade máxima de inscritos').type('233', {force: true})
+    cy.findByText("Adicionar").click()
+    cy.findByPlaceholderText('Quantidade máxima de inscritos').parent().parent().find('[class*=error]').should('have.text', '');
   })
 
 });
@@ -152,6 +164,18 @@ describe('Testing with defaultValues <FormCategory>', () => {
 
   it('values entered in fields are not changed when submitted', () => {
     cy.findByText('Alterar').click();
+  });
+
+});
+
+describe('Testing Visuals <FormCategory />', () => {
+
+  beforeEach(() => {
+    cy.mount(<PostLogged.FormCategory submit={(data) => submit(data)}/>)
+  });
+
+  it('visual form is ok', () => {
+    cy.get('body').compareSnapshot('formCategory', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
   });
 
 });

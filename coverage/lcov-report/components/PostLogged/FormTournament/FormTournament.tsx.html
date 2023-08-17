@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/25</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/25</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
@@ -205,10 +205,7 @@
 <a name='L140'></a><a href='#L140'>140</a>
 <a name='L141'></a><a href='#L141'>141</a>
 <a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a>
-<a name='L145'></a><a href='#L145'>145</a>
-<a name='L146'></a><a href='#L146'>146</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L143'></a><a href='#L143'>143</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,14 +231,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">512x</span>
-<span class="cline-any cline-yes">512x</span>
-<span class="cline-any cline-yes">512x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">512x</span>
-<span class="cline-any cline-yes">466x</span>
-<span class="cline-any cline-yes">466x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -263,7 +258,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">512x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -284,8 +279,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1024x</span>
-<span class="cline-any cline-yes">1024x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -293,9 +288,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1024x</span>
-<span class="cline-any cline-yes">1024x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -364,8 +358,7 @@ import { ISport } from 'interfaces/ISport';
 import { Validations } from 'helper/Validations';
 import { IFormTournament } from 'interfaces/ITournament';
 import { useEffect } from 'react';
-import { FIELDS } from 'constants/fields';
-import { adicionar, alterar } from 'constants/wordsPhrases';
+import { adicionar, alterar, cidade, city, dataFinal, dataInicial, descricao, description, dateFinalRegistration, dateFinalTournament, dateStartRegistration, dateStartTournament, esporte, organizacao, organization, otherInformation, outrasInformacoes, sport } from 'constants/wordsPhrases';
 import { americanDateString, brazilDateString } from 'helper/convertData';
 &nbsp;
 &nbsp;
@@ -378,71 +371,69 @@ interface FormTournamentProps {
 }
 &nbsp;
 &nbsp;
-export function FormTournament({ submit, sports, cities, defaultValues, fieldsInactives }: FormTournamentProps) {
+export function <span class="fstat-no" title="function not covered" >FormTournament(</span>{ submit, sports, cities, defaultValues, fieldsInactives }: FormTournamentProps) {
 &nbsp;
-    const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm();
-    const FIELD = FIELDS.formTournament;
-    const validations = Validations.formTournament;
+    const { register, handleSubmit, watch, formState: { errors }, setValue } = <span class="cstat-no" title="statement not covered" >useForm();</span>
+    
+    const validations = <span class="cstat-no" title="statement not covered" >Validations.formTournament;</span>
 &nbsp;
-    useEffect(() =&gt; {
-        console.log(defaultValues)
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (defaultValues) {
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.description.name, defaultValues.description);</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.organization.name, defaultValues.organization);</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.sportId.name, defaultValues.sportId);</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.cityId.name, defaultValues.cityId); </span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.dtStartRegistration.name, americanDateString(defaultValues.dtStartRegistration));</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.dtFinalRegistration.name, americanDateString(defaultValues.dtFinalRegistration));</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.dtStartTournament.name, americanDateString(defaultValues.dtStartTournament));</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.dtFinalTournament.name, americanDateString(defaultValues.dtFinalTournament));</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.otherInformation.name, defaultValues.otherInformation);</span>
+<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (defaultValues) {</span>
+<span class="cstat-no" title="statement not covered" >            setValue(description, defaultValues?.[description]);</span>
+<span class="cstat-no" title="statement not covered" >            setValue(organization, defaultValues?.[organization]);</span>
+<span class="cstat-no" title="statement not covered" >            setValue(sport, defaultValues?.[sport]); </span>
+<span class="cstat-no" title="statement not covered" >            setValue(city, defaultValues?.[city]); </span>
+<span class="cstat-no" title="statement not covered" >            setValue(dateStartRegistration, americanDateString(defaultValues?.[dateStartRegistration]));</span>
+<span class="cstat-no" title="statement not covered" >            setValue(dateFinalRegistration, americanDateString(defaultValues?.[dateFinalRegistration]));</span>
+<span class="cstat-no" title="statement not covered" >            setValue(dateStartTournament, americanDateString(defaultValues?.[dateStartTournament]));</span>
+<span class="cstat-no" title="statement not covered" >            setValue(dateFinalTournament, americanDateString(defaultValues?.[dateFinalTournament]));</span>
+<span class="cstat-no" title="statement not covered" >            setValue(otherInformation, defaultValues?.[otherInformation]);</span>
         }
     }, [defaultValues]);
 &nbsp;
     function <span class="fstat-no" title="function not covered" >submitForm(</span>data: any) {
-<span class="cstat-no" title="statement not covered" >        data[FIELD.dtStartRegistration.name] = brazilDateString(watch(FIELD.dtStartRegistration.name));</span>
-<span class="cstat-no" title="statement not covered" >        data[FIELD.dtFinalRegistration.name] = brazilDateString(watch(FIELD.dtFinalRegistration.name));</span>
-<span class="cstat-no" title="statement not covered" >        data[FIELD.dtStartTournament.name] = brazilDateString(watch(FIELD.dtStartTournament.name));</span>
-<span class="cstat-no" title="statement not covered" >        data[FIELD.dtFinalTournament.name] = brazilDateString(watch(FIELD.dtFinalTournament.name));</span>
+<span class="cstat-no" title="statement not covered" >        data[dateStartRegistration] = brazilDateString(watch(dateStartRegistration));</span>
+<span class="cstat-no" title="statement not covered" >        data[dateFinalRegistration] = brazilDateString(watch(dateFinalRegistration));</span>
+<span class="cstat-no" title="statement not covered" >        data[dateStartTournament] = brazilDateString(watch(dateStartTournament));</span>
+<span class="cstat-no" title="statement not covered" >        data[dateFinalTournament] = brazilDateString(watch(dateFinalTournament));</span>
 <span class="cstat-no" title="statement not covered" >        submit(data);</span>
     }
 &nbsp;
 &nbsp;
-    return (
+<span class="cstat-no" title="statement not covered" >    return (</span>
         &lt;&gt;
             &lt;PostLogged.AddBanner /&gt;
             &lt;form className={styles.form} onSubmit={handleSubmit(submitForm)}&gt;
                 &lt;PostLogged.Input
                     type='text'
-                    placeholder={FIELD.description.placeholder}
-                    msgError={errors.description?.message?.toString()}
-                    {...register(FIELD.description.name, validations.description)}
+                    placeholder={descricao}
+                    msgError={errors[description]?.message?.toString()}
+                    {...register(description, validations[description])}
                 /&gt;
 &nbsp;
                 &lt;PostLogged.Input
                     type='text'
-                    placeholder={FIELD.organization.placeholder}
-                    msgError={errors.organization?.message?.toString()}
-                    {...register(FIELD.organization.name, validations.organization)}
+                    placeholder={organizacao}
+                    msgError={errors[organization]?.message?.toString()}
+                    {...register(organization, validations[organization])}
                 /&gt;
 &nbsp;
                 &lt;PostLogged.Combobox
-                    placeholder={FIELD.sportId.placeholder}
-                    msgError={errors.sportId?.message?.toString()}
-                    options={sports?.map(s =&gt; s.description)}
-                    idOptions={sports?.map(s =&gt; s.id)}
-                    isEmpty={watch(FIELD.sportId.name) ? false : true}
-                    {...register(FIELD.sportId.name, validations.sport)}
-&nbsp;
+                    placeholder={esporte}
+                    msgError={errors[sport]?.message?.toString()}
+                    options={sports?.map(<span class="fstat-no" title="function not covered" >s </span>=&gt; <span class="cstat-no" title="statement not covered" >s.description)</span>}
+                    idOptions={sports?.map(<span class="fstat-no" title="function not covered" >s </span>=&gt; <span class="cstat-no" title="statement not covered" >s.id)</span>}
+                    isEmpty={watch(sport) ? false : true}
+                    {...register(sport, validations[sport])}
                 /&gt;
 &nbsp;
                 &lt;PostLogged.Combobox
-                    placeholder={FIELD.cityId.placeholder}
-                    msgError={errors.cityId?.message?.toString()}
-                    options={cities?.map(c =&gt; c.name)}
-                    idOptions={cities?.map(s =&gt; s.id)}
-                    isEmpty={watch(FIELD.cityId.name) ? false : true}
-                    {...register(FIELD.cityId.name, validations.city)}
+                    placeholder={cidade}
+                    msgError={errors[city]?.message?.toString()}
+                    options={cities?.map(<span class="fstat-no" title="function not covered" >c </span>=&gt; <span class="cstat-no" title="statement not covered" >c.name)</span>}
+                    idOptions={cities?.map(<span class="fstat-no" title="function not covered" >s </span>=&gt; <span class="cstat-no" title="statement not covered" >s.id)</span>}
+                    isEmpty={watch(city) ? false : true}
+                    {...register(city, validations[city])}
                 /&gt;
 &nbsp;
                 &lt;div className={styles.paragraph}&gt;
@@ -452,18 +443,18 @@ export function FormTournament({ submit, sports, cities, defaultValues, fieldsIn
 &nbsp;
                 &lt;div className={styles.inputDates}&gt;
                     &lt;PostLogged.Input
-                        placeholder={FIELD.dtStartRegistration.placeholder}
+                        placeholder={dataInicial}
                         type='date'
-                        msgError={errors.dtStartRegistration?.message?.toString()}
-                        disabled={fieldsInactives?.includes(FIELD.dtStartRegistration.name)}
-                        {...register(FIELD.dtStartRegistration.name, validations.dtStartRegistration)}
+                        msgError={errors[dateStartRegistration]?.message?.toString()}
+                        disabled={fieldsInactives?.includes(dateStartRegistration)}
+                        {...register(dateStartRegistration, validations[dateStartRegistration])}
                     /&gt;
                     &lt;PostLogged.Input
-                        placeholder={FIELD.dtFinalRegistration.placeholder}
+                        placeholder={dataFinal}
                         type='date'
-                        msgError={errors.dtFinalRegistration?.message?.toString()}
-                        disabled={fieldsInactives?.includes(FIELD.dtFinalRegistration.name)}
-                        {...register(FIELD.dtFinalRegistration.name, validations.dtFinalRegistration(watch(FIELD.dtStartRegistration.name)))}
+                        msgError={errors[dateFinalRegistration]?.message?.toString()}
+                        disabled={fieldsInactives?.includes(dateFinalRegistration)}
+                        {...register(dateFinalRegistration, validations[dateFinalRegistration](watch(dateStartRegistration)))}
                     /&gt;
                 &lt;/div&gt;
 &nbsp;
@@ -474,27 +465,27 @@ export function FormTournament({ submit, sports, cities, defaultValues, fieldsIn
 &nbsp;
                 &lt;div className={styles.inputDates}&gt;
                     &lt;PostLogged.Input
-                        placeholder={FIELD.dtStartTournament.placeholder}
+                        placeholder={dataInicial}
                         type='date'
-                        msgError={errors.dtStartTournament?.message?.toString()}
-                        disabled={fieldsInactives?.includes(FIELD.dtStartTournament.name)}
-                        {...register(FIELD.dtStartTournament.name, validations.dtStartTournament(watch(FIELD.dtFinalRegistration.name)))}
+                        msgError={errors[dateStartTournament]?.message?.toString()}
+                        disabled={fieldsInactives?.includes(dateStartTournament)}
+                        {...register(dateStartTournament, validations[dateStartTournament](watch(dateFinalRegistration)))}
                     /&gt;
                     &lt;PostLogged.Input
-                        placeholder={FIELD.dtFinalTournament.placeholder}
+                        placeholder={dataFinal}
                         type='date'
-                        msgError={errors.dtFinalTournament?.message?.toString()}
-                        disabled={fieldsInactives?.includes(FIELD.dtFinalTournament.name)}
-                        {...register(FIELD.dtFinalTournament.name, validations.dtFinalTournament(watch(FIELD.dtStartTournament.name)))}
+                        msgError={errors[dateFinalTournament]?.message?.toString()}
+                        disabled={fieldsInactives?.includes(dateFinalTournament)}
+                        {...register(dateFinalTournament, validations[dateFinalTournament](watch(dateStartTournament)))}
                     /&gt;
                 &lt;/div&gt;
 &nbsp;
                 &lt;PostLogged.TextArea
-                    placeholder={FIELD.otherInformation.placeholder}
-                    {...register(FIELD.otherInformation.name, validations.otherInformation)}
+                    placeholder={outrasInformacoes}
+                    {...register(otherInformation, validations[otherInformation])}
                 /&gt;
 &nbsp;
-                &lt;Button&gt;{defaultValues ? <span class="branch-0 cbranch-no" title="branch not covered" >alterar </span>: adicionar}&lt;/Button&gt;
+                &lt;Button&gt;{defaultValues ? alterar : adicionar}&lt;/Button&gt;
             &lt;/form&gt;
         &lt;/&gt;
     );
@@ -505,7 +496,7 @@ export function FormTournament({ submit, sports, cities, defaultValues, fieldsIn
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-14T17:03:11.552Z
+                at 2023-08-17T22:26:16.201Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

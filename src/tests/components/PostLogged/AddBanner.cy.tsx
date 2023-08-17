@@ -53,16 +53,29 @@ describe("Testing Visual <AddBanner/>", () => {
     cy.get('p[class*="addBanner"]').should('have.css', 'font-weight', '400');
   })
 
-  it('icon image have a dimensions 3.4rem', () => {
-    cy.mount(<PostLogged.AddBanner />)
-    cy.get('[class*="icon"]').should('have.css', 'height', '54.400001525878906px');
-    cy.get('[class*="icon"]').should('have.css', 'width', '54.400001525878906px');
-  })
+  // it('icon image have a dimensions 3.4rem', () => {
+  //   cy.mount(<PostLogged.AddBanner />)
+  //   cy.get('[class*="icon"]').should('have.css', 'height', '54.400001525878906px');
+  //   cy.get('[class*="icon"]').should('have.css', 'width', '54.400001525878906px');
+  // })
 
-  it('icon camera have a dimensions 2.8rem', () => {
-    cy.mount(<PostLogged.AddBanner />)
-    cy.get('[class*="iconPhoto"]').should('have.css', 'height', '44.79999923706055px');
-    cy.get('[class*="iconPhoto"]').should('have.css', 'width', '44.79999923706055px');
-  })
+  // it('icon camera have a dimensions 2.8rem', () => {
+  //   cy.mount(<PostLogged.AddBanner />)
+  //   cy.get('[class*="iconPhoto"]').should('have.css', 'height', '44.79999923706055px');
+  //   cy.get('[class*="iconPhoto"]').should('have.css', 'width', '44.79999923706055px');
+  // })
 
 })
+
+
+describe('Testing Visuals <AddBanner />', () => {
+
+  beforeEach(() => {
+    cy.mount(<PostLogged.AddBanner />)
+  });
+
+  it('visual is ok', () => {
+    cy.get('body').compareSnapshot('addBanner', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
+  });
+
+});

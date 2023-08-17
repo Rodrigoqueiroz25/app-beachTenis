@@ -21,6 +21,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "src",
+    "types": [
+      "cypress",
+      "cypress-visual-regression"
+    ]
   },
   "exclude": ["node_modules", "**/node_modules/*", ".unused/*"],
   "include": ["src", "cypress","@testing-library/cypress"]

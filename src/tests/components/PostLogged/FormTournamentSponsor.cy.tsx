@@ -67,9 +67,15 @@ describe('Testing Validations <FormTournamentSponsor>', () => {
     cy.mount(<PostLogged.FormTournamentSponsor submit={() => ""} />)
   });
 
-  it('displays text "Digite um nome" when click button "Salvar" and field "Nome" is empty', () => {
+  it('displays text "Digite um nome." when click button "Salvar" and field "Nome" is empty', () => {
     cy.findByText("Salvar").click()
-    cy.findByText("Digite um nome").should('be.visible')
+    cy.findByText("Digite um nome.").should('be.visible')
+  })
+
+  it('not displays text when click button "Salvar" and field "Nome" not is empty', () => {
+    cy.findByPlaceholderText('Nome').type('test');
+    cy.findByText("Salvar").click()
+    cy.findByPlaceholderText('Nome').parent().parent().find('[class*=error]').should('have.text', '');
   })
 
 
@@ -93,5 +99,17 @@ describe('Testing with defaultValues <FormTournamentSponsor>', () => {
   it('the button text must be "Alterar"', () => {
     cy.get('button').should('have.text', 'Alterar')
   })
+
+});
+
+describe('Testing Visuals <FormTournamentSponsor />', () => {
+
+  beforeEach(() => {
+    cy.mount(<PostLogged.FormTournamentSponsor submit={(data) => submit(data)} />)
+  });
+
+  it('visual form is ok', () => {
+    cy.get('body').compareSnapshot('formTournamentSponsor', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
+  });
 
 });

@@ -8,7 +8,7 @@ import { PostLogged } from "components/PostLogged";
 import { IFormTournamentSponsor } from "interfaces/ITournamentSponsor";
 import { useEffect } from "react";
 import { Validations } from "helper/Validations";
-import { nameUser, nome, otherInformation } from "constants/wordsPhrases";
+import { alterar, nameUser, nome, otherInformation, outrasInformacoes, salvar } from "constants/wordsPhrases";
 
 
 interface FormTournamentSponsorProps {
@@ -43,13 +43,13 @@ export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSpo
                 />
 
                 <PostLogged.TextArea 
-                    placeholder={otherInformation}
+                    placeholder={outrasInformacoes}
                     msgError={errors[otherInformation]?.message as string}
                     {...register(otherInformation)}
                 />
 
                 <div className={styles.button}>
-                    <Button>Salvar</Button>
+                    <Button>{defaultValues ? alterar : salvar}</Button>
                 </div>
 
             </form>

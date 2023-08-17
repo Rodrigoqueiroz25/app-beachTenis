@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -120,7 +120,8 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,16 +145,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,7 +189,7 @@ import { PostLogged } from "components/PostLogged";
 import { IFormTournamentSponsor } from "interfaces/ITournamentSponsor";
 import { useEffect } from "react";
 import { Validations } from "helper/Validations";
-import { FIELDS } from "constants/fields";
+import { alterar, nameUser, nome, otherInformation, outrasInformacoes, salvar } from "constants/wordsPhrases";
 &nbsp;
 &nbsp;
 interface FormTournamentSponsorProps {
@@ -201,12 +203,12 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
     const { register, handleSubmit, formState: { errors }, setValue } = <span class="cstat-no" title="statement not covered" >useForm({</span>
         resolver: yupResolver(Validations.formTournamentSponsor)
     });
-    const FIELD = <span class="cstat-no" title="statement not covered" >FIELDS.formTournamentSponsor;</span>
+    
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        if(defaultValues){</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.name.name, defaultValues.name);</span>
-<span class="cstat-no" title="statement not covered" >            setValue(FIELD.otherInformation.name, defaultValues.otherInformation);</span>
+<span class="cstat-no" title="statement not covered" >            setValue(nameUser, defaultValues[nameUser]);</span>
+<span class="cstat-no" title="statement not covered" >            setValue(otherInformation, defaultValues[otherInformation]);</span>
         }
     }, [defaultValues]);
 &nbsp;
@@ -216,18 +218,19 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
             &lt;form className={styles.form} onSubmit={handleSubmit(submit)}&gt;
                 &lt;PostLogged.Input
                     type='text'
-                    placeholder={FIELD.name.placeholder}
-                    msgError={errors.name?.message as string}
-                    {...register(FIELD.name.name)}
+                    placeholder={nome}
+                    msgError={errors[nameUser]?.message as string}
+                    {...register(nameUser)}
                 /&gt;
 &nbsp;
                 &lt;PostLogged.TextArea 
-                    placeholder={FIELD.otherInformation.placeholder}
-                    {...register(FIELD.otherInformation.name)}
+                    placeholder={outrasInformacoes}
+                    msgError={errors[otherInformation]?.message as string}
+                    {...register(otherInformation)}
                 /&gt;
 &nbsp;
                 &lt;div className={styles.button}&gt;
-                    &lt;Button&gt;Salvar&lt;/Button&gt;
+                    &lt;Button&gt;{defaultValues ? alterar : salvar}&lt;/Button&gt;
                 &lt;/div&gt;
 &nbsp;
             &lt;/form&gt;
@@ -241,7 +244,7 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-14T17:03:11.552Z
+                at 2023-08-17T22:26:16.201Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

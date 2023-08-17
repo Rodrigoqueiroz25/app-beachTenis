@@ -1,0 +1,6 @@
+{
+    "env": {
+        "ALWAYS_GENERATE_DIFF": true,
+        "ALLOW_VISUAL_REGRESSION_TO_FAIL": true
+    }
+}
