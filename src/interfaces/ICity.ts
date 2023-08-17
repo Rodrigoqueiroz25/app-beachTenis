@@ -2,8 +2,7 @@
 export interface ICity {
     id: number
     area: string
-    codeIbge: number
-    deleted: boolean
+    codeIbge: number;
     name: string
     stateId: number
     gentilic?: string

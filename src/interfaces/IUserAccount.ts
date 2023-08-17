@@ -1,11 +1,12 @@
+import { city, dateBirthday, email, gender, nameUser, phoneNumber, photo } from "constants/wordsPhrases";
 
 export interface IUserAccount {
     id?: string
-    email: string;
-    name: string;
-    phoneNumber: string;
-    gender: string;
-    cityId: string;
-    dateBirthday: string;
-    photo?: string | null;
+    [email]: string;
+    [nameUser]: string;
+    [phoneNumber]: string;
+    [gender]: string;
+    [city]: string;
+    [dateBirthday]: string;
+    [photo]?: string;
 }

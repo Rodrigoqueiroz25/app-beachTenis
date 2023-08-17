@@ -1,6 +1,7 @@
+import { description } from "constants/wordsPhrases";
 
 export interface ISport {
     id: number;
-    description: string;
+    [description]: string;
     deleted?: boolean;
 }

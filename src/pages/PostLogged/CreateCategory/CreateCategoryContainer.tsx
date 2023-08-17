@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
@@ -10,24 +10,20 @@ import useCategory from 'hooks/useCategory';
 
 export function CreateCategoryContainer() {
 
-    const [tournamentId, setTournamentId] = useState<string>("");
-
     const { createCategory } = useCategory();
-    const location = useLocation();
+    
+    const { state: { tournamentId } } = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (location.state?.tournamentId) {
-            setTournamentId(location.state.tournamentId);
-        }
-        else {
+        if (!tournamentId) {
             navigate(Routes.listTournaments);
         }
-    }, []);
+    }, [tournamentId]);
 
     
     function submitForm(dataForm: any) {
-        createCategory.write({ ...dataForm, tournamentId: tournamentId });
+        createCategory.write({ ...dataForm, tournamentId });
         navigate(`${Routes.tournamentLessParam}/${tournamentId}`);
     }
     

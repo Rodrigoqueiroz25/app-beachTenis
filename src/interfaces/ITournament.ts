@@ -1,40 +1,37 @@
-import { ICity } from "./ICity"
-import { ISport } from "./ISport"
+
+import { description, dateFinalRegistration, dateFinalTournament, dateStartRegistration, dateStartTournament, organization, otherInformation, sport, city, dateStartTournamentFormatted, dateFinalTournamentFormatted, dateStartRegistrationFormatted, dateFinalRegistrationFormatted, opened, finished } from "constants/wordsPhrases";
+
 
 interface ITournament {
-    description: string
-    organization: string
-    dtStartTournament: string
-    dtFinalTournament: string
-    dtStartRegistration: string
-    dtFinalRegistration: string
-    otherInformation: string
+    [description]: string
+    [organization]: string
+    [dateStartTournament]: string
+    [dateFinalTournament]: string
+    [dateStartRegistration]: string
+    [dateFinalRegistration]: string
+    [otherInformation]: string
 }
 
 export interface IFormTournament extends ITournament {
-    cityId: string
-    sportId: string
+    [city]: string
+    [sport]: string
 }
 
 
-export interface ITournamentDataGetResponse extends ITournament{
+export interface ITournamentDataGetResponse extends IFormTournament{
     id: number
-    cityId: string
-    sportId: string
-    dtStartTournamentFormatted: string
-    dtFinalTournamentFormatted: string
-    dtStartRegistrationFormatted: string
-    dtFinalRegistrationFormatted: string
+    [dateStartTournamentFormatted]: string
+    [dateFinalTournamentFormatted]: string
+    [dateStartRegistrationFormatted]: string
+    [dateFinalRegistrationFormatted]: string
 }
 
 export interface ITournamentDataGetAllResponse extends ITournament {
-    opened: ITournamentDataGetResponse[];
-    finished: ITournamentDataGetResponse[];
+    [opened]: ITournamentDataGetResponse[];
+    [finished]: ITournamentDataGetResponse[];
 }
 
 
-export interface ITournamentDataWriteResponse extends ITournament{
-    id: number
-    cityId: string
-    sportId: string
+export interface ITournamentDataWriteResponse extends IFormTournament{
+    id: string
 }

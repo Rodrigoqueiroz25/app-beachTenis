@@ -1,18 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import *  as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-
 import imgPhotoCircle from 'assets/photo_create_profile.svg';
 import styles from '../styles.module.css'
 import { Button } from 'components/Button/Button';
-
 import { ICity } from 'interfaces/ICity';
 import { PostLogged } from "components/PostLogged";
-import { Validations } from "helper/Validations";
 import { IUserAccount } from "interfaces/IUserAccount";
+import { cidade, city, dataNascimento, dateBirthday, e_mail, email, female, feminino, genero, male, masculino, nameUser, nome, phoneNumber, salvar, telefone } from "constants/wordsPhrases";
+import { Validations } from 'helper/Validations';
+import { brazilDateString } from 'helper/convertData';
 
 
 interface FormProfileProps {
@@ -25,47 +23,30 @@ interface FormProfileProps {
 export function FormProfile({ submit, cities, defaultValues }: FormProfileProps) {
 
     const [gender, setGender] = useState("");
-    const [errorData, setErrorData] = useState("");
 
+    const validations = Validations.formEditProfile;
 
     const { register, handleSubmit, watch, formState: { errors }, setValue, reset } = useForm({
-        resolver: yupResolver(Validations.formEditProfile)
-    });
 
-    function validaDateBirthDay(str: string, opt?: { func?: any, data?: any}) {
-        try {
-            Validations.dateOfBirthFieldForm.validateSync({ birthday: str });
-            setErrorData("");
-            if(opt){
-                opt.func(opt.data);
-            }
-        } catch (error) {
-            let c = error as yup.ValidationError;
-            setErrorData(c.message);
-        }
-    }
+    });
 
 
     useEffect(() => {
         if (defaultValues) {
-            setValue('name', defaultValues.name);
-            setValue('email', defaultValues.email);
-            setValue('phone', defaultValues.phoneNumber);
-            setValue('city', defaultValues.cityId);
-            setValue('dateBirthday', defaultValues.dateBirthday?.split('/').reverse().join('-'));
-            setGender(defaultValues.gender?.toUpperCase());
+            setValue(nameUser, defaultValues?.[nameUser]);
+            setValue(email, defaultValues?.[email]);
+            setValue(phoneNumber, defaultValues?.[phoneNumber]);
+            setValue(city, defaultValues?.[city]);
+            setValue(dateBirthday, defaultValues?.[dateBirthday]?.split('/').reverse().join('-'));
+            setGender(defaultValues?.[gender]?.toUpperCase());
         }
     }, [defaultValues]);
-
-    useEffect(() => {
-        validaDateBirthDay(watch('dateBirthday'));
-    }, [watch('dateBirthday')]);
-
 
 
     function submitForm(data: any){
         data.gender = gender;
-        validaDateBirthDay(data.dateBirthday, {func: submit, data: data});
+        data[dateBirthday] = brazilDateString(data[dateBirthday]);
+        submit(data);
     }
 
     return (
@@ -76,69 +57,69 @@ export function FormProfile({ submit, cities, defaultValues }: FormProfileProps)
                 </div>
                 <PostLogged.Input
                     type='text'
-                    placeholder='Nome'
-                    msgError={errors.name?.message}
-                    {...register('name')}
+                    placeholder={nome}
+                    msgError={errors[nameUser]?.message?.toString()}
+                    {...register(nameUser, validations[nameUser])}
                 />
 
                 <PostLogged.Input
                     type='text'
-                    placeholder='E-mail'
-                    msgError={errors.email?.message}
-                    {...register('email')}
+                    placeholder={e_mail}
+                    msgError={errors[email]?.message?.toString()}
+                    {...register(email, validations[email])}
                 />
 
                 <PostLogged.Input
                     type="text"
-                    placeholder="Telefone"
-                    msgError={errors.phone?.message}
-                    {...register('phone')}
+                    placeholder={telefone}
+                    msgError={errors[phoneNumber]?.message?.toString()}
+                    {...register(phoneNumber, validations[phoneNumber])}
                 />
 
                 <PostLogged.Combobox
-                    placeholder='Cidade'
-                    msgError={errors.city?.message}
+                    placeholder={cidade}
+                    msgError={errors[city]?.message?.toString()}
                     options={cities?.map(c => c.name)}
                     idOptions={cities?.map(c => c.id)}
-                    isEmpty={watch('city') ? false : true}
-                    {...register('city')}
+                    isEmpty={watch(city) ? false : true}
+                    {...register(city, validations[city])}
                 />
 
                 <PostLogged.Input
                     type="date"
-                    placeholder="Data de Nascimento"
-                    msgError={errors.dateBirthday?.message ? errors.dateBirthday?.message : errorData}
-                    {...register('dateBirthday')}
+                    placeholder={dataNascimento}
+                    msgError={errors[dateBirthday]?.message?.toString()}
+                    {...register(dateBirthday, validations[dateBirthday])}
                 />
 
                 <div className={styles.gender}>
-                    <p>Gender</p>
+                    <p>{genero}</p>
 
                     <div className={styles.radioButton}>
                         <input
                             type="radio"
-                            id='male'
+                            id={male}
                             value='M'
                             checked={gender === 'M'}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
 
                         />
-                        <label htmlFor="male">Male</label>
+                        <label htmlFor={male}>{masculino}</label>
                     </div>
                     <div className={styles.radioButton}>
                         <input
                             type="radio"
-                            id='female'
+                            id={female}
                             value='F'
                             checked={gender === 'F'}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
                         />
-                        <label htmlFor="female">Female</label>
+                        <label htmlFor={female}>{feminino}</label>
                     </div>
 
                 </div>
 
-                <Button>Salvar</Button>
+                <Button>{salvar}</Button>
             </form>
         </>
 

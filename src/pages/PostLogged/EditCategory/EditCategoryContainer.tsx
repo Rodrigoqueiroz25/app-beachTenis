@@ -1,36 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { ButtonBack } from "components/PostLogged/ButtonBack/ButtonBack";
 import useCategory from 'hooks/useCategory';
-import { ICategoryDataWriteResponse } from 'interfaces/ICategory';
+import { tournamentId } from 'constants/wordsPhrases';
 
 
 export function EditCategoryContainer() {
 
-    const [category, setCategory] = useState<ICategoryDataWriteResponse>({} as ICategoryDataWriteResponse);
-
     const { editCategory } = useCategory();
-    const location = useLocation();
     const navigate = useNavigate();
-
+    const { state: { category } } = useLocation();
 
     useEffect(() => {
-        if (location.state?.category) {
-            setCategory(location.state.category);
-        }
-        else {
+        if (!category) {
             navigate(Routes.listTournaments);
         }
-    }, []);
+    }, [category]);
 
 
-    function submitForm(dataForm: any) {
-        editCategory.update({ ...dataForm, tournamentId: category.tournamentId}, category.id);
-        navigate(`${Routes.tournamentLessParam}/${category?.tournamentId}`);
+    function submitForm(data: any) {
+        data[tournamentId] = category[tournamentId];
+        editCategory.update(data, category.id);
+        navigate(`${Routes.tournamentLessParam}/${category?.[tournamentId]}`);
     }
 
 

@@ -20,6 +20,13 @@ export function stringToDate(str: string){
     }
 }
 
+export function stringToDate2(str: string){
+    let date = new Date(str.concat('T00:00:00'));
+    if(!isNaN(date.getTime())){
+        return date;
+    }
+}
+
 export function dateDayActual(): Date{
     let t = new Date();
     t.setHours(0,0,0,0);
@@ -33,4 +40,10 @@ export function americanDateString(date: string){
 
 export function brazilDateString(date: string){
     return date.split('-').reverse().join('/');
+}
+
+export function calcAgeFromDate(date: string): number{
+    let dateBirthday = new Date(date).getTime();
+    let dateToday = dateDayActual().getTime();
+    return Math.floor((dateToday - dateBirthday) / (365.25 * 24 * 60 * 60 * 1000));
 }

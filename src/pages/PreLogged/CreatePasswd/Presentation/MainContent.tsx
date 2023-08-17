@@ -6,11 +6,11 @@ import { PreLoggedin } from 'components/PreLoggedin';
 import { Validations } from 'helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { novaSenha, password, repeatPasswd, repitaNovaSenha } from 'constants/wordsPhrases';
 
 interface MainContentProps {
     submit: (data: any) => void;
 }
-
 
 export function MainContent(props: MainContentProps) {
 
@@ -25,17 +25,17 @@ export function MainContent(props: MainContentProps) {
             <p className={styles.description}>Sua nova senha deve ser diferente de senhas usadas anteriormente.</p>
             <form className={styles.form} onSubmit={handleSubmit(props.submit)}>
                 <PreLoggedin.Input 
-                    placeholder='Nova Senha'
+                    placeholder={novaSenha}
                     type='password'
-                    name='passwd'
-                    msgError={errors.passwd?.message}
+                    name={password}
+                    msgError={errors[password]?.message}
                     register={register}
                 />
                 <PreLoggedin.Input 
-                    placeholder='Repita a Nova Senha' 
+                    placeholder={repitaNovaSenha}
                     type='password' 
-                    name='repPasswd'
-                    msgError={errors.repPasswd?.message}
+                    name={repeatPasswd}
+                    msgError={errors[repeatPasswd]?.message}
                     register={register}
                 />
                 <Button>Salvar</Button>

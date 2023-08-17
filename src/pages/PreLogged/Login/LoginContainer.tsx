@@ -3,7 +3,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 import styles from './styles.module.css';
 import useVerifyAuth from 'hooks/useVerifyAuth';
-import useAuth from 'hooks/useAuth';
 import imgBeachTenis from 'assets/player-beachTenis.svg';
 import { Routes } from 'enums/routes.enum';
 import { PreLoggedin } from 'components/PreLoggedin';
@@ -19,7 +18,7 @@ export function LoginContainer() {
     const itsAuth = useVerifyAuth();
 
     function handleSubmitForm(data: any) {
-        authenticate.login({email: data.email, password: data.passwd});
+        authenticate.login(data);
     }
 
     useEffect(() => {

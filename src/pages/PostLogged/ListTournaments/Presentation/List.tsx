@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { PostLogged } from 'components/PostLogged';
 import { isAdmin } from 'helper/isAdmin';
 import { ITournamentDataGetResponse } from 'interfaces/ITournament';
+import { dateFinalTournament, dateStartTournament, description, organization } from 'constants/wordsPhrases';
 
 
 
@@ -18,28 +19,28 @@ export function List({ listTournaments }: ListProps) {
 
     const navigate = useNavigate();
 
-    function access(tournament: ITournamentDataGetResponse): void {
-        navigate(`${Routes.tournamentLessParam}/${tournament.id}`)
+    function access(tournamentId: number): void {
+        navigate(`${Routes.tournamentLessParam}/${tournamentId}`)
     }
 
     function configure(tournament: ITournamentDataGetResponse): void {
-        navigate(Routes.editTournament, { state: { tournament: tournament } });
+        navigate(Routes.editTournament, { state: { tournament } });
     }
 
     return (
         <>
             <div className={styles.list}>
-                {listTournaments?.map((d: ITournamentDataGetResponse, key: number) => (
+                {listTournaments?.map((tournament: ITournamentDataGetResponse, key: number) => (
                     <PostLogged.Item.Wrapper key={key}>
                         <div className={styles.itemList}>
                             <img src={logoTour} alt="logo do torneio" />
-                            <PostLogged.Item.Period dtInit={d.dtStartTournament} dtFinal={d.dtFinalTournament} />
+                            <PostLogged.Item.Period dtInit={tournament[dateStartTournament]} dtFinal={tournament[dateFinalTournament]} />
                             <PostLogged.Item.Photos />
-                            <PostLogged.Item.Text text={d.organization} />
-                            <PostLogged.Item.Text small text={d.description} />
-                            <Button small onClick={() => access(d)} >Acessar</Button>
+                            <PostLogged.Item.Text text={tournament[organization]} />
+                            <PostLogged.Item.Text small text={tournament[description]} />
+                            <Button small onClick={() => access(tournament.id)} >Acessar</Button>
                             {isAdmin() &&
-                                <Button small onClick={() => configure(d)}>Configurar</Button>
+                                <Button small onClick={() => configure(tournament)}>Configurar</Button>
                             }
                         </div>
                     </PostLogged.Item.Wrapper>

@@ -14,7 +14,8 @@ import { ListResultSearch } from './Presentation/ListResultSearch/ListResultSear
 export function RegisterPlayerCategoryContainer() {
 
     const navigate = useNavigate();
-    const location = useLocation();
+    // const location = useLocation();
+    const { state: { category } } = useLocation();
 
     const [textSearch, setTextSearch] = useState('');
     const [presentation, setPresentation] = useState('listaDuplas');
@@ -23,7 +24,13 @@ export function RegisterPlayerCategoryContainer() {
     const { getAccountByName } = useAccount();
 
     useEffect(() => {
-        getPlayersRegisteredByCategory.get(location.state.category.id);
+        if(!category){
+            navigate(Routes.listTournaments);
+        }
+    },[]);
+
+    useEffect(() => {
+        getPlayersRegisteredByCategory.get(category.id);
     }, [getPlayersRegisteredByCategory.error]);
 
     function handleClickButtonSearch() {
@@ -41,8 +48,8 @@ export function RegisterPlayerCategoryContainer() {
         <PostLogged.LayoutPage.Layout
             header={
                 <PostLogged.LayoutPage.Header>
-                    <PostLogged.ButtonBack onClick={() => navigate(`${Routes.tournamentLessParam}/${location.state.category.tournamentId}`)} />
-                    <p>{location.state.category.description}</p>
+                    <PostLogged.ButtonBack onClick={() => navigate(`${Routes.tournamentLessParam}/${category.tournamentId}`)} />
+                    <p>{category.description}</p>
                 </PostLogged.LayoutPage.Header>
             }
             main={

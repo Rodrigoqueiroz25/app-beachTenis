@@ -7,34 +7,38 @@ import imgCreateProfile from 'assets/create_profile_title.svg';
 import { Routes } from 'enums/routes.enum';
 import styles from './styles.module.css';
 import { PreLoggedin } from 'components/PreLoggedin';
-import { IDataSignUp } from 'interfaces/IDataSignUp';
 import { convertData } from 'helper/convertData';
 import useAccount from 'hooks/useAccount';
+import { city, dateBirthday, nameUser } from 'constants/wordsPhrases';
 
 export function CreateProfileContainer() {
 
-    const location = useLocation();
+    // const location = useLocation();
+    const { state: { phoneNumber }} = useLocation();
     const navigate = useNavigate();
     const { register } = useAccount();
 
     useEffect(() => {
-        if (!location.state?.phoneNumber) {
+        if (!phoneNumber) {
             navigate(Routes.signup)
         }
-    },[location.state?.phoneNumber]);
+    },[phoneNumber]);
     
 
     async function handleSubmitForm(data: any) {
-        let dataSignup: IDataSignUp = {
-            email: location.state.email,
-            password: location.state.password,
-            name: `${data.firstName} ${data.lastName}`,
-            phoneNumber: location.state.phoneNumber,
-            gender: data.gender,
-            cityId: '4709',
-            dateBirthday: convertData(data.dateBirthday)
-        }
-        register.signup(dataSignup);
+        // let dataSignup: IDataSignUp = {
+        //     email: location.state.email,
+        //     password: location.state.password,
+        //     name: `${data.firstName} ${data.lastName}`,
+        //     phoneNumber: location.state.phoneNumber,
+        //     gender: data.gender,
+        //     cityId: '4709',
+        //     dateBirthday: convertData(data.dateBirthday)
+        // }
+        data[nameUser] = `${data.firstName} ${data.lastName}`;
+        data[city] = '4709';
+        data[dateBirthday] = convertData(data[dateBirthday]);
+        register.signup(data);
     }
 
 

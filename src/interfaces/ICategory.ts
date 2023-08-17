@@ -1,12 +1,14 @@
+import { description, maxNumberAthletesCategory, numberAthletesPerRegistration, tournamentId } from "constants/wordsPhrases";
+
 
 export interface IFormCategory {
-    description: string;
-    numberAthletes: string;
-    numberAthletesRegistration: string;
+    [description]: string;
+    [maxNumberAthletesCategory]: string;
+    [numberAthletesPerRegistration]: string;
 }
 
 export interface ICategory extends IFormCategory{
-    tournamentId: number;
+    [tournamentId]: number;
 }
 
 export interface ICategoryDataWriteResponse extends ICategory{

@@ -1,6 +1,7 @@
+import { accessToken, isAdmin, nameUser } from "constants/wordsPhrases";
 
 export interface ILoginResult {
-    accessToken: string;
-    name: string;
-    isAdmin: string;
+    [accessToken]: string;
+    [nameUser]: string;
+    [isAdmin]: string;
 }

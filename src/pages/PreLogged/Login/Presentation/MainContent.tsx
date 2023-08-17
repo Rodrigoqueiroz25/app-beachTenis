@@ -1,6 +1,5 @@
 
 import { Link } from 'react-router-dom';
-
 import styles from '../styles.module.css';
 import imgMail from 'assets/Mail.svg';
 import imgEye from 'assets/eye.svg';
@@ -10,6 +9,7 @@ import { PreLoggedin } from 'components/PreLoggedin';
 import { useForm } from 'react-hook-form';
 import { Validations } from 'helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { e_mail, email, password, senha } from 'constants/wordsPhrases';
 
 
 interface MainContentProps {
@@ -28,18 +28,18 @@ export function MainContent(props: MainContentProps) {
 
         <form className={styles.form} onSubmit={handleSubmit(props.submit)}>
             <PreLoggedin.Input
-                placeholder='E-mail'
+                placeholder={e_mail}
                 type='text'
-                name='email'
-                msgError={errors.email?.message}
+                name={email}
+                msgError={errors[email]?.message}
                 src={imgMail}
                 register={register}
             />
             <PreLoggedin.Input
-                placeholder='Password'
+                placeholder={senha}
                 type='password'
-                name='passwd'
-                msgError={errors.passwd?.message}
+                name={password}
+                msgError={errors[password]?.message}
                 src={imgEye}
                 register={register}
             />

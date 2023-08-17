@@ -30,9 +30,7 @@ export function ListTournamentsContainer() {
     }
 
 
-
     return (
-
         <PostLogged.LayoutPage.Layout
             header={
                 <>

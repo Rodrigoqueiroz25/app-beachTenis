@@ -14,6 +14,7 @@ import logo from 'assets/logoTour.jpg';
 import { categories, informations } from 'constants/constants';
 import { List } from './Presentation/List';
 import { Informations } from './Presentation/Informations/Informations';
+import { tournamentId } from 'constants/wordsPhrases';
 
 
 export function TournamentContainer() {
@@ -37,7 +38,6 @@ export function TournamentContainer() {
     function handleClickInformations() {
         setPresentation(informations);
     }
-
 
 
     useEffect(() => {
@@ -89,7 +89,7 @@ export function TournamentContainer() {
                             <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                             <p>Torneio</p>
                             {isAdmin() &&
-                                <PostLogged.ButtonPlus onClick={() => navigate(Routes.createCategory, { state: { tournamentId: dataTournament.id } })} />
+                                <PostLogged.ButtonPlus onClick={() => navigate(Routes.createCategory, { state: { [tournamentId]: dataTournament.id } })} />
                             }
                         </PostLogged.LayoutPage.Header>
                         <div className={styles.header}>

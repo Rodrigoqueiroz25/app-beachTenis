@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import styles from './styles.module.css';
 import { PostLogged } from 'components/PostLogged';
@@ -7,6 +8,7 @@ import { ICategory } from 'interfaces/ICategory';
 import { Validations } from 'helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
+import { adicionar, alterar, descricao, description, maxNumberAthletesCategory, numberAthletesPerRegistration, qtdMaxInscritos, qtdPessoasPorInscricao } from 'constants/wordsPhrases';
 
 
 interface FormCategoryProps {
@@ -20,12 +22,13 @@ export function FormCategory({submit, defaultValues}: FormCategoryProps) {
     const { register, handleSubmit, watch, formState: { errors }, reset, setValue } = useForm({
         resolver: yupResolver(Validations.formCategories)
     });
+    
 
     useEffect(() =>{
         if(defaultValues){
-            setValue("description", defaultValues.description);
-            setValue("numberAthletes", defaultValues.numberAthletes);
-            setValue("numberAthletesRegistration", defaultValues.numberAthletesRegistration);
+            setValue(description, defaultValues[description]);
+            setValue(maxNumberAthletesCategory, defaultValues[maxNumberAthletesCategory]);
+            setValue(numberAthletesPerRegistration, defaultValues[numberAthletesPerRegistration]);
         }
     }, [defaultValues]);
 
@@ -39,27 +42,27 @@ export function FormCategory({submit, defaultValues}: FormCategoryProps) {
         <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
             <PostLogged.Input
                 type='text'
-                placeholder='Descrição'
-                msgError={errors.description?.message}
-                {...register("description")}
+                placeholder={descricao}
+                msgError={errors[description]?.message}
+                {...register(description)}
             />
 
             <PostLogged.Combobox
-                placeholder='Quantidade de pessoas por inscrição'
-                msgError={errors.numberAthletesRegistration?.message}
+                placeholder={qtdPessoasPorInscricao}
+                msgError={errors[numberAthletesPerRegistration]?.message}
                 options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                isEmpty={watch("numberAthletesRegistration") ? false : true }
-                {...register("numberAthletesRegistration")}
+                isEmpty={watch(numberAthletesPerRegistration) ? false : true }
+                {...register(numberAthletesPerRegistration)}
             />
 
             <PostLogged.Input
                 type='number'
-                placeholder='Quantidade máxima de inscritos'
-                msgError={errors.numberAthletes?.message}
-                {...register("numberAthletes")}
+                placeholder={qtdMaxInscritos}
+                msgError={errors[maxNumberAthletesCategory]?.message}
+                {...register(maxNumberAthletesCategory)}
             />
             <div className={styles.btn}>
-                <Button>{defaultValues ? "Alterar" : "Adicionar"}</Button>
+                <Button>{defaultValues ? alterar : adicionar}</Button>
             </div>
         </form>
     );

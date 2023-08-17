@@ -32,14 +32,7 @@ export function EditProfileContainer() {
 
 
     function saveDataform(data: any) {
-        updateAccount.update({
-            email: data.email,
-            name: data.name,
-            phoneNumber: data.phone,
-            gender: data.gender,
-            cityId: data.city,
-            dateBirthday: data.dateBirthday.split('-').reverse().join('/')
-        }, profile.id!);
+        updateAccount.update(data, profile.id!);
         navigate(Routes.home);
     }
 

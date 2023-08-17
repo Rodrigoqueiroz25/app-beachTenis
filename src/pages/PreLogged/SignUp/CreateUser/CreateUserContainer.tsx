@@ -6,20 +6,14 @@ import { PreLoggedin } from 'components/PreLoggedin';
 import { LinkOtherPage } from 'components/PreLoggedin/LinkOtherPage/LinkOtherPage';
 import styles from './styles.module.css';
 import imgBeachTenis from 'assets/player-beachTenis.svg';
-import { IDataSignUp } from 'interfaces/IDataSignUp';
+
 
 export function CreateUserContainer() {
 
     const navigate = useNavigate();
 
     function handleSubmitForm(data: any) {
-        navigate(Routes.createProfile, {
-            state: {
-                phoneNumber: data.phoneNumber,
-                email: data.email,
-                password: data.passwd
-            } as IDataSignUp
-        });
+        navigate(Routes.createProfile, data);
     }
 
 

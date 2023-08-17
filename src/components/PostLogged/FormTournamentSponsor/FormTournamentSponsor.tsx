@@ -8,6 +8,7 @@ import { PostLogged } from "components/PostLogged";
 import { IFormTournamentSponsor } from "interfaces/ITournamentSponsor";
 import { useEffect } from "react";
 import { Validations } from "helper/Validations";
+import { nameUser, nome, otherInformation } from "constants/wordsPhrases";
 
 
 interface FormTournamentSponsorProps {
@@ -21,11 +22,12 @@ export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSpo
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(Validations.formTournamentSponsor)
     });
+    
 
     useEffect(() => {
         if(defaultValues){
-            setValue("name", defaultValues.name);
-            setValue("otherInformation", defaultValues.otherInformation);
+            setValue(nameUser, defaultValues[nameUser]);
+            setValue(otherInformation, defaultValues[otherInformation]);
         }
     }, [defaultValues]);
 
@@ -35,14 +37,15 @@ export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSpo
             <form className={styles.form} onSubmit={handleSubmit(submit)}>
                 <PostLogged.Input
                     type='text'
-                    placeholder='Nome'
-                    msgError={errors.name?.message as string}
-                    {...register('name')}
+                    placeholder={nome}
+                    msgError={errors[nameUser]?.message as string}
+                    {...register(nameUser)}
                 />
 
                 <PostLogged.TextArea 
-                    placeholder='Outras informações'
-                    {...register("otherInformation")}
+                    placeholder={otherInformation}
+                    msgError={errors[otherInformation]?.message as string}
+                    {...register(otherInformation)}
                 />
 
                 <div className={styles.button}>

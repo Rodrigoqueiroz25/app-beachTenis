@@ -8,6 +8,7 @@ import { PreLoggedin } from 'components/PreLoggedin';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from 'helper/Validations';
+import { e_mail, email, password, phoneNumber, repeatPasswd, repitaSenha, senha, telefone } from 'constants/wordsPhrases';
 
 
 interface MainContentProps {
@@ -29,38 +30,38 @@ export function MainContent(props: MainContentProps) {
                 <p className={styles.codexCountry}>+55</p>
                 <PreLoggedin.InputMasked
                     mask='(99)99999-9999'
-                    placeholder="Telefone"
+                    placeholder={telefone}
                     type='tel'
-                    name='phoneNumber'
-                    msgError={errors.phoneNumber?.message}
+                    name={phoneNumber}
+                    msgError={errors[phoneNumber]?.message}
                     register={register}
                 />
             </div>
 
             <PreLoggedin.Input
-                placeholder='E-mail'
+                placeholder={e_mail}
                 type='email'
-                name='email'
+                name={email}
                 src={imgMail}
-                msgError={errors.email?.message}
+                msgError={errors[email]?.message}
                 register={register}
 
             />
             <PreLoggedin.Input
-                placeholder='Password'
+                placeholder={senha}
                 type='password'
-                name='passwd'
+                name={password}
                 src={imgEye}
-                msgError={errors.passwd?.message}
+                msgError={errors[password]?.message}
                 register={register}
 
             />
             <PreLoggedin.Input
-                placeholder='Repeat Password'
+                placeholder={repitaSenha}
                 type='password'
-                name='repPasswd'
+                name={repeatPasswd}
                 src={imgEye}
-                msgError={errors.repPasswd?.message}
+                msgError={errors[repeatPasswd]?.message}
                 register={register}
 
             />

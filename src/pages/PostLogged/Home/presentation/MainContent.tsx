@@ -9,6 +9,7 @@ import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import logoTour from 'assets/logoTour.jpg';
 import { Button } from 'components/Button/Button';
 import { isAdmin } from 'helper/isAdmin';
+import { dateFinalTournament, dateStartTournament, description, organization } from 'constants/wordsPhrases';
 
 interface MainContentProps {
     cities: ICity[];
@@ -56,16 +57,16 @@ export function MainContent({ cities, tournaments }: MainContentProps) {
                 <div className={styles.tournament}>
 
                     {tournaments?.map((tournament, key) => (
-                        <div className={styles.item}>
+                        <div className={styles.item} key={key}>
                             <img className={styles.logo} src={logoTour} alt="logo do torneio" />
                             <div className={styles.wrapper}>
                                 <PostLogged.Item.Wrapper>
                                     <div className={styles.itemList}>
-                                        <PostLogged.Item.Period dtInit={tournament.dtStartTournament} dtFinal={tournament.dtFinalTournament} />
+                                        <PostLogged.Item.Period dtInit={tournament[dateStartTournament]} dtFinal={tournament[dateFinalTournament]} />
                                         <PostLogged.Item.Photos />
                                         <PostLogged.Item.Text small text="3.2 km" />
-                                        <PostLogged.Item.Text text={tournament.organization} />
-                                        <PostLogged.Item.Text small text={tournament.description} />
+                                        <PostLogged.Item.Text text={tournament[organization]} />
+                                        <PostLogged.Item.Text small text={tournament[description]} />
                                         <PostLogged.Item.Text small text="Fee: Free" />
                                         {!isAdmin() &&
                                             <Button small onClick={() => navigate(`${Routes.tournamentLessParam}/${tournament.id}`)}>Inscrição</Button>

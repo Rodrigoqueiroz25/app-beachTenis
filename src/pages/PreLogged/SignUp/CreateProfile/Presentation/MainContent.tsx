@@ -1,16 +1,14 @@
 
 import { ChangeEvent, useState } from 'react';
-
 import styles from '../styles.module.css';
-
 import imgPhotoCircle from 'assets/photo_create_profile.svg';
-
 import { Button } from 'components/Button/Button';
 import { PreLoggedin } from 'components/PreLoggedin';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Validations } from 'helper/Validations';
 import { ValidationError } from 'yup';
+import { dateBirthday, female, feminino, firstName, lastName, male, masculino, nome, salvar, sobrenome } from 'constants/wordsPhrases';
 
 
 interface MainContentProps {
@@ -58,18 +56,18 @@ export function MainContent(props: MainContentProps) {
 
             <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
                 <PreLoggedin.Input
-                    placeholder='Nome'
+                    placeholder={nome}
                     type='text'
-                    name='firstName'
-                    msgError={errors.firstName?.message}
+                    name={firstName}
+                    msgError={errors[firstName]?.message}
                     register={register}
                 />
 
                 <PreLoggedin.Input
-                    placeholder='Sobrenome'
+                    placeholder={sobrenome}
                     type='text'
-                    name='lastName'
-                    msgError={errors.lastName?.message}
+                    name={lastName}
+                    msgError={errors[lastName]?.message}
                     register={register}
                 />
 
@@ -78,8 +76,8 @@ export function MainContent(props: MainContentProps) {
                     <PreLoggedin.Input
                         placeholder=''
                         type='date'
-                        name='dateBirthday'
-                        msgError={errors.dateBirthday?.message}
+                        name={dateBirthday}
+                        msgError={errors[dateBirthday]?.message}
                         register={register}
                     />
 
@@ -90,25 +88,25 @@ export function MainContent(props: MainContentProps) {
                     <div className={styles.radioButton}>
                         <input
                             type="radio"
-                            id='male'
+                            id={male}
                             value='M'
                             checked={gender === 'M'}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
                         />
-                        <label htmlFor="male">Masculino</label>
+                        <label htmlFor={male}>{masculino}</label>
                     </div>
                     <div className={styles.radioButton}>
                         <input
                             type="radio"
-                            id='female'
+                            id={female}
                             value='F'
                             checked={gender === 'F'}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
                         />
-                        <label htmlFor="female">Feminino</label>
+                        <label htmlFor={female}>{feminino}</label>
                     </div>
                 </div>
-                <Button>Salvar</Button>
+                <Button>{salvar}</Button>
             </form>
         </main>
 

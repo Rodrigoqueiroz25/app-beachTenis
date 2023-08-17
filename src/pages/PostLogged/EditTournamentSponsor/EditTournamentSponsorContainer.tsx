@@ -5,29 +5,25 @@ import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import useTournamentSponsor from 'hooks/useTournamentSponsor';
 import { useEffect } from 'react';
+import { tournamentId } from 'constants/wordsPhrases';
 
 
 export function EditTournamentSponsorContainer() {
 
     const { editTournamentSponsor } = useTournamentSponsor();
-
     const navigate = useNavigate();
-    const location = useLocation();
-
+    const { state: { tournamentSponsor } } = useLocation();
 
     useEffect(() => {
-        if (!location.state?.tournamentSponsor) {
+        if (!tournamentSponsor) {
             navigate(Routes.listTournaments);
         }
-    }, [location.state?.tournamentSponsor]);
+    }, [tournamentSponsor]);
 
 
     function saveDataform(data: any) {
-        editTournamentSponsor.edit({
-            name: data.name,
-            otherInformation: data.otherInformation,
-            tournamentId: location.state.tournamentSponsor.tournamentId,
-        }, location.state.tournamentSponsor.tournamentId);
+        data[tournamentId] = tournamentSponsor[tournamentId];
+        editTournamentSponsor.edit(data, tournamentSponsor.tournamentId);
     }
 
 
@@ -38,7 +34,7 @@ export function EditTournamentSponsorContainer() {
             }
 
             {editTournamentSponsor.ok &&
-                <Navigate to={`${Routes.tournamentLessParam}/${location.state.tournamentSponsor.tournamentId}`} />
+                <Navigate to={`${Routes.tournamentLessParam}/${tournamentSponsor.tournamentId}`} />
             }
 
             <PostLogged.LayoutPage.Layout
@@ -51,7 +47,7 @@ export function EditTournamentSponsorContainer() {
                 main={
                     <PostLogged.FormTournamentSponsor
                         submit={saveDataform}
-                        defaultValues={location.state.tournamentSponsor}
+                        defaultValues={tournamentSponsor}
 
                     />
                 }

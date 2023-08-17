@@ -7,6 +7,7 @@ import { Validations } from 'helper/Validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { e_mail, email } from 'constants/wordsPhrases';
 
 interface MainContentProps {
     submit: (data: any) => void;
@@ -26,10 +27,10 @@ export function MainContent(props: MainContentProps) {
             <p className={styles.textForgotPasswd}>Digite seu endereço de e-mail registrado abaixo para receber instruções de redefinição de senha</p>
             <form className={styles.form} onSubmit={handleSubmit(props.submit)}>
                 <PreLoggedin.Input 
-                    placeholder='E-mail' 
+                    placeholder={e_mail}
                     type='text'
-                    name='email'
-                    msgError={errors.email?.message}
+                    name={email}
+                    msgError={errors[email]?.message}
                     register={register}
                 />
                 <div>

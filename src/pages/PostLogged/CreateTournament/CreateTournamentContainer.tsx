@@ -3,15 +3,13 @@
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
-import { Validations } from 'helper/Validations';
-import { brazilDateString } from 'helper/convertData';
 import useCities from 'hooks/useCities';
 import useSports from 'hooks/useSports';
 import useTournament from 'hooks/useTournament';
+import { tournamentId } from 'constants/wordsPhrases';
 
 
 export function CreateTournamentContainer() {
-
 
     const { createTournament } = useTournament();
     
@@ -22,19 +20,8 @@ export function CreateTournamentContainer() {
 
 
     function saveDataform(data: any) {
-        console.log(data);
-        createTournament.create({
-            description: data.description,
-            cityId: data.cityId,
-            sportId: data.sportId,
-            dtStartTournament: brazilDateString(data.dtStartTournament),
-            dtFinalTournament: brazilDateString(data.dtFinalTournament),
-            dtStartRegistration: brazilDateString(data.dtStartRegistration),
-            dtFinalRegistration: brazilDateString(data.dtFinalRegistration),
-            otherInformation: data.otherInformation,
-            organization: data.organization
-        });
-
+        // console.log(data);
+        createTournament.create(data);
     }
 
 
@@ -45,7 +32,7 @@ export function CreateTournamentContainer() {
             }
 
             {createTournament.ok &&
-                <Navigate to={Routes.createCategory} state={{ tournamentId: createTournament.tournamentCreated?.id }} />
+                <Navigate to={Routes.createCategory} state={{ [tournamentId]: createTournament.tournamentCreated?.id }} />
             }
 
             <PostLogged.LayoutPage.Layout
@@ -60,7 +47,6 @@ export function CreateTournamentContainer() {
                         submit={saveDataform}
                         cities={getCities.cities}
                         sports={getSports.sports}
-                        schema={Validations.formCreateTournament}
                     />
                 }
             />
