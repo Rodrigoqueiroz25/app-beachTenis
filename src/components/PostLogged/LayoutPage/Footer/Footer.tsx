@@ -15,20 +15,20 @@ export function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={styles.menuBottom}>
-                <div className={styles.option} onClick={() => navigate(Routes.home)}>
-                    <img src={imgHome} alt="" />
+                <div className={styles.option} id='home' onClick={() => navigate(Routes.home)}>
+                    <img src={imgHome} alt="imagem de casa" />
                     <p>Home</p>
                 </div>
-                <div className={styles.option}>
-                    <img src={imgHistory} alt="" />
+                <div className={styles.option} id='history'>
+                    <img src={imgHistory} alt="imagem de historico" />
                     <p>Histórico</p>
                 </div>
-                <div className={styles.option}>
-                    <img src={imgWallet} alt="" />
+                <div className={styles.option} id='payment'>
+                    <img src={imgWallet} alt="imagem de carteira" />
                     <p>Pagamentos</p>
                 </div>
-                <div className={styles.option} onClick={() => navigate(Routes.editProfile)}>
-                    <img src={imgProfile} alt="" />
+                <div className={styles.option} id='profile' onClick={() => navigate(Routes.editProfile)}>
+                    <img src={imgProfile} alt="imagem de perfil vazia" />
                     <p>Perfil</p>
                 </div>
             </div>

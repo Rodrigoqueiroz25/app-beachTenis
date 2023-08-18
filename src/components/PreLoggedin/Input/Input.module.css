@@ -1,10 +1,15 @@
 
-
-.inputPreLogged{
+.inputPreLogged {
     position: relative;
+    height: 5rem;
 }
 
-.inputPreLogged img{
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputPreLogged img {
     position: absolute;
     z-index: 10;
     right: 2rem;
@@ -12,18 +17,17 @@
 }
 
 .input {
-    width: 100%;
     height: 5rem;
     border-radius: 0.4rem;
     border: 0.11rem solid #8a8a8a;
-    padding: 2rem;
+    padding: 0rem 2rem;
     font-size: 1.8rem;
     color: #3f3d56;
     outline: none;
-       
+
 }
 
-.input:focus{
+.input:focus {
     border-width: 0.18rem;
     border-image: linear-gradient(to right, #114c99, #1544cf);
     border-image-slice: 1;
@@ -33,7 +37,7 @@
     border: .18rem solid rgb(223, 5, 5);
 }
 
-.invalid::placeholder{
+.invalid::placeholder {
     color: #ef5348;
 }
 
@@ -44,10 +48,9 @@
 }
 
 
-.error{
+.error {
     font-size: 1rem;
     color: red;
-    position: absolute;
-    right: 0rem;
-    top: 5.3rem;
-  }
+    align-self: end;
+    margin: 0;
+}

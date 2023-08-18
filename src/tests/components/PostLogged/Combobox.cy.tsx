@@ -161,7 +161,13 @@ describe('Tests visuals <Combobox />', () => {
     cy.mount(<PostLogged.Combobox options={['test1']} isEmpty={false} msgError='error'/>);
     cy.get('[class*=error]').should('have.css', 'font-size', '16px')
   });
- 
+  
+  it('has message error position abslute, right 0 e top 3.2rem' ,() => {
+    cy.mount(<PostLogged.Combobox options={['test1']} isEmpty={false} msgError='error'/>);
+    cy.get('[class*=error]').should('have.css', 'position', 'absolute')
+    cy.get('[class*=error]').should('have.css', 'right', '0px')
+    cy.get('[class*=error]').should('have.css', 'top', '51.2px')
+  });
 
 })
 

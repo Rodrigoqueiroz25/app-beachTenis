@@ -1,18 +1,18 @@
 
 import { Link } from 'react-router-dom';
-import styles from './LinkOtherPage.module.css';
+import styles from './styles.module.css';
 
 
 interface LinkOtherPageProps {
-    text?: string;
-    textLink?: string;
-    endPoint?: string;
+    text: string;
+    textLink: string;
+    endPoint: string;
 }
 
-export function LinkOtherPage({text, textLink, endPoint}) {
+export function LinkOtherPage({ text, textLink, endPoint }: LinkOtherPageProps) {
 
     return (
-        <p className={styles.dontHaveRegister}>
+        <p className={styles.text}>
             {text}
             <Link className={styles.link} to={endPoint}>
                 {textLink}

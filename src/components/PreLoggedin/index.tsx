@@ -12,5 +12,6 @@ export const PreLoggedin = {
     Input: Input,
     InputMasked: InputMasked,
     Link: LinkOtherPage,
-    Layout: Layout
+    Layout: Layout,
+    LinkOtherPage: LinkOtherPage
 }

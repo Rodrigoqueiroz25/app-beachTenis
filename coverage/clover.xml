@@ -1,56 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1692322991793" clover="3.2.0">
-  <project timestamp="1692322991793" name="All files">
-    <metrics statements="9" coveredstatements="4" conditionals="4" coveredconditionals="1" methods="6" coveredmethods="1" elements="19" coveredelements="6" complexity="0" loc="9" ncloc="9" packages="7" files="7" classes="7"/>
-    <package name="PreLoggedin">
-      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="index.tsx" path="/workspaces/app-beachTenis/src/components/PreLoggedin/index.tsx">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="9" count="2" type="stmt"/>
-      </file>
-    </package>
-    <package name="PreLoggedin.Input">
-      <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-      <file name="Input.tsx" path="/workspaces/app-beachTenis/src/components/PreLoggedin/Input/Input.tsx">
-        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-      </file>
-    </package>
-    <package name="PreLoggedin.InputMasked">
-      <metrics statements="2" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="InputMasked.tsx" path="/workspaces/app-beachTenis/src/components/PreLoggedin/InputMasked/InputMasked.tsx">
-        <metrics statements="2" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="PreLoggedin.LayoutPage.Footer">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+<coverage generated="1692380866414" clover="3.2.0">
+  <project timestamp="1692380866414" name="All files">
+    <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3" elements="6" coveredelements="6" complexity="0" loc="3" ncloc="3" packages="3" files="3" classes="3"/>
+    <package name="Footer">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Footer.tsx" path="/workspaces/app-beachTenis/src/components/PreLoggedin/LayoutPage/Footer/Footer.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="14" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="14" count="14" type="stmt"/>
       </file>
     </package>
-    <package name="PreLoggedin.LayoutPage.Header">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+    <package name="Header">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Header.tsx" path="/workspaces/app-beachTenis/src/components/PreLoggedin/LayoutPage/Header/Header.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="10" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="10" count="14" type="stmt"/>
       </file>
     </package>
-    <package name="PreLoggedin.LayoutPage.Layout">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+    <package name="Layout">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Layout.tsx" path="/workspaces/app-beachTenis/src/components/PreLoggedin/LayoutPage/Layout/Layout.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="16" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="PreLoggedin.LinkOtherPage">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="LinkOtherPage.tsx" path="/workspaces/app-beachTenis/src/components/PreLoggedin/LinkOtherPage/LinkOtherPage.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="14" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="16" count="14" type="stmt"/>
       </file>
     </package>
   </project>

@@ -10,12 +10,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(({ msgError, src, ...rest }, ref) => (
     <div className={styles.inputPreLogged}>
-        <input
-            className={msgError ? `${styles['input']} ${styles['invalid']}` : styles['input']}
-            ref={ref}
-            {...rest}
-        />
-        <p className={styles.error}>{msgError}</p>
-        <img src={src} alt="" />
+        <div className={styles.wrapper}>
+            <input
+                className={msgError ? `${styles['input']} ${styles['invalid']}` : styles['input']}
+                ref={ref}
+                {...rest}
+            />
+            <p className={styles.error}>{msgError}</p>
+            <img src={src} alt="" />
+        </div>
+
     </div>
 ));
