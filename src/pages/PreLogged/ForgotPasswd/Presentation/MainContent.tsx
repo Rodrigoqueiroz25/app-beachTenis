@@ -29,9 +29,8 @@ export function MainContent(props: MainContentProps) {
                 <PreLoggedin.Input 
                     placeholder={e_mail}
                     type='text'
-                    name={email}
+                    {...register(email)}
                     msgError={errors[email]?.message}
-                    register={register}
                 />
                 <div>
                     <p className={styles.txtRememberPasswd}>

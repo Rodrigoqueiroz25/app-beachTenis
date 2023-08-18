@@ -27,16 +27,16 @@ export function MainContent(props: MainContentProps) {
                 <PreLoggedin.Input 
                     placeholder={novaSenha}
                     type='password'
-                    name={password}
+                    {...register(password)}
                     msgError={errors[password]?.message}
-                    register={register}
+                    
                 />
                 <PreLoggedin.Input 
                     placeholder={repitaNovaSenha}
                     type='password' 
-                    name={repeatPasswd}
+                    {...register(repeatPasswd)}
                     msgError={errors[repeatPasswd]?.message}
-                    register={register}
+                    
                 />
                 <Button>Salvar</Button>
             </form>

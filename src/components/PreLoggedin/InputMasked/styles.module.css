@@ -1,10 +1,10 @@
 
 
-.textField{
+.inputMasked{
     position: relative;
 }
 
-.textField img{
+.inputMasked img{
     position: absolute;
     z-index: 10;
     right: 2rem;

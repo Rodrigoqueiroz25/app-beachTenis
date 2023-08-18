@@ -1,32 +1,27 @@
 
-import InputMask from 'react-input-mask';
+import InputMask, { ReactInputMask } from 'react-input-mask';
 import styles from './styles.module.css';
-import { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 
 
 interface InputMaskedProps extends InputHTMLAttributes<HTMLInputElement>{
     mask: string;
-    register: any;
     src?: string;
     msgError?: string;
 }
 
-
-export function InputMasked(props: InputMaskedProps) {
-    return (
-        <div className={styles.textField}>
+export const InputMasked = React.forwardRef<ReactInputMask, InputMaskedProps>(({ msgError, src, mask, ...rest }, ref) => (
+        <div className={styles.inputMasked}>
             <InputMask
-                className={ props.msgError? `${styles['input']} ${styles['invalid']}` : styles['input']} 
-                placeholder={props.placeholder} 
-                type={props.type} 
-
-                mask={props.mask}
+                className={msgError? `${styles['input']} ${styles['invalid']}` : styles['input']} 
+                mask={mask}
                 maskChar=""
                 alwaysShowMask={false}
-                {...props.register(props.name)} 
+                ref={ref}
+                {...rest}
             />
-            <p className={styles.error}>{props.msgError}</p>
-            <img src={props.src} alt="" />
+            <p className={styles.error}>{msgError}</p>
+            <img src={src} alt="" />
         </div>
-    );
-}
+    ));
+// }

@@ -1,10 +1,10 @@
 
 
-.textField{
+.inputPreLogged{
     position: relative;
 }
 
-.textField img{
+.inputPreLogged img{
     position: absolute;
     z-index: 10;
     right: 2rem;
@@ -34,7 +34,7 @@
 }
 
 .invalid::placeholder{
-    color: #f37b73;
+    color: #ef5348;
 }
 
 .invalid:focus {

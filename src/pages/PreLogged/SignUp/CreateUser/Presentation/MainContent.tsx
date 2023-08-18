@@ -32,37 +32,36 @@ export function MainContent(props: MainContentProps) {
                     mask='(99)99999-9999'
                     placeholder={telefone}
                     type='tel'
-                    name={phoneNumber}
+                    {...register(phoneNumber)}
                     msgError={errors[phoneNumber]?.message}
-                    register={register}
+                    
                 />
             </div>
 
             <PreLoggedin.Input
                 placeholder={e_mail}
                 type='email'
-                name={email}
                 src={imgMail}
+                {...register(email)}
                 msgError={errors[email]?.message}
-                register={register}
+                
 
             />
             <PreLoggedin.Input
                 placeholder={senha}
                 type='password'
-                name={password}
                 src={imgEye}
+                {...register(password)}
                 msgError={errors[password]?.message}
-                register={register}
+                
 
             />
             <PreLoggedin.Input
                 placeholder={repitaSenha}
                 type='password'
-                name={repeatPasswd}
                 src={imgEye}
+                {...register(repeatPasswd)}
                 msgError={errors[repeatPasswd]?.message}
-                register={register}
 
             />
 

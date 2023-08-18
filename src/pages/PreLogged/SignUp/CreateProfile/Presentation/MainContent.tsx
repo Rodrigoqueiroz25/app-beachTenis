@@ -58,17 +58,17 @@ export function MainContent(props: MainContentProps) {
                 <PreLoggedin.Input
                     placeholder={nome}
                     type='text'
-                    name={firstName}
+                    {...register(firstName)}
                     msgError={errors[firstName]?.message}
-                    register={register}
+                    
                 />
 
                 <PreLoggedin.Input
                     placeholder={sobrenome}
                     type='text'
-                    name={lastName}
+                    {...register(lastName)}
                     msgError={errors[lastName]?.message}
-                    register={register}
+                    
                 />
 
                 <div className={styles.date}>
@@ -76,9 +76,9 @@ export function MainContent(props: MainContentProps) {
                     <PreLoggedin.Input
                         placeholder=''
                         type='date'
-                        name={dateBirthday}
+                        {...register(dateBirthday)}
                         msgError={errors[dateBirthday]?.message}
-                        register={register}
+                        
                     />
 
                 </div>

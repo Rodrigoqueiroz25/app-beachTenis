@@ -30,18 +30,17 @@ export function MainContent(props: MainContentProps) {
             <PreLoggedin.Input
                 placeholder={e_mail}
                 type='text'
-                name={email}
-                msgError={errors[email]?.message}
                 src={imgMail}
-                register={register}
+                {...register(email)}
+                msgError={errors[email]?.message}
             />
+
             <PreLoggedin.Input
                 placeholder={senha}
                 type='password'
-                name={password}
-                msgError={errors[password]?.message}
                 src={imgEye}
-                register={register}
+                {...register(password)}
+                msgError={errors[password]?.message}    
             />
 
             <div className={styles.forgotPasswd}>
