@@ -1,7 +1,7 @@
 
 import styles from './styles.module.css';
 import { PreLoggedin } from 'components/PreLoggedin';
-import { MainContent } from './Presentation/MainContent';
+import { FormForgotPassword } from './Presentation/FormForgotPassword';
 
 export function ForgotPasswdContainer() {
 
@@ -17,7 +17,7 @@ export function ForgotPasswdContainer() {
                 </div>
             }
             main={
-                <MainContent
+                <FormForgotPassword
                     submit={handleSubmitForm}
                 />
             }

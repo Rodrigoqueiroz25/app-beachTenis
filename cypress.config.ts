@@ -15,7 +15,7 @@ export default defineConfig({
       return config
     },
     viewportHeight: 812,
-    viewportWidth: 450
+    viewportWidth: 375
   },
 
   e2e: {
@@ -24,6 +24,8 @@ export default defineConfig({
       getCompareSnapshotsPlugin(on, config);
       return config
     },
+    viewportHeight: 812,
+    viewportWidth: 375
   },
 
   env:{

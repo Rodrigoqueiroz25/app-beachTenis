@@ -1,7 +1,7 @@
 
 import styles from './styles.module.css';
 import { PreLoggedin } from 'components/PreLoggedin';
-import { MainContent } from './Presentation/MainContent';
+import { FormCreatePassword } from './Presentation/FormCreatePassword';
 
 
 export function CreatePasswdContainer() {
@@ -19,7 +19,7 @@ export function CreatePasswdContainer() {
                 </div>
             }  
             main={
-                <MainContent
+                <FormCreatePassword
                     submit={handleSubmitForm}
                 />
             }

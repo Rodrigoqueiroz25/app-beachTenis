@@ -22,7 +22,10 @@
 }
 
 .imgForgotPasswd{
-    margin-bottom: 3.3rem;
+    margin-top: 0.8rem;
+    margin-bottom: 1.8rem;
+    width: 18rem;
+    height: 13rem;
     
 }
 
@@ -30,17 +33,15 @@
     font-size: 1.4rem;
     line-height: 2.1rem;
     color: #3f3d56;
-    
-    margin-bottom: 2.7rem;
-    
+    margin-bottom: 2.2rem;
 }
 
 .txtRememberPasswd{
-    margin-top: 3.6rem;
+    margin-top: 1.6rem;
     font-size: 1.2rem;
     color: #8a8a8a;
     
-    margin-bottom: 6rem;
+    margin-bottom: 9rem;
     
 }
 

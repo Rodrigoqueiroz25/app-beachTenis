@@ -2,48 +2,32 @@
 .containerTitle{
     width: 100%;
     height: 100%;
-    
-    position: relative;
-    
+    font-weight: 500;    
 }
 
 .msgWelcome{
-    position: absolute;
-    top: 3.1rem;
-    left: 3.7rem;
+
+    margin-top: 3.1rem;
+    margin-left: 3.7rem;
     
     font-size: 3.1rem;
     color: #2F1160;
     
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     
 }
 
 .form{
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
 }
 
 .form Button{
-    margin-top: 4.0rem;
-}
-
-.inputPhoneNumber{
-    display: grid;
-    grid-template-columns: 16.5% 83.5%;
-    align-items: center;
-}
-
-.codexCountry{
-    font-size: 2.5rem;
-    line-height: 3.8rem;
-    color: #3f3d56;
-    font-weight: 400;
-    
+    margin-top: 5.4rem;
 }
 
 .msgPasswdDiff p{

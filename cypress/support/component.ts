@@ -20,6 +20,7 @@ import '@cypress/code-coverage/support'
 // require('./commands')
 
 import { mount } from 'cypress/react18'
+// import 'index.css'
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.

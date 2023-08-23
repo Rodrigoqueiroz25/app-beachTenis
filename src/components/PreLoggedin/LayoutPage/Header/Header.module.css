@@ -1,12 +1,12 @@
 .wrapper {
-  /* margin-top: 9.3rem; */
-  /* margin-bottom: 4rem; */
-
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
 }
 
 .container {
   width: 100%;
-  height: 9.5rem;
+  height: 9.6rem;
   position: relative;
 
 }
@@ -18,7 +18,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  border-radius: 60px 60px 0 0;
+  border-radius: 65px 65px 0 0;
 }
 
 .divWhite {

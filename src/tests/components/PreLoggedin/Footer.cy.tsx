@@ -1,11 +1,12 @@
-import { PreLoggedin } from 'components/PreLoggedin'
+
 import { Footer } from 'components/PreLoggedin/LayoutPage/Footer/Footer'
 import React from 'react'
+import './main.css';
 
 describe('test visuals <Footer />', () => {
   
   beforeEach(() => {
-    cy.mount(<Footer><div>teste</div></Footer>)
+    cy.mount(<div className='main'><Footer><div>teste</div></Footer></div>)
   })
 
   it('displays "test" text above rectangle image', () => {

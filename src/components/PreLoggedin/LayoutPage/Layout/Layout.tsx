@@ -5,25 +5,29 @@ import { Header } from '../Header/Header';
 import { Footer } from 'components/PreLoggedin/LayoutPage/Footer/Footer';
 
 
-interface LayoutProps extends HTMLAttributes<HTMLDivElement>{
-    header: ReactNode;
+interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
+    header?: ReactNode;
     main: ReactNode;
     footer?: ReactNode;
 }
 
-export function Layout({header, main, footer}: LayoutProps){
+export function Layout({ header, main, footer }: LayoutProps) {
 
     return (
         <div className={styles.container}>
-            <Header>
-                {header}
-            </Header>
+            {header &&
+                <Header>
+                    {header}
+                </Header>
+            }
             <main className={styles.main}>
                 {main}
             </main>
-            <Footer>
-                {footer}
-            </Footer>
+            {footer &&
+                <Footer>
+                    {footer}
+                </Footer>
+            }
         </div>
     );
 }

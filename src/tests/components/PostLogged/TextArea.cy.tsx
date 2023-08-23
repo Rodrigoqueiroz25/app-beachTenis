@@ -1,12 +1,13 @@
 import React from 'react'
 import { TextArea } from 'components/PostLogged/TextArea/TextArea'
 import { PostLogged } from 'components/PostLogged';
+import './main.css'
+
+beforeEach(() => {
+  cy.mount(<div className='main'><TextArea placeholder='placeholder'/></div>)
+});
 
 describe('Test Funcional <TextArea />', () => {
-  
-  beforeEach(() => {
-    cy.mount(<TextArea placeholder='placeholder'/>)
-  });
   
   it('renders', () => {
   })
@@ -28,10 +29,6 @@ describe('Test Funcional <TextArea />', () => {
 })
 
 describe('Tests Visuals <PostLogged.TextArea />', () => {
-
-  beforeEach(() => {
-    cy.mount(<PostLogged.TextArea placeholder='placeholder' name='test'/>)
-  })
 
   it('display placeholder "placeholder" when placeholder prop gets string "placeholder"', () => {
     cy.get('[class*=textarea]').compareSnapshot('textarea_placeholder_nohover_empty', {errorThreshold: 0.001, capture: 'fullPage', padding:5});

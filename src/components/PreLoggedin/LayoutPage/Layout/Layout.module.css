@@ -1,19 +1,21 @@
 
 .container{
     display: grid;
-    grid-template-rows: 19rem 1fr 1fr;
-    max-height: 100vh;
+    grid-template-rows: 23.4rem 2.2rem 59.61vh 1fr 2.2rem ;
+    height: 100vh;
     align-items: end;
+    width: 100vw;
 }
 
 .main{
+    grid-row: 3/4;
     font-weight: 500;
     font-style: normal;
 
     display: flex;
     flex-direction: column;
-    
     justify-content: space-between;
 
-    margin: 6rem 2.5rem 2rem 2.5rem;
+    margin: 0rem 3rem 0rem 3rem;
+    align-self: start;
 }

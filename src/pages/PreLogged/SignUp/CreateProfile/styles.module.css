@@ -3,19 +3,22 @@ p{
     color: #3f3d56;
 }
 
+.formCreateProfile{
+    
+}
 
 .containerTitle{
     width: 100%;
     height: 100%;
     
-    position: relative;
+    /* position: relative; */
 }
 
 
 .title{
-    position: absolute;
-    top: 3.1rem;
-    left: 3.7rem;
+    /* position: absolute; */
+    margin-top: 3.1rem;
+    margin-left: 3.7rem;
 
     font-size: 3.1rem;
     color: #2f1160;
@@ -26,25 +29,17 @@ p{
     flex-direction: row;
     
     align-items: center;
-
-}
-
-
-.containerMain{
-    /* margin: 4.6rem 3.3rem 0rem; */
-    /*  text-align: center; */
+    gap: 0.2rem;
 }
 
 
 .uploadPhoto{
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
     align-items: center;
     gap: 2rem;
     
     margin-bottom: 3rem;
-    
 }
 
 .uploadPhoto Button{
@@ -57,56 +52,62 @@ p{
     flex-direction: column;
     
     gap: 1.8rem;
+    box-sizing: content-box;
 }
 
 .date{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    /* display: grid;
+    grid-template-columns: 35% 65%; */
+
     margin-bottom: 2.2rem;
 }
 
+label{
+    font-size: 1.7rem;
+    color: #3f3d56;
+}
 
 .gender{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     align-items: center;
 }
 
+.gender p{
+    font-size: 1.7rem;
+    color: #3f3d56;
+
+}
 
 .radioButton{
     display: flex;
     justify-content: center;
     align-items: center;
 
-    gap: 1.4rem;
+    gap: 1rem;
+
+    font-size: 1.5rem;
+    color: #3f3d56;
+    font-weight: 400;
 }
 
 .radioButton input{
     border: 0.1rem solid black;
-    width: 2.2rem;
-    height: 2.2rem;
-}
-
-.radioButton label{
-    font-size: 1.8rem;
-    color: #3f3d56;
+    width: 2rem;
+    height: 2rem;
 }
 
 
 .form Button{
-    width: 100%;
-    margin-top: 4rem;
-    margin-bottom: 7rem;    
+    /* width: 100%; */
+    margin-top: 3.7rem;
 }
 
-.imgRetangle{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 /* not run in firefox */
 input[type="date"]::-webkit-calendar-picker-indicator{

@@ -1,6 +1,6 @@
 
 import { useNavigate } from 'react-router-dom';
-import { MainContent } from './Presentation/MainContent';
+import { FormCreateUser } from './Presentation/FormCreateUser';
 import { Routes } from 'enums/routes.enum';
 import { PreLoggedin } from 'components/PreLoggedin';
 import { LinkOtherPage } from 'components/PreLoggedin/LinkOtherPage/LinkOtherPage';
@@ -13,7 +13,8 @@ export function CreateUserContainer() {
     const navigate = useNavigate();
 
     function handleSubmitForm(data: any) {
-        navigate(Routes.createProfile, data);
+        console.log(data);
+        navigate(Routes.createProfile, {state: {user: data}});
     }
 
 
@@ -28,12 +29,12 @@ export function CreateUserContainer() {
                 </div>
             }
             main={
-                <MainContent
+                <FormCreateUser
                     submit={handleSubmitForm}
                 />
             }
             footer={
-                <LinkOtherPage text='Already a Member?' textLink='Log in' endPoint={Routes.login} />
+                <LinkOtherPage text='Já é um membro?' textLink='Conecte-se' endPoint={Routes.login} />
             }
         />
 

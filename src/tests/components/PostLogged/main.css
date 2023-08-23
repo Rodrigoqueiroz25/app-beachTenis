@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+:root {
+    font-size: 62.5%;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-size: 1rem;
+}
+
+/* firefox */
+* {
+    scrollbar-width: none;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 0px;
+    display: none;
+}
+
+
+.main{
+    font-weight: 500;
+    
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    padding: 2rem 1rem 1rem 1rem;
+    
+}

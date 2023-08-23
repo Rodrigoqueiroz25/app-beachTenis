@@ -1,6 +1,7 @@
 import { PostLogged } from 'components/PostLogged'
 import { ICity } from 'interfaces/ICity'
 import { ISport } from 'interfaces/ISport'
+import './main.css'
 
 let dateAtual = dateDayActual();
 
@@ -58,16 +59,30 @@ function convertDataBrazil(date: Date): string {
   return `${date.getDate()}/${(date.getMonth() + 1) <= 9 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}/${date.getFullYear()}`;
 }
 
-describe('Testing Funcional <FormTournament />', () => {
+beforeEach(() => {
+  cy.mount(<div className='main'><PostLogged.FormTournament
+    cities={arrayCities}
+    sports={arraySports}
+    submit={submit}
+  /></div>
+  )
+})
 
-  beforeEach(() => {
-    cy.mount(<PostLogged.FormTournament
-      cities={arrayCities}
-      sports={arraySports}
-      submit={submit}
-    />
-    )
-  })
+
+describe('Testing Visuals <FormTournament />', () => {
+
+  it('visual form is ok', () => {
+    cy.get('body').compareSnapshot('formTournament', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
+  });
+
+  it('displays text msgError when click button and fields are empty', () => {
+    cy.get("button").click()
+    cy.get('body').compareSnapshot('formTournament_msgsvalidations', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
+  });
+
+});
+
+describe('Testing Funcional <FormTournament />', () => {
 
   it('renders', () => {
 
@@ -128,8 +143,6 @@ describe('Testing Funcional <FormTournament />', () => {
   it('has a button visible', () => {
     cy.get('button').should('be.visible')
   });
-
-
 
   it(`field with placeholder "${descricao}" is a input type text`, () => {
     cy.findByPlaceholderText(`${descricao}`).invoke('prop', 'tagName').should('eq', 'INPUT')
@@ -206,16 +219,6 @@ describe('Testing Funcional <FormTournament />', () => {
 });
 
 describe('Testing Validations <FormTournament>', () => {
-
-
-  beforeEach(() => {
-    cy.mount(<PostLogged.FormTournament
-      cities={arrayCities}
-      sports={arraySports}
-      submit={() => ''}
-    />
-    )
-  });
 
   it(`displays text "Digite uma descrição." when click button and field with placeholder "${descricao}" is empty`, () => {
     cy.findByText("Adicionar").click()
@@ -351,7 +354,7 @@ describe('Testing Validations <FormTournament>', () => {
 describe('Testing with defaultValues <FormTournament>', () => {
 
   beforeEach(() => {
-    cy.mount(<PostLogged.FormTournament
+    cy.mount(<div className='main'><PostLogged.FormTournament
       cities={arrayCities}
       sports={arraySports}
       defaultValues={{
@@ -366,7 +369,7 @@ describe('Testing with defaultValues <FormTournament>', () => {
         otherInformation: 'outher'
       }}
       submit={submit}
-    />
+    /></div>
     )
   });
 
@@ -398,20 +401,3 @@ describe('Testing with defaultValues <FormTournament>', () => {
 
 });
 
-
-describe('Testing Visuals <FormTournament />', () => {
-
-  beforeEach(() => {
-    cy.mount(<PostLogged.FormTournament
-      cities={arrayCities}
-      sports={arraySports}
-      submit={submit}
-    />
-    )
-  })
-
-  it('visual form is ok', () => {
-    cy.get('body').compareSnapshot('formTournament', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
-  });
-
-});

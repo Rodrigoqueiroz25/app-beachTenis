@@ -9,11 +9,11 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { e_mail, email } from 'constants/wordsPhrases';
 
-interface MainContentProps {
+interface FormForgotPasswordProps {
     submit: (data: any) => void;
 }
 
-export function MainContent(props: MainContentProps) {
+export function FormForgotPassword(props: FormForgotPasswordProps) {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(Validations.formForgotPasswd)
@@ -21,23 +21,20 @@ export function MainContent(props: MainContentProps) {
 
 
     return (
-
         <main className={styles.containerMain}>
             <img className={styles.imgForgotPasswd} src={imgForgotPasswd} alt="" />
-            <p className={styles.textForgotPasswd}>Digite seu endereço de e-mail registrado abaixo para receber instruções de redefinição de senha</p>
+            <p className={styles.textForgotPasswd}>Digite seu endereço de e-mail registrado abaixo para receber instruções de redefinição de senha.</p>
             <form className={styles.form} onSubmit={handleSubmit(props.submit)}>
-                <PreLoggedin.Input 
+                <PreLoggedin.Input
                     placeholder={e_mail}
                     type='text'
                     {...register(email)}
                     msgError={errors[email]?.message}
                 />
-                <div>
-                    <p className={styles.txtRememberPasswd}>
-                        Lembrou-se da Senha?
-                        <Link className={styles.linkToLoginScreen} to='/login'>Log in</Link>
-                    </p>
-                </div>
+                <p className={styles.txtRememberPasswd}>
+                    Lembrou-se da Senha?
+                    <Link className={styles.linkToLoginScreen} to='/login'>Log in</Link>
+                </p>
                 <Button>Enviar</Button>
             </form>
         </main>

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { MainContent } from './Presentation/MainContent';
+import { FormCreateProfile } from './Presentation/FormCreateProfile';
 import imgCreateProfile from 'assets/create_profile_title.svg';
 import { Routes } from 'enums/routes.enum';
 import styles from './styles.module.css';
@@ -13,16 +13,15 @@ import { city, dateBirthday, nameUser } from 'constants/wordsPhrases';
 
 export function CreateProfileContainer() {
 
-    // const location = useLocation();
-    const { state: { phoneNumber }} = useLocation();
+    const { state: { user }} = useLocation();
     const navigate = useNavigate();
     const { register } = useAccount();
 
     useEffect(() => {
-        if (!phoneNumber) {
+        if (!user) {
             navigate(Routes.signup)
         }
-    },[phoneNumber]);
+    },[user]);
     
 
     async function handleSubmitForm(data: any) {
@@ -61,7 +60,7 @@ export function CreateProfileContainer() {
                         </div>
                     }
                     main={
-                       <MainContent
+                       <FormCreateProfile
                             submit={handleSubmitForm}
                        />
                     }

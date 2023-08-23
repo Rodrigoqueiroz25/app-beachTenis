@@ -7,11 +7,12 @@ import { digiteEmail } from "constants/wordsPhrases";
 
 export class Validations {
 
-    public static formCreateProfile = yup.object().shape({
-        [firstName]: yup.string().required(digiteNome),
-        [lastName]: yup.string().required(digiteSobrenome),
-        [dateBirthday]: yup.date().transform(parseDateString).min(new Date('1900-01-01'), dataDeveSerMaiorQue).required(digiteData).typeError(digiteData),
-    });
+    // public static formCreateProfile = yup.object().shape({
+    //     [firstName]: yup.string().required(digiteNome),
+    //     [lastName]: yup.string().required(digiteSobrenome),
+    //     [dateBirthday]: yup.date().transform(parseDateString).min(new Date('1900-01-01'), dataDeveSerMaiorQue).required(digiteData).typeError(digiteData),
+    //     [gender]: yup.string().required(selecioneOpcao),
+    // });
 
     public static radioGroupGender = yup.object().shape({
         [gender]: yup.string().required(selecioneOpcao)
@@ -22,22 +23,66 @@ export class Validations {
         [phoneNumber]: yup.string().required(digiteNumeroTelefone).matches(new RegExp('([(][0-9]{2}[)][0-9]{5}[-][0-9]{4}$)'), numeroTelefoneInvalido),
         [password]: yup.string().required(digiteSenha),
         [repeatPasswd]: yup.string().required(digiteNovamenteSenha)
-            .test("repeatPasswd", senhasDigitadasDiferentes, function (value) {
-                return this.parent.passwd === value;
-            })
+            // .test("repeatPasswd", senhasDigitadasDiferentes, function (value) {
+            //     return this.parent.passwd === value;
+            // })
     });
 
     public static formForgotPasswd = yup.object().shape({
         [email]: yup.string().email(digiteEmailValido).required(digiteEmail)
     });
 
-    public static formCreatePasswd = yup.object().shape({
-        [password]: yup.string().required(digiteSenha),
-        [repeatPasswd]: yup.string().required(digiteNovamenteSenha)
-            .test("repeatPasswd", senhasDigitadasDiferentes, function (value) {
-                return this.parent.passwd === value;
-            })
-    });
+    public static formCreateProfile = {
+        [firstName]: {
+            required: {
+                value: true,
+                message: digiteNome
+            }
+        },
+        [lastName]: {
+            required: {
+                value: true,
+                message: digiteSobrenome
+            }
+        },
+        [dateBirthday]: {
+            required: {
+                value: true,
+                message: digiteData
+            },
+            validate: {
+                atLeast18YearsOld: (v: string) => calcAgeFromDate(v) >= 18 || usuarioMaior18anos
+            }
+        },
+        [gender]: {
+            required: {
+                value: true,
+                message: selecioneOpcao
+            },
+        },
+    };
+
+  
+    public static formCreatePasswd = {
+        [password]: {
+            required: {
+                value: true,
+                message: digiteSenha
+            }
+        },
+        [repeatPasswd]: (password: string) => {
+            return {
+                required: {
+                    value: true,
+                    message: digiteNovamenteSenha
+                },
+                validate: {
+                    fieldsDiff: (v: string) => v === password || senhasDigitadasDiferentes
+                }
+            }
+        }
+    }
+
 
     public static formLogin = yup.object().shape({
         [email]: yup.string().email(digiteEmailValido).required(digiteEmail),
@@ -146,8 +191,8 @@ export class Validations {
                 message: digiteEmail
             },
             pattern: {
-               value: /^[a-z0-9]+@[a-z]+\.[a-z]{2,4}$/g,
-               message: digiteEmailValido
+                value: /^[a-z0-9]+@[a-z]+\.[a-z]{2,4}$/g,
+                message: digiteEmailValido
             }
         },
         [phoneNumber]: {
@@ -158,7 +203,7 @@ export class Validations {
             pattern: {
                 value: /^[(][0-9]{2}[)][0-9]{5}[-][0-9]{4}$/g,
                 message: numeroTelefoneInvalido
-             }
+            }
         },
         [city]: {
             required: {
@@ -166,7 +211,7 @@ export class Validations {
                 message: selecioneOpcao
             }
         },
-        [dateBirthday]:{
+        [dateBirthday]: {
             required: {
                 value: true,
                 message: digiteData

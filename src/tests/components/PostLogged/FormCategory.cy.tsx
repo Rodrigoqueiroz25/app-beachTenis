@@ -1,5 +1,6 @@
 import React from 'react'
 import { PostLogged } from 'components/PostLogged';
+import './main.css'
 
 function submit(data: any) {
   expect(data.description).to.eq('Dupla Masculina A')
@@ -7,59 +8,65 @@ function submit(data: any) {
   expect(data.numberAthletesRegistration).to.eq('2')
 }
 
+
+beforeEach(() => {
+  cy.mount(<div className='main'><PostLogged.FormCategory submit={(data) => submit(data)} /></div>)
+})
+
+
 describe('Testing Funcional <FormCategory />', () => {
   it('renders', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
   });
 
   it('has a field with placeholder "Descrição"', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.findByPlaceholderText('Descrição').should('be.visible')
   });
 
   it('has a combobox with placeholder "Quantidade de pessoas por inscrição"', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.findByPlaceholderText('Quantidade de pessoas por inscrição').should('be.visible')
   });
 
   it('has a field with placeholder "Quantidade máxima de inscritos"', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.findByPlaceholderText('Quantidade máxima de inscritos').should('be.visible')
   });
 
   it('has a button visible', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.get('button').should('be.visible')
   });
   
   
   it('field with placeholder "Descrição" is a input type text', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.findByPlaceholderText('Descrição').invoke('prop', 'tagName').should('eq', 'INPUT')
     cy.findByPlaceholderText('Descrição').invoke('attr', 'type').should('eq', 'text')
   });
 
   it('field with placeholder "Quantidade de pessoas por inscrição" is a select', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.findByPlaceholderText('Quantidade de pessoas por inscrição').invoke('prop', 'tagName').should('eq', 'SELECT')
   });
 
   it('field with placeholder "Quantidade máxima de inscritos" is a input type number ', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.findByPlaceholderText('Quantidade máxima de inscritos').invoke('prop', 'tagName').should('eq', 'INPUT')
     cy.findByPlaceholderText('Quantidade máxima de inscritos').invoke('attr', 'type').should('eq', 'number')
   });
 
 
   it('field with placeholder "Quantidade de pessoas por inscrição" has a options ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.get('select').select(1, {force: true}).select(2, {force: true}).select(3, {force: true}).select(4, {force: true}).select(5, {force: true})
     .select(6, {force: true}).select(7, {force: true}).select(8, {force: true}).select(9, {force: true}).select(10, {force: true})
   });
 
 
   it('field with placeholder "Quantidade de pessoas por inscrição" have the option values ​​the same as their name', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.get('select').select(1, {force: true}).invoke('prop', 'value').should('eq', '1');
     cy.get('select').select(2, {force: true}).invoke('prop', 'value').should('eq', '2');
     cy.get('select').select(3, {force: true}).invoke('prop', 'value').should('eq', '3');
@@ -73,12 +80,12 @@ describe('Testing Funcional <FormCategory />', () => {
   });
 
   it('button has a text "Adicionar" when prop form defaultValues is empty', () => {
-    cy.mount(<PostLogged.FormCategory submit={() => ''} />)
+    
     cy.get('button').should('have.text', 'Adicionar')
   });
 
   it('fields are cleared when submit form', () => {
-    cy.mount(<PostLogged.FormCategory submit={(data:any) => data} />)
+    
     cy.findByPlaceholderText('Descrição').type('hello description')
     cy.findByPlaceholderText('Quantidade de pessoas por inscrição').select(1, {force: true})
     cy.findByPlaceholderText('Quantidade máxima de inscritos').type('50', {force: true})
@@ -89,7 +96,7 @@ describe('Testing Funcional <FormCategory />', () => {
   });
 
   it('values entered in fields are not changed when submitted', () => {
-    cy.mount(<PostLogged.FormCategory submit={(data) => submit(data)} />)
+    
     cy.findByPlaceholderText('Descrição').type('Dupla Masculina A', {force: true});
     cy.findByPlaceholderText('Quantidade de pessoas por inscrição').select(2, {force: true})
     cy.findByPlaceholderText('Quantidade máxima de inscritos').type('233', {force: true})
@@ -99,10 +106,6 @@ describe('Testing Funcional <FormCategory />', () => {
 });
 
 describe('Testing Validations <FormCategory>', () => {
-
-  beforeEach(() => {
-    cy.mount(<PostLogged.FormCategory submit={(data:any) => data} />)
-  });
 
   it('displays text "Digite uma descrição." when click add and field "Descrição" is empty', () => {
     cy.findByText("Adicionar").click()
@@ -170,12 +173,13 @@ describe('Testing with defaultValues <FormCategory>', () => {
 
 describe('Testing Visuals <FormCategory />', () => {
 
-  beforeEach(() => {
-    cy.mount(<PostLogged.FormCategory submit={(data) => submit(data)}/>)
-  });
-
   it('visual form is ok', () => {
     cy.get('body').compareSnapshot('formCategory', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
+  });
+
+  it('displays text msgError when click button and fields are empty', () => {
+    cy.get("button").click()
+    cy.get('body').compareSnapshot('formCategory_msgsvalidations', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
   });
 
 });

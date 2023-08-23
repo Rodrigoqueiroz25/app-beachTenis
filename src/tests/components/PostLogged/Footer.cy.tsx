@@ -1,13 +1,15 @@
 import { PostLogged } from 'components/PostLogged'
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import './main.css'
+
+beforeEach(() => {
+  cy.mount(<BrowserRouter><div className='main'><PostLogged.LayoutPage.Footer/></div></BrowserRouter>)
+})
 
 
 describe('<PostLogged.Footer />', () => {
   
-  beforeEach(() => {
-    cy.mount(<BrowserRouter><PostLogged.LayoutPage.Footer/></BrowserRouter>)
-  })
   
   it('renders', () => {
   
@@ -47,10 +49,6 @@ describe('<PostLogged.Footer />', () => {
 })
 
 describe('Test visual <PostLogged.Footer/>',() => {
-
-  beforeEach(() => {
-    cy.mount(<BrowserRouter><PostLogged.LayoutPage.Footer/></BrowserRouter>)
-  })
 
   it('visual is ok', () => {
     cy.get('[class*=footer]').compareSnapshot('footerPosLogged', {errorThreshold: 0.01, capture: 'fullPage', padding:5});

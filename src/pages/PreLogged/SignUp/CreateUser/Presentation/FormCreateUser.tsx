@@ -16,7 +16,7 @@ interface MainContentProps {
 }
 
 
-export function MainContent(props: MainContentProps) {
+export function FormCreateUser(props: MainContentProps) {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(Validations.formCreateUser)
@@ -24,38 +24,32 @@ export function MainContent(props: MainContentProps) {
 
 
     return (
-
         <form className={styles.form} onSubmit={handleSubmit(props.submit)}>
-            <div className={styles.inputPhoneNumber}>
-                <p className={styles.codexCountry}>+55</p>
-                <PreLoggedin.InputMasked
-                    mask='(99)99999-9999'
-                    placeholder={telefone}
-                    type='tel'
-                    {...register(phoneNumber)}
-                    msgError={errors[phoneNumber]?.message}
-                    
-                />
-            </div>
+
+            <PreLoggedin.InputMasked
+                mask='+55(99)99999-9999'
+                placeholder={telefone}
+                type='tel'
+                {...register(phoneNumber)}
+                msgError={errors[phoneNumber]?.message}
+            />
 
             <PreLoggedin.Input
                 placeholder={e_mail}
-                type='email'
+                type='text'
                 src={imgMail}
                 {...register(email)}
                 msgError={errors[email]?.message}
-                
-
             />
+
             <PreLoggedin.Input
                 placeholder={senha}
                 type='password'
                 src={imgEye}
                 {...register(password)}
                 msgError={errors[password]?.message}
-                
-
             />
+
             <PreLoggedin.Input
                 placeholder={repitaSenha}
                 type='password'
@@ -65,7 +59,7 @@ export function MainContent(props: MainContentProps) {
 
             />
 
-            <Button>Signup</Button>
+            <Button>Cadastrar-se</Button>
         </form>
     );
 }

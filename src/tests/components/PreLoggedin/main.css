@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+:root {
+    font-size: 62.5%;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-size: 1rem;
+}
+
+/* firefox */
+* {
+    scrollbar-width: none;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 0px;
+    display: none;
+}
+
+/* .container{
+    display: grid;
+    grid-template-rows: 23.4rem 2.2rem 59.61vh 1fr 2.2rem ;
+    height: 100vh;
+    align-items: end;
+    width: 100vw;
+} */
+
+.main{
+    /* grid-row: 3/4; */
+    font-weight: 500;
+    font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 3rem 3rem 3rem 3rem;
+    /* align-self: start; */
+}

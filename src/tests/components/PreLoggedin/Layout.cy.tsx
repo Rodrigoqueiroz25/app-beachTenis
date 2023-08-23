@@ -1,5 +1,6 @@
 import React from 'react'
 import { Layout } from 'components/PreLoggedin/LayoutPage/Layout/Layout'
+import './main.css';
 
 describe('Test Visuals <Layout />', () => {
 
@@ -7,8 +8,8 @@ describe('Test Visuals <Layout />', () => {
     cy.mount(<Layout header={<p id='header'>header</p>} main={<p id='main'>main</p>}/>)
   })
 
-  it('has the margins 6rem 2.5rem 2rem 2.5rem', () => {
-    cy.get('[class*=main]').should('have.css','margin','96px 40px 32px')
+  it('has the margins 0rem 3rem 0rem 3rem', () => {
+    cy.get('[class*=main]').should('have.css','margin','0px 30px')
   })
 
   it('has the font-weight 500', () => {

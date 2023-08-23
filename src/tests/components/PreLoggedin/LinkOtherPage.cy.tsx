@@ -2,11 +2,13 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { PreLoggedin } from 'components/PreLoggedin'
+import './main.css';
+
 
 describe('<LinkOtherPage />', () => {
  
   beforeEach(() => {
-    cy.mount(<BrowserRouter><PreLoggedin.LinkOtherPage endPoint='/test' text='link to page' textLink='click here'/></BrowserRouter>)
+    cy.mount(<BrowserRouter><div className='main'><PreLoggedin.LinkOtherPage endPoint='/test' text='link to page' textLink='click here'/></div></BrowserRouter>)
   })
 
   it('renders', () => {});

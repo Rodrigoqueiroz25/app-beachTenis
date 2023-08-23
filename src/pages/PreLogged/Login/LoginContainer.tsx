@@ -7,7 +7,7 @@ import imgBeachTenis from 'assets/player-beachTenis.svg';
 import { Routes } from 'enums/routes.enum';
 import { PreLoggedin } from 'components/PreLoggedin';
 import { LinkOtherPage } from 'components/PreLoggedin/LinkOtherPage/LinkOtherPage';
-import { MainContent } from './Presentation/MainContent';
+import { FormLogin } from './Presentation/FormLogin';
 import useAccount from 'hooks/useAccount';
 
 
@@ -39,20 +39,19 @@ export function LoginContainer() {
                     header={
                         <div className={styles.containerTitle}>
                             <div className={styles.msgWelcome}>
-                                <p>Welcome</p>
-                                <p className={styles.back}>Back <img src={imgBeachTenis} alt="" /></p>
+                                <p>Bem Vindo </p>
+                                <p className={styles.back}>de Volta <img src={imgBeachTenis} alt="" /></p>
                             </div>
                         </div>
                     }
                     main={
-                        <MainContent
+                        <FormLogin
                             submit={handleSubmitForm}
                             error={authenticate.error}
-                            isAuth={authenticate.ok}
                         />
                     }
                     footer={
-                        <LinkOtherPage text="Don't have a register?" textLink='Sign up' endPoint='/signup' />
+                        <LinkOtherPage text="Não tem registro?" textLink='Inscreva-se' endPoint='/signup' />
                     }
                 />
                 : <Navigate to={Routes.home} />
