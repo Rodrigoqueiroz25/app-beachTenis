@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import imgPhotoCircle from 'assets/photo_create_profile.svg';
 import styles from '../styles.module.css'
@@ -8,27 +8,24 @@ import { Button } from 'components/Button/Button';
 import { ICity } from 'interfaces/ICity';
 import { PostLogged } from "components/PostLogged";
 import { IUserAccount } from "interfaces/IUserAccount";
-import { cidade, city, dataNascimento, dateBirthday, e_mail, email, female, feminino, genero, male, masculino, nameUser, nome, phoneNumber, salvar, telefone } from "constants/wordsPhrases";
+import { cidade, city, dataNascimento, dateBirthday, e_mail, email, gender, nameUser, nome, phoneNumber, salvar, telefone } from "constants/wordsPhrases";
 import { Validations } from 'helper/Validations';
 import { brazilDateString } from 'helper/convertData';
+import { RadioGroupGender } from 'components/RadioGroupGender/RadioGroupGender';
 
 
-interface FormProfileProps {
+interface FormEditProfileProps {
     submit: (data: any) => void;
     cities: ICity[];
     defaultValues?: IUserAccount;
 }
 
 
-export function FormProfile({ submit, cities, defaultValues }: FormProfileProps) {
-
-    const [gender, setGender] = useState("");
+export function FormEditProfile({ submit, cities, defaultValues }: FormEditProfileProps) {
 
     const validations = Validations.formEditProfile;
 
-    const { register, handleSubmit, watch, formState: { errors }, setValue, reset } = useForm({
-
-    });
+    const { register, handleSubmit, watch, formState: { errors }, setValue} = useForm({});
 
 
     useEffect(() => {
@@ -38,13 +35,12 @@ export function FormProfile({ submit, cities, defaultValues }: FormProfileProps)
             setValue(phoneNumber, defaultValues?.[phoneNumber]);
             setValue(city, defaultValues?.[city]);
             setValue(dateBirthday, defaultValues?.[dateBirthday]?.split('/').reverse().join('-'));
-            setGender(defaultValues?.[gender]?.toUpperCase());
+            setValue(gender, defaultValues?.[gender]);
         }
     }, [defaultValues]);
 
 
     function submitForm(data: any){
-        data.gender = gender;
         data[dateBirthday] = brazilDateString(data[dateBirthday]);
         submit(data);
     }
@@ -92,33 +88,11 @@ export function FormProfile({ submit, cities, defaultValues }: FormProfileProps)
                     {...register(dateBirthday, validations[dateBirthday])}
                 />
 
-                <div className={styles.gender}>
-                    <p>{genero}</p>
-
-                    <div className={styles.radioButton}>
-                        <input
-                            type="radio"
-                            id={male}
-                            value='M'
-                            checked={gender === 'M'}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
-
-                        />
-                        <label htmlFor={male}>{masculino}</label>
-                    </div>
-                    <div className={styles.radioButton}>
-                        <input
-                            type="radio"
-                            id={female}
-                            value='F'
-                            checked={gender === 'F'}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
-                        />
-                        <label htmlFor={female}>{feminino}</label>
-                    </div>
-
-                </div>
-
+                <RadioGroupGender
+                    {...register(gender, validations[gender])}
+                    msgError={errors[gender]?.message?.toString()}
+                />
+                
                 <Button>{salvar}</Button>
             </form>
         </>

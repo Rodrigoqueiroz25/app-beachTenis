@@ -219,6 +219,12 @@ export class Validations {
             validate: {
                 atLeast18YearsOld: (v: string) => calcAgeFromDate(v) >= 18 || usuarioMaior18anos
             }
-        }
+        },
+        [gender]: {
+            required: {
+                value: true,
+                message: selecioneOpcao
+            },
+        },
     };
 }

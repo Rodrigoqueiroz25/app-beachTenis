@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { IUserAccount } from "interfaces/IUserAccount";
-import { FormProfile } from './Presentation/FormProfile';
+import { FormEditProfile } from './Presentation/FormEditProfile';
 import useCities from 'hooks/useCities';
 import useAccount from 'hooks/useAccount';
 
@@ -25,6 +25,7 @@ export function EditProfileContainer() {
     }, [getAccount.error]);
 
     useEffect(() => {
+        console.log(getAccount.account)
         if (getAccount.account) {
             setProfile(getAccount.account);
         }
@@ -50,7 +51,7 @@ export function EditProfileContainer() {
                     </PostLogged.LayoutPage.Header>
                 }
                 main={
-                    <FormProfile
+                    <FormEditProfile
                         submit={saveDataform} 
                         cities={getCities.cities}
                         defaultValues={profile}

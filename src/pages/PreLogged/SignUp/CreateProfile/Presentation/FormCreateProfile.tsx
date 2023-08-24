@@ -5,7 +5,8 @@ import { Button } from 'components/Button/Button';
 import { PreLoggedin } from 'components/PreLoggedin';
 import { useForm } from 'react-hook-form';
 import { Validations } from 'helper/Validations';
-import { dataNascimento, dateBirthday, female, feminino, firstName, gender, lastName, male, masculino, nome, salvar, sobrenome } from 'constants/wordsPhrases';
+import { dataNascimento, dateBirthday, firstName, gender, lastName, nome, salvar, sobrenome } from 'constants/wordsPhrases';
+import { RadioGroupGender } from 'components/RadioGroupGender/RadioGroupGender';
 
 
 interface FormCreateProfileProps {
@@ -54,24 +55,11 @@ export function FormCreateProfile({ submit }: FormCreateProfileProps) {
                     />
                 </label>
 
-
-                <div className={styles.gender}>
-                    <p>Gênero</p>
-                    <label className={styles.radioButton}>
-                        <input
-                            type="radio"
-                            value={male}
-                            {...register(gender, validations[gender])}
-                        />{masculino}
-                    </label>
-                    <label className={styles.radioButton}>
-                        <input
-                            type="radio"
-                            value={female}
-                            {...register(gender, validations[gender])}
-                        />{feminino}
-                    </label>
-                </div>
+                <RadioGroupGender
+                    {...register(gender, validations[gender])}
+                    msgError={errors[gender]?.message?.toString()}
+                />
+                
                 <Button>{salvar}</Button>
             </form>
         </div>

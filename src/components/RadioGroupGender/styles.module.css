@@ -1,0 +1,84 @@
+.gender {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.radioGroup{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    
+}
+
+label {
+    font-size: 1.3rem;
+    color: #3f3d56;
+}
+
+
+.title {
+    font-size: 1.6rem;
+    color: #3f3d56;
+
+}
+
+.radioButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+
+    font-size: 1.3rem;
+    color: #3f3d56;
+    font-weight: 400;
+}
+
+.radioButton input {
+    border: 0.1rem solid black;
+    width: 2rem;
+    height: 2rem;
+}
+
+.selectOption{
+    border: 0.1rem solid red;
+    padding: 1rem;
+}
+
+.invalid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+
+    font-size: 1.3em;
+    color: #3f3d56;
+    font-weight: 400;
+}
+
+.invalid input{
+    width: 2rem;
+    height: 2rem;
+}
+
+.error {
+    font-size: 1rem;
+    color: red;
+    /* position: absolute; */
+    align-self: end;
+    right: 0rem;
+    top: 2.4rem;
+    margin: 0;
+}
