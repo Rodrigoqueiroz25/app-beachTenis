@@ -45,8 +45,12 @@ export function CreateTournamentContainer() {
                 main={
                     <PostLogged.FormTournament
                         submit={saveDataform}
-                        cities={getCities.cities}
-                        sports={getSports.sports}
+                        cities={getCities.cities?.map((city) => (
+                            {name: city.name, value: city.id}
+                        ))}
+                        sports={getSports.sports?.map((sport) => (
+                            {name: sport.description, value: sport.id}
+                        ))}
                     />
                 }
             />

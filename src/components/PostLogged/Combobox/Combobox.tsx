@@ -2,34 +2,35 @@
 
 import React, { SelectHTMLAttributes } from 'react';
 import styles from './styles.module.css';
+import { IOptionCombobox } from 'interfaces/IOptionCombobox';
 
 interface ComboboxProps extends SelectHTMLAttributes<HTMLSelectElement> {
     msgError?: string;
-    idOptions?: any[];
-    options: any[];
-    isEmpty: boolean;
+    options: IOptionCombobox[];
 }
 
-export const Combobox = React.forwardRef<HTMLSelectElement, ComboboxProps>((
-    {msgError, options, idOptions, isEmpty, ...rest}, ref) => (
+export const Combobox = React.forwardRef<HTMLSelectElement, ComboboxProps>(({ msgError, options, ...rest }, ref) => {
+    
+    return (
+        <div className={styles.combobox}>
+            <div className={styles.selectWrapper}>
+                <select
+                    className={msgError ? styles['invalid'] : ""}
+                    ref={ref}
+                    {...rest}
+                    defaultValue='select...'
+                >
+                    <option key={-1} value="select..." disabled>Selecione...</option>
+                    {options?.map((option, key) => (
+                        <option key={key} value={option.value}>{option.name}</option>
+                    ))}
 
-    <div className={styles.combobox}>
-        <div className={styles.selectWrapper}>
-            <select 
-                className={msgError ? styles['invalid'] : ""}
-                ref={ref}
-                {...rest}
-            >
-                <option key={-1} value=""></option>
-                {options?.map((res: any, key: number) => (
-                    <option key={key} value={idOptions ? idOptions[key] : res}>{res}</option>
-                ))}
-
-            </select>
-            <p className={styles.error}>{msgError}</p>
-            <label className={`${isEmpty ? styles.label_empty_option : styles.label_noempty_option}`}>
-                {rest.placeholder}
-            </label>
+                </select>
+                <label className={styles.label}>
+                    {rest.placeholder}
+                </label>
+                <p className={styles.error}>{msgError}</p>
+            </div>
         </div>
-    </div>
-));
+    );
+})

@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/23</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/23</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -200,13 +200,7 @@
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L138'></a><a href='#L138'>138</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -279,8 +273,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,8 +280,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -353,19 +343,18 @@ import styles from './styles.module.css';
 import { PostLogged } from 'components/PostLogged';
 import { useForm } from 'react-hook-form';
 import { Button } from 'components/Button/Button';
-import { ICity } from 'interfaces/ICity';
-import { ISport } from 'interfaces/ISport';
 import { Validations } from 'helper/Validations';
 import { IFormTournament } from 'interfaces/ITournament';
 import { useEffect } from 'react';
 import { adicionar, alterar, cidade, city, dataFinal, dataInicial, descricao, description, dateFinalRegistration, dateFinalTournament, dateStartRegistration, dateStartTournament, esporte, organizacao, organization, otherInformation, outrasInformacoes, sport } from 'constants/wordsPhrases';
 import { americanDateString, brazilDateString } from 'helper/convertData';
+import { IOptionCombobox } from 'interfaces/IOptionCombobox';
 &nbsp;
 &nbsp;
 interface FormTournamentProps {
     submit: (data: any) =&gt; void;
-    cities: ICity[];
-    sports: ISport[];
+    cities: IOptionCombobox[];
+    sports: IOptionCombobox[];
     defaultValues?: IFormTournament;
     fieldsInactives?: string[];
 }
@@ -421,18 +410,14 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
                 &lt;PostLogged.Combobox
                     placeholder={esporte}
                     msgError={errors[sport]?.message?.toString()}
-                    options={sports?.map(<span class="fstat-no" title="function not covered" >s </span>=&gt; <span class="cstat-no" title="statement not covered" >s.description)</span>}
-                    idOptions={sports?.map(<span class="fstat-no" title="function not covered" >s </span>=&gt; <span class="cstat-no" title="statement not covered" >s.id)</span>}
-                    isEmpty={watch(sport) ? false : true}
+                    options={sports}
                     {...register(sport, validations[sport])}
                 /&gt;
 &nbsp;
                 &lt;PostLogged.Combobox
                     placeholder={cidade}
                     msgError={errors[city]?.message?.toString()}
-                    options={cities?.map(<span class="fstat-no" title="function not covered" >c </span>=&gt; <span class="cstat-no" title="statement not covered" >c.name)</span>}
-                    idOptions={cities?.map(<span class="fstat-no" title="function not covered" >s </span>=&gt; <span class="cstat-no" title="statement not covered" >s.id)</span>}
-                    isEmpty={watch(city) ? false : true}
+                    options={cities}
                     {...register(city, validations[city])}
                 /&gt;
 &nbsp;
@@ -496,7 +481,7 @@ export function <span class="fstat-no" title="function not covered" >FormTournam
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-24T17:38:38.526Z
+                at 2023-08-25T02:09:50.816Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

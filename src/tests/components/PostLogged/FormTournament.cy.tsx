@@ -61,8 +61,12 @@ function convertDataBrazil(date: Date): string {
 
 beforeEach(() => {
   cy.mount(<div className='main'><PostLogged.FormTournament
-    cities={arrayCities}
-    sports={arraySports}
+    cities={arrayCities.map((city) => (
+      { name: city.name, value: city.id }
+    ))}
+    sports={arraySports.map((sport) => (
+      { name: sport.description, value: sport.id }
+    ))}
     submit={submit}
   /></div>
   )
@@ -72,12 +76,12 @@ beforeEach(() => {
 describe('Testing Visuals <FormTournament />', () => {
 
   it('visual form is ok', () => {
-    cy.get('body').compareSnapshot('formTournament', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
+    cy.get('body').compareSnapshot('formTournament', { errorThreshold: 0.01, capture: 'fullPage', padding: 5 });
   });
 
   it('displays text msgError when click button and fields are empty', () => {
     cy.get("button").click()
-    cy.get('body').compareSnapshot('formTournament_msgsvalidations', {errorThreshold: 0.01, capture: 'fullPage', padding:5});
+    cy.get('body').compareSnapshot('formTournament_msgsvalidations', { errorThreshold: 0.01, capture: 'fullPage', padding: 5 });
   });
 
 });
@@ -355,8 +359,12 @@ describe('Testing with defaultValues <FormTournament>', () => {
 
   beforeEach(() => {
     cy.mount(<div className='main'><PostLogged.FormTournament
-      cities={arrayCities}
-      sports={arraySports}
+      cities={arrayCities.map((city) => (
+        { name: city.name, value: city.id }
+      ))}
+      sports={arraySports.map((sport) => (
+        { name: sport.description, value: sport.id }
+      ))}
       defaultValues={{
         description: 'torneio',
         organization: 'org s.a.',

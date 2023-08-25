@@ -3,6 +3,7 @@
   margin-bottom: 0;
   display: flex;
   align-items: center;
+  --var: 0rem;
 }
 
 .selectWrapper {
@@ -33,7 +34,29 @@ select {
 
 }
 
-.label_empty_option {
+select::placeholder {
+  color: black;
+}
+
+select:placeholder-shown~.label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 0em;
+}
+
+.label {
+  position: absolute;
+  font-weight: 400;
+  top: -1.5rem;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 150%;
+}
+
+
+/* .label_empty_option {
   position: absolute;
   font-weight: 400;
   top: 0rem;
@@ -53,7 +76,7 @@ select {
   font-size: 1.3rem;
   color: rgba(0, 0, 0, 0.6);
   line-height: 150%;
-}
+} */
 
 select:focus {
   font-weight: 500;

@@ -12,11 +12,12 @@ import { cidade, city, dataNascimento, dateBirthday, e_mail, email, gender, name
 import { Validations } from 'helper/Validations';
 import { brazilDateString } from 'helper/convertData';
 import { RadioGroupGender } from 'components/RadioGroupGender/RadioGroupGender';
+import { IOptionCombobox } from 'interfaces/IOptionCombobox';
 
 
 interface FormEditProfileProps {
     submit: (data: any) => void;
-    cities: ICity[];
+    cities: IOptionCombobox[];
     defaultValues?: IUserAccount;
 }
 
@@ -75,9 +76,7 @@ export function FormEditProfile({ submit, cities, defaultValues }: FormEditProfi
                 <PostLogged.Combobox
                     placeholder={cidade}
                     msgError={errors[city]?.message?.toString()}
-                    options={cities?.map(c => c.name)}
-                    idOptions={cities?.map(c => c.id)}
-                    isEmpty={watch(city) ? false : true}
+                    options={cities}
                     {...register(city, validations[city])}
                 />
 

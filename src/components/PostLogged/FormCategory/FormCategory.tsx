@@ -50,8 +50,9 @@ export function FormCategory({submit, defaultValues}: FormCategoryProps) {
             <PostLogged.Combobox
                 placeholder={qtdPessoasPorInscricao}
                 msgError={errors[numberAthletesPerRegistration]?.message}
-                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                isEmpty={watch(numberAthletesPerRegistration) ? false : true }
+                options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'].map((opt) => (
+                    {name: opt, value: opt}                    
+                ))}
                 {...register(numberAthletesPerRegistration)}
             />
 

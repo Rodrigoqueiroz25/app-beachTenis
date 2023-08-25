@@ -4,19 +4,18 @@ import styles from './styles.module.css';
 import { PostLogged } from 'components/PostLogged';
 import { useForm } from 'react-hook-form';
 import { Button } from 'components/Button/Button';
-import { ICity } from 'interfaces/ICity';
-import { ISport } from 'interfaces/ISport';
 import { Validations } from 'helper/Validations';
 import { IFormTournament } from 'interfaces/ITournament';
 import { useEffect } from 'react';
 import { adicionar, alterar, cidade, city, dataFinal, dataInicial, descricao, description, dateFinalRegistration, dateFinalTournament, dateStartRegistration, dateStartTournament, esporte, organizacao, organization, otherInformation, outrasInformacoes, sport } from 'constants/wordsPhrases';
 import { americanDateString, brazilDateString } from 'helper/convertData';
+import { IOptionCombobox } from 'interfaces/IOptionCombobox';
 
 
 interface FormTournamentProps {
     submit: (data: any) => void;
-    cities: ICity[];
-    sports: ISport[];
+    cities: IOptionCombobox[];
+    sports: IOptionCombobox[];
     defaultValues?: IFormTournament;
     fieldsInactives?: string[];
 }
@@ -72,18 +71,14 @@ export function FormTournament({ submit, sports, cities, defaultValues, fieldsIn
                 <PostLogged.Combobox
                     placeholder={esporte}
                     msgError={errors[sport]?.message?.toString()}
-                    options={sports?.map(s => s.description)}
-                    idOptions={sports?.map(s => s.id)}
-                    isEmpty={watch(sport) ? false : true}
+                    options={sports}
                     {...register(sport, validations[sport])}
                 />
 
                 <PostLogged.Combobox
                     placeholder={cidade}
                     msgError={errors[city]?.message?.toString()}
-                    options={cities?.map(c => c.name)}
-                    idOptions={cities?.map(s => s.id)}
-                    isEmpty={watch(city) ? false : true}
+                    options={cities}
                     {...register(city, validations[city])}
                 />
 

@@ -25,7 +25,6 @@ export function EditProfileContainer() {
     }, [getAccount.error]);
 
     useEffect(() => {
-        console.log(getAccount.account)
         if (getAccount.account) {
             setProfile(getAccount.account);
         }
@@ -53,7 +52,9 @@ export function EditProfileContainer() {
                 main={
                     <FormEditProfile
                         submit={saveDataform} 
-                        cities={getCities.cities}
+                        cities={getCities.cities?.map((city) => (
+                            {name: city.name, value: city.id}
+                        ))}
                         defaultValues={profile}
                     />
                 }
