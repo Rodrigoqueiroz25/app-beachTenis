@@ -6,8 +6,6 @@ import { ICategoryGetResponse } from 'interfaces/ICategory';
 import { Routes } from 'enums/routes.enum';
 import { PostLogged } from 'components/PostLogged';
 import { isAdmin } from 'helper/isAdmin';
-import useTournament from 'hooks/useTournament';
-import useCategory from 'hooks/useCategory';
 import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import styles from './styles.module.css'
 import logo from 'assets/logoTour.jpg';
@@ -15,13 +13,15 @@ import { categories, informations } from 'constants/constants';
 import { List } from './Presentation/List';
 import { Informations } from './Presentation/Informations/Informations';
 import { tournamentId } from 'constants/wordsPhrases';
+import useFetchTournament from 'hooks/useFetchTournament';
+import useFetchCategory from 'hooks/useFetchCategory';
 
 
 export function TournamentContainer() {
 
 
-    const { getTournament } = useTournament();
-    const { getAllCategories, deleteCategory } = useCategory();
+    const { getTournament } = useFetchTournament();
+    const { getAllCategories, deleteCategory } = useFetchCategory();
 
     const [listCategories, setListCategories] = useState<ICategoryGetResponse[]>([]);
     const [dataTournament, setDataTournament] = useState<ITournamentDataGetResponse>({} as ITournamentDataGetResponse);

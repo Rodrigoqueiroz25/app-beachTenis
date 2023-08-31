@@ -3,14 +3,14 @@
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
-import useTournamentSponsor from 'hooks/useTournamentSponsor';
 import { useEffect } from 'react';
 import { tournamentId } from 'constants/wordsPhrases';
+import useFetchTournamentSponsor from 'hooks/useFetchTournamentSponsor';
 
 
 export function EditTournamentSponsorContainer() {
 
-    const { editTournamentSponsor } = useTournamentSponsor();
+    const { editTournamentSponsor } = useFetchTournamentSponsor();
     const navigate = useNavigate();
     const { state: { tournamentSponsor } } = useLocation();
 

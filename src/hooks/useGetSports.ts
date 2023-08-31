@@ -6,9 +6,9 @@ import useCookiesSession from "./useCookiesSession";
 import { ISport } from "interfaces/ISport";
 
 
-export default function useSports() {
+export default function useGetSports() {
 
-    const { fetchData, data, isLoading, ok, error } = useFetchData<ISport[]>();
+    const { fetchData, data, isLoading, ok, error } = useFetchData();
     const { getCookieToken } = useCookiesSession();
 
     useEffect(() => {

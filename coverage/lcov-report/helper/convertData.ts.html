@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/16</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/16</span>
             </div>
         
             
@@ -106,31 +106,15 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,31 +141,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { isDate, parse } from "date-fns";
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >convertData(</span>date: Date): string{
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >convertDateBrazilToString(</span>date: Date): string{
 <span class="cstat-no" title="statement not covered" >    return `${date.getDate()}/${date.getMonth()+1 &lt; 10 ? `0${date.getMonth()+1}` : date.getMonth()+1}/${date.getFullYear()}`;</span>
 }
 &nbsp;
-&nbsp;
-export function <span class="fstat-no" title="function not covered" >parseDateString(</span>value: any, originalValue: any){
-    const parsedDate = <span class="cstat-no" title="statement not covered" >isDate(originalValue)</span>
-        ? originalValue
-        : parse(originalValue, "yyyy-MM-dd", new Date());
-<span class="cstat-no" title="statement not covered" >    return parsedDate;</span>
+export function <span class="fstat-no" title="function not covered" >convertDateAmericanToString(</span>date: Date): string{
+<span class="cstat-no" title="statement not covered" >    return `${date.getFullYear()}-${date.getMonth()+1 &lt; 10 ? `0${date.getMonth()+1}` : date.getMonth()+1}-${date.getDate()}`;</span>
 }
 &nbsp;
-// dd/mm/yyyy
 export function <span class="fstat-no" title="function not covered" >stringToDate(</span>str: string){
-    let date = <span class="cstat-no" title="statement not covered" >new Date(str.split('/').reverse().join('-').concat('T00:00:00'));</span>
-<span class="cstat-no" title="statement not covered" >    if(!isNaN(date.getTime())){</span>
-<span class="cstat-no" title="statement not covered" >        return date;</span>
-    }
-}
-&nbsp;
-export function <span class="fstat-no" title="function not covered" >stringToDate2(</span>str: string){
     let date = <span class="cstat-no" title="statement not covered" >new Date(str.concat('T00:00:00'));</span>
 <span class="cstat-no" title="statement not covered" >    if(!isNaN(date.getTime())){</span>
 <span class="cstat-no" title="statement not covered" >        return date;</span>
@@ -207,6 +186,12 @@ export function <span class="fstat-no" title="function not covered" >calcAgeFrom
     let dateBirthday = <span class="cstat-no" title="statement not covered" >new Date(date).getTime();</span>
     let dateToday = <span class="cstat-no" title="statement not covered" >dateDayActual().getTime();</span>
 <span class="cstat-no" title="statement not covered" >    return Math.floor((dateToday - dateBirthday) / (365.25 * 24 * 60 * 60 * 1000));</span>
+}
+&nbsp;
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >dateFollowingDay(</span>): Date{
+    let date = <span class="cstat-no" title="statement not covered" >dateDayActual();</span>
+<span class="cstat-no" title="statement not covered" >    return new Date(`${date.getFullYear()}-${date.getMonth()+1 &lt; 10 ? `0${date.getMonth()+1}` : date.getMonth()+1}-${date.getDate() + 1}`);</span>
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -214,7 +199,7 @@ export function <span class="fstat-no" title="function not covered" >calcAgeFrom
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-25T02:09:50.816Z
+                at 2023-08-31T15:29:27.412Z
             </div>
         <script src="../prettify.js"></script>
         <script>

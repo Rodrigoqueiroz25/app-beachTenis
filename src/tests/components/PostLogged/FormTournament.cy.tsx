@@ -35,8 +35,8 @@ const dataInicial = 'Data Inicial';
 const dataFinal = 'Data Final';
 
 const arrayCities: ICity[] = [
-  { id: 5423, area: "18.566", codeIbge: 245030, stateId: 22, name: "indaiá", gentilic: "indiano" },
-  { id: 69, area: "503.069", codeIbge: 270430, stateId: 2, name: "Maceió", gentilic: "maceioense" }
+  { id: '5423', area: "18.566", codeIbge: 245030, stateId: 22, name: "indaiá", gentilic: "indiano" },
+  { id: '69', area: "503.069", codeIbge: 270430, stateId: 2, name: "Maceió", gentilic: "maceioense" }
 ];
 
 const arraySports: ISport[] = [

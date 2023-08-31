@@ -1,8 +1,8 @@
 import React from 'react'
 import { FormCreateProfile } from 'pages/PreLogged/SignUp/CreateProfile/Presentation/FormCreateProfile'
 import './main.css';
-import { americanDateString, dateDayActual } from 'helper/convertData';
-import { convertData } from 'helper/convertData';
+import { americanDateString, convertDateAmericanToString, dateDayActual } from 'helper/convertData';
+// import { convertData } from 'helper/convertData';
 
 function submit(data: any) {
   expect(data.firstName).to.eq('teste')
@@ -96,7 +96,7 @@ describe('Testing Validations <FormCreateProfile />', () => {
   });
 
   it('displays text "O usuário deve ter pelo menos 18 anos." when click button "Salvar" and field "Data de Nascimento" is completed with date of birth less than 18 years old', () => {
-    cy.findByPlaceholderText('Data de Nascimento').type(americanDateString(convertData(dateDayActual())))
+    cy.findByPlaceholderText('Data de Nascimento').type(convertDateAmericanToString(dateDayActual()));
     cy.findByText('Salvar').click();
     cy.findByPlaceholderText('Data de Nascimento').parent().find('[class*=error]').should('have.text', 'O usuário deve ter pelo menos 18 anos.');
   });

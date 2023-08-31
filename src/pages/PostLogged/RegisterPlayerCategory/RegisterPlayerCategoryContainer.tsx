@@ -5,11 +5,11 @@ import styles from './styles.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { useEffect, useState } from 'react';
-import useRegisterPlayerCategory from 'hooks/useRegisterPlayerCategory';
 import search from 'assets/searchbx.svg';
-import useAccount from 'hooks/useAccount';
+import useAccount from 'hooks/useFetchAccount';
 import { ListPlayers } from './Presentation/ListPlayers/ListPlayers';
 import { ListResultSearch } from './Presentation/ListResultSearch/ListResultSearch';
+import useFetchRegisterPlayerCategory from 'hooks/useFetchRegisterPlayerCategory';
 
 export function RegisterPlayerCategoryContainer() {
 
@@ -20,7 +20,7 @@ export function RegisterPlayerCategoryContainer() {
     const [textSearch, setTextSearch] = useState('');
     const [presentation, setPresentation] = useState('listaDuplas');
 
-    const { getPlayersRegisteredByCategory, registerPlayerInCategory } = useRegisterPlayerCategory();
+    const { getPlayersRegisteredByCategory, registerPlayerInCategory } = useFetchRegisterPlayerCategory();
     const { getAccountByName } = useAccount();
 
     useEffect(() => {

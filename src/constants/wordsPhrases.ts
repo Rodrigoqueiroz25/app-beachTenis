@@ -80,6 +80,7 @@ export const dataFinalTorneioDeveSerIgualMaiorQueInicial = "Data final do tornei
 export const usuarioMaior18anos = "O usuário deve ter pelo menos 18 anos."
 
 export const selecioneOpcao = "Selecione uma opção.";
+export const selecioneGenero = "Selecione um gênero.";
 
 export const digiteEmail = "Digite um email para entrar.";
 export const digiteEmailValido = "Digite um email válido.";

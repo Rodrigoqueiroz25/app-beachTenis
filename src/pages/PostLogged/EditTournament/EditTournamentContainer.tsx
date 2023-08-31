@@ -3,21 +3,22 @@
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
-import useCities from 'hooks/useCities';
-import useSports from 'hooks/useSports';
-import useTournament from 'hooks/useTournament';
+
 import { useEffect } from 'react';
+import useFetchTournament from 'hooks/useFetchTournament';
+import useGetCities from 'hooks/useGetCities';
+import useGetSports from 'hooks/useGetSports';
 
 
 export function EditTournamentContainer() {
     
-    const { editTournament } = useTournament();
+    const { editTournament } = useFetchTournament();
 
     const navigate = useNavigate();
     const { state: { tournament } } = useLocation();
 
-    const getCities = useCities();
-    const getSports = useSports();
+    const getCities = useGetCities();
+    const getSports = useGetSports();
 
     useEffect(() => {
         if (!tournament) {

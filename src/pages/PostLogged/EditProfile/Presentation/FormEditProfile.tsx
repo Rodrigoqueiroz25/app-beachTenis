@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import imgPhotoCircle from 'assets/photo_create_profile.svg';
 import styles from '../styles.module.css'
 import { Button } from 'components/Button/Button';
-import { ICity } from 'interfaces/ICity';
 import { PostLogged } from "components/PostLogged";
 import { IUserAccount } from "interfaces/IUserAccount";
 import { cidade, city, dataNascimento, dateBirthday, e_mail, email, gender, nameUser, nome, phoneNumber, salvar, telefone } from "constants/wordsPhrases";
@@ -26,7 +25,7 @@ export function FormEditProfile({ submit, cities, defaultValues }: FormEditProfi
 
     const validations = Validations.formEditProfile;
 
-    const { register, handleSubmit, watch, formState: { errors }, setValue} = useForm({});
+    const { register, handleSubmit, formState: { errors }, setValue} = useForm({});
 
 
     useEffect(() => {

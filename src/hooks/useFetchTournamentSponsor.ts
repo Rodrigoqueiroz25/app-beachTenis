@@ -5,18 +5,18 @@ import useCookiesSession from "./useCookiesSession";
 import { ITournamentSponsor, ITournamentSponsorResponse } from "interfaces/ITournamentSponsor";
 
 
-export default function useTournamentSponsor() {
+export default function useFetchTournamentSponsor() {
 
     const { getCookieToken } = useCookiesSession();
 
-    const fetch = useFetchData<ITournamentSponsorResponse>();
+    const fetch = useFetchData();
     
 
     const createTournamentSponsor = {
         isLoading: fetch.isLoading,
         ok: fetch.ok,
         error: fetch.error,
-        sponsorCreated: fetch.data,
+        sponsorCreated: fetch.data as ITournamentSponsorResponse,
         create: (data: ITournamentSponsor) => fetch.fetchData(Requests.createTournamentSponsor(data, getCookieToken()))
     };
 
@@ -24,7 +24,7 @@ export default function useTournamentSponsor() {
         isLoading: fetch.isLoading,
         ok: fetch.ok,
         error: fetch.error,
-        sponsorEdited: fetch.data,
+        sponsorEdited: fetch.data as ITournamentSponsorResponse,
         edit: (data: ITournamentSponsor, id: string) => fetch.fetchData(Requests.editTournamentSponsor(data, id, getCookieToken()))
     };
 
@@ -33,7 +33,7 @@ export default function useTournamentSponsor() {
         isLoading: fetch.isLoading,
         ok: fetch.ok,
         error: fetch.error,
-        sponsors: fetch.data,
+        sponsors: fetch.data as ITournamentSponsorResponse[],
         getAll: (tournamentId: string) => fetch.fetchData(Requests.getTournamentSponsors(tournamentId, getCookieToken()))
     };
 

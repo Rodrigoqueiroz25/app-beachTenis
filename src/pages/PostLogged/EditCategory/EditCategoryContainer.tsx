@@ -5,13 +5,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { ButtonBack } from "components/PostLogged/ButtonBack/ButtonBack";
-import useCategory from 'hooks/useCategory';
 import { tournamentId } from 'constants/wordsPhrases';
+import useFetchCategory from 'hooks/useFetchCategory';
 
 
 export function EditCategoryContainer() {
 
-    const { editCategory } = useCategory();
+    const { editCategory } = useFetchCategory();
     const navigate = useNavigate();
     const { state: { category } } = useLocation();
 

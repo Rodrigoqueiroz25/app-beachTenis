@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1692929390860" clover="3.2.0">
-  <project timestamp="1692929390860" name="All files">
-    <metrics statements="180" coveredstatements="97" conditionals="43" coveredconditionals="2" methods="47" coveredmethods="2" elements="270" coveredelements="101" complexity="0" loc="180" ncloc="180" packages="25" files="26" classes="26"/>
+<coverage generated="1693495767476" clover="3.2.0">
+  <project timestamp="1693495767476" name="All files">
+    <metrics statements="292" coveredstatements="141" conditionals="81" coveredconditionals="8" methods="101" coveredmethods="19" elements="474" coveredelements="168" complexity="0" loc="292" ncloc="292" packages="28" files="36" classes="36"/>
     <package name="components.Button">
       <metrics statements="1" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="Button.tsx" path="/workspaces/app-beachTenis/src/components/Button/Button.tsx">
@@ -13,7 +13,7 @@
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/index.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="15" count="34" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
       </file>
     </package>
     <package name="components.PostLogged.AddBanner">
@@ -24,10 +24,10 @@
       </file>
     </package>
     <package name="components.PostLogged.ButtonBack">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="ButtonBack.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ButtonBack/ButtonBack.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="13" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="13" count="4" type="stmt"/>
       </file>
     </package>
     <package name="components.PostLogged.ButtonPlus">
@@ -38,12 +38,12 @@
       </file>
     </package>
     <package name="components.PostLogged.Combobox">
-      <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <metrics statements="3" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="Combobox.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/Combobox/Combobox.tsx">
-        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="12" count="34" type="stmt"/>
-        <line num="14" count="746" type="stmt"/>
-        <line num="25" count="1492" type="stmt"/>
+        <metrics statements="3" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.PostLogged.FormCategory">
@@ -103,7 +103,7 @@
       <metrics statements="2" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="Input.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/Input/Input.tsx">
         <metrics statements="2" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="10" count="34" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
     </package>
@@ -111,7 +111,7 @@
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/ItemList/index.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="8" count="34" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
       </file>
     </package>
     <package name="components.PostLogged.ItemList.ItemListButtons">
@@ -161,124 +161,128 @@
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/LayoutPage/index.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="5" count="34" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
       </file>
     </package>
     <package name="components.PostLogged.LayoutPage.Footer">
-      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
       <file name="Footer.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/LayoutPage/Footer/Footer.tsx">
-        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.PostLogged.LayoutPage.Header">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Header.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/LayoutPage/Header/Header.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="11" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="11" count="4" type="stmt"/>
       </file>
     </package>
     <package name="components.PostLogged.LayoutPage.Layout">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Layout.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/LayoutPage/Layout/Layout.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="12" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="12" count="4" type="stmt"/>
       </file>
     </package>
     <package name="components.PostLogged.TextArea">
       <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="TextArea.tsx" path="/workspaces/app-beachTenis/src/components/PostLogged/TextArea/TextArea.tsx">
         <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="10" count="34" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
     </package>
     <package name="constants">
-      <metrics statements="79" coveredstatements="79" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="80" coveredstatements="80" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="httpMethods.ts" path="/workspaces/app-beachTenis/src/constants/httpMethods.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
       <file name="wordsPhrases.ts" path="/workspaces/app-beachTenis/src/constants/wordsPhrases.ts">
-        <metrics statements="79" coveredstatements="79" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="34" type="stmt"/>
-        <line num="4" count="34" type="stmt"/>
-        <line num="7" count="34" type="stmt"/>
-        <line num="8" count="34" type="stmt"/>
-        <line num="9" count="34" type="stmt"/>
-        <line num="10" count="34" type="stmt"/>
-        <line num="11" count="34" type="stmt"/>
-        <line num="12" count="34" type="stmt"/>
-        <line num="13" count="34" type="stmt"/>
-        <line num="14" count="34" type="stmt"/>
-        <line num="15" count="34" type="stmt"/>
-        <line num="16" count="34" type="stmt"/>
-        <line num="17" count="34" type="stmt"/>
-        <line num="18" count="34" type="stmt"/>
-        <line num="19" count="34" type="stmt"/>
-        <line num="20" count="34" type="stmt"/>
-        <line num="21" count="34" type="stmt"/>
-        <line num="22" count="34" type="stmt"/>
-        <line num="23" count="34" type="stmt"/>
-        <line num="24" count="34" type="stmt"/>
-        <line num="25" count="34" type="stmt"/>
-        <line num="26" count="34" type="stmt"/>
-        <line num="27" count="34" type="stmt"/>
-        <line num="28" count="34" type="stmt"/>
-        <line num="29" count="34" type="stmt"/>
-        <line num="30" count="34" type="stmt"/>
-        <line num="31" count="34" type="stmt"/>
-        <line num="32" count="34" type="stmt"/>
-        <line num="33" count="34" type="stmt"/>
-        <line num="34" count="34" type="stmt"/>
-        <line num="35" count="34" type="stmt"/>
-        <line num="36" count="34" type="stmt"/>
-        <line num="37" count="34" type="stmt"/>
-        <line num="41" count="34" type="stmt"/>
-        <line num="42" count="34" type="stmt"/>
-        <line num="43" count="34" type="stmt"/>
-        <line num="44" count="34" type="stmt"/>
-        <line num="45" count="34" type="stmt"/>
-        <line num="46" count="34" type="stmt"/>
-        <line num="47" count="34" type="stmt"/>
-        <line num="48" count="34" type="stmt"/>
-        <line num="49" count="34" type="stmt"/>
-        <line num="50" count="34" type="stmt"/>
-        <line num="51" count="34" type="stmt"/>
-        <line num="52" count="34" type="stmt"/>
-        <line num="53" count="34" type="stmt"/>
-        <line num="54" count="34" type="stmt"/>
-        <line num="55" count="34" type="stmt"/>
-        <line num="56" count="34" type="stmt"/>
-        <line num="57" count="34" type="stmt"/>
-        <line num="58" count="34" type="stmt"/>
-        <line num="59" count="34" type="stmt"/>
-        <line num="60" count="34" type="stmt"/>
-        <line num="61" count="34" type="stmt"/>
-        <line num="62" count="34" type="stmt"/>
-        <line num="63" count="34" type="stmt"/>
-        <line num="64" count="34" type="stmt"/>
-        <line num="67" count="34" type="stmt"/>
-        <line num="68" count="34" type="stmt"/>
-        <line num="71" count="34" type="stmt"/>
-        <line num="72" count="34" type="stmt"/>
-        <line num="73" count="34" type="stmt"/>
-        <line num="74" count="34" type="stmt"/>
-        <line num="75" count="34" type="stmt"/>
-        <line num="76" count="34" type="stmt"/>
-        <line num="77" count="34" type="stmt"/>
-        <line num="78" count="34" type="stmt"/>
-        <line num="80" count="34" type="stmt"/>
-        <line num="82" count="34" type="stmt"/>
-        <line num="84" count="34" type="stmt"/>
-        <line num="85" count="34" type="stmt"/>
-        <line num="87" count="34" type="stmt"/>
-        <line num="88" count="34" type="stmt"/>
-        <line num="90" count="34" type="stmt"/>
-        <line num="91" count="34" type="stmt"/>
-        <line num="92" count="34" type="stmt"/>
-        <line num="94" count="34" type="stmt"/>
-        <line num="95" count="34" type="stmt"/>
-        <line num="97" count="34" type="stmt"/>
+        <metrics statements="80" coveredstatements="80" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="55" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="80" count="2" type="stmt"/>
+        <line num="82" count="2" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="85" count="2" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
+        <line num="88" count="2" type="stmt"/>
+        <line num="89" count="2" type="stmt"/>
+        <line num="91" count="2" type="stmt"/>
+        <line num="92" count="2" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="95" count="2" type="stmt"/>
+        <line num="96" count="2" type="stmt"/>
+        <line num="98" count="2" type="stmt"/>
       </file>
     </package>
     <package name="enums">
@@ -288,51 +292,198 @@
       </file>
     </package>
     <package name="helper">
-      <metrics statements="39" coveredstatements="10" conditionals="22" coveredconditionals="0" methods="19" coveredmethods="0"/>
-      <file name="Validations.ts" path="/workspaces/app-beachTenis/src/helper/Validations.ts">
-        <metrics statements="21" coveredstatements="10" conditionals="14" coveredconditionals="0" methods="11" coveredmethods="0"/>
-        <line num="17" count="34" type="stmt"/>
-        <line num="21" count="34" type="stmt"/>
-        <line num="31" count="34" type="stmt"/>
-        <line num="35" count="34" type="stmt"/>
-        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="66" count="34" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="87" count="34" type="stmt"/>
-        <line num="93" count="34" type="stmt"/>
-        <line num="100" count="34" type="stmt"/>
-        <line num="131" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="135" count="0" type="stmt"/>
-        <line num="141" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="146" count="0" type="stmt"/>
-        <line num="152" count="0" type="cond" truecount="0" falsecount="2"/>
+      <metrics statements="79" coveredstatements="17" conditionals="32" coveredconditionals="1" methods="47" coveredmethods="3"/>
+      <file name="Requests.ts" path="/workspaces/app-beachTenis/src/helper/Requests.ts">
+        <metrics statements="23" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="23" coveredmethods="1"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="133" count="2" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
         <line num="157" count="0" type="stmt"/>
-        <line num="163" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="176" count="34" type="stmt"/>
-        <line num="181" count="34" type="stmt"/>
-        <line num="220" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="166" count="0" type="stmt"/>
+        <line num="175" count="0" type="stmt"/>
+        <line num="183" count="0" type="stmt"/>
+        <line num="191" count="0" type="stmt"/>
+        <line num="200" count="0" type="stmt"/>
+      </file>
+      <file name="Validations.ts" path="/workspaces/app-beachTenis/src/helper/Validations.ts">
+        <metrics statements="24" coveredstatements="10" conditionals="20" coveredconditionals="0" methods="14" coveredmethods="0"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="73" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="80" count="2" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="112" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="121" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="130" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="134" count="0" type="stmt"/>
+        <line num="140" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="145" count="0" type="stmt"/>
+        <line num="151" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="162" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="175" count="2" type="stmt"/>
+        <line num="180" count="2" type="stmt"/>
+        <line num="213" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="222" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
       <file name="convertData.ts" path="/workspaces/app-beachTenis/src/helper/convertData.ts">
-        <metrics statements="18" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+        <metrics statements="16" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+      <file name="isAdmin.ts" path="/workspaces/app-beachTenis/src/helper/isAdmin.ts">
+        <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="3" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+      </file>
+      <file name="request.ts" path="/workspaces/app-beachTenis/src/helper/request.ts">
+        <metrics statements="13" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks">
+      <metrics statements="51" coveredstatements="22" conditionals="18" coveredconditionals="3" methods="12" coveredmethods="7"/>
+      <file name="useCookiesSession.ts" path="/workspaces/app-beachTenis/src/hooks/useCookiesSession.ts">
+        <metrics statements="17" coveredstatements="7" conditionals="10" coveredconditionals="3" methods="5" coveredmethods="3"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
         <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="26" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="40" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="46" count="2" type="cond" truecount="2" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="55" count="4" type="stmt"/>
+      </file>
+      <file name="useFetchData.ts" path="/workspaces/app-beachTenis/src/hooks/useFetchData.ts">
+        <metrics statements="23" coveredstatements="7" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="41" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
+        <line num="47" count="4" type="stmt"/>
+      </file>
+      <file name="useFetchTournament.ts" path="/workspaces/app-beachTenis/src/hooks/useFetchTournament.ts">
+        <metrics statements="11" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="2"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="54" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.PostLogged.ListTournaments">
+      <metrics statements="12" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="8" coveredmethods="3"/>
+      <file name="ListTournamentsContainer.tsx" path="/workspaces/app-beachTenis/src/pages/PostLogged/ListTournaments/ListTournamentsContainer.tsx">
+        <metrics statements="12" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="8" coveredmethods="3"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.PostLogged.ListTournaments.Presentation">
+      <metrics statements="8" coveredstatements="4" conditionals="6" coveredconditionals="2" methods="6" coveredmethods="2"/>
+      <file name="ButtonsSelectors.tsx" path="/workspaces/app-beachTenis/src/pages/PostLogged/ListTournaments/Presentation/ButtonsSelectors.tsx">
+        <metrics statements="5" coveredstatements="4" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="2"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+      </file>
+      <file name="ItemListTournament.tsx" path="/workspaces/app-beachTenis/src/pages/PostLogged/ListTournaments/Presentation/ItemListTournament.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
       </file>
     </package>
   </project>

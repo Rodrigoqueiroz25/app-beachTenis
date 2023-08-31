@@ -15,7 +15,7 @@ export default function useSignup(){
     async function signup(requestData: IRequest<IDataSignUp>){
         
         setIsLoading(true);
-        let result = await request<{}>(requestData);
+        let result = await request(requestData);
         setIsLoading(false);
 
         if(result.ok){

@@ -6,14 +6,14 @@ import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { IUserAccount } from "interfaces/IUserAccount";
 import { FormEditProfile } from './Presentation/FormEditProfile';
-import useCities from 'hooks/useCities';
-import useAccount from 'hooks/useAccount';
+import useFetchAccount from 'hooks/useFetchAccount';
+import useGetCities from 'hooks/useGetCities';
 
 
 export function EditProfileContainer() {
 
-    const { getAccount, updateAccount } = useAccount();
-    const getCities = useCities();
+    const { getAccount, updateAccount } = useFetchAccount();
+    const getCities = useGetCities();
 
     const [profile, setProfile] = useState<IUserAccount>({} as IUserAccount);
 

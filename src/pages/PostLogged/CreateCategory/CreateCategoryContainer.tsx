@@ -5,12 +5,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { ButtonBack } from "components/PostLogged/ButtonBack/ButtonBack";
-import useCategory from 'hooks/useCategory';
+import useFetchCategory from 'hooks/useFetchCategory';
 
 
 export function CreateCategoryContainer() {
 
-    const { createCategory } = useCategory();
+    const { createCategory } = useFetchCategory();
     
     const { state: { tournamentId } } = useLocation();
     const navigate = useNavigate();

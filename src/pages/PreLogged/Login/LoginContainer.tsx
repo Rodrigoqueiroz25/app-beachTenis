@@ -8,13 +8,13 @@ import { Routes } from 'enums/routes.enum';
 import { PreLoggedin } from 'components/PreLoggedin';
 import { LinkOtherPage } from 'components/PreLoggedin/LinkOtherPage/LinkOtherPage';
 import { FormLogin } from './Presentation/FormLogin';
-import useAccount from 'hooks/useAccount';
+import useFetchAccount from 'hooks/useFetchAccount';
 
 
 export function LoginContainer() {
 
     const navigate = useNavigate();
-    const { authenticate } = useAccount();
+    const { authenticate } = useFetchAccount();
     const itsAuth = useVerifyAuth();
 
     function handleSubmitForm(data: any) {

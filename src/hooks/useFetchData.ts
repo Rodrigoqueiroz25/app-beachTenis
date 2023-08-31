@@ -1,30 +1,27 @@
 
 import { useState } from "react";
 import request from "helper/request";
-import { isError } from "interfaces/IError";
 import { IRequest } from "interfaces/IRequest";
 
 
-export default function useFetchData<R>() {
+export default function useFetchData() {
 
     const [isLoading, setIsLoading] = useState<Boolean>(false);
     const [ok, setOk] = useState<Boolean>(false);
-    const [data, setData] = useState<R>();
+    const [data, setData] = useState<any>();
     const [error, setError] = useState<string>();
     
 
     async function fetchData<E>(requestData: IRequest<E>) {
 
         setIsLoading(true);
-        let result = await request<R>(requestData);
+        let result = await request(requestData);
         setIsLoading(false);
 
         if(result.ok){
             switch (result.code) {
                 case 200:
-                    if(!isError(result.data)){
-                        setData(result.data);
-                    }
+                    setData(result.data);
                     setOk(true);
                     break;
                 case 204:

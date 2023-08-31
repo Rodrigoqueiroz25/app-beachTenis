@@ -6,9 +6,9 @@ import { Requests } from "helper/Requests";
 import useCookiesSession from "./useCookiesSession";
 
 
-export default function useCities() {
+export default function useGetCities() {
 
-    const { fetchData, data, isLoading, ok, error } = useFetchData<ICity[]>();
+    const { fetchData, data, isLoading, ok, error } = useFetchData();
     const { getCookieToken } = useCookiesSession();
 
     useEffect(() => {

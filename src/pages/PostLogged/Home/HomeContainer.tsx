@@ -3,9 +3,9 @@
 import useCookiesSession from 'hooks/useCookiesSession';
 import { PostLogged } from 'components/PostLogged';
 import { HeaderHome } from './presentation/HeaderHome';
-import { MainContent } from './presentation/MainContent';
-import useCities from 'hooks/useCities';
-import useTournament from 'hooks/useTournament';
+import { MainContentHome } from './presentation/MainContentHome';
+import useCities from 'hooks/useGetCities';
+import useTournament from 'hooks/useFetchTournament';
 import { useEffect } from 'react';
 
 export function HomeContainer() {
@@ -25,7 +25,7 @@ export function HomeContainer() {
                 <HeaderHome nameUser={getCookieNameUser()?.split(' ')[0]!}/>
             }
             main={
-                <MainContent 
+                <MainContentHome 
                     cities={fetchCities.cities}
                     tournaments={getAllTournaments.tournaments?.opened!}
                 />

@@ -9,14 +9,13 @@ import { IDataLogin } from "interfaces/IDataLogin";
 import { IDataSignUp } from "interfaces/IDataSignUp";
 
 
-export default function useAccount() {
+export default function useFetchAccount() {
 
     const { getCookieToken } = useCookiesSession();
 
     const login = useAuth();
     const signup = useSignup();
-    const account = useFetchData<IUserAccount>();
-    const accountV = useFetchData<IUserAccount[]>();
+    const account = useFetchData();
 
 
     const authenticate = {
@@ -39,16 +38,16 @@ export default function useAccount() {
         isLoading: account.isLoading,
         ok: account.ok,
         error: account.error,
-        account: account.data,
+        account: account.data as IUserAccount,
         get: () => account.fetchData(Requests.getUserByToken(getCookieToken()))
     };
 
     const getAccountByName = {
-        isLoading: accountV.isLoading,
-        ok: accountV.ok,
-        error: accountV.error,
-        accounts: accountV.data,
-        get: (name: string) => accountV.fetchData(Requests.getUserByName(name, getCookieToken()))
+        isLoading: account.isLoading,
+        ok: account.ok,
+        error: account.error,
+        accounts: account.data as IUserAccount[],
+        get: (name: string) => account.fetchData(Requests.getUserByName(name, getCookieToken()))
     };
 
     const register = {

@@ -1,6 +1,6 @@
 
 export interface ICity {
-    id: number
+    id: string
     area: string
     codeIbge: number;
     name: string

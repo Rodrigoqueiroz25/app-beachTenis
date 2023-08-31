@@ -11,13 +11,13 @@ import { Button } from 'components/Button/Button';
 import { isAdmin } from 'helper/isAdmin';
 import { dateFinalTournament, dateStartTournament, description, organization } from 'constants/wordsPhrases';
 
-interface MainContentProps {
+interface MainContentHomeProps {
     cities: ICity[];
     tournaments?: ITournamentDataGetResponse[];
 }
 
 
-export function MainContent({ cities, tournaments }: MainContentProps) {
+export function MainContentHome({ cities, tournaments }: MainContentHomeProps) {
 
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ export function MainContent({ cities, tournaments }: MainContentProps) {
         <>
             <div className={styles.location}>
                 <img src={imgLocation} alt="" />
-                <select className={styles.list}>
+                <select className={styles.cities} placeholder='localização'>
                     {cities?.map((citie, key) => (
                         <option value={citie.id} key={key}>{citie.name}</option>
                     ))}
@@ -41,9 +41,9 @@ export function MainContent({ cities, tournaments }: MainContentProps) {
             </div>
 
             <div className={styles.buttonsChoiceSport}>
-                <button className={styles.btnBeachTenis}>Beach Tennis</button>
+                <button className={styles.btnBeachTenis}>Beach Tênis</button>
                 <button className={styles.btnHockey}>Hockey</button>
-                <button className={styles.btnTenis}>Tennis</button>
+                <button className={styles.btnTenis}>Tênis</button>
             </div>
 
             <section className={styles.tournaments}>
@@ -53,9 +53,7 @@ export function MainContent({ cities, tournaments }: MainContentProps) {
                         onClick={handleClickViewAllTournaments}
                     >Ver todos</p>
                 </div>
-
                 <div className={styles.tournament}>
-
                     {tournaments?.map((tournament, key) => (
                         <div className={styles.item} key={key}>
                             <img className={styles.logo} src={logoTour} alt="logo do torneio" />
@@ -77,10 +75,7 @@ export function MainContent({ cities, tournaments }: MainContentProps) {
                             </div>
                         </div>
                     ))}
-
-
                 </div>
-
             </section>
 
             <section className={styles.ranking}>
@@ -90,9 +85,7 @@ export function MainContent({ cities, tournaments }: MainContentProps) {
                         onClick={handleClickViewAllRanking}
                     >Ver todos</p>
                 </div>
-
                 <div className={styles.peoples}>
-                    
                 </div>
             </section>
         </>

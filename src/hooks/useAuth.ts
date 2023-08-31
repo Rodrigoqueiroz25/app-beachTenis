@@ -2,32 +2,28 @@
 import { useState } from "react";
 import useCookiesSession from "./useCookiesSession";
 import request from "helper/request";
-import { isError } from "interfaces/IError";
-import { ILoginResult } from "interfaces/ILoginResult";
 import { IDataLogin } from "interfaces/IDataLogin";
 import { IRequest } from "interfaces/IRequest";
 
-export default function useAuth(){
-       
+export default function useAuth() {
+
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isAuth, setIsAuth] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
-    
+
     const { setCookiesSession } = useCookiesSession();
 
-    async function authenticate(requestData: IRequest<IDataLogin>){
-        
+    async function authenticate(requestData: IRequest<IDataLogin>) {
+
         setIsLoading(true);
-        let result = await request<ILoginResult>(requestData);
+        let result = await request(requestData);
         setIsLoading(false);
-        
-        if(result.ok){
+
+        if (result.ok) {
             switch (result.code) {
                 case 200:
-                    if(!isError(result.data)){
-                        if(result.data){
-                            setCookiesSession(result.data.accessToken, result.data.name, result.data.isAdmin);
-                        }
+                    if (result.data) {
+                        setCookiesSession(result.data.accessToken, result.data.name, result.data.isAdmin);
                     }
                     setIsAuth(true);
                     break;
@@ -40,12 +36,12 @@ export default function useAuth(){
                     break;
             }
         }
-        else{
-            if(result.catchErr){
+        else {
+            if (result.catchErr) {
                 console.error(result.catchErr);
                 setError("Erro, tente novamente mais tarde.");
             }
-        }        
+        }
     }
 
 

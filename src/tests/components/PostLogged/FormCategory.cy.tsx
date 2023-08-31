@@ -20,53 +20,44 @@ describe('Testing Funcional <FormCategory />', () => {
   });
 
   it('has a field with placeholder "Descrição"', () => {
-    
     cy.findByPlaceholderText('Descrição').should('be.visible')
   });
 
-  it('has a combobox with placeholder "Quantidade de pessoas por inscrição"', () => {
-    
+  it('has a combobox with placeholder "Quantidade de pessoas por inscrição"', () => { 
     cy.findByPlaceholderText('Quantidade de pessoas por inscrição').should('be.visible')
   });
 
-  it('has a field with placeholder "Quantidade máxima de inscritos"', () => {
-    
+  it('has a field with placeholder "Quantidade máxima de inscritos"', () => {   
     cy.findByPlaceholderText('Quantidade máxima de inscritos').should('be.visible')
   });
 
-  it('has a button visible', () => {
-    
+  it('has a button visible', () => {   
     cy.get('button').should('be.visible')
   });
   
   
   it('field with placeholder "Descrição" is a input type text', () => {
-    
     cy.findByPlaceholderText('Descrição').invoke('prop', 'tagName').should('eq', 'INPUT')
     cy.findByPlaceholderText('Descrição').invoke('attr', 'type').should('eq', 'text')
   });
 
   it('field with placeholder "Quantidade de pessoas por inscrição" is a select', () => {
-    
     cy.findByPlaceholderText('Quantidade de pessoas por inscrição').invoke('prop', 'tagName').should('eq', 'SELECT')
   });
 
   it('field with placeholder "Quantidade máxima de inscritos" is a input type number ', () => {
-    
     cy.findByPlaceholderText('Quantidade máxima de inscritos').invoke('prop', 'tagName').should('eq', 'INPUT')
     cy.findByPlaceholderText('Quantidade máxima de inscritos').invoke('attr', 'type').should('eq', 'number')
   });
 
 
   it('field with placeholder "Quantidade de pessoas por inscrição" has a options ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]', () => {
-    
     cy.get('select').select(1, {force: true}).select(2, {force: true}).select(3, {force: true}).select(4, {force: true}).select(5, {force: true})
     .select(6, {force: true}).select(7, {force: true}).select(8, {force: true}).select(9, {force: true}).select(10, {force: true})
   });
 
 
   it('field with placeholder "Quantidade de pessoas por inscrição" have the option values ​​the same as their name', () => {
-    
     cy.get('select').select(1, {force: true}).invoke('prop', 'value').should('eq', '1');
     cy.get('select').select(2, {force: true}).invoke('prop', 'value').should('eq', '2');
     cy.get('select').select(3, {force: true}).invoke('prop', 'value').should('eq', '3');

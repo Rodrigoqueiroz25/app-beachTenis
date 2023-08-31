@@ -3,8 +3,8 @@ import { IError } from "interfaces/IError";
 import { IRequest } from "interfaces/IRequest";
 import { IResultFetch } from "interfaces/IResultFetch";
 
-export default async function request<R>(paramRequest: IRequest<any>) {
-    let result: IResultFetch<R> = {
+export default async function request(paramRequest: IRequest<any>) {
+    let result: IResultFetch = {
         code: 0,
         ok: false,
         catchErr: ""
@@ -28,7 +28,7 @@ export default async function request<R>(paramRequest: IRequest<any>) {
         result.code = response.status;
         result.ok = true;
         if(response.status === 200){
-            result.data = await response?.json() as R;
+            result.data = await response?.json();
         }else{
             result.data = await response?.json() as IError;
         }

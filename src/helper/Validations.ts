@@ -1,18 +1,11 @@
 
 import *  as yup from "yup";
-import { calcAgeFromDate, dateDayActual, parseDateString, stringToDate2 } from "./convertData";
-import { city, dataDeveSerIgualMaiorQueAtual, dataDeveSerMaiorQue, dataDeveSerPosteriorPeriodoInscricao, dataFinalRegistroDeveSerIgualMaiorQueInicial, dataFinalTorneioDeveSerIgualMaiorQueInicial, dateBirthday, description, digiteData, digiteDescricao, digiteEmailValido, digiteNome, digiteNomeOrganizacao, digiteNovamenteSenha, digiteNumeroTelefone, digiteSenha, digiteSobrenome, digiteValorNumerico, dateFinalRegistration, dateFinalTournament, dateStartRegistration, dateStartTournament, email, firstName, gender, lastName, nameUser, maxNumberAthletesCategory, numberAthletesPerRegistration, numeroTelefoneInvalido, organization, otherInformation, password, phoneNumber, repeatPasswd, selecioneOpcao, senhasDigitadasDiferentes, sport, usuarioMaior18anos } from "constants/wordsPhrases";
+import { calcAgeFromDate, dateDayActual, stringToDate } from "./convertData";
+import { city, dataDeveSerIgualMaiorQueAtual, dataDeveSerMaiorQue, dataDeveSerPosteriorPeriodoInscricao, dataFinalRegistroDeveSerIgualMaiorQueInicial, dataFinalTorneioDeveSerIgualMaiorQueInicial, dateBirthday, description, digiteData, digiteDescricao, digiteEmailValido, digiteNome, digiteNomeOrganizacao, digiteNovamenteSenha, digiteNumeroTelefone, digiteSenha, digiteSobrenome, digiteValorNumerico, dateFinalRegistration, dateFinalTournament, dateStartRegistration, dateStartTournament, email, firstName, gender, lastName, nameUser, maxNumberAthletesCategory, numberAthletesPerRegistration, numeroTelefoneInvalido, organization, otherInformation, password, phoneNumber, repeatPasswd, selecioneOpcao, senhasDigitadasDiferentes, sport, usuarioMaior18anos, selecioneGenero } from "constants/wordsPhrases";
 import { digiteEmail } from "constants/wordsPhrases";
 
 
 export class Validations {
-
-    // public static formCreateProfile = yup.object().shape({
-    //     [firstName]: yup.string().required(digiteNome),
-    //     [lastName]: yup.string().required(digiteSobrenome),
-    //     [dateBirthday]: yup.date().transform(parseDateString).min(new Date('1900-01-01'), dataDeveSerMaiorQue).required(digiteData).typeError(digiteData),
-    //     [gender]: yup.string().required(selecioneOpcao),
-    // });
 
     public static radioGroupGender = yup.object().shape({
         [gender]: yup.string().required(selecioneOpcao)
@@ -57,7 +50,7 @@ export class Validations {
         [gender]: {
             required: {
                 value: true,
-                message: selecioneOpcao
+                message: selecioneGenero
             },
         },
     };
@@ -114,12 +107,18 @@ export class Validations {
             required: {
                 value: true,
                 message: selecioneOpcao
+            },
+            validate: {
+                selectOption: (v: string) => v !== 'select...' || selecioneOpcao
             }
         },
         [sport]: {
             required: {
                 value: true,
                 message: selecioneOpcao
+            },
+            validate: {
+                selectOption: (v: string) => v !== 'select...' || selecioneOpcao
             }
         },
         [dateStartRegistration]: {
@@ -128,7 +127,7 @@ export class Validations {
                 message: digiteData
             },
             validate: {
-                minDate: (v) => stringToDate2(v)! >= dateDayActual() || dataDeveSerIgualMaiorQueAtual
+                minDate: (v) => stringToDate(v)! >= dateDayActual() || dataDeveSerIgualMaiorQueAtual
             }
         },
         [dateFinalRegistration]: (dtStartRegistration: string) => {
@@ -138,7 +137,7 @@ export class Validations {
                     message: digiteData
                 },
                 validate: {
-                    biggerOrEqualdtStartRegist: (v: string) => stringToDate2(v)! >= stringToDate2(dtStartRegistration)! || dataFinalRegistroDeveSerIgualMaiorQueInicial
+                    biggerOrEqualdtStartRegist: (v: string) => stringToDate(v)! >= stringToDate(dtStartRegistration)! || dataFinalRegistroDeveSerIgualMaiorQueInicial
                 }
             }
         },
@@ -149,7 +148,7 @@ export class Validations {
                     message: digiteData
                 },
                 validate: {
-                    biggerdtFinalRegist: (v: string) => stringToDate2(v)! > stringToDate2(dtFinalRegistration)! || dataDeveSerPosteriorPeriodoInscricao
+                    biggerdtFinalRegist: (v: string) => stringToDate(v)! > stringToDate(dtFinalRegistration)! || dataDeveSerPosteriorPeriodoInscricao
                 }
             }
         },
@@ -160,7 +159,7 @@ export class Validations {
                     message: digiteData
                 },
                 validate: {
-                    biggerOrEqualdtStartTour: (v: string) => stringToDate2(v)! >= stringToDate2(dtStartTournament)! || dataFinalTorneioDeveSerIgualMaiorQueInicial
+                    biggerOrEqualdtStartTour: (v: string) => stringToDate(v)! >= stringToDate(dtStartTournament)! || dataFinalTorneioDeveSerIgualMaiorQueInicial
                 }
             }
         },
@@ -209,6 +208,9 @@ export class Validations {
             required: {
                 value: true,
                 message: selecioneOpcao
+            },
+            validate: {
+                selectOption: (v: string) => v !== 'select...' || selecioneOpcao
             }
         },
         [dateBirthday]: {
@@ -223,7 +225,7 @@ export class Validations {
         [gender]: {
             required: {
                 value: true,
-                message: selecioneOpcao
+                message: selecioneGenero
             },
         },
     };

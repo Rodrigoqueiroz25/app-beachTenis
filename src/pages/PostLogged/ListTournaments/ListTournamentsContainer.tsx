@@ -5,28 +5,31 @@ import { Routes } from 'enums/routes.enum';
 import { useNavigate } from 'react-router-dom';
 import { PostLogged } from 'components/PostLogged';
 import { isAdmin } from 'helper/isAdmin';
-import { List } from './Presentation/List';
-import useTournament from 'hooks/useTournament';
 import styles from './styles.module.css'
+import { ITournamentDataGetResponse } from 'interfaces/ITournament';
+import { ItemListTournament } from './Presentation/ItemListTournament';
+import { ButtonsSelectors } from './Presentation/ButtonsSelectors';
+import useFetchTournament from 'hooks/useFetchTournament';
 
 
 export function ListTournamentsContainer() {
 
     const [inProgress, setInProgress] = useState(true);
 
-    const { getAllTournaments } = useTournament();
+    const { getAllTournaments } = useFetchTournament();
     const navigate = useNavigate();
 
     useEffect(() => {
         getAllTournaments.getAll();
     }, [getAllTournaments.error]);
 
-    function handleClickInProgress() {
-        setInProgress(true);
+  
+    function access(tournamentId: number): void {
+        navigate(`${Routes.tournamentLessParam}/${tournamentId}`)
     }
 
-    function handleClickFinished() {
-        setInProgress(false);
+    function configure(tournament: ITournamentDataGetResponse): void {
+        navigate(Routes.editTournament, { state: { tournament } });
     }
 
 
@@ -40,25 +43,22 @@ export function ListTournamentsContainer() {
                         {isAdmin() &&
                             <PostLogged.ButtonPlus onClick={() => navigate(Routes.createTournament)} />
                         }
-
                     </PostLogged.LayoutPage.Header>
-                    <div className={styles.buttons}>
-                        <button
-                            value="andamento"
-                            onClick={handleClickInProgress}
-                            className={inProgress ? `${styles.focus}` : ""}
-                        >Em andamento</button>
-
-                        <button
-                            value="finalizado"
-                            onClick={handleClickFinished}
-                            className={!inProgress ? `${styles.focus}` : ""}
-                        >Finalizado</button>
-                    </div>
+                    <ButtonsSelectors onClick={(v) => setInProgress(v)}/>
                 </>
             }
             main={
-                <List listTournaments={inProgress ? getAllTournaments.tournaments?.opened : getAllTournaments.tournaments?.finished} />
+                <div className={styles.list}>
+                    {(inProgress ? getAllTournaments.tournaments?.opened : getAllTournaments.tournaments?.finished)
+                        ?.map((tournament: ITournamentDataGetResponse, key: number) => (
+                            <ItemListTournament
+                                tournament={tournament}
+                                funcBtnAccess={access}
+                                funcBtnConfigure={configure}
+                                key={key}
+                            />
+                        ))}
+                </div>
             }
         />
     );
