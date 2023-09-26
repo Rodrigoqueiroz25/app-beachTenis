@@ -3,15 +3,14 @@ import styles from '../styles.module.css'
 import logoTour from 'assets/logoTour.jpg';
 import { Button } from 'components/Button/Button';
 import { PostLogged } from 'components/PostLogged';
-import { isAdmin } from 'helper/isAdmin';
-import { ITournamentDataGetResponse } from 'interfaces/ITournament';
-import { dateFinalTournament, dateStartTournament, description, organization } from 'constants/wordsPhrases';
+import { isAdmin } from 'functions/isAdmin';
+import { Tournament } from 'models/Tournament';
 
 
 interface ItemListTournamentProps {
-    tournament: ITournamentDataGetResponse;
+    tournament: Tournament;
     funcBtnAccess: (id: number) => void;
-    funcBtnConfigure: (tournament: ITournamentDataGetResponse) => void;
+    funcBtnConfigure: (tournament: Tournament) => void;
 }
 
 
@@ -24,11 +23,11 @@ export function ItemListTournament({ tournament, funcBtnAccess, funcBtnConfigure
                     <PostLogged.Item.Wrapper>
                         <div className={styles.itemList}>
                             <img src={logoTour} alt="logo do torneio" />
-                            <PostLogged.Item.Period dtInit={tournament[dateStartTournament]} dtFinal={tournament[dateFinalTournament]} />
+                            <PostLogged.Item.Period dtInit={tournament.periodRegistration.dateInitial.text} dtFinal={tournament.periodRegistration.dateFinal.text} />
                             <PostLogged.Item.Photos />
-                            <PostLogged.Item.Text text={tournament[organization]} />
-                            <PostLogged.Item.Text small text={tournament[description]} />
-                            <Button small onClick={() => funcBtnAccess(tournament.id)} >Acessar</Button>
+                            <PostLogged.Item.Text text={tournament.organization} />
+                            <PostLogged.Item.Text small text={tournament.description} />
+                            <Button small onClick={() => funcBtnAccess(tournament.id!)} >Acessar</Button>
                             {isAdmin() &&
                                 <Button small onClick={() => funcBtnConfigure(tournament)}>Configurar</Button>
                             }

@@ -1,7 +1,8 @@
 import { PostLogged } from 'components/PostLogged'
-import { ICity } from 'interfaces/ICity'
-import { ISport } from 'interfaces/ISport'
 import './main.css'
+import { dateFollowingDay } from 'helper/convertData';
+import { City } from 'models/City';
+import { Sport } from 'models/Sport';
 
 let dateAtual = dateDayActual();
 
@@ -34,12 +35,12 @@ const dtFinalTournament = "dtFinalTournament";
 const dataInicial = 'Data Inicial';
 const dataFinal = 'Data Final';
 
-const arrayCities: ICity[] = [
-  { id: '5423', area: "18.566", codeIbge: 245030, stateId: 22, name: "indaiá", gentilic: "indiano" },
-  { id: '69', area: "503.069", codeIbge: 270430, stateId: 2, name: "Maceió", gentilic: "maceioense" }
+const arrayCities: City[] = [
+  { id: 5423, areaM2: "18.566", codeIbge: 245030, stateCode: 22, name: "indaiá", gentilic: "indiano" },
+  { id: 69, areaM2: "503.069", codeIbge: 270430, stateCode: 2, name: "Maceió", gentilic: "maceioense" }
 ];
 
-const arraySports: ISport[] = [
+const arraySports: Sport[] = [
   { description: 'beachtenis', id: 1 },
   { description: 'tenis', id: 2 }
 ];
@@ -368,13 +369,13 @@ describe('Testing with defaultValues <FormTournament>', () => {
       defaultValues={{
         description: 'torneio',
         organization: 'org s.a.',
-        cityId: `${arrayCities[0].id}`,
-        sportId: '1',
-        dtStartRegistration: convertDataAmerican(dateAtual),
-        dtFinalRegistration: convertDataAmerican(dateAtual),
-        dtStartTournament: convertDataAmerican(new Date(`${dateAtual.getFullYear()}-${dateAtual.getMonth() + 1}-${dateAtual.getDate() + 1}`)),
-        dtFinalTournament: convertDataAmerican(new Date(`${dateAtual.getFullYear()}-${dateAtual.getMonth() + 1}-${dateAtual.getDate() + 1}`)),
-        otherInformation: 'outher'
+        cityCode: arrayCities[0].id,
+        sportCode: 1,
+        dateStartRegistration:convertDataAmerican(dateAtual), 
+        dateFinalRegistration:convertDataAmerican(dateAtual),
+        dateStartTournament: convertDataAmerican(dateFollowingDay()),
+        dateFinalTournament: convertDataAmerican(dateFollowingDay()),
+        otherInformation: 'outher',
       }}
       submit={submit}
     /></div>

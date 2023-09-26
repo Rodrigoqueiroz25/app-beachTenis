@@ -5,29 +5,29 @@ import { useForm } from "react-hook-form";
 import styles from './styles.module.css';
 import { Button } from 'components/Button/Button';
 import { PostLogged } from "components/PostLogged";
-import { IFormTournamentSponsor } from "interfaces/ITournamentSponsor";
 import { useEffect } from "react";
 import { Validations } from "helper/Validations";
-import { alterar, nameUser, nome, otherInformation, outrasInformacoes, salvar } from "constants/wordsPhrases";
+import { alterar, nome, outrasInformacoes, salvar } from "constants/wordsPhrases";
+import { FieldsTournamentSponsor } from "models/TournamentSponsor";
 
 
-interface FormTournamentSponsorProps {
-    submit: (data: any) => void;
-    defaultValues?: IFormTournamentSponsor;
+interface Props {
+    submit: (data: FieldsTournamentSponsor) => void;
+    defaultValues?: FieldsTournamentSponsor;
 }
 
 
-export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSponsorProps) {
+export function FormTournamentSponsor({submit, defaultValues}: Props) {
 
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm<FieldsTournamentSponsor>({
         resolver: yupResolver(Validations.formTournamentSponsor)
     });
     
 
     useEffect(() => {
         if(defaultValues){
-            setValue(nameUser, defaultValues[nameUser]);
-            setValue(otherInformation, defaultValues[otherInformation]);
+            setValue('name', defaultValues['name']);
+            setValue('otherInformation', defaultValues['otherInformation']);
         }
     }, [defaultValues]);
 
@@ -38,14 +38,14 @@ export function FormTournamentSponsor({submit, defaultValues}: FormTournamentSpo
                 <PostLogged.Input
                     type='text'
                     placeholder={nome}
-                    msgError={errors[nameUser]?.message as string}
-                    {...register(nameUser)}
+                    msgError={errors['name']?.message as string}
+                    {...register('name')}
                 />
 
                 <PostLogged.TextArea 
                     placeholder={outrasInformacoes}
-                    msgError={errors[otherInformation]?.message as string}
-                    {...register(otherInformation)}
+                    msgError={errors['otherInformation']?.message as string}
+                    {...register('otherInformation')}
                 />
 
                 <div className={styles.button}>

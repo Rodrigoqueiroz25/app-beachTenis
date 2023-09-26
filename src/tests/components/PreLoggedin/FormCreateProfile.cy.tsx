@@ -1,8 +1,10 @@
 import React from 'react'
-import { FormCreateProfile } from 'pages/PreLogged/SignUp/CreateProfile/Presentation/FormCreateProfile'
+
 import './main.css';
-import { americanDateString, convertDateAmericanToString, dateDayActual } from 'helper/convertData';
+import { convertDateAmericanToString, dateDayActual } from 'helper/convertData';
 // import { convertData } from 'helper/convertData';
+import { FormCreateAccountPartOne } from 'pages/PreLogged/SignUp/FormCreateAccountPartOne/FormCreateAccountPartOne';
+
 
 function submit(data: any) {
   expect(data.firstName).to.eq('teste')
@@ -12,7 +14,7 @@ function submit(data: any) {
 }
 
 beforeEach(() => {
-  cy.mount(<div className='main'><FormCreateProfile submit={submit} /></div>)
+  cy.mount(<div className='main'><FormCreateAccountPartOne submit={submit} /></div>)
 })
 
 

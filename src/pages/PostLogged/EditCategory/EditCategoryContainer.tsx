@@ -5,15 +5,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { ButtonBack } from "components/PostLogged/ButtonBack/ButtonBack";
-import { tournamentId } from 'constants/wordsPhrases';
-import useFetchCategory from 'hooks/useFetchCategory';
+import { Category, FieldsCategory } from 'models/Category';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 
 export function EditCategoryContainer() {
 
-    const { editCategory } = useFetchCategory();
     const navigate = useNavigate();
-    const { state: { category } } = useLocation();
+    const { selector } = useSelectorMethodFetch();
+    const { data, fetch, isLoading, ok } = selector('category', 'update');
+    
+    const { state: { category } }: { state: { category: Category } } = useLocation();
 
     useEffect(() => {
         if (!category) {
@@ -22,10 +24,9 @@ export function EditCategoryContainer() {
     }, [category]);
 
 
-    function submitForm(data: any) {
-        data[tournamentId] = category[tournamentId];
-        editCategory.update(data, category.id);
-        navigate(`${Routes.tournamentLessParam}/${category?.[tournamentId]}`);
+    function submitForm(data: FieldsCategory) {
+        fetch(Category.formatToSend(data, category.linkedToTournament), category.id);
+        navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`);
     }
 
 
@@ -35,7 +36,7 @@ export function EditCategoryContainer() {
                 header={
                     <PostLogged.LayoutPage.Header>
                         <ButtonBack onClick={() =>
-                            navigate(`${Routes.tournamentLessParam}/${category?.tournamentId}`)
+                            navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`)
                         } />
                         <p>Adicionar Categorias</p>
                     </PostLogged.LayoutPage.Header>
@@ -43,7 +44,7 @@ export function EditCategoryContainer() {
                 main={
                     <PostLogged.FormCategory
                         submit={submitForm}
-                        defaultValues={category}
+                        defaultValues={Category.toFieldsFormFormat(category)}
                     />
                 }
             />

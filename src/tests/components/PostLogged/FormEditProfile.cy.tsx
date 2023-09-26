@@ -1,8 +1,8 @@
 import React from 'react'
 import { FormEditProfile } from 'pages/PostLogged/EditProfile/Presentation/FormEditProfile'
 import './main.css'
-import { ICity } from 'interfaces/ICity'
-import { should } from 'chai'
+import { City } from 'models/City'
+import { FieldsUpdateUserAccount } from 'models/UserAccount'
 
 function submit(data: any) {
   expect(data.name).to.eq('nome')
@@ -13,15 +13,15 @@ function submit(data: any) {
   expect(data.gender).to.eq('M')
 }
 
-const arrayCities: ICity[] = [
-  { id: '5423', area: "18.566", codeIbge: 245030, stateId: 22, name: "indaiá", gentilic: "indiano" },
-  { id: '69', area: "503.069", codeIbge: 270430, stateId: 2, name: "Maceió", gentilic: "maceioense" }
+const arrayCities: City[] = [
+  { id: 5423, areaM2: "18.566", codeIbge: 245030, stateCode: 22, name: "indaiá", gentilic: "indiano" },
+  { id: 69, areaM2: "503.069", codeIbge: 270430, stateCode: 2, name: "Maceió", gentilic: "maceioense" }
 ];
 
 beforeEach(() => {
   cy.mount(<div className='main'><FormEditProfile submit={submit} cities={arrayCities.map((city) => (
     { name: city.name, value: city.id }
-  ))} /></div>)
+  ))} defaultValues={{} as FieldsUpdateUserAccount} /></div>)
 })
 
 
@@ -163,7 +163,7 @@ describe('Testing Validations <FormEditProfile />', () => {
         name: 'nome',
         email: 'email@email.com',
         phoneNumber: '(88)88888-8888',
-        cityId: '5423',
+        cityId: 5423,
         dateBirthday: '01/01/2000',
         gender: 'M'
       }}
@@ -204,7 +204,7 @@ describe('Testing Visuals <FormEditProfile />', () => {
         name: 'nome',
         email: 'email@email.com',
         phoneNumber: '(88)88888-8888',
-        cityId: '5423',
+        cityId: 5423,
         dateBirthday: '01/01/2000',
         gender: 'M'
       }}

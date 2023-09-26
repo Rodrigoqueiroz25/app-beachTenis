@@ -3,7 +3,7 @@ import { PostLogged } from 'components/PostLogged';
 import './main.css';
 
 beforeEach(() => {
-  cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+  cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
 });
 
 
@@ -27,7 +27,7 @@ describe('Tests funcionals <Combobox />', () => {
   })
 
   it('has message error "error" when received message error parameter' ,() => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('[class*=error]').should('be.visible').should('have.text', 'error')
   });
   
@@ -45,17 +45,17 @@ describe('Tests visuals <Combobox />', () => {
   })
 
   it('has the border solid 0.1rem red when received message error parameter', () => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('select').should('have.css','border-bottom','1.11667px solid rgb(255, 0, 0)')
   })
 
   it('has the border-image linear-gradient(to right, #991c11, #cf1e15) when focus and received error parameter', () => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('select').focus().should('have.css','border-image','linear-gradient(to right, rgb(153, 28, 17), rgb(207, 30, 21)) 1 / 1 / 0 stretch')
   })
 
   it('has the border-image-slice 1 when focus and received error parameter', () => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('select').focus().should('have.css','border-image-slice','1')
   })
 
@@ -121,29 +121,29 @@ describe('Tests visuals <Combobox />', () => {
   });
 
   it('has label color brown when received message error parameter' ,() => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('label').should('have.css', 'color', 'rgb(165, 42, 42)')
   });
 
   it('has label color #94221a when received message error parameter and focuses' ,() => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('select').focus();
     cy.get('label').should('have.css', 'color', 'rgb(165, 42, 42)')
   });
 
   
   it('has message error color red' ,() => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('[class*=error]').should('have.css', 'color', 'rgb(255, 0, 0)')
   });
 
   it('has message error font-size 1rem' ,() => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('[class*=error]').should('have.css', 'font-size', '10px')
   });
   
   it('has message error position abslute, right 0 e top 3.2rem' ,() => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('[class*=error]').should('have.css', 'position', 'static')
     cy.get('[class*=error]').should('have.css', 'right', '0px')
     cy.get('[class*=error]').should('have.css', 'top', '26px')
@@ -159,7 +159,7 @@ describe('Testing Visuals snapshots<Combobox />', () => {
   })
 
   it('display error message "error" when msgError prop gets string "error" no hover', () => {
-    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: '1'}, {name: 'option2', value: '2'}]}/></div>)
+    cy.mount(<div className='main'><PostLogged.Combobox placeholder='label' msgError='error' options={[{name: 'option1', value: 1}, {name: 'option2', value: 2}]}/></div>)
     cy.get('[class*=combobox]').compareSnapshot('combobox_placeholder_nohover_empty_errormsg', {errorThreshold: 0.001, capture: 'fullPage', padding:15});
   })
 

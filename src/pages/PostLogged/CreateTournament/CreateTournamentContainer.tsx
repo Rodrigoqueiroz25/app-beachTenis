@@ -3,36 +3,41 @@
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
-import useCities from 'hooks/useGetCities';
-import useSports from 'hooks/useGetSports';
 import { tournamentId } from 'constants/wordsPhrases';
-import useFetchTournament from 'hooks/useFetchTournament';
+import { FieldsTournament, Tournament } from 'models/Tournament';
+import { Sport } from 'models/Sport';
+import { City } from 'models/City';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
+import { useEffect } from 'react';
 
 
 export function CreateTournamentContainer() {
 
-    const { createTournament } = useFetchTournament();
-    
     const navigate = useNavigate();
 
-    const getCities = useCities();
-    const getSports = useSports();
+    const { selector } = useSelectorMethodFetch();
+    const createTournament = selector('tournament', 'create');
+    const cities = selector('city', 'getAll');
+    const sports = selector('sport', 'getAll');
 
+    useEffect(() => {
+        cities.fetch();
+        sports.fetch();
+    }, []);
 
-    function saveDataform(data: any) {
-        // console.log(data);
-        createTournament.create(data);
+    function saveDataform(data: FieldsTournament) {
+        createTournament.fetch(Tournament.formatToSend(data));
     }
 
 
     return (
         <>
-            {createTournament.isLoading &&
+            {sports.isLoading && cities.isLoading &&
                 <p>isLoading</p>
             }
 
-            {createTournament.ok &&
-                <Navigate to={Routes.createCategory} state={{ [tournamentId]: createTournament.tournamentCreated?.id }} />
+            {createTournament.ok && createTournament.data &&
+                <Navigate to={Routes.createCategory} state={{ [tournamentId]: createTournament.data?.id }} />
             }
 
             <PostLogged.LayoutPage.Layout
@@ -45,12 +50,8 @@ export function CreateTournamentContainer() {
                 main={
                     <PostLogged.FormTournament
                         submit={saveDataform}
-                        cities={getCities.cities?.map((city) => (
-                            {name: city.name, value: city.id}
-                        ))}
-                        sports={getSports.sports?.map((sport) => (
-                            {name: sport.description, value: sport.id}
-                        ))}
+                        cities={City.toOptionCombobox(cities.data)}
+                        sports={Sport.toOptionCombobox(sports.data)}
                     />
                 }
             />

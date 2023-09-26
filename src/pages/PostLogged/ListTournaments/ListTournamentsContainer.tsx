@@ -1,34 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import styles from './styles.module.css'
 import { useEffect, useState } from 'react';
 import { Routes } from 'enums/routes.enum';
 import { useNavigate } from 'react-router-dom';
 import { PostLogged } from 'components/PostLogged';
-import { isAdmin } from 'helper/isAdmin';
-import styles from './styles.module.css'
-import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import { ItemListTournament } from './Presentation/ItemListTournament';
 import { ButtonsSelectors } from './Presentation/ButtonsSelectors';
-import useFetchTournament from 'hooks/useFetchTournament';
+import { Tournament } from 'models/Tournament';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
+import { isAdmin } from 'functions/isAdmin';
+
 
 
 export function ListTournamentsContainer() {
 
     const [inProgress, setInProgress] = useState(true);
 
-    const { getAllTournaments } = useFetchTournament();
     const navigate = useNavigate();
+    const { selector } = useSelectorMethodFetch();
+    const { fetch, data, isLoading, ok } = selector('tournament', 'getAll');
 
     useEffect(() => {
-        getAllTournaments.getAll();
-    }, [getAllTournaments.error]);
+        fetch();
+    }, []);
 
-  
+
     function access(tournamentId: number): void {
         navigate(`${Routes.tournamentLessParam}/${tournamentId}`)
     }
 
-    function configure(tournament: ITournamentDataGetResponse): void {
+    function configure(tournament: Tournament): void {
         navigate(Routes.editTournament, { state: { tournament } });
     }
 
@@ -44,13 +46,13 @@ export function ListTournamentsContainer() {
                             <PostLogged.ButtonPlus onClick={() => navigate(Routes.createTournament)} />
                         }
                     </PostLogged.LayoutPage.Header>
-                    <ButtonsSelectors onClick={(v) => setInProgress(v)}/>
+                    <ButtonsSelectors onClick={(v) => setInProgress(v)} />
                 </>
             }
             main={
                 <div className={styles.list}>
-                    {(inProgress ? getAllTournaments.tournaments?.opened : getAllTournaments.tournaments?.finished)
-                        ?.map((tournament: ITournamentDataGetResponse, key: number) => (
+                    {(inProgress ? data.opened : data.finished)
+                        ?.map((tournament: Tournament, key: number) => (
                             <ItemListTournament
                                 tournament={tournament}
                                 funcBtnAccess={access}

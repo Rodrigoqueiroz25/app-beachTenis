@@ -3,17 +3,16 @@ import styles from '../styles.module.css';
 import imgLocation from 'assets/location.svg'
 import { useNavigate } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
-import { ICity } from 'interfaces/ICity';
 import { PostLogged } from 'components/PostLogged';
-import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import logoTour from 'assets/logoTour.jpg';
 import { Button } from 'components/Button/Button';
-import { isAdmin } from 'helper/isAdmin';
-import { dateFinalTournament, dateStartTournament, description, organization } from 'constants/wordsPhrases';
+import { Tournament } from 'models/Tournament';
+import { IOptionCombobox } from 'interfaces/IOptionCombobox';
+import { isAdmin } from 'functions/isAdmin';
 
 interface MainContentHomeProps {
-    cities: ICity[];
-    tournaments?: ITournamentDataGetResponse[];
+    cities: IOptionCombobox[];
+    tournaments?: Tournament[];
 }
 
 
@@ -35,7 +34,7 @@ export function MainContentHome({ cities, tournaments }: MainContentHomeProps) {
                 <img src={imgLocation} alt="" />
                 <select className={styles.cities} placeholder='localização'>
                     {cities?.map((citie, key) => (
-                        <option value={citie.id} key={key}>{citie.name}</option>
+                        <option value={citie.value} key={key}>{citie.name}</option>
                     ))}
                 </select>
             </div>
@@ -60,11 +59,11 @@ export function MainContentHome({ cities, tournaments }: MainContentHomeProps) {
                             <div className={styles.wrapper}>
                                 <PostLogged.Item.Wrapper>
                                     <div className={styles.itemList}>
-                                        <PostLogged.Item.Period dtInit={tournament[dateStartTournament]} dtFinal={tournament[dateFinalTournament]} />
+                                        <PostLogged.Item.Period dtInit={tournament.periodTournament.dateInitial.text} dtFinal={tournament.periodTournament.dateFinal.text} />
                                         <PostLogged.Item.Photos />
                                         <PostLogged.Item.Text small text="3.2 km" />
-                                        <PostLogged.Item.Text text={tournament[organization]} />
-                                        <PostLogged.Item.Text small text={tournament[description]} />
+                                        <PostLogged.Item.Text text={tournament.organization} />
+                                        <PostLogged.Item.Text small text={tournament.description} />
                                         <PostLogged.Item.Text small text="Fee: Free" />
                                         {!isAdmin() &&
                                             <Button small onClick={() => navigate(`${Routes.tournamentLessParam}/${tournament.id}`)}>Inscrição</Button>

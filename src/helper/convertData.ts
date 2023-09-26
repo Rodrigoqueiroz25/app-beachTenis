@@ -1,4 +1,3 @@
-import { isDate, parse } from "date-fns";
 
 
 export function convertDateBrazilToString(date: Date): string{
@@ -16,6 +15,18 @@ export function stringToDate(str: string){
     }
 }
 
+export function americanDateString(date: string){
+    return date?.split('/').reverse().join('-');
+}
+
+export function stringBrazilToDate(str: string){
+    let strr = americanDateString(str);
+    let date = new Date(strr?.concat('T00:00:00'));
+    // if(!isNaN(date.getTime())){
+        return date;
+    // }
+}
+
 export function dateDayActual(): Date{
     let t = new Date();
     t.setHours(0,0,0,0);
@@ -23,12 +34,10 @@ export function dateDayActual(): Date{
     return t;
 }
 
-export function americanDateString(date: string){
-    return date.split('/').reverse().join('-');
-}
+
 
 export function brazilDateString(date: string){
-    return date.split('-').reverse().join('/');
+    return date?.split('-').reverse().join('/');
 }
 
 export function calcAgeFromDate(date: string): number{

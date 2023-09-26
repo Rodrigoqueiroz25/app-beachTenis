@@ -6,7 +6,7 @@ export default function useCookiesSession(){
     const nameCookieToken = 'playGo_user_session';
     const nameCookieNameUser = 'playGo_user_name';
 
-    const [cookies, setCookies] = useCookies();
+    const [cookies, setCookies, removeCookies] = useCookies();
 
 
     function setCookiesSession(accessToken: string, nameUser: string, isAdmin: string): boolean{
@@ -51,12 +51,18 @@ export default function useCookiesSession(){
         }
     }
 
+    function removeCookiesSession(){
+        removeCookies(nameCookieNameUser);
+        removeCookies(nameCookieToken);
+    }
+
 
     return {
         setCookiesSession,
         getCookieNameUser,
         getCookieToken,
-        cookiesSessionExists
+        cookiesSessionExists,
+        removeCookiesSession
     };
 
 }

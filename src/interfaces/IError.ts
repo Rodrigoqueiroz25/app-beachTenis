@@ -1,6 +1,6 @@
 
 export interface IError{
-    error: string;
+    error?: string;
 }
 
 export function isError(obj: any): obj is IError{

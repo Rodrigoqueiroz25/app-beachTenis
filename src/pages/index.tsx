@@ -1,7 +1,5 @@
 import { ForgotPasswd } from "./PreLogged/ForgotPasswd";
 import { CreatePasswd } from "./PreLogged/CreatePasswd";
-import { CreateProfile } from "./PreLogged/SignUp/CreateProfile";
-import { CreateUser } from "./PreLogged/SignUp/CreateUser";
 
 import { CreateTournament } from "./PostLogged/CreateTournament";
 import { EditProfile } from "./PostLogged/EditProfile";
@@ -15,10 +13,11 @@ import { CreateTournamentSponsor } from "./PostLogged/CreateTournamentSponsor";
 import { EditTournamentSponsor } from "./PostLogged/EditTournamentSponsor";
 import { Home } from "./PostLogged/Home";
 import { RegisterPlayerCategory } from "./PostLogged/RegisterPlayerCategory";
+import { SignUp } from './PreLogged/SignUp/SignUp';
 
 export const Pages = {
     Login: Login,
-    Signup: {CreateUser, CreateProfile},
+    SignUp: SignUp,
     RecoveryPasswd: {ForgotPasswd, CreatePasswd},
 
     Home: Home,

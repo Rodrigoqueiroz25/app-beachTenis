@@ -4,15 +4,16 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { useEffect } from 'react';
-import { tournamentId } from 'constants/wordsPhrases';
-import useFetchTournamentSponsor from 'hooks/useFetchTournamentSponsor';
+import { FieldsTournamentSponsor, TournamentSponsor } from 'models/TournamentSponsor';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 
 export function EditTournamentSponsorContainer() {
 
-    const { editTournamentSponsor } = useFetchTournamentSponsor();
     const navigate = useNavigate();
-    const { state: { tournamentSponsor } } = useLocation();
+    const { selector } = useSelectorMethodFetch();
+    const { data, fetch, isLoading, ok } = selector('tournamentSponsor', 'update');
+    const { state: { tournamentSponsor } }: {state: {tournamentSponsor: TournamentSponsor}} = useLocation();
 
     useEffect(() => {
         if (!tournamentSponsor) {
@@ -20,21 +21,19 @@ export function EditTournamentSponsorContainer() {
         }
     }, [tournamentSponsor]);
 
-
-    function saveDataform(data: any) {
-        data[tournamentId] = tournamentSponsor[tournamentId];
-        editTournamentSponsor.edit(data, tournamentSponsor.tournamentId);
+    function saveDataform(data: FieldsTournamentSponsor) {
+        fetch(TournamentSponsor.formatToSend(data, tournamentSponsor.linkedToTournament), tournamentSponsor.id);
     }
 
 
     return (
         <>
-            {editTournamentSponsor.isLoading &&
+            {isLoading &&
                 <p>isLoading</p>
             }
 
-            {editTournamentSponsor.ok &&
-                <Navigate to={`${Routes.tournamentLessParam}/${tournamentSponsor.tournamentId}`} />
+            {ok && data &&
+                <Navigate to={`${Routes.tournamentLessParam}/${tournamentSponsor.linkedToTournament}`} />
             }
 
             <PostLogged.LayoutPage.Layout

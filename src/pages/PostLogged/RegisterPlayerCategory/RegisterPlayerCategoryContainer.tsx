@@ -6,22 +6,25 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { useEffect, useState } from 'react';
 import search from 'assets/searchbx.svg';
-import useAccount from 'hooks/useFetchAccount';
 import { ListPlayers } from './Presentation/ListPlayers/ListPlayers';
 import { ListResultSearch } from './Presentation/ListResultSearch/ListResultSearch';
-import useFetchRegisterPlayerCategory from 'hooks/useFetchRegisterPlayerCategory';
+import { Category } from 'models/Category';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
+
 
 export function RegisterPlayerCategoryContainer() {
 
     const navigate = useNavigate();
-    // const location = useLocation();
-    const { state: { category } } = useLocation();
+    const location = useLocation();
+    const { state: { category } }: { state: { category: Category}} = useLocation();
 
     const [textSearch, setTextSearch] = useState('');
     const [presentation, setPresentation] = useState('listaDuplas');
 
-    const { getPlayersRegisteredByCategory, registerPlayerInCategory } = useFetchRegisterPlayerCategory();
-    const { getAccountByName } = useAccount();
+    const { selector } = useSelectorMethodFetch();
+    const getUser = selector('userAccount', 'getOtherByName');
+    const teams = selector('category', 'getRegisteredTeams');
+    const registerTeam = selector('category', 'registerTeam');
 
     useEffect(() => {
         if(!category){
@@ -30,25 +33,25 @@ export function RegisterPlayerCategoryContainer() {
     },[]);
 
     useEffect(() => {
-        getPlayersRegisteredByCategory.get(category.id);
-    }, [getPlayersRegisteredByCategory.error]);
+        teams.fetch(category.id)
+    }, []);
 
     function handleClickButtonSearch() {
         setPresentation('listaBusca')
-        getAccountByName.get(textSearch);
+        getUser.fetch(textSearch);
     }
 
-    function handleClickButtonInscription(idPlayer: string) {
-        //request
+    function handleClickButtonInscription(idPlayer: number) {
+        registerTeam.fetch(category.id, `${idPlayer}`);
+        navigate(location.pathname, { state: { category } })
         setPresentation('listaDuplas')
-
     }
 
     return (
         <PostLogged.LayoutPage.Layout
             header={
                 <PostLogged.LayoutPage.Header>
-                    <PostLogged.ButtonBack onClick={() => navigate(`${Routes.tournamentLessParam}/${category.tournamentId}`)} />
+                    <PostLogged.ButtonBack onClick={() => navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`)} />
                     <p>{category.description}</p>
                 </PostLogged.LayoutPage.Header>
             }
@@ -65,9 +68,9 @@ export function RegisterPlayerCategoryContainer() {
                         <img onClick={handleClickButtonSearch} src={search} alt="" />
                     </div>
                     {presentation === 'listaDuplas' ?
-                        <ListPlayers listPlayers={getPlayersRegisteredByCategory.playersRecords!} />
+                        <ListPlayers listPlayers={teams.data} />
                     : presentation === 'listaBusca' &&
-                        <ListResultSearch players={getAccountByName.accounts!} handleClick={handleClickButtonInscription} />
+                        <ListResultSearch players={getUser.data} handleClick={handleClickButtonInscription} />
                     }
                 </>
             }

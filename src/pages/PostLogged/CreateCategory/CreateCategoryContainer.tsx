@@ -5,14 +5,18 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { ButtonBack } from "components/PostLogged/ButtonBack/ButtonBack";
-import useFetchCategory from 'hooks/useFetchCategory';
+import { Category, FieldsCategory } from 'models/Category';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
+
 
 
 export function CreateCategoryContainer() {
 
-    const { createCategory } = useFetchCategory();
-    
-    const { state: { tournamentId } } = useLocation();
+    // const { data, fetch, isLoading, ok } = useCreateCategory();
+    const { selector } = useSelectorMethodFetch();
+    const { data, fetch, isLoading, ok } = selector('category', 'create');
+
+    const { state: { tournamentId } }: { state: { tournamentId: number } } = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,8 +26,8 @@ export function CreateCategoryContainer() {
     }, [tournamentId]);
 
     
-    function submitForm(dataForm: any) {
-        createCategory.write({ ...dataForm, tournamentId });
+    function submitForm(data: FieldsCategory) {
+        fetch(Category.formatToSend(data, tournamentId));
         navigate(`${Routes.tournamentLessParam}/${tournamentId}`);
     }
     

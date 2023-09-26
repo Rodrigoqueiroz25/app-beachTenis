@@ -1,38 +1,47 @@
 import React from 'react'
 import { MainContentHome } from 'pages/PostLogged/Home/presentation/MainContentHome'
 import './main.css';
-import { ICity } from 'interfaces/ICity';
-import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import { convertDateAmericanToString, convertDateBrazilToString, dateDayActual, dateFollowingDay } from 'helper/convertData';
 import { BrowserRouter } from 'react-router-dom';
+import { Tournament } from 'models/Tournament';
+import { City } from 'models/City';
+import { otherInformation } from 'constants/wordsPhrases';
 
-const arrayCities: ICity[] = [
-  { id: '5423', area: "18.566", codeIbge: 245030, stateId: 22, name: "indaiá", gentilic: "indiano" },
-  { id: '69', area: "503.069", codeIbge: 270430, stateId: 2, name: "Maceió", gentilic: "maceioense" }
+const arrayCities: City[] = [
+  { id: 5423, areaM2: "18.566", codeIbge: 245030, stateCode: 22, name: "indaiá", gentilic: "indiano" },
+  { id: 69, areaM2: "503.069", codeIbge: 270430, stateCode: 2, name: "Maceió", gentilic: "maceioense" }
 ];
 
-const arrayTournaments: ITournamentDataGetResponse[] = [
+const arrayTournaments: Tournament[] = [
   {
     id: 1,
-    description: 'description',
-    organization: 'organization',
-    cityId: arrayCities[0].id,
-    sportId: '1',
-    dtStartRegistration: convertDateBrazilToString(dateDayActual()),
-    dtFinalRegistration: convertDateBrazilToString(dateDayActual()),
-    dtStartTournament: convertDateBrazilToString(dateFollowingDay()),
-    dtFinalTournament: convertDateBrazilToString(dateFollowingDay()),
-    dtStartRegistrationFormatted: "",
-    dtFinalRegistrationFormatted: "",
-    dtFinalTournamentFormatted: "",
-    dtStartTournamentFormatted: "",
-    otherInformation: "outras informações"
+    description: 'torneio',
+    organization: 'org s.a.',
+    cityCode: arrayCities[0].id,
+    sportCode: 1,
+    periodRegistration: {
+      dateInitial: {
+        text: convertDateAmericanToString(dateDayActual())
+      },
+      dateFinal:{
+        text: convertDateAmericanToString(dateDayActual())
+      }
+    },
+    periodTournament: {
+      dateInitial: {
+        text: convertDateAmericanToString(dateFollowingDay())
+      },
+      dateFinal:{
+        text: convertDateAmericanToString(dateFollowingDay())
+      }
+    },
+    otherInformation: 'outher',
   }
 ]
 
 
 beforeEach(() => {
-  cy.mount(<div className='main'><BrowserRouter><MainContentHome cities={arrayCities} tournaments={arrayTournaments} /></BrowserRouter></div>)
+  cy.mount(<div className='main'><BrowserRouter><MainContentHome cities={City.toOptionCombobox(arrayCities)} tournaments={arrayTournaments} /></BrowserRouter></div>)
 })
 
 
@@ -114,7 +123,7 @@ describe('<MainContentHome />', () => {
 describe('Test Visuals <MainContentHOme />', () => {
 
   it('when not tournaments passed by prop tournaments', () => {
-    cy.mount(<div className='main'><BrowserRouter><MainContentHome cities={arrayCities} tournaments={[]} /></BrowserRouter></div>)
+    cy.mount(<div className='main'><BrowserRouter><MainContentHome cities={City.toOptionCombobox(arrayCities)} tournaments={[]} /></BrowserRouter></div>)
     cy.get('body').compareSnapshot('mainContentHome_noTournaments', { errorThreshold: 0.01, capture: 'fullPage', padding: 5 });
   })
 
@@ -123,7 +132,7 @@ describe('Test Visuals <MainContentHOme />', () => {
   })
 
   it('when two tournaments passed by prop tournaments', () => {
-    cy.mount(<div className='main'><BrowserRouter><MainContentHome cities={arrayCities} tournaments={[...arrayTournaments, ...arrayTournaments]} /></BrowserRouter></div>)
+    cy.mount(<div className='main'><BrowserRouter><MainContentHome cities={City.toOptionCombobox(arrayCities)} tournaments={[...arrayTournaments, ...arrayTournaments]} /></BrowserRouter></div>)
     cy.get('body').compareSnapshot('mainContentHome_twoTournaments', { errorThreshold: 0.01, capture: 'fullPage', padding: 5 });
   })
 })

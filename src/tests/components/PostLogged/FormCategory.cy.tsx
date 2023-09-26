@@ -1,6 +1,7 @@
 import React from 'react'
 import { PostLogged } from 'components/PostLogged';
 import './main.css'
+import { Category } from 'models/Category';
 
 function submit(data: any) {
   expect(data.description).to.eq('Dupla Masculina A')
@@ -137,12 +138,13 @@ describe('Testing Validations <FormCategory>', () => {
 describe('Testing with defaultValues <FormCategory>', () => {
 
   beforeEach(() => {
-    cy.mount(<PostLogged.FormCategory submit={(data) => submit(data)} defaultValues={{
+    cy.mount(<PostLogged.FormCategory submit={(data) => submit(data)} defaultValues={new Category({
+      id: 1,
       description: "Dupla Masculina A",
-      numberAthletes: "233",
-      numberAthletesRegistration: "2",
-      tournamentId: 1
-    }}/>)
+      numberAthletes: '233',
+      numberAthletesRegistration: '2',
+      tournamentId: 1      
+    })}/>)
   });
 
   it('values passed by the default values prop are displayed in the fields', () => {

@@ -1,0 +1,21 @@
+
+
+
+.form{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.form Button{
+    margin-top: 5.4rem;
+}
+
+.msgPasswdDiff p{
+    font-weight: 600;
+    text-align: center;
+    color: red;
+    font-size: 1.5rem;
+    
+}

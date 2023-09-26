@@ -16,6 +16,21 @@
     top: 1.5rem;
 }
 
+.date{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* display: grid;
+    grid-template-columns: 35% 65%; */
+
+    margin-bottom: 2.2rem;
+}
+
+label{
+    font-size: 1.7rem;
+    color: #3f3d56;
+}
+
 .input {
     height: 5rem;
     border-radius: 0.4rem;

@@ -1,0 +1,34 @@
+.title{
+    /* position: absolute; */
+    margin-top: 3.1rem;
+    margin-left: 3.7rem;
+
+    font-size: 3.1rem;
+    color: #2f1160;
+    line-height: 4.6rem;
+    font-weight: 500;
+    
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.containerTitle{
+    width: 100%;
+    height: 100%;
+    font-weight: 500;    
+}
+
+.msgWelcome{
+    margin-top: 3.1rem;
+    margin-left: 3.7rem;
+    
+    font-size: 3.1rem;
+    color: #2F1160;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

@@ -19,7 +19,7 @@ interface FormLoginProps {
 
 export function FormLogin({ submit, error }: FormLoginProps) {
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(Validations.formLogin)
     });
 

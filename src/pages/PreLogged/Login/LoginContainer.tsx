@@ -1,40 +1,32 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useEffect} from 'react';
+import { Navigate } from 'react-router-dom';
 import styles from './styles.module.css';
-import useVerifyAuth from 'hooks/useVerifyAuth';
 import imgBeachTenis from 'assets/player-beachTenis.svg';
 import { Routes } from 'enums/routes.enum';
 import { PreLoggedin } from 'components/PreLoggedin';
 import { LinkOtherPage } from 'components/PreLoggedin/LinkOtherPage/LinkOtherPage';
 import { FormLogin } from './Presentation/FormLogin';
-import useFetchAccount from 'hooks/useFetchAccount';
+import useAuth from 'hooks/fetchApi/useAuth';
+
 
 
 export function LoginContainer() {
 
-    const navigate = useNavigate();
-    const { authenticate } = useFetchAccount();
-    const itsAuth = useVerifyAuth();
+    const { login, error, isAuth, isLoading } = useAuth();
 
     function handleSubmitForm(data: any) {
-        authenticate.login(data);
+        login(data);
     }
 
-    useEffect(() => {
-        if (itsAuth()) {
-            navigate(Routes.home);
-        }
-    }, []);
 
     return (
         <div>
-
-            {authenticate.isLoading &&
+            {isLoading &&
                 <p>isLoading</p>
             }
 
-            {!authenticate.ok ?
+            {!isAuth() ?
                 <PreLoggedin.Layout
                     header={
                         <div className={styles.containerTitle}>
@@ -47,7 +39,7 @@ export function LoginContainer() {
                     main={
                         <FormLogin
                             submit={handleSubmitForm}
-                            error={authenticate.error}
+                            error={error}
                         />
                     }
                     footer={

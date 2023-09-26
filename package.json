@@ -12,6 +12,7 @@
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "@types/react-input-mask": "^3.0.2",
+    "axios": "^1.5.0",
     "cypress-visual-regression": "^3.0.0",
     "date-fns": "^2.30.0",
     "dotenv": "^16.1.3",

@@ -9,9 +9,7 @@ export function MainRoutes(){
     return useRoutes([
         { path: Routes.root, element: <Navigate to={Routes.login}/> },
         { path: Routes.login, element: <Pages.Login/>},
-        { path: Routes.signup, element: <Pages.Signup.CreateUser/> },
-        { path: Routes.createUser, element: <Pages.Signup.CreateUser/> },
-        { path: Routes.createProfile, element: <Pages.Signup.CreateProfile/> },
+        { path: Routes.signup, element: <Pages.SignUp/> },
         { path: Routes.forgotPasswd, element: <Pages.RecoveryPasswd.ForgotPasswd/>},
         { path: Routes.createPasswd, element: <Pages.RecoveryPasswd.CreatePasswd/> },
         { path: Routes.createTournament, element: <PrivateRoute><Pages.CreateTournament/></PrivateRoute> },

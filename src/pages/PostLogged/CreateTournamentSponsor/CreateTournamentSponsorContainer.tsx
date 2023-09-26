@@ -4,38 +4,38 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { useEffect } from 'react';
-import { tournamentId } from 'constants/wordsPhrases';
-import useFetchTournamentSponsor from 'hooks/useFetchTournamentSponsor';
+import { FieldsTournamentSponsor, TournamentSponsor } from 'models/TournamentSponsor';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 
 export function CreateTournamentSponsorContainer() {
 
-    const { createTournamentSponsor } = useFetchTournamentSponsor();
-
     const navigate = useNavigate();
-    const params = useParams();
-    
+    const { selector } = useSelectorMethodFetch();
+    const { data, fetch, isLoading, ok } = selector('tournamentSponsor', 'create');
+
+    const { tournamentId } = useParams<{tournamentId: string}>();
+
     useEffect(() => {
-        if (!params[tournamentId]) {
+        if (!tournamentId) {
             navigate(Routes.listTournaments);
         }
-    }, [params[tournamentId]]);
+    }, [tournamentId]);
 
 
-    function saveDataform(data: any) {
-        data[tournamentId] = params[tournamentId];
-        createTournamentSponsor.create(data);
+    function saveDataform(data: FieldsTournamentSponsor) {
+        fetch(TournamentSponsor.formatToSend(data, Number(tournamentId)));
     }
 
 
     return (
         <>
-            {createTournamentSponsor.isLoading &&
+            {isLoading &&
                 <p>isLoading</p>
             }
 
-            {createTournamentSponsor.ok &&
-                <Navigate to={`${Routes.tournamentLessParam}/${params[tournamentId]}`}/>
+            {ok && data &&
+                <Navigate to={`${Routes.tournamentLessParam}/${tournamentId}`}/>
             }
 
             <PostLogged.LayoutPage.Layout

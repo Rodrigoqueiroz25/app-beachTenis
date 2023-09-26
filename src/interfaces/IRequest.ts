@@ -1,10 +1,9 @@
 
 import { HTTPMETHODS } from "constants/httpMethods";
-import { INotContent } from "./INotContent";
 
-export interface IRequest<T = INotContent>{
+export interface IRequest{
     method: HTTPMETHODS,
-    body?: T,
+    body?: any,
     cookie?: string,
     url: string
 }

@@ -1,81 +1,63 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { ICategoryGetResponse } from 'interfaces/ICategory';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { PostLogged } from 'components/PostLogged';
-import { isAdmin } from 'helper/isAdmin';
-import { ITournamentDataGetResponse } from 'interfaces/ITournament';
 import styles from './styles.module.css'
 import logo from 'assets/logoTour.jpg';
-import { categories, informations } from 'constants/constants';
-import { List } from './Presentation/List';
+import { ListCategories } from './Presentation/ListCategories';
 import { Informations } from './Presentation/Informations/Informations';
 import { tournamentId } from 'constants/wordsPhrases';
-import useFetchTournament from 'hooks/useFetchTournament';
-import useFetchCategory from 'hooks/useFetchCategory';
+import { isAdmin } from 'functions/isAdmin';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 
 export function TournamentContainer() {
 
-
-    const { getTournament } = useFetchTournament();
-    const { getAllCategories, deleteCategory } = useFetchCategory();
-
-    const [listCategories, setListCategories] = useState<ICategoryGetResponse[]>([]);
-    const [dataTournament, setDataTournament] = useState<ITournamentDataGetResponse>({} as ITournamentDataGetResponse);
-
-    const [presentation, setPresentation] = useState(categories);
+    const [presentation, setPresentation] = useState('categories');
 
     const params = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const { selector } = useSelectorMethodFetch();
+    const tournament = selector('tournament', 'get');
+    const categories = selector('category', 'getAll');
+    const deleteCategory = selector('category', 'remove');
+
+    useEffect(() => {
+        if (!params.id) {
+            navigate(Routes.listTournaments)
+        }
+    }, [])
+
+    useEffect(() => {
+        categories.fetch(Number(params.id));
+        tournament.fetch(Number(params.id));
+    }, [])
+    
 
     function handleClickCategories() {
-        setPresentation(categories);
+        setPresentation('categories');
     }
 
     function handleClickInformations() {
-        setPresentation(informations);
+        setPresentation('informations');
     }
 
 
-    useEffect(() => {
-        if (params.id) {
-            getTournament.get(params.id);
-        }
-    }, [getTournament.error])
-
-    useEffect(() => {
-        if (getTournament.tournament) {
-            setDataTournament(getTournament.tournament);
-        }
-    }, [getTournament.tournament]);
-
-
-    useEffect(() => {
-        if (params.id) {
-            getAllCategories.getAll(params.id);
-        }
-    }, [getAllCategories.error]);
-
-    useEffect(() => {
-        if (getAllCategories.categories) {
-            setListCategories(getAllCategories.categories);
-        }
-    }, [getAllCategories.categories]);
-
-
-    function removeCategory(id: string) {
-        deleteCategory.delete(id);
-        let arr = listCategories.filter(c => c.id !== id);
-        setListCategories(arr);
+    function removeCategory(id: number) {
+        deleteCategory.fetch(id);
+        navigate(location.pathname)
+        // let arr = getCategories.listCategories.filter(c => c.id !== id);
+        // setListCategories(arr);
     }
 
-    function editCategory(id: string){
-        let category = listCategories?.find((c) => c.id === id);
-        if(category){
-            navigate(Routes.editCategory, { state: { category: category }})
+    function editCategory(id: number) {
+        let category = categories.data?.find((c) => c.id === id);
+        if (category) {
+            navigate(Routes.editCategory, { state: { category } })
         }
     }
 
@@ -89,25 +71,25 @@ export function TournamentContainer() {
                             <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                             <p>Torneio</p>
                             {isAdmin() &&
-                                <PostLogged.ButtonPlus onClick={() => navigate(Routes.createCategory, { state: { [tournamentId]: dataTournament.id } })} />
+                                <PostLogged.ButtonPlus onClick={() => navigate(Routes.createCategory, { state: { [tournamentId]: tournament.data.id } })} />
                             }
                         </PostLogged.LayoutPage.Header>
                         <div className={styles.header}>
                             <div className={styles.tournament}>
                                 <img src={logo} alt="" />
-                                <p>{dataTournament.description}</p>
+                                <p>{tournament.data.description}</p>
                             </div>
                             <div className={styles.buttons}>
                                 <button
-                                    value={categories}
+                                    value={'categories'}
                                     onClick={handleClickCategories}
-                                    className={presentation === categories ? `${styles.focus}` : ""}
+                                    className={presentation === 'categories' ? `${styles.focus}` : ""}
                                 >Categorias</button>
 
                                 <button
-                                    value={informations}
+                                    value={'informations'}
                                     onClick={handleClickInformations}
-                                    className={presentation === informations ? `${styles.focus}` : ""}
+                                    className={presentation === 'informations' ? `${styles.focus}` : ""}
                                 >Informações</button>
                             </div>
                         </div>
@@ -115,15 +97,15 @@ export function TournamentContainer() {
 
                 }
                 main={
-                    presentation === "Categorias" ? 
-                    <List
-                        dataTournament={dataTournament}
-                        listCategories={listCategories}
-                        editCategory={editCategory}
-                        removeCategory={removeCategory}
-                    />
-                    : presentation === "Informações" &&
-                    <Informations infoTournament={dataTournament} />
+                    presentation === "categories" ?
+                        <ListCategories
+                            dataTournament={tournament.data}
+                            listCategories={categories.data}
+                            editCategory={editCategory}
+                            removeCategory={removeCategory}
+                        />
+                        : presentation === "informations" &&
+                        <Informations infoTournament={tournament.data} />
                 }
             />
 
