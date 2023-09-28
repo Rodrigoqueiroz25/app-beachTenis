@@ -13,19 +13,20 @@ import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 export function EditTournamentContainer() {
 
+    const { StateFetchHandle, Body, Header, HeaderDiv, Main } = PostLogged.Layout();
     const navigate = useNavigate();
     const { selector } = useSelectorMethodFetch();
     const updateTournament = selector('tournament', 'update');
     const cities = selector('city', 'getAll');
     const sports = selector('sport', 'getAll');
 
-    const { state: { tournament } }: {state: {tournament: Tournament}} = useLocation();
+    const { state: { tournament } }: { state: { tournament: Tournament } } = useLocation();
 
     useEffect(() => {
         cities.fetch();
         sports.fetch();
     }, []);
-    
+
     useEffect(() => {
         if (!tournament) {
             navigate(Routes.listTournaments);
@@ -40,31 +41,35 @@ export function EditTournamentContainer() {
 
     return (
         <>
-            {cities.isLoading && sports.isLoading &&
-                <p>isLoading</p>
-            }
-
             {updateTournament.ok && updateTournament.data &&
-                <Navigate to={Routes.listTournaments}/>
+                <Navigate to={Routes.listTournaments} />
             }
 
-            <PostLogged.LayoutPage.Layout
-                header={
-                    <PostLogged.LayoutPage.Header>
-                        <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
-                        <p>Altere o Torneio</p>
-                    </PostLogged.LayoutPage.Header>
-                }
-                main={
-                    <PostLogged.FormTournament
-                        submit={saveDataform}
-                        cities={City.toOptionCombobox(cities.data)}
-                        sports={Sport.toOptionCombobox(sports.data)}
-                        defaultValues={Tournament.toFieldsFormFormat(tournament)}
-                    />
-                }
-            />
-
+            <StateFetchHandle
+                isLoading={cities.isLoading && sports.isLoading}
+                dataGetted={cities.ok && sports.ok}
+                shouldRedirect={{
+                    redirect: updateTournament.ok,
+                    to: `${Routes.tournamentLessParam}/${tournament.id}`
+                }}
+            >
+                <Body>
+                    <Header>
+                        <HeaderDiv>
+                            <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
+                            <p>Altere o Torneio</p>
+                        </HeaderDiv>
+                    </Header>
+                    <Main>
+                        <PostLogged.FormTournament
+                            submit={saveDataform}
+                            cities={City.toOptionCombobox(cities.data)}
+                            sports={Sport.toOptionCombobox(sports.data)}
+                            defaultValues={Tournament.toFieldsFormFormat(tournament)}
+                        />
+                    </Main>
+                </Body>
+            </StateFetchHandle>
         </>
     );
 }

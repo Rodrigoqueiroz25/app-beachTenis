@@ -10,10 +10,14 @@ import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 export function EditTournamentSponsorContainer() {
 
+    const { Header, HeaderDiv, Main, Body, StateFetchHandle } = PostLogged.Layout();
+
     const navigate = useNavigate();
     const { selector } = useSelectorMethodFetch();
-    const { data, fetch, isLoading, ok } = selector('tournamentSponsor', 'update');
-    const { state: { tournamentSponsor } }: {state: {tournamentSponsor: TournamentSponsor}} = useLocation();
+    const { fetch, isLoading, ok } = selector('tournamentSponsor', 'update');
+
+    const { state: { tournamentSponsor } }: { state: { tournamentSponsor: TournamentSponsor } } = useLocation();
+
 
     useEffect(() => {
         if (!tournamentSponsor) {
@@ -21,36 +25,35 @@ export function EditTournamentSponsorContainer() {
         }
     }, [tournamentSponsor]);
 
+
     function saveDataform(data: FieldsTournamentSponsor) {
         fetch(TournamentSponsor.formatToSend(data, tournamentSponsor.linkedToTournament), tournamentSponsor.id);
     }
 
 
     return (
-        <>
-            {isLoading &&
-                <p>isLoading</p>
-            }
-
-            {ok && data &&
-                <Navigate to={`${Routes.tournamentLessParam}/${tournamentSponsor.linkedToTournament}`} />
-            }
-
-            <PostLogged.LayoutPage.Layout
-                header={
-                    <PostLogged.LayoutPage.Header>
+        <StateFetchHandle
+            isLoading={isLoading}
+            shouldRedirect={{
+                redirect: ok,
+                to: `${Routes.tournamentLessParam}/${tournamentSponsor.linkedToTournament}`
+            }}
+        >
+            <Body>
+                <Header>
+                    <HeaderDiv>
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                         <p>Edite o Patrocínio</p>
-                    </PostLogged.LayoutPage.Header>
-                }
-                main={
+                    </HeaderDiv>
+                </Header>
+                <Main>
                     <PostLogged.FormTournamentSponsor
                         submit={saveDataform}
                         defaultValues={tournamentSponsor}
 
                     />
-                }
-            />
-        </>
+                </Main>
+            </Body>
+        </StateFetchHandle>
     );
 }

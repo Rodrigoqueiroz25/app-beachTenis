@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
 import { useEffect } from 'react';
@@ -10,11 +10,12 @@ import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 export function CreateTournamentSponsorContainer() {
 
+    const { Header, Main, HeaderDiv, Body, StateFetchHandle } = PostLogged.Layout();
     const navigate = useNavigate();
     const { selector } = useSelectorMethodFetch();
     const { data, fetch, isLoading, ok } = selector('tournamentSponsor', 'create');
 
-    const { tournamentId } = useParams<{tournamentId: string}>();
+    const { tournamentId } = useParams<{ tournamentId: string }>();
 
     useEffect(() => {
         if (!tournamentId) {
@@ -29,28 +30,26 @@ export function CreateTournamentSponsorContainer() {
 
 
     return (
-        <>
-            {isLoading &&
-                <p>isLoading</p>
-            }
-
-            {ok && data &&
-                <Navigate to={`${Routes.tournamentLessParam}/${tournamentId}`}/>
-            }
-
-            <PostLogged.LayoutPage.Layout
-                header={
-                    <PostLogged.LayoutPage.Header>
+        <StateFetchHandle
+            isLoading={isLoading}
+            shouldRedirect={{
+                redirect: ok,
+                to: `${Routes.tournamentLessParam}/${tournamentId}`
+            }}
+        >
+            <Body>
+                <Header>
+                    <HeaderDiv>
                         <PostLogged.ButtonBack onClick={() => navigate(Routes.listTournaments)} />
                         <p>Adicione um Patrocínio</p>
-                    </PostLogged.LayoutPage.Header>
-                }
-                main={
+                    </HeaderDiv>
+                </Header>
+                <Main>
                     <PostLogged.FormTournamentSponsor
                         submit={saveDataform}
                     />
-                }
-            />
-        </>
+                </Main>
+            </Body>
+        </StateFetchHandle>
     );
 }

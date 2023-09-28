@@ -11,10 +11,11 @@ import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 export function EditCategoryContainer() {
 
+    const { Header, Main, HeaderDiv, Body, StateFetchHandle } = PostLogged.Layout();
     const navigate = useNavigate();
     const { selector } = useSelectorMethodFetch();
-    const { data, fetch, isLoading, ok } = selector('category', 'update');
-    
+    const { fetch, isLoading, ok } = selector('category', 'update');
+
     const { state: { category } }: { state: { category: Category } } = useLocation();
 
     useEffect(() => {
@@ -24,30 +25,37 @@ export function EditCategoryContainer() {
     }, [category]);
 
 
+
     function submitForm(data: FieldsCategory) {
         fetch(Category.formatToSend(data, category.linkedToTournament), category.id);
-        navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`);
+        // navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`);
     }
 
 
     return (
-        <>
-            <PostLogged.LayoutPage.Layout
-                header={
-                    <PostLogged.LayoutPage.Header>
+        <StateFetchHandle
+            isLoading={isLoading}
+            shouldRedirect={{
+                redirect: ok,
+                to: `${Routes.tournamentLessParam}/${category.linkedToTournament}`,
+            }}
+        >
+            <Body>
+                <Header>
+                    <HeaderDiv>
                         <ButtonBack onClick={() =>
                             navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`)
                         } />
                         <p>Adicionar Categorias</p>
-                    </PostLogged.LayoutPage.Header>
-                }
-                main={
+                    </HeaderDiv>
+                </Header>
+                <Main>
                     <PostLogged.FormCategory
                         submit={submitForm}
                         defaultValues={Category.toFieldsFormFormat(category)}
                     />
-                }
-            />
-        </>
+                </Main>
+            </Body>
+        </StateFetchHandle>
     );
 }

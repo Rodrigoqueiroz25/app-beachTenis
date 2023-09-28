@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles.module.css';
 
-interface ButtonsSelectorsProps{
+interface ButtonsSelectorsProps {
     onClick: (value: boolean) => void;
 }
 
@@ -10,7 +10,7 @@ export function ButtonsSelectors({ onClick }: ButtonsSelectorsProps) {
 
     const [inProgress, setInProgress] = useState(true);
 
-    function handleClick(){
+    function handleClick() {
         setInProgress(!inProgress);
     }
 
@@ -19,20 +19,18 @@ export function ButtonsSelectors({ onClick }: ButtonsSelectorsProps) {
     }, [inProgress]);
 
     return (
-        <header>
-            <div className={styles.buttons}>
-                <button
-                    value="andamento"
-                    onClick={handleClick}
-                    className={inProgress ? `${styles.focus}` : ""}
-                >Em andamento</button>
+        <div className={styles.buttons}>
+            <button
+                value="andamento"
+                onClick={handleClick}
+                className={inProgress ? `${styles.focus}` : ""}
+            >Em andamento</button>
 
-                <button
-                    value="finalizado"
-                    onClick={handleClick}
-                    className={!inProgress ? `${styles.focus}` : ""}
-                >Finalizado</button>
-            </div>
-        </header>
+            <button
+                value="finalizado"
+                onClick={handleClick}
+                className={!inProgress ? `${styles.focus}` : ""}
+            >Finalizado</button>
+        </div>
     );
 }

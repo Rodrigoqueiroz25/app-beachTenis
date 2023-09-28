@@ -5,33 +5,30 @@ import { HeaderHome } from './presentation/HeaderHome';
 import { MainContentHome } from './presentation/MainContentHome';
 import { City } from 'models/City';
 import useCookiesSession from 'hooks/useCookiesSession';
-import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
-import { useEffect } from 'react';
+import { useHome } from './hooks/useHome';
+
 
 export function HomeContainer() {
 
     const { getCookieNameUser } = useCookiesSession();
+    const { Header, Main, Body, StateFetchHandle } = PostLogged.Layout();
 
-    const { selector } = useSelectorMethodFetch();
-    const cities = selector('city', 'getAll');
-    const tournaments = selector('tournament', 'getAll');
-    
-    useEffect(() => {
-        cities.fetch();
-        tournaments.fetch();
-    },[]);
+    const { cities, tournaments, isLoading, ok } = useHome();
 
     return (
-        <PostLogged.LayoutPage.Layout
-            header={
-                <HeaderHome nameUser={getCookieNameUser()?.split(' ')[0]!}/>
-            }
-            main={
-                <MainContentHome 
-                    cities={City.toOptionCombobox(cities.data)}
-                    tournaments={tournaments.data.opened}
-                />
-            }
-        />
+        <StateFetchHandle isLoading={isLoading} dataGetted={ok}>
+            <Body>
+                <Header>
+                    <HeaderHome nameUser={getCookieNameUser()?.split(' ')[0]!} />
+                </Header>
+                <Main>
+                    <MainContentHome
+                        cities={City.toOptionCombobox(cities)}
+                        tournaments={tournaments}
+                    />
+                </Main>
+            </Body>
+        </StateFetchHandle>
+
     );
 }

@@ -3,8 +3,10 @@ import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import './main.css'
 
+const { Footer } = PostLogged.Layout();
+
 beforeEach(() => {
-  cy.mount(<BrowserRouter><div className='main'><PostLogged.LayoutPage.Footer/></div></BrowserRouter>)
+  cy.mount(<BrowserRouter><div className='main'><Footer/></div></BrowserRouter>)
 })
 
 

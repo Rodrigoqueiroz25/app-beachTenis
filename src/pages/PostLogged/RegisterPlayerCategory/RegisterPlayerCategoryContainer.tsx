@@ -14,9 +14,11 @@ import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 export function RegisterPlayerCategoryContainer() {
 
+    const { Body, Header, HeaderDiv, Main, StateFetchHandle } = PostLogged.Layout();
+
     const navigate = useNavigate();
     const location = useLocation();
-    const { state: { category } }: { state: { category: Category}} = useLocation();
+    const { state: { category } }: { state: { category: Category } } = useLocation();
 
     const [textSearch, setTextSearch] = useState('');
     const [presentation, setPresentation] = useState('listaDuplas');
@@ -27,10 +29,10 @@ export function RegisterPlayerCategoryContainer() {
     const registerTeam = selector('category', 'registerTeam');
 
     useEffect(() => {
-        if(!category){
+        if (!category) {
             navigate(Routes.listTournaments);
         }
-    },[]);
+    }, []);
 
     useEffect(() => {
         teams.fetch(category.id)
@@ -48,32 +50,38 @@ export function RegisterPlayerCategoryContainer() {
     }
 
     return (
-        <PostLogged.LayoutPage.Layout
-            header={
-                <PostLogged.LayoutPage.Header>
+        <Body>
+            <Header>
+                <HeaderDiv>
                     <PostLogged.ButtonBack onClick={() => navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`)} />
                     <p>{category.description}</p>
-                </PostLogged.LayoutPage.Header>
-            }
-            main={
-                <>
-                    <div className={styles.inputSearch}>
-                        <input
-                            className={styles.search}
-                            type="text"
-                            placeholder='Encontre seu parceiro'
-                            value={textSearch}
-                            onChange={(e) => setTextSearch(e.target.value)}
-                        />
-                        <img onClick={handleClickButtonSearch} src={search} alt="" />
-                    </div>
-                    {presentation === 'listaDuplas' ?
+                </HeaderDiv>
+            </Header>
+            <Main>
+                <div className={styles.inputSearch}>
+                    <input
+                        className={styles.search}
+                        type="text"
+                        placeholder='Encontre seu parceiro'
+                        value={textSearch}
+                        onChange={(e) => setTextSearch(e.target.value)}
+                    />
+                    <img onClick={handleClickButtonSearch} src={search} alt="" />
+                </div>
+
+                {presentation === 'listaDuplas'
+                    ?
+                    <StateFetchHandle isLoading={teams.isLoading} dataGetted={teams.ok} >
                         <ListPlayers listPlayers={teams.data} />
-                    : presentation === 'listaBusca' &&
+                    </StateFetchHandle>
+                    :
+                    presentation === 'listaBusca' &&
+                    <StateFetchHandle isLoading={getUser.isLoading} dataGetted={getUser.ok}>
                         <ListResultSearch players={getUser.data} handleClick={handleClickButtonInscription} />
-                    }
-                </>
-            }
-        />
+                    </StateFetchHandle>
+                    
+                }
+            </Main>
+        </Body>
     )
 }

@@ -1,0 +1,28 @@
+.headerDiv {
+    display: grid;
+    grid-template-columns: 0.1fr 2fr 0.1fr;
+    /* display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap; */
+
+    justify-items: center;
+    align-items: center;    
+}
+
+.headerDiv > :nth-child(1){
+    justify-self: flex-start;
+}
+
+.headerDiv > :nth-child(3){
+    justify-self: flex-end;
+}
+
+
+.headerDiv > :nth-child(2) {
+    font-size: 2.4rem;
+    color: black;
+    font-weight: 600;
+    justify-self: center;
+}
+
