@@ -1,2 +1,2 @@
 
-export { TournamentContainer as Tournament } from './TournamentContainer'
+export { Tournament as Tournament } from './Tournament'

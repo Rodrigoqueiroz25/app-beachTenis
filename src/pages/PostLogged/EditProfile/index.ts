@@ -1,2 +1,2 @@
 
-export { EditProfileContainer as EditProfile } from './EditProfileContainer'
+export { EditProfile as EditProfile } from './EditProfile'

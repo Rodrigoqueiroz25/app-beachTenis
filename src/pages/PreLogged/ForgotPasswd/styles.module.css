@@ -16,37 +16,3 @@
     align-items: flex-end;
 
 }
-
-.containerMain{
-    text-align: center;
-}
-
-.imgForgotPasswd{
-    margin-top: 0.8rem;
-    margin-bottom: 1.8rem;
-    width: 18rem;
-    height: 13rem;
-    
-}
-
-.textForgotPasswd{
-    font-size: 1.4rem;
-    line-height: 2.1rem;
-    color: #3f3d56;
-    margin-bottom: 2.2rem;
-}
-
-.txtRememberPasswd{
-    margin-top: 1.6rem;
-    font-size: 1.2rem;
-    color: #8a8a8a;
-    
-    margin-bottom: 9rem;
-    
-}
-
-.linkToLoginScreen{
-    color: #2F1160;
-    text-decoration: none;
-    margin-left: 0.5rem;
-}

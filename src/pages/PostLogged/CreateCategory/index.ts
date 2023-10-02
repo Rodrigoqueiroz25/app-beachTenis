@@ -1,2 +1,2 @@
 
-export { CreateCategoryContainer as CreateCategory }  from './CreateCategoryContainer';
+export { CreateCategory as CreateCategory }  from './CreateCategory';

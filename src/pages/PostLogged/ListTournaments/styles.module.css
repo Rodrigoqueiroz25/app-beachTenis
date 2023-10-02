@@ -1,4 +1,4 @@
-
+/* 
 .buttons{
     display: flex;
     
@@ -8,7 +8,7 @@
     height: 3.5rem;
 }
 
-button {
+.button {
     width: 10.6rem;
     height: 3rem;
 
@@ -26,7 +26,7 @@ button {
 .focus{
     background: #221FD1;
     color: #FFFFFF;
-}
+} */
 
 
 .list{
@@ -34,7 +34,7 @@ button {
     
 }
 
-.itemList{
+/* .itemList{
     grid-column: 2/3;
     grid-row: 2/3;
 
@@ -91,6 +91,6 @@ button {
     align-self: center;
     justify-self: end;
 
-}
+} */
 
 

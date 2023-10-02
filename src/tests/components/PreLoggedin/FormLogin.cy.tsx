@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { FormLogin } from 'pages/PreLogged/Login/Presentation/FormLogin'
+import { FormLogin } from 'components/PreLoggedin/FormLogin/FormLogin'
 import { BrowserRouter } from 'react-router-dom'
 import './main.css';
 

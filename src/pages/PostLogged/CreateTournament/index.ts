@@ -1,2 +1,2 @@
 
-export { CreateTournamentContainer as CreateTournament} from './CreateTournamentContainer'
+export { CreateTournament as CreateTournament} from './CreateTournament'

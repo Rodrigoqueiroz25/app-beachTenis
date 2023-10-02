@@ -1,2 +1,2 @@
 
-export { CreatePasswdContainer as CreatePasswd } from './CreatePasswdContainer'
+export { CreatePasswd as CreatePasswd } from './CreatePasswd'

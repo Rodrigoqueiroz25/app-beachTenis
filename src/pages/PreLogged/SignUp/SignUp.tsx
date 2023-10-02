@@ -7,10 +7,11 @@ import { FieldsCreateUserAccount, FieldsCreateUserAccountPart1, FieldsCreateUser
 import { Navigate } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { PreLoggedin } from 'components/PreLoggedin';
-import { FormCreateAccountPartOne } from './FormCreateAccountPartOne/FormCreateAccountPartOne';
-import { FormCreateAccountPartTwo } from './FormCreateAccountPartTwo/FormCreateAccountPartTwo';
+
+import { FormCreateAccountPartTwo } from 'components/PreLoggedin/FormCreateAccountPartTwo/FormCreateAccountPartTwo';
 import { LinkOtherPage } from 'components/PreLoggedin/LinkOtherPage/LinkOtherPage';
 import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
+import { FormCreateAccountPartOne } from 'components/PreLoggedin/FormCreateAccountPartOne/FormCreateAccountPartOne';
 
 export function SignUp() {
 

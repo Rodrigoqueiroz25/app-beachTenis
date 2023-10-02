@@ -1,6 +1,8 @@
 import React from 'react'
-import { FormCreatePassword } from 'pages/PreLogged/CreatePasswd/Presentation/FormCreatePassword'
+
 import './main.css';
+import { FormCreatePassword } from 'components/PreLoggedin/FormCreatePassword/FormCreatePassword';
+
 
 function submit(data: any) {
   expect(data.password).to.eq('1234')

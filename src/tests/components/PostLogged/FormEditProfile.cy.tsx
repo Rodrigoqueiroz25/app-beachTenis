@@ -1,8 +1,9 @@
 import React from 'react'
-import { FormEditProfile } from 'pages/PostLogged/EditProfile/Presentation/FormEditProfile'
+
 import './main.css'
 import { City } from 'models/City'
 import { FieldsUpdateUserAccount } from 'models/UserAccount'
+import { FormEditProfile } from 'components/PostLogged/FormEditProfile/FormEditProfile'
 
 function submit(data: any) {
   expect(data.name).to.eq('nome')

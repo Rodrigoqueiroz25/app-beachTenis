@@ -1,2 +1,2 @@
 
-export { CreateTournamentSponsorContainer as CreateTournamentSponsor }  from './CreateTournamentSponsorContainer';
+export { CreateTournamentSponsor as CreateTournamentSponsor }  from './CreateTournamentSponsor';

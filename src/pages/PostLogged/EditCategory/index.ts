@@ -1,2 +1,2 @@
 
-export { EditCategoryContainer as EditCategory }  from './EditCategoryContainer';
+export { EditCategory as EditCategory }  from './EditCategory';

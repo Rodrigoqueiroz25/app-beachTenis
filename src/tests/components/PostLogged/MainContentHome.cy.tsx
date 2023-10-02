@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainContentHome } from 'pages/PostLogged/Home/presentation/MainContentHome'
+import { MainContentHome } from 'pages/PostLogged/Home/components/MainContentHome'
 import './main.css';
 import { convertDateAmericanToString, convertDateBrazilToString, dateDayActual, dateFollowingDay } from 'helper/convertData';
 import { BrowserRouter } from 'react-router-dom';

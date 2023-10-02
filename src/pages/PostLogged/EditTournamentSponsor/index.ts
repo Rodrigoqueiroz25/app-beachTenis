@@ -1,2 +1,2 @@
 
-export { EditTournamentSponsorContainer as EditTournamentSponsor }  from './EditTournamentSponsorContainer';
+export { EditTournamentSponsor as EditTournamentSponsor }  from './EditTournamentSponsor';

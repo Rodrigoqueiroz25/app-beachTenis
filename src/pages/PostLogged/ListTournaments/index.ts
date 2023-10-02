@@ -1,2 +1,2 @@
 
-export { ListTournamentsContainer as ListTournaments } from './ListTournamentsContainer';
+export { ListTournaments as ListTournaments } from './ListTournaments';

@@ -1,32 +1,4 @@
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 1rem 1rem 1rem;
-    align-items: center;
-
-}
-
-.header .photoNameUser{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2.5rem;
-}
-
-.header .photoNameUser p{
-    font-size: 3rem;
-    font-weight: 600;
-    color: black;
-}
-
-.header .icons {
-    display: flex;
-    align-items: center;
-    gap: 1.3rem;
-}
-
-
 .location{
     display: flex;
     flex-direction: row;

@@ -1,6 +1,7 @@
 import React from 'react'
-import { HeaderHome } from 'pages/PostLogged/Home/presentation/HeaderHome'
+
 import './main.css'
+import { HeaderHome } from 'pages/PostLogged/Home/components/HeaderHome/HeaderHome'
 
 beforeEach(() => {
   cy.mount(<div className='main'><HeaderHome nameUser='name'/></div>)

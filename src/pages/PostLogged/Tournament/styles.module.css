@@ -55,7 +55,7 @@ button {
     color: #FFFFFF;
 }
 
-.list{
+/* .list{
     margin: 3rem 0 0 0;
 }
 
@@ -95,4 +95,4 @@ button {
 .itemList > :nth-child(5){
     grid-area: remover;
     justify-self: end;
-}
+} */

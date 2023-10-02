@@ -1,2 +1,2 @@
 
-export { EditTournamentContainer as EditTournament} from './EditTournamentContainer'
+export { EditTournament as EditTournament} from './EditTournament'

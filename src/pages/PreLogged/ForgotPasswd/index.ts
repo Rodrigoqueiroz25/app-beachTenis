@@ -1,2 +1,2 @@
 
-export { ForgotPasswdContainer as ForgotPasswd } from './ForgotPasswdContainer'
+export { ForgotPasswd as ForgotPasswd } from './ForgotPasswd'

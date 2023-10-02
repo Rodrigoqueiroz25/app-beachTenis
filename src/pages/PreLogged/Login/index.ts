@@ -1,2 +1,2 @@
 
-export { LoginContainer as Login } from './LoginContainer'
+export { Login as Login } from './Login'

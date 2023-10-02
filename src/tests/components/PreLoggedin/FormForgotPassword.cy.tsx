@@ -1,8 +1,9 @@
 
 import React from 'react'
-import { FormForgotPassword } from 'pages/PreLogged/ForgotPasswd/Presentation/FormForgotPassword'
+
 import { BrowserRouter } from 'react-router-dom';
 import './main.css';
+import { FormForgotPassword } from 'components/PreLoggedin/FormForgotPassword/FormForgotPassword';
 
 function submit(data: any) {
   expect(data.email).to.eq('email@email.com')

@@ -1,2 +1,2 @@
 
-export { RegisterPlayerCategoryContainer as RegisterPlayerCategory } from './RegisterPlayerCategoryContainer'
+export { RegisterPlayerCategory as RegisterPlayerCategory } from './RegisterPlayerCategory'

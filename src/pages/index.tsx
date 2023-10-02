@@ -4,7 +4,7 @@ import { CreatePasswd } from "./PreLogged/CreatePasswd";
 import { CreateTournament } from "./PostLogged/CreateTournament";
 import { EditProfile } from "./PostLogged/EditProfile";
 import { ListTournaments } from "./PostLogged/ListTournaments";
-import { TournamentContainer } from "./PostLogged/Tournament/TournamentContainer";
+import { Tournament } from "./PostLogged/Tournament/Tournament";
 import { Login } from "./PreLogged/Login";
 import { CreateCategory } from "./PostLogged/CreateCategory";
 import { EditCategory } from "./PostLogged/EditCategory";
@@ -15,7 +15,6 @@ import { Home } from "./PostLogged/Home";
 import { RegisterPlayerCategory } from "./PostLogged/RegisterPlayerCategory";
 import { SignUp } from './PreLogged/SignUp/SignUp';
 import { PrivateRoute } from "PrivateRoute";
-import { PostLogged } from "components/PostLogged";
 
 
 function privateRoute(Comp: JSX.Element){
@@ -33,7 +32,7 @@ const pagesPosLogged = {
     Home: <Home/>,
     EditProfile: <EditProfile/>,
     ListTournaments: <ListTournaments/>,
-    Tournament: <TournamentContainer/>,
+    Tournament: <Tournament/>,
     CreateTournament: <CreateTournament/>,
     EditTournament: <EditTournament/>,
     CreateTournamentSponsor: <CreateTournamentSponsor/>,

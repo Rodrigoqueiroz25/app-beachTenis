@@ -1,0 +1,39 @@
+.formLogin{
+    padding: 7rem 0rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.7rem;
+}
+
+.form Button{
+    margin-top: 3.3rem;
+    cursor: pointer;
+}
+
+.forgotPasswd{
+    /* margin-top: -2.1rem; */
+    display: flex;
+    justify-content: right;
+    
+}
+
+.forgotPasswd .link{
+    color: #3f3d56;
+    font-weight: 400;
+    font-size: 1.2rem;
+       
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.msgErroLogin p{
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+    color: red;
+    font-size: 1.5rem;
+}
+
