@@ -1,3 +1,4 @@
+import { dateDayActual, stringBrazilToDate } from "helper/convertData";
 import { isError } from "interfaces/IError";
 
 export type DatesFormatted = {
@@ -104,6 +105,13 @@ export class Tournament {
             this.sportCode = data.sportId;
             this.otherInformation = data.otherInformation;
         }
+    }
+
+    public isFinished(){
+        if(stringBrazilToDate(this.periodTournament.dateFinal.text) < dateDayActual()){
+            return true
+        }
+        return false;
     }
 
     public static toFieldsFormFormat(data: Tournament): FieldsTournament {

@@ -22,7 +22,7 @@ interface FormTournamentProps {
 
 
 export function FormTournament({ submit, sports, cities, defaultValues, fieldsInactives }: FormTournamentProps) {
-    
+
     const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm<FieldsTournament>();
     const validations = Validations.formTournament;
 

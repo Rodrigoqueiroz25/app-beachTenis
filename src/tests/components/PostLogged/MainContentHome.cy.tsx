@@ -5,7 +5,7 @@ import { convertDateAmericanToString, convertDateBrazilToString, dateDayActual, 
 import { BrowserRouter } from 'react-router-dom';
 import { Tournament } from 'models/Tournament';
 import { City } from 'models/City';
-import { otherInformation } from 'constants/wordsPhrases';
+import { dateFinalRegistration, otherInformation } from 'constants/wordsPhrases';
 
 const arrayCities: City[] = [
   { id: 5423, areaM2: "18.566", codeIbge: 245030, stateCode: 22, name: "indaiá", gentilic: "indiano" },
@@ -13,30 +13,19 @@ const arrayCities: City[] = [
 ];
 
 const arrayTournaments: Tournament[] = [
-  {
+  new Tournament({
     id: 1,
     description: 'torneio',
     organization: 'org s.a.',
-    cityCode: arrayCities[0].id,
-    sportCode: 1,
-    periodRegistration: {
-      dateInitial: {
-        text: convertDateAmericanToString(dateDayActual())
-      },
-      dateFinal:{
-        text: convertDateAmericanToString(dateDayActual())
-      }
-    },
-    periodTournament: {
-      dateInitial: {
-        text: convertDateAmericanToString(dateFollowingDay())
-      },
-      dateFinal:{
-        text: convertDateAmericanToString(dateFollowingDay())
-      }
-    },
+    cityId: arrayCities[0].id,
+    sportId: 1,
+    dtStartRegistration: convertDateAmericanToString(dateDayActual()),
+    dtFinalRegistration: convertDateAmericanToString(dateDayActual()),
+    dtStartTournament : convertDateAmericanToString(dateFollowingDay()),
+    dtFinalTournament : convertDateAmericanToString(dateFollowingDay()),
     otherInformation: 'outher',
-  }
+  })
+  
 ]
 
 

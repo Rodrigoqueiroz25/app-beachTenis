@@ -26,7 +26,7 @@ export const ItemListTournament = ({ tournament, funcBtnAccess, funcBtnConfigure
                     <PostLogged.Item.Text text={tournament.organization} />
                     <PostLogged.Item.Text small text={tournament.description} />
                     <Button small onClick={() => funcBtnAccess(tournament.id!)} >Acessar</Button>
-                    {isAdmin() &&
+                    {isAdmin() && !tournament.isFinished() &&
                         <Button small onClick={() => funcBtnConfigure(tournament)}>Configurar</Button>
                     }
                 </div>

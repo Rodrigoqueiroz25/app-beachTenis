@@ -51,7 +51,7 @@ export function ListCategories({ dataTournament, listCategories, removeCategory,
                         <PostLogged.Item.Text text={category.description} />
                         <PostLogged.Item.Photos />
                         <PostLogged.Item.Text small text={`${category.numberAthletesRegistered} inscrito(s) de ${category.numberMaxAthletes}`} />
-                        {displayButtons(category)}
+                        {!dataTournament.isFinished() && displayButtons(category)}
                     </div>
                 </PostLogged.Item.Wrapper>
             ))}

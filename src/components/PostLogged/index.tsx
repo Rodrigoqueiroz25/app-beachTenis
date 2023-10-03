@@ -22,10 +22,10 @@ export const PostLogged = {
     Combobox: Combobox,
     Input: Input,
     Item: ItemList,
-    TextArea: TextArea,
     
     FormCategory: FormCategory,
     FormTournament: FormTournament,
     FormTournamentSponsor: FormTournamentSponsor,
-    ButtonsSelectors: ButtonsSelectors
+    ButtonsSelectors: ButtonsSelectors,
+    TextArea: TextArea,
 }
