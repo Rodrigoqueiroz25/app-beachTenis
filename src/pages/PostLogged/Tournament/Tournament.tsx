@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { PostLogged } from 'components/PostLogged';
@@ -16,7 +16,9 @@ import { ButtonsSelectors } from 'components/PostLogged/ButtonsSelectors/Buttons
 
 
 
+
 export function Tournament() {
+
 
     const { StateFetchHandle, Body, Header, HeaderDiv, Main } = PostLogged.Layout();
 
@@ -30,6 +32,9 @@ export function Tournament() {
     const deleteCategory = selector('category', 'remove');
 
     const [display, setDisplay] = useQueryParam('display', 'categories');
+
+    const isLoading = categories.isLoading || tournament.isLoading;
+    const ok = categories.ok && tournament.ok;
 
     useEffect(() => {
         if (!params.id) {
@@ -49,22 +54,23 @@ export function Tournament() {
     }, [deleteCategory.ok]);
 
 
-    function removeCategory(id: number) {
+    const removeCategory = useCallback((id: number) => {
         deleteCategory.fetch(id);
-    }
+    }, [deleteCategory.fetch]);
 
 
-    function editCategory(id: number) {
+    const editCategory = useCallback((id: number) => {
         let category = categories.data?.find((c) => c.id === id);
         if (category) {
             navigate(Routes.editCategory, { state: { category } })
         }
-    }
+    }, [categories.data]);
+
 
     return (
         <StateFetchHandle
-            isLoading={tournament.isLoading && categories.isLoading}
-            dataGetted={tournament.ok && categories.ok}
+            isLoading={isLoading}
+            dataGetted={ok}
         >
             <Body>
                 <Header>
@@ -100,7 +106,7 @@ export function Tournament() {
                             removeCategory={removeCategory}
                         />
                         : display === "informations" &&
-                        <Informations infoTournament={tournament.data} />
+                        < Informations infoTournament={tournament.data} />
                     }
                 </Main>
             </Body>

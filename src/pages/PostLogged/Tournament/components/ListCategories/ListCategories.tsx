@@ -9,6 +9,7 @@ import { Routes } from 'enums/routes.enum';
 import { Category } from 'models/Category';
 import { Tournament } from 'models/Tournament';
 import { isAdmin } from 'functions/isAdmin';
+import { useEffect } from 'react';
 
 
 interface MainContentProps {
@@ -21,6 +22,7 @@ interface MainContentProps {
 
 export function ListCategories({ dataTournament, listCategories, removeCategory, editCategory }: MainContentProps) {
 
+  
     const navigate = useNavigate();
 
     function displayButtons(category: Category) {

@@ -14,8 +14,8 @@ interface ItemListTournamentProps {
 }
 
 
-export function ItemListTournament({ tournament, funcBtnAccess, funcBtnConfigure }: ItemListTournamentProps) {
-
+export const ItemListTournament = ({ tournament, funcBtnAccess, funcBtnConfigure }: ItemListTournamentProps) => {
+   
     return (
         <>
             <PostLogged.Item.Wrapper>
@@ -34,3 +34,4 @@ export function ItemListTournament({ tournament, funcBtnAccess, funcBtnConfigure
         </>
     );
 }
+

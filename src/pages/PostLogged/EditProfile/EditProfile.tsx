@@ -3,12 +3,11 @@
 import { useNavigate } from 'react-router-dom';
 import { Routes } from "enums/routes.enum";
 import { PostLogged } from "components/PostLogged";
-
 import { City } from 'models/City';
 import { FieldsUpdateUserAccount, UserAccount } from 'models/UserAccount';
-import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 import { useEffect } from 'react';
 import { FormEditProfile } from 'components/PostLogged/FormEditProfile/FormEditProfile';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 
 export function EditProfile() {

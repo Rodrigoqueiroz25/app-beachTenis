@@ -6,8 +6,9 @@ import { PostLogged } from "components/PostLogged";
 import { FieldsTournament, Tournament } from 'models/Tournament';
 import { Sport } from 'models/Sport';
 import { City } from 'models/City';
-import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
+
 import { useEffect } from 'react';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 
 export function CreateTournament() {

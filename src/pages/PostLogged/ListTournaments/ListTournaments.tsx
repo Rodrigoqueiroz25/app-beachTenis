@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import styles from './styles.module.css'
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Routes } from 'enums/routes.enum';
 import { useNavigate } from 'react-router-dom';
 import { PostLogged } from 'components/PostLogged';
 import { ItemListTournament } from './components/ItemListTournament/ItemListTournament';
 import { ButtonsSelectors } from '../../../components/PostLogged/ButtonsSelectors/ButtonsSelectors';
 import { Tournament } from 'models/Tournament';
-import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 import { isAdmin } from 'functions/isAdmin';
 import { useQueryParam } from 'hooks/useQueryParam';
+import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 
 
 export function ListTournaments() {
@@ -20,6 +20,7 @@ export function ListTournaments() {
     const navigate = useNavigate();
     const { selector } = useSelectorMethodFetch();
     const { fetch, data, isLoading, ok } = selector('tournament', 'getAll');
+
     const [progress, setProgress] = useQueryParam('progress', 'opened');
 
 
@@ -27,17 +28,20 @@ export function ListTournaments() {
         fetch();
     }, []);
 
-    function access(tournamentId: number): void {
+
+    const access = useCallback((tournamentId: number) => {
         navigate(`${Routes.tournamentLessParam}/${tournamentId}`)
-    }
+    }, [])
 
-    function configure(tournament: Tournament): void {
+    const configure = useCallback((tournament: Tournament) => {
         navigate(Routes.editTournament, { state: { tournament } });
-    }
+    }, [])
 
-    function handleClick(value: string) {
+
+    const handleClick = useCallback((value: string) => {
         setProgress(value);
-    }
+    }, [])
+
 
     return (
         <StateFetchHandle
@@ -53,14 +57,14 @@ export function ListTournaments() {
                             <PostLogged.ButtonPlus onClick={() => navigate(Routes.createTournament)} />
                         }
                     </HeaderDiv>
-                    <ButtonsSelectors 
-                        onClick={setProgress} 
+                    <ButtonsSelectors
+                        onClick={handleClick}
                         btnSel={progress}
                         buttons={[
-                            {name: 'Em Andamento', value: 'opened' },
-                            {name: 'Finalizado', value: 'finished' }
+                            { name: 'Em Andamento', value: 'opened' },
+                            { name: 'Finalizado', value: 'finished' }
                         ]}
-                     />
+                    />
                 </Header>
                 <Main>
                     <div className={styles.list}>
@@ -76,6 +80,5 @@ export function ListTournaments() {
                 </Main>
             </Body>
         </StateFetchHandle>
-
     );
 }

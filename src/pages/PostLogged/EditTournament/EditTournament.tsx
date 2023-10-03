@@ -40,7 +40,7 @@ export function EditTournament() {
             }
 
             <StateFetchHandle
-                isLoading={cities.isLoading && sports.isLoading}
+                isLoading={cities.isLoading || sports.isLoading}
                 dataGetted={cities.ok && sports.ok}
                 shouldRedirect={{
                     redirect: updateTournament.ok,
