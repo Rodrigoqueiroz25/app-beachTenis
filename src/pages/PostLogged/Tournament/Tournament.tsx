@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { PostLogged } from 'components/PostLogged';
@@ -16,9 +16,7 @@ import { ButtonsSelectors } from 'components/PostLogged/ButtonsSelectors/Buttons
 
 
 
-
 export function Tournament() {
-
 
     const { StateFetchHandle, Body, Header, HeaderDiv, Main } = PostLogged.Layout();
 
@@ -30,6 +28,7 @@ export function Tournament() {
     const tournament = selector('tournament', 'get');
     const categories = selector('category', 'getAll');
     const deleteCategory = selector('category', 'remove');
+    const registerPlayer = selector('category', 'registerPlayerSingle');
 
     const [display, setDisplay] = useQueryParam('display', 'categories');
 
@@ -40,7 +39,7 @@ export function Tournament() {
         if (!params.id) {
             navigate(Routes.listTournaments)
         }
-    }, [])
+    }, [params.id])
 
     useEffect(() => {
         categories.fetch(Number(params.id));
@@ -49,9 +48,9 @@ export function Tournament() {
 
     useEffect(() => {
         if (deleteCategory.ok) {
-            navigate(location.pathname)
+            categories.fetch(Number(params.id));
         }
-    }, [deleteCategory.ok]);
+    }, [deleteCategory.ok, params.id]);
 
 
     const removeCategory = useCallback((id: number) => {
@@ -65,6 +64,17 @@ export function Tournament() {
             navigate(Routes.editCategory, { state: { category } })
         }
     }, [categories.data]);
+
+
+    const registerPlayerInCategorySingle = useCallback((categoryId: number) => {
+        registerPlayer.fetch(categoryId);
+    }, [registerPlayer.fetch]);
+
+    useEffect(() => {
+        if (registerPlayer.ok) {
+            categories.fetch(Number(params.id));
+        }
+    }, [registerPlayer.ok, params.id]);
 
 
     return (
@@ -104,6 +114,7 @@ export function Tournament() {
                             listCategories={categories.data}
                             editCategory={editCategory}
                             removeCategory={removeCategory}
+                            registration={registerPlayerInCategorySingle}
                         />
                         : display === "informations" &&
                         < Informations infoTournament={tournament.data} />

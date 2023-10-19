@@ -1,11 +1,12 @@
 import React from 'react'
 import { MainContentHome } from 'pages/PostLogged/Home/components/MainContentHome'
 import './main.css';
-import { convertDateAmericanToString, convertDateBrazilToString, dateDayActual, dateFollowingDay } from 'helper/convertData';
+import { convertDateAmericanToString, convertDateBrazilToString } from 'helper/convertData';
 import { BrowserRouter } from 'react-router-dom';
 import { Tournament } from 'models/Tournament';
 import { City } from 'models/City';
 import { dateFinalRegistration, otherInformation } from 'constants/wordsPhrases';
+import { dateDayActual, dateFollowingDay } from 'functions/dataCalendar';
 
 const arrayCities: City[] = [
   { id: 5423, areaM2: "18.566", codeIbge: 245030, stateCode: 22, name: "indaiá", gentilic: "indiano" },

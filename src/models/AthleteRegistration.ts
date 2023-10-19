@@ -59,14 +59,14 @@ export class AthleteRegistration {
     //     }
     // }
 
-    // public static mapDataRemote(rawData: any) {
-    //     if (isAthleteRegistrationRemote(rawData)) {
-    //         return new AthleteRegistration(rawData);
-    //     }
-    //     if (isError(rawData)) {
-    //         return rawData;
-    //     }
-    // }
+    public static mapDataRemote(rawData: any) {
+        if (isAthleteRegistrationRemote(rawData)) {
+            return new AthleteRegistration(rawData);
+        }
+        if (isError(rawData)) {
+            return rawData;
+        }
+    }
 
     public static mapArrayDataRemote(rawData: any[]) {
         if (isError(rawData)) {

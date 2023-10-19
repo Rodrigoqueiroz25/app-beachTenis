@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import styles from './styles.module.css'
+// import styles from './styles.module.css'
 import { useCallback, useEffect } from 'react';
 import { Routes } from 'enums/routes.enum';
 import { useNavigate } from 'react-router-dom';
@@ -67,7 +67,7 @@ export function ListTournaments() {
                     />
                 </Header>
                 <Main>
-                    <div className={styles.list}>
+                    <div className='list'>
                         {progress && data[progress]?.map((tournament: Tournament, key: number) => (
                             <ItemListTournament
                                 tournament={tournament}

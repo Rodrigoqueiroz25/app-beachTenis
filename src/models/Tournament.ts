@@ -1,4 +1,5 @@
-import { dateDayActual, stringBrazilToDate } from "helper/convertData";
+import { dateDayActual } from "functions/dataCalendar";
+import { stringBrazilToDate } from "helper/convertData";
 import { isError } from "interfaces/IError";
 
 export type DatesFormatted = {

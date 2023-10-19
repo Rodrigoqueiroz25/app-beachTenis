@@ -1,3 +1,10 @@
 .App{
     
 }
+
+.list{
+    margin: 2rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}

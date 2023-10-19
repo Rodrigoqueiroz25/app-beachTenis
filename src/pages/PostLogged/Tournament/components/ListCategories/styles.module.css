@@ -1,12 +1,12 @@
-.list{
-    margin: 3rem 0 0 0;
-}
 
+/* .list{
+    margin: 3rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+} */
 
 .itemList{
-    grid-column: 2/3;
-    grid-row: 2/3;
-
     display: grid;
     grid-template-areas:
         'description games'

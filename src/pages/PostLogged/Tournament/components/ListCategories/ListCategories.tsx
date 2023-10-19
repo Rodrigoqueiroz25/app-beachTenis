@@ -3,36 +3,46 @@ import styles from './styles.module.css'
 
 import { Button } from 'components/Button/Button';
 import { PostLogged } from 'components/PostLogged';
-import { dateDayActual, stringBrazilToDate } from 'helper/convertData';
 import { useNavigate } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { Category } from 'models/Category';
 import { Tournament } from 'models/Tournament';
 import { isAdmin } from 'functions/isAdmin';
-import { useEffect } from 'react';
+import { isInPeriodRegistration, isInPeriodTournament } from 'functions/dataCalendar';
 
 
-interface MainContentProps {
+type ListCategoriesProps = {
     dataTournament: Tournament;
     listCategories: Category[];
     removeCategory: (id: number) => void;
     editCategory: (id: number) => void;
+    registration: (categoryId: number) => void;
 }
 
 
-export function ListCategories({ dataTournament, listCategories, removeCategory, editCategory }: MainContentProps) {
+export function ListCategories({ dataTournament, listCategories, removeCategory, editCategory, registration }: ListCategoriesProps) {
 
-  
     const navigate = useNavigate();
 
+
     function displayButtons(category: Category) {
-        if (!isAdmin() && stringBrazilToDate(dataTournament.periodRegistration?.dateInitial.text).getTime() <= dateDayActual().getTime() && dateDayActual().getTime() <= stringBrazilToDate(dataTournament.periodRegistration?.dateFinal.text).getTime()) {
-            return <Button small onClick={() => navigate(`${Routes.registerPlayerCategory}`, { state: { category: category } })}>Inscrever</Button>
+        if (!isAdmin()) {
+            if (isInPeriodRegistration(dataTournament)) {
+                if(Number(category.numberAthletesPerRegistration) === 1){
+                    return <Button small onClick={() => registration(category.id)}>Inscrição</Button>
+                }
+                else if(Number(category.numberAthletesPerRegistration) === 2){
+                    return <Button medium onClick={() => navigate(`${Routes.registerPlayerCategory}`, { state: { category: category } })}>Escolher dupla</Button>
+                }
+                else{
+                    return <Button medium onClick={() => navigate(`${Routes.registerPlayerCategory}`, { state: { category: category } })}>Escolher time</Button>
+                }
+            }
+            if (isInPeriodTournament(dataTournament)) {
+                return <Button small>Jogos</Button>
+            }
         }
-        else if (!isAdmin() && stringBrazilToDate(dataTournament.periodRegistration?.dateFinal.text).getTime() <= dateDayActual().getTime() && dateDayActual().getTime() <= stringBrazilToDate(dataTournament.periodTournament?.dateFinal.text).getTime()) {
-            return <Button small>Jogos</Button>
-        }
-        else if (isAdmin()) {
+        else {
             return (
                 <>
                     <Button small onClick={() => editCategory(category.id)}>Editar</Button>
@@ -40,18 +50,20 @@ export function ListCategories({ dataTournament, listCategories, removeCategory,
                 </>
             )
         }
+
     }
 
+  
 
     return (
-        <div className={styles.list}>
+        <div className='list'>
             {listCategories.map((category: Category, key: number) => (
                 <PostLogged.Item.Wrapper key={key}>
                     <div className={styles.itemList}>
                         <PostLogged.Item.Text text={category.description} />
                         <PostLogged.Item.Photos />
                         <PostLogged.Item.Text small text={`${category.numberAthletesRegistered} inscrito(s) de ${category.numberMaxAthletes}`} />
-                        {!dataTournament.isFinished() && displayButtons(category)}
+                        {!dataTournament.isFinished() ? displayButtons(category) : null}
                     </div>
                 </PostLogged.Item.Wrapper>
             ))}

@@ -1,8 +1,9 @@
 import React from 'react'
 
 import './main.css';
-import { convertDateAmericanToString, dateDayActual } from 'helper/convertData';
+import { convertDateAmericanToString } from 'helper/convertData';
 import { FormCreateAccountPartTwo } from 'components/PreLoggedin/FormCreateAccountPartTwo/FormCreateAccountPartTwo';
+import { dateDayActual } from 'functions/dataCalendar';
 // import { convertData } from 'helper/convertData';
 
 

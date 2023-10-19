@@ -1,6 +1,6 @@
 import { PostLogged } from 'components/PostLogged'
 import './main.css'
-import { dateFollowingDay } from 'helper/convertData';
+import { dateFollowingDay } from 'functions/dataCalendar';
 import { City } from 'models/City';
 import { Sport } from 'models/Sport';
 

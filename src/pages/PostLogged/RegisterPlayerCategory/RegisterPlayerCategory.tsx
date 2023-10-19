@@ -40,6 +40,12 @@ export function RegisterPlayerCategory() {
         teams.fetch(category.id)
     }, []);
 
+    useEffect(() => {
+        if(registerTeam.ok){
+            teams.fetch(category.id);
+        }
+    },[registerTeam.ok]);
+
 
     function handleClickButtonSearch() {
         getUser.fetch(textSearch);

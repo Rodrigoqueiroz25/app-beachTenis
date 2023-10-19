@@ -1,14 +1,7 @@
 
-.list{
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
-}
-
 .item{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 1.2rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .photo{
@@ -28,8 +21,8 @@
     letter-spacing: -0.26px; 
 }
 
-.line{
+/* .line{
     background-color: #95A1B0;
     height: 1px;
     margin-top: 1.5rem;
-}
+} */

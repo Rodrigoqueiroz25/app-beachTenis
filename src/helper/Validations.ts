@@ -1,12 +1,13 @@
 
 import *  as yup from "yup";
-import { calcAgeFromDate, dateDayActual, stringToDate } from "./convertData";
 import { dataDeveSerIgualMaiorQueAtual, dataDeveSerPosteriorPeriodoInscricao, dataFinalRegistroDeveSerIgualMaiorQueInicial, dataFinalTorneioDeveSerIgualMaiorQueInicial, digiteData, digiteDescricao, digiteEmailValido, digiteNome, digiteNomeOrganizacao, digiteNovamenteSenha, digiteNumeroTelefone, digiteSenha, digiteSobrenome, digiteValorNumerico, email, gender, numeroTelefoneInvalido, password, repeatPasswd, selecioneOpcao, senhasDigitadasDiferentes, usuarioMaior18anos, selecioneGenero } from "constants/wordsPhrases";
 import { digiteEmail } from "constants/wordsPhrases";
 import { FieldsCategory } from "../models/Category";
 import { FieldsTournament } from "models/Tournament";
 import { FieldsTournamentSponsor } from "models/TournamentSponsor";
 import { FieldsCreateUserAccount, FieldsUpdateUserAccount } from "models/UserAccount";
+import { calcAgeFromDate, dateDayActual } from "functions/dataCalendar";
+import { stringToDate } from "./convertData";
 
 type StringValueKeys<T> = { [P in keyof T]: T[P] extends string ? T[P] : never };
 type Key<T> = keyof StringValueKeys<T>;

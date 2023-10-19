@@ -22,6 +22,14 @@
     font-weight: 600;
     
   }
+
+  .medium{
+    height: 3.5rem;
+    width: 7rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    
+  }
   
   .button:hover {
     background-color: #413eef;

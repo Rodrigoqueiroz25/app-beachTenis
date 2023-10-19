@@ -1,12 +1,5 @@
-.list{
-    margin-top: 1.3rem;
-}
-
 
 .itemList{
-    grid-column: 2/3;
-    grid-row: 2/3;
-
     display: grid;
     grid-template-areas:
         'photo name inscBtn'

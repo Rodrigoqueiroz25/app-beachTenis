@@ -29,7 +29,7 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "env-cmd -f ./.env react-scripts -r @cypress/instrument-cra start",
+    "start": "WATCHPACK_POLLING=true env-cmd -f ./.env react-scripts -r @cypress/instrument-cra start",
     "build": "env-cmd -f ./.env react-scripts build",
     "test": "env-cmd -f ./.env react-scripts test",
     "eject": "react-scripts eject",

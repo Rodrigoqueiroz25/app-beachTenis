@@ -5,9 +5,9 @@ import { AthleteRegistration } from "models/AthleteRegistration";
 import { Team } from "models/Team";
 
 
-const register = (categoryId: number, athletesId: string): Curried<AthleteRegistration[]> => {
+const registerTeam = (categoryId: number, athletesId: string): Curried<AthleteRegistration[]> => {
     return (cookies: string) => {
-        return http.post<AthleteRegistration[]>(`/registrations`, {categoryId, athletesId}, {
+        return http.post<AthleteRegistration[]>(`/registerTeam`, {categoryId, athletesId}, {
             headers: {
                 'x-access-token': `${cookies}`
             },
@@ -19,9 +19,33 @@ const register = (categoryId: number, athletesId: string): Curried<AthleteRegist
     }
 }
 
+const registerPlayer = (categoryId: number): Curried<AthleteRegistration> => {
+    return (cookies: string) => {
+        return http.post<AthleteRegistration>(`/registerTeam`, {categoryId}, {
+            headers: {
+                'x-access-token': `${cookies}`
+            },
+            transformResponse: [(data) => {
+                let res = JSON.parse(data);
+                return AthleteRegistration.mapDataRemote(res);
+            }],
+        })
+    }
+}
+
+const remove = (teamId: number): Curried<any> => {
+    return (cookies: string) => {
+        return http.post<any>(`/registerTeam`,{
+            headers: {
+                'x-access-token': `${cookies}`
+            },
+        })
+    }
+}
+
 const getAll = (categoryId: number): Curried<Team[]> => {
     return (cookies: string) => {
-        return http.get<Team[]>(`/registrations/loadByCategory?categoryId=${categoryId}`, {
+        return http.get<Team[]>(`/teamsRegisteredByCategory?categoryId=${categoryId}`, {
             headers: {
                 'x-access-token': `${cookies}`
             },
@@ -35,7 +59,9 @@ const getAll = (categoryId: number): Curried<Team[]> => {
 
 export const TeamFetchService = {
     getAll,
-    register
+    registerTeam,
+    registerPlayer,
+    remove
 }
 
 

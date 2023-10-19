@@ -1,7 +1,5 @@
-.itemList{
-    grid-column: 2/3;
-    grid-row: 2/3;
 
+.itemList{
     display: grid;
     grid-template-areas: 
         'img period period'

@@ -141,19 +141,14 @@
 
 
 .itemList{
-    grid-column: 2/3;
-    grid-row: 2/3;
-
     display: grid;
     grid-template-areas: 
         'period period period'
         'org org org'
         'description description description'
         'photos photos km'
-        'fee inscription inscription'
-        
+        'fee inscription inscription'        
     ;
-    
 }
 
 .itemList > :nth-child(1){

@@ -23,7 +23,8 @@ const methods = {
         'create': CategoryFetchService.create,
         'update': CategoryFetchService.update,
         'remove': CategoryFetchService.remove,
-        'registerTeam': TeamFetchService.register,
+        'registerTeam': TeamFetchService.registerTeam,
+        'registerPlayerSingle': TeamFetchService.registerPlayer,
         'getRegisteredTeams': TeamFetchService.getAll
     },
     'tournamentSponsor': {
