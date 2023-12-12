@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-
 import { useCallback, useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { PostLogged } from 'components/PostLogged';
 import styles from './styles.module.css'
@@ -13,7 +12,7 @@ import { isAdmin } from 'functions/isAdmin';
 import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
 import { useQueryParam } from 'hooks/useQueryParam';
 import { ButtonsSelectors } from 'components/PostLogged/ButtonsSelectors/ButtonsSelectors';
-
+import { useRegisterPlayerCategorySingle } from 'hooks/useRegisterPlayerCategorySingle';
 
 
 export function Tournament() {
@@ -22,35 +21,52 @@ export function Tournament() {
 
     const params = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
 
     const { selector } = useSelectorMethodFetch();
     const tournament = selector('tournament', 'get');
     const categories = selector('category', 'getAll');
     const deleteCategory = selector('category', 'remove');
-    const registerPlayer = selector('category', 'registerPlayerSingle');
+
+    const { register, 
+            unregister, 
+            isPlayerRegistered, 
+            isPlayerUnregistered} = useRegisterPlayerCategorySingle();
 
     const [display, setDisplay] = useQueryParam('display', 'categories');
 
     const isLoading = categories.isLoading || tournament.isLoading;
     const ok = categories.ok && tournament.ok;
 
+    //
+
     useEffect(() => {
         if (!params.id) {
             navigate(Routes.listTournaments)
         }
+        else{
+            categories.fetch(Number(params.id));
+            tournament.fetch(Number(params.id));    
+        }
     }, [params.id])
 
-    useEffect(() => {
-        categories.fetch(Number(params.id));
-        tournament.fetch(Number(params.id));
-    }, [params.id])
 
     useEffect(() => {
         if (deleteCategory.ok) {
             categories.fetch(Number(params.id));
         }
     }, [deleteCategory.ok, params.id]);
+
+    useEffect(() => {
+        if (isPlayerRegistered) {
+            categories.fetch(Number(params.id));
+        }
+    }, [isPlayerRegistered]);
+
+    useEffect(() => {
+        if(isPlayerUnregistered){
+            categories.fetch(Number(params.id));
+        }
+    },[isPlayerUnregistered, params.id])
 
 
     const removeCategory = useCallback((id: number) => {
@@ -64,17 +80,6 @@ export function Tournament() {
             navigate(Routes.editCategory, { state: { category } })
         }
     }, [categories.data]);
-
-
-    const registerPlayerInCategorySingle = useCallback((categoryId: number) => {
-        registerPlayer.fetch(categoryId);
-    }, [registerPlayer.fetch]);
-
-    useEffect(() => {
-        if (registerPlayer.ok) {
-            categories.fetch(Number(params.id));
-        }
-    }, [registerPlayer.ok, params.id]);
 
 
     return (
@@ -114,7 +119,8 @@ export function Tournament() {
                             listCategories={categories.data}
                             editCategory={editCategory}
                             removeCategory={removeCategory}
-                            registration={registerPlayerInCategorySingle}
+                            registration={register}
+                            unregister={unregister}
                         />
                         : display === "informations" &&
                         < Informations infoTournament={tournament.data} />

@@ -17,28 +17,33 @@ type ListCategoriesProps = {
     removeCategory: (id: number) => void;
     editCategory: (id: number) => void;
     registration: (categoryId: number) => void;
+    unregister: (categoryId: number) => void;
 }
 
 
-export function ListCategories({ dataTournament, listCategories, removeCategory, editCategory, registration }: ListCategoriesProps) {
+export function ListCategories({ dataTournament, listCategories, removeCategory, editCategory, registration, unregister }: ListCategoriesProps) {
 
     const navigate = useNavigate();
-
 
     function displayButtons(category: Category) {
         if (!isAdmin()) {
             if (isInPeriodRegistration(dataTournament)) {
-                if(Number(category.numberAthletesPerRegistration) === 1){
-                    return <Button small onClick={() => registration(category.id)}>Inscrição</Button>
-                }
-                else if(Number(category.numberAthletesPerRegistration) === 2){
-                    return <Button medium onClick={() => navigate(`${Routes.registerPlayerCategory}`, { state: { category: category } })}>Escolher dupla</Button>
+                if(category.userLoggedRegistered && Number(category.numberAthletesPerRegistration) === 1){
+                    return <Button small onClick={() => unregister(category.id)}>Remover inscrição</Button>
                 }
                 else{
-                    return <Button medium onClick={() => navigate(`${Routes.registerPlayerCategory}`, { state: { category: category } })}>Escolher time</Button>
+                    if(Number(category.numberAthletesPerRegistration) === 1){
+                        return <Button small onClick={() => registration(category.id)}>Inscrição</Button>
+                    }
+                    else if(Number(category.numberAthletesPerRegistration) === 2){
+                        return <Button medium onClick={() => navigate(`${Routes.registerPlayerCategory}`, { state: { category: category } })}>Escolher dupla</Button>
+                    }
+                    else{
+                        return <Button medium onClick={() => navigate(`${Routes.registerPlayerCategory}`, { state: { category: category } })}>Escolher time</Button>
+                    }
                 }
             }
-            if (isInPeriodTournament(dataTournament)) {
+           else if (isInPeriodTournament(dataTournament)) {
                 return <Button small>Jogos</Button>
             }
         }

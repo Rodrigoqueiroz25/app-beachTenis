@@ -25,8 +25,8 @@ export function RegisterPlayerCategory() {
     const getUser = selector('userAccount', 'getOtherByName');
     const teams = selector('category', 'getRegisteredTeams');
     const registerTeam = selector('category', 'registerTeam');
-
-    const [searchParams, setSearchParams] = useSearchParams({display: 'teamsRegistered'});
+    const removeTeam = selector('category', 'removeTeam');
+    const [searchParams, setSearchParams] = useSearchParams({ display: 'teamsRegistered' });
     const display = searchParams.get('display');
 
 
@@ -34,17 +34,22 @@ export function RegisterPlayerCategory() {
         if (!category) {
             navigate(Routes.listTournaments);
         }
-    }, []);
-
-    useEffect(() => {
-        teams.fetch(category.id)
-    }, []);
-
-    useEffect(() => {
-        if(registerTeam.ok){
+        else {
             teams.fetch(category.id);
         }
-    },[registerTeam.ok]);
+    }, []);
+
+    useEffect(() => {
+        if (registerTeam.ok) {
+            teams.fetch(category.id);
+        }
+    }, [registerTeam.ok]);
+
+    useEffect(() => {
+        if (removeTeam.ok) {
+            teams.fetch(category.id);
+        }
+    }, [removeTeam.ok])
 
 
     function handleClickButtonSearch() {
@@ -53,7 +58,7 @@ export function RegisterPlayerCategory() {
             prev.set('display', 'searchedNames')
             prev.set('search', textSearch)
             return prev
-        }, { state:  { category } })
+        }, { state: { category } })
     }
 
     function handleClickButtonInscription(idPlayer: number) {
@@ -62,41 +67,48 @@ export function RegisterPlayerCategory() {
             prev.set('display', 'teamsRegistered')
             prev.delete('search')
             return prev
-        }, { state:  { category } })
+        }, { state: { category } })
+    }
+
+    function deleteTeam(teamId: number) {
+        removeTeam.fetch(teamId);
     }
 
     return (
-        <Body>
-            <Header>
-                <HeaderDiv>
-                    <PostLogged.ButtonBack onClick={() => navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`)} />
-                    <p>{category.description}</p>
-                </HeaderDiv>
-            </Header>
-            <Main>
-                <div className={styles.inputSearch}>
-                    <input
-                        className={styles.search}
-                        type="text"
-                        placeholder='Encontre seu parceiro'
-                        value={textSearch}
-                        onChange={(e) => setTextSearch(e.target.value)}
-                    />
-                    <img onClick={handleClickButtonSearch} src={searchImg} alt="" />
-                </div>
+        <>
+            <Body>
+                <Header>
+                    <HeaderDiv>
+                        <PostLogged.ButtonBack onClick={() => navigate(`${Routes.tournamentLessParam}/${category.linkedToTournament}`)} />
+                        <p>{category.description}</p>
+                    </HeaderDiv>
+                </Header>
+                <Main>
+                    <div className={styles.inputSearch}>
+                        <input
+                            className={styles.search}
+                            type="text"
+                            placeholder='Encontre seu parceiro'
+                            value={textSearch}
+                            onChange={(e) => setTextSearch(e.target.value)}
+                        />
+                        <img onClick={handleClickButtonSearch} src={searchImg} alt="" />
+                    </div>
 
-                {display === 'teamsRegistered'
-                    ?
-                    <StateFetchHandle isLoading={teams.isLoading} dataGetted={teams.ok} >
-                        <ListPlayers listPlayers={teams.data} />
-                    </StateFetchHandle>
-                    :
-                    display === 'searchedNames' &&
-                    <StateFetchHandle isLoading={getUser.isLoading} dataGetted={getUser.ok}>
-                        <ListResultSearch players={getUser.data} handleClick={handleClickButtonInscription} />
-                    </StateFetchHandle>
-                }
-            </Main>
-        </Body>
+                    {display === 'teamsRegistered'
+                        ?
+                        <StateFetchHandle isLoading={teams.isLoading} dataGetted={teams.ok} >
+                            <ListPlayers listPlayers={teams.data} removeTeam={deleteTeam} />
+                        </StateFetchHandle>
+                        :
+                        display === 'searchedNames' &&
+                        <StateFetchHandle isLoading={getUser.isLoading} dataGetted={getUser.ok}>
+                            <ListResultSearch players={getUser.data} handleClick={handleClickButtonInscription} />
+                        </StateFetchHandle>
+                    }
+                </Main>
+            </Body>
+
+        </>
     )
 }

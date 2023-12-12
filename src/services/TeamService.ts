@@ -3,11 +3,12 @@ import { Curried } from "hooks/fetchApi/useAPI";
 import http from "./http-common"
 import { AthleteRegistration } from "models/AthleteRegistration";
 import { Team } from "models/Team";
+import { INotContent } from "interfaces/INotContent";
 
 
 const registerTeam = (categoryId: number, athletesId: string): Curried<AthleteRegistration[]> => {
     return (cookies: string) => {
-        return http.post<AthleteRegistration[]>(`/registerTeam`, {categoryId, athletesId}, {
+        return http.post<AthleteRegistration[]>(`/registerTeam`, { categoryId, athletesId }, {
             headers: {
                 'x-access-token': `${cookies}`
             },
@@ -21,7 +22,7 @@ const registerTeam = (categoryId: number, athletesId: string): Curried<AthleteRe
 
 const registerPlayer = (categoryId: number): Curried<AthleteRegistration> => {
     return (cookies: string) => {
-        return http.post<AthleteRegistration>(`/registerTeam`, {categoryId}, {
+        return http.post<AthleteRegistration>(`/registerTeam`, { categoryId }, {
             headers: {
                 'x-access-token': `${cookies}`
             },
@@ -33,15 +34,16 @@ const registerPlayer = (categoryId: number): Curried<AthleteRegistration> => {
     }
 }
 
-const remove = (teamId: number): Curried<any> => {
+const removeTeam = (teamId: number): Curried<any> => {
     return (cookies: string) => {
-        return http.post<any>(`/registerTeam`,{
+        return http.delete<any>(`/registerTeam/${teamId}`, {
             headers: {
                 'x-access-token': `${cookies}`
             },
         })
     }
 }
+
 
 const getAll = (categoryId: number): Curried<Team[]> => {
     return (cookies: string) => {
@@ -57,11 +59,35 @@ const getAll = (categoryId: number): Curried<Team[]> => {
     }
 }
 
+const getTeamIdPlayerLoggedByCategory = (categoryId: number): Curried<number> => {
+    return (cookies: string) => {
+        return http.get<number>(`/teamsRegisteredByCategory?categoryId=${categoryId}`, {
+            headers: {
+                'x-access-token': `${cookies}`
+            },
+            transformResponse: [(data) => {
+                let res = Team.mapArrayDataRemote(JSON.parse(data));
+                let id = 0;
+                res.forEach(team => {
+                    team.athletes.forEach(athlete => {
+                        if (athlete.canDeleted) {
+                            id = team.id;
+                        }
+                    });
+                });
+                return id;
+            }],
+        })
+    }
+}
+
+
 export const TeamFetchService = {
     getAll,
     registerTeam,
     registerPlayer,
-    remove
+    removeTeam,
+    getTeamIdPlayerLoggedByCategory
 }
 
 

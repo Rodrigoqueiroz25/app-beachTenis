@@ -6,7 +6,8 @@ type Athlete = {
     id: number,
     name: string,
     photo: string,
-    isPay: boolean
+    isPay: boolean,
+    canDeleted: boolean
 }
 
 export type TeamRemote = {

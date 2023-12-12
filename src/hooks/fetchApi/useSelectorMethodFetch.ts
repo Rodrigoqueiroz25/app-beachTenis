@@ -25,7 +25,9 @@ const methods = {
         'remove': CategoryFetchService.remove,
         'registerTeam': TeamFetchService.registerTeam,
         'registerPlayerSingle': TeamFetchService.registerPlayer,
-        'getRegisteredTeams': TeamFetchService.getAll
+        'getRegisteredTeams': TeamFetchService.getAll,
+        'getTeamIdPlayerLoggedByCategory': TeamFetchService.getTeamIdPlayerLoggedByCategory,
+        'removeTeam': TeamFetchService.removeTeam
     },
     'tournamentSponsor': {
         'create': TournamentSponsorFetchService.create,

@@ -8,10 +8,11 @@ export type CategoryRemote = {
     numberAthletes: string;
     numberAthletesRegistration: string;
     tournamentId: number;
-    numberRegistration?: number;
+    numberRegistration: number;
+    isUserLoggedRegistered?: boolean;
 }
 
-export type CategorySend = Omit<CategoryRemote, 'id' | 'numberRegistration'>;
+export type CategorySend = Omit<CategoryRemote, 'id' | 'numberRegistration' >;
 
 export type FieldsCategory = {
     description: string,
@@ -32,6 +33,7 @@ export class Category {
     public numberAthletesPerRegistration: string;
     public linkedToTournament: number;
     public numberAthletesRegistered: number;
+    public userLoggedRegistered?: boolean;
 
 
     constructor(data: CategoryRemote) {
@@ -45,6 +47,7 @@ export class Category {
             this.numberAthletesPerRegistration = haveProperty('numberAthletesRegistration', data)
             this.linkedToTournament = haveProperty('tournamentId', data)
             this.numberAthletesRegistered = haveProperty('numberRegistration', data)
+            this.userLoggedRegistered = haveProperty('isUserLoggedRegistered', data);
         }
     }
 

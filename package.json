@@ -72,6 +72,7 @@
     "@testing-library/cypress": "^9.0.0",
     "@types/date-fns": "^2.6.0",
     "@types/testing-library__cypress": "^5.0.9",
+    "@wixc3/react-board": "^2.3.0",
     "commitizen": "^4.3.0",
     "cypress": "^12.17.2",
     "cz-conventional-changelog": "^3.3.0",

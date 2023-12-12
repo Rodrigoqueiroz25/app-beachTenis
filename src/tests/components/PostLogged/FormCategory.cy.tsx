@@ -143,7 +143,8 @@ describe('Testing with defaultValues <FormCategory>', () => {
       description: "Dupla Masculina A",
       numberAthletes: '233',
       numberAthletesRegistration: '2',
-      tournamentId: 1      
+      tournamentId: 1,
+      numberRegistration: 0
     })}/>)
   });
 
