@@ -56,17 +56,12 @@ export function Tournament() {
         }
     }, [deleteCategory.ok, params.id]);
 
-    useEffect(() => {
-        if (isPlayerRegistered) {
-            categories.fetch(Number(params.id));
-        }
-    }, [isPlayerRegistered]);
 
     useEffect(() => {
-        if(isPlayerUnregistered){
+        if (isPlayerRegistered || isPlayerUnregistered) {
             categories.fetch(Number(params.id));
         }
-    },[isPlayerUnregistered, params.id])
+    }, [isPlayerRegistered, isPlayerUnregistered]);
 
 
     const removeCategory = useCallback((id: number) => {

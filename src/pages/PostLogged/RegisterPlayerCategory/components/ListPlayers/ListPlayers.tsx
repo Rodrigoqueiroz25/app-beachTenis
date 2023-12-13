@@ -1,5 +1,4 @@
 
-
 import { Team } from 'models/Team';
 import styles from './styles.module.css';
 import image1 from 'assets/image1.svg';

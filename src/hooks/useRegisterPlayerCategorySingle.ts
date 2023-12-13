@@ -23,18 +23,16 @@ export function useRegisterPlayerCategorySingle(){
         registerPlayer.fetch(categoryId);
     };
 
-
     const unregister = (categoryId: number) => {
         getTeamIdPlayerLoggedByCategory.fetch(categoryId);
     };
 
 
-
     return {
         register,
         unregister,
-        isPlayerRegistered: registerPlayer.ok,
-        isPlayerUnregistered: unregisterPlayer.ok
+        isPlayerRegistered: registerPlayer.ok && registerPlayer.state === 'done',
+        isPlayerUnregistered: unregisterPlayer.ok && unregisterPlayer.state === 'done'
     }
 
 }

@@ -59,6 +59,7 @@ export function useSelectorMethodFetch() {
         isLoading: boolean,
         ok: boolean,
         data: Unwrap<typeof methods[P1][P2]>;
+        state: 'idle' | 'done';
         fetch: (...x: Parameters<typeof methods[P1][P2] extends (...params: infer Props) => Curried<any> ? (...x: Props) => Promise<void> : never>) => Promise<void>
     };
 
