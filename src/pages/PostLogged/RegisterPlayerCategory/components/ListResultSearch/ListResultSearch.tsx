@@ -8,7 +8,7 @@ import { UserAccount } from 'models/UserAccount';
 
 interface ListResultSearchProps{
     players: UserAccount[];
-    handleClick: (idPlayer: number) => void;
+    handleClick: (player: UserAccount) => void;
 }
 
 export function ListResultSearch({players, handleClick}: ListResultSearchProps) {
@@ -21,7 +21,7 @@ export function ListResultSearch({players, handleClick}: ListResultSearchProps) 
                         <div className={styles.itemList}>
                             <PostLogged.Item.Photo />
                             <PostLogged.Item.Text text={player.name} />
-                            <Button small onClick={() => handleClick(player.id)}>Inscrever</Button>
+                            <Button small onClick={() => handleClick(player)}>Selecionar</Button>
                         </div>
                     </PostLogged.Item.Wrapper>
                 </div>

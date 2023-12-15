@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { PostLogged } from 'components/PostLogged';
-import styles from './styles.module.css';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Routes } from 'enums/routes.enum';
 import { useEffect, useState } from 'react';
-import searchImg from 'assets/searchbx.svg';
 import { ListPlayers } from './components/ListPlayers/ListPlayers';
 import { ListResultSearch } from './components/ListResultSearch/ListResultSearch';
 import { Category } from 'models/Category';
 import { useSelectorMethodFetch } from 'hooks/fetchApi/useSelectorMethodFetch';
+import { ListPlayersSelected } from './components/ListPlayersSelected/ListPlayersSelected';
+import { UserAccount } from 'models/UserAccount';
+import { InputSearch } from './components/InputSearch/InputSearch';
 
 
 export function RegisterPlayerCategory() {
@@ -19,8 +20,6 @@ export function RegisterPlayerCategory() {
     const navigate = useNavigate();
     const { state: { category } }: { state: { category: Category } } = useLocation();
 
-    const [textSearch, setTextSearch] = useState('');
-
     const { selector } = useSelectorMethodFetch();
     const getUser = selector('userAccount', 'getOtherByName');
     const teams = selector('category', 'getRegisteredTeams');
@@ -29,50 +28,102 @@ export function RegisterPlayerCategory() {
     const [searchParams, setSearchParams] = useSearchParams({ display: 'teamsRegistered' });
     const display = searchParams.get('display');
 
+    const [playersSelected, setPlayersSelected] = useState<UserAccount[]>([]);
 
-    useEffect(() => {
-        if (!category) {
-            navigate(Routes.listTournaments);
-        }
-        else {
-            teams.fetch(category.id);
-        }
-    }, []);
+    const isCompleteTeam = playersSelected.length === Number(category.numberAthletesPerRegistration) - 1;
 
-    useEffect(() => {
-        if (registerTeam.ok) {
-            teams.fetch(category.id);
-        }
-    }, [registerTeam.ok]);
+    if(!category){
+        navigate(Routes.listTournaments);
+    }
 
-    useEffect(() => {
-        if (removeTeam.ok) {
-            teams.fetch(category.id);
-        }
-    }, [removeTeam.ok])
-
-
-    function handleClickButtonSearch() {
-        getUser.fetch(textSearch);
+    function handleSearchParams(display: 'teamsRegistered' | 'searchedNames' | 'playersSelected', search?: string) {
         setSearchParams(prev => {
-            prev.set('display', 'searchedNames')
-            prev.set('search', textSearch)
+            prev.set('display', display)
+            if (search) {
+                prev.set('search', search);
+            } else {
+                prev.delete('search');
+            }
             return prev
         }, { state: { category } })
     }
 
-    function handleClickButtonInscription(idPlayer: number) {
-        registerTeam.fetch(category.id, `${idPlayer}`);
-        setSearchParams(prev => {
-            prev.set('display', 'teamsRegistered')
-            prev.delete('search')
-            return prev
-        }, { state: { category } })
+    useEffect(() => {
+        if (category) {
+            teams.fetch(category.id);
+        }
+    }, [category]);
+
+    useEffect(() => {
+        if (registerTeam.ok || removeTeam.ok) {
+            handleSearchParams('teamsRegistered');
+            teams.fetch(category.id);
+        }
+    }, [registerTeam.ok, removeTeam.ok]);
+
+
+    function handleClickButtonSearch(str: string) {
+        if (!isCompleteTeam) {
+            getUser.fetch(str);
+            handleSearchParams('searchedNames', str);
+        }
     }
 
-    function deleteTeam(teamId: number) {
+    function handleClickButtonInscription(player: UserAccount) {
+        if (!isCompleteTeam) {
+            setPlayersSelected([...playersSelected, player]);
+            handleSearchParams('playersSelected');
+        }
+    }
+
+    function handleClickDeleteTeam(teamId: number) {
         removeTeam.fetch(teamId);
     }
+
+    function handleClickRemovePlayerSelected(idPlayer: number) {
+        console.log(idPlayer)
+        let arr = playersSelected.filter((player, i) => player.id !== idPlayer);
+        if (arr) {
+            setPlayersSelected([...arr]);
+        }
+    }
+
+    function handleClickButtonCancel() {
+        setPlayersSelected([]);
+        handleSearchParams('teamsRegistered');
+    }
+
+    function handleClickButtonConfirm() {
+        if (isCompleteTeam) {
+            let str = playersSelected.map((player) => player.id).join(',');
+            registerTeam.fetch(category.id, str);
+            setPlayersSelected([]);
+        }
+    }
+
+    const displayComponents = {
+        teamsRegistered: (
+            <StateFetchHandle isLoading={teams.isLoading} dataGetted={teams.ok}>
+                <ListPlayers listPlayers={teams.data} removeTeam={handleClickDeleteTeam} />
+            </StateFetchHandle>
+        ),
+        searchedNames: (
+            <StateFetchHandle isLoading={getUser.isLoading} dataGetted={getUser.ok}>
+                <ListResultSearch players={getUser.data} handleClick={handleClickButtonInscription} />
+            </StateFetchHandle>
+        ),
+        playersSelected: (
+            <ListPlayersSelected
+                playersSelected={playersSelected}
+                removePlayerSelected={handleClickRemovePlayerSelected}
+                onCancel={handleClickButtonCancel}
+                onConfirm={handleClickButtonConfirm}
+            />
+        ),
+    };
+
+    const componentToRender = display ? (displayComponents[display] || <></>) : "";
+
 
     return (
         <>
@@ -84,31 +135,13 @@ export function RegisterPlayerCategory() {
                     </HeaderDiv>
                 </Header>
                 <Main>
-                    <div className={styles.inputSearch}>
-                        <input
-                            className={styles.search}
-                            type="text"
-                            placeholder='Encontre seu parceiro'
-                            value={textSearch}
-                            onChange={(e) => setTextSearch(e.target.value)}
-                        />
-                        <img onClick={handleClickButtonSearch} src={searchImg} alt="" />
-                    </div>
-
-                    {display === 'teamsRegistered'
-                        ?
-                        <StateFetchHandle isLoading={teams.isLoading} dataGetted={teams.ok} >
-                            <ListPlayers listPlayers={teams.data} removeTeam={deleteTeam} />
-                        </StateFetchHandle>
-                        :
-                        display === 'searchedNames' &&
-                        <StateFetchHandle isLoading={getUser.isLoading} dataGetted={getUser.ok}>
-                            <ListResultSearch players={getUser.data} handleClick={handleClickButtonInscription} />
-                        </StateFetchHandle>
-                    }
+                    <InputSearch
+                        isCompleteTeam={isCompleteTeam}
+                        onClickButtonSearch={handleClickButtonSearch}
+                    />
+                    {componentToRender}
                 </Main>
             </Body>
-
         </>
     )
 }
